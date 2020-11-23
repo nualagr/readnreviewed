@@ -25,9 +25,8 @@ Click <a href="">here</a> to visit the site.
 1. [**User Experience (UX)**](#ux)
     - [Project Goals](#project-goals)
     - [User Stories](#user-stories)
-        - [Prospective Site Member](#prospective-site-member)
-        - [Existing Site Member](#existing-site-member)
-        - [The Lord of the Rings Fan](#the-lord-of-the-rings-fan)
+        - [Prospective User](#prospective-user)
+        - [Existing User](#existing-user)
         - [Site Owner](#site-owner)
 2. [**User Centered Design**](#user-centered-design)
     - [1) The Strategy Plane](#1-strategy-plane)
@@ -85,7 +84,7 @@ The goals of this project are to:
 
 ### User Stories
 
-#### Prospective Site Member
+#### Prospective User
 
 I am a prospective Read n’ Reviewed site member I want to be able to:
 
@@ -98,7 +97,7 @@ I am a prospective Read n’ Reviewed site member I want to be able to:
 -   Navigate through the site with ease.
 -	Easily register to become a site member.
 
-#### Existing Site Member
+#### Existing User
 
 I am an existing Read n’ Reviewed site member I want to be able to:
 
@@ -372,17 +371,16 @@ The two fonts chosen for the site were among the fourteen most legible fonts for
 
 The *Merriweather* font was chosen for as the main heading font.  
 
-<br>
-
 ![alt text](documentation/readme-images/merriweather-font-example.png "Merriweather font example.")
 
 This font was designed to be pleasant to read on screens.  
 
 <br>
-To ensure the readability of smaller text on a mobile screen Open Sans was chosen for the main text used within the body of the site.  
+
+To ensure the readability of smaller text on a mobile screen *Open Sans* was chosen for the main text used within the body of the site.  
 This font remains legible even when the typeface is small. 
 
-<br>
+
 
 ![alt text](documentation/readme-images/open-sans-font-example.png "Open Sans font example.")
 
