@@ -402,6 +402,7 @@ The types of data stored in MongoDB for this project are:
 -	ObjectId
 -	String
 -	DateTime
+-   Integer
 
 ### Collections Data Structure
 Initially the data was broken up into five database collections: Users, Reviews, Books, Authors and Genres.
@@ -441,8 +442,8 @@ The Read n’ Reviewed website relies on three database collections:
 | Title	        |Key in db	    |form validation type	|Data type  |
 | :------------ |:--------------| :---------------------|:--------- |
 |Review ID      |_id            |None                   |ObjectId   |
-|Member ID      |_id            |None                   |ObjectId   |
-|Book ID        |_id            |None                   |ObjectId   |
+|User ID        |user_id        |None                   |ObjectId   |
+|Book ID        |book_id        |None                   |ObjectId   |
 |Date           |date           |None	                |datetime   |
 |Star Rating	|rating 	    |dropdown menu          |string     |
 |Review vote    |upVote         |button                 |integer    |
