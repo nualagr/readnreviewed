@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse</title>
+</head>
+<body>
+    {% for book in books %}
+        {{ book.image_url }}<br>
+        {{ book.title }}<br>
+        {{ book.author }}<br>
+        {{ book.genre }}<br>
+        {{ book.isbn }}<br>
+    {% endfor %}
+</body>
+</html>
