@@ -299,6 +299,9 @@ functions are the most commonly used, or desired, by book review site users.
 - [Individual Book Review Page](https://github.com/nualagr/readnreviewed/blob/master/documentation/wireframes/book-review.png)
 ![alt text](documentation/wireframes/book-review.png "Individual Book Review Page.")
 
+- [My Reviews Page](https://github.com/nualagr/readnreviewed/blob/master/documentation/wireframes/my-reviews.png)
+![alt text](documentation/wireframes/my-reviews.png "My Reviews Page.")
+
 - [New Review Page](https://github.com/nualagr/readnreviewed/blob/master/documentation/wireframes/new-review.png)
 ![alt text](documentation/wireframes/new-review.png "New Review Page.")
 
