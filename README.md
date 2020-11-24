@@ -538,21 +538,161 @@ The Read n’ Reviewed website relies on three database collections:
 ---
 
 ## Deployment
+### How to run this project locally
 
+To run this project on your own Integrated Development Environment ensure that the 
+following are installed on your machine:
 
+- PIP
+- Python 3
+- Git
+- An account at MongoDB Atlas or a local instance of MongoDB. (Refer to the [MongoDB Documentation](https://docs.mongodb.com/manual/) for more help.)
 
-### Deployment Procedure Followed:
-
-
-
-
-### To find the link to the newly deployed site:
-
-
+<br> 
 
 ### To clone the repository:
+1. Log in to Github.
+
+2. Navigate to the main page of the repository.
+
+3. Select the Code button from the navigation bar below the repository title.
+
+![alt text](documentation/readme-images/clone-or-download-menu.png "Clone or Download Menu in GitHub.")
+
+<br>
+
+4. Under the heading Clone select 'HTTPS'
+
+5. Click the image of a clipboard to the right of the URL in order to copy the address.
+
+6. Open a terminal window in your selected IDE.
+
+7. Navigate to the desired directory in which you wish to place the cloned directory.
+
+8. Type git clone, space, and then paste the copied URL.
+```
+git clone https://github.com/nualagr/readnreviewed.git
+```
+9. Press 'Enter' to create the clone.
 
 
+
+(Alternative you can select "Download ZIP" from the dropdown menu, extract the zip file to your chosen folder and use your IDE of choice to access it.) 
+
+
+
+<br>
+11. Within your terminal window install the required dependencines needed to run the application using the following command:
+
+```
+$ pip3 install -r requirements.txt
+```
+
+
+12. Initialize virtual environment by typing the following command into the terminal:
+```python
+py -m venv virtual
+```
+13. Create a free account on MongoDb.  Create a new database and reproduce the 3 collections as described above in the Information Architecture section of the README.
+
+14. Within your IDE create a file to hold your environment variables and call it env.py.
+```
+import os
+
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", "YOUR_SECRET_KEY")
+os.environ.setdefault("MONGO_URI", "YOUR_MONGODB_URI")
+os.environ.setdefault("MONGO_DBNAME", "YOUR_DATABASE_NAME")
+```
+15. Add your .env file to your .gitignore file.
+
+16. In the last line of app.py file change 
+```
+debug=False
+```
+to 
+```
+debug=True
+```
+
+17. You will then be able to run the app locally by typing 
+```python
+python3 app.py
+```
+<br>
+
+##### back to [top](#table-of-contents)
+---
+
+<br>
+
+## Heroku Deployment
+Before creating the Heroku application:
+
+1. Within your IDE, create a requirements.txt file that contains the applications and dependencies required to run the app using the command:
+```
+pip3 freeze --local > requirements.txt
+```
+
+2. Create a Procfile, which specifies the commands that are executed by the app on startup:
+```
+echo web: python app.py > Procfile
+```
+3. Add the new files to the staging area in git and then commit the files to the local repository:
+```
+git add -A
+git commit -m "feat: Add requirements.txt file and Procfile."
+```
+4.  Upload the local repository content to the remote repository:
+```
+git push
+```
+
+<br>
+
+
+### Deployment procedure followed:
+1. Navigated to the [Heroku](https://www.heroku.com/) site.
+2. Logged in to the site.
+3. Created a new app on the Heroku website by clicking the "New" button on the dashboard. 
+![alt text](documentation/readme-images/heroku-new-app-button.png "New App button in Heroku.")
+
+<br>
+
+4. Named the Heroku App and set the region to Europe.
+
+5. 'Deploy' was selected from the dashboard of the newly created application.  In the 'Deployment method' section GitHub was selected.
+![alt text](documentation/readme-images/heroku-deploy-to-github.png "Deploy to GitHub in Heroku.")
+
+<br>
+
+6. Making sure that the correct GitHub profile was displayed, the Read n' Reviewed repository was entered into the search box.
+
+7. When found the button 'Connect' was clicked.
+
+8. Next the configuration variables were set in Heroku.
+    - Within the 'Settings' tab for the app the button 'Reveal Config Vars' was clicked.
+    ![alt text](documentation/readme-images/heroku-config-vars.png "Heroku Configuration Variables Location in Settings.")
+
+<br>
+    - The following config vars were added (some information has been redacted for security purposes):
+    
+<br>
+
+|Key            |Value                  |
+|:--------------|:----------------------|
+|IP	            |0.0.0.0                |
+|PORT           |5000                   |
+|MONGO_URI	    |mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority|
+|MONGO_DBNAME   |<database_name>   |
+|SECRET_KEY	    |<secret_key>      |
+
+<br>
+
+9. In the Heroku dashboard within the 'Deploy' tab, the 'Master' branch was selected in the 'Manual Deployment' section.
+
+10. Clicking on the 'Deploy Branch' button successfully deployed the site.
 
 
 ##### back to [top](#table-of-contents)
