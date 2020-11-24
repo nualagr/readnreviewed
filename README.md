@@ -474,6 +474,7 @@ The Read n’ Reviewed website relies on three database collections:
   * [Github](https://github.com/). Used to host the deployed site and used as a respository for all previous versions of the build.
   * [Gitpod](https://www.gitpod.io/). This online IDE was used to build and develop the website.
   * [jQuery](https://jquery.com/). This JavaScript library was used to traverse the DOM and used for dynamic event handling. 
+  * [RandomKeyGen](https://randomkeygen.com/). Used to generate the Secret Key.
   * [Slack](code-institute-room.slack.com). Used during development and testing to find the solutions to problems enountered.
   * [Stack Overflow](https://stackoverflow.com/). Used to search for the answers to problems encountered during the development and testing of the website.
   * [Vecteezy](https://www.vecteezy.com/vector-art/599621-book-reading-logo-and-symbols-template-icons). Used to source the site icon.
