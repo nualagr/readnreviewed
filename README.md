@@ -422,6 +422,7 @@ The Read n’ Reviewed website relies on three database collections:
 |Username	    |username	    |text, maxlength="40"   |string     |
 |Email Address	|email	        |email, maxlength="40"  |string     |
 |Password	    |password	    |text, maxlength="15"	|string     |
+|Wish List      |wishList       |checked box            |ObjectId - Book ID     |
 
 <br>
 
@@ -430,11 +431,10 @@ The Read n’ Reviewed website relies on three database collections:
 | :------------     |:--------------| :---------------------|:--------- |
 |Book ID            |_id            |None                   |ObjectId   |
 |Title	            |title	        |text, maxlength="200"  |string     |
-|Author First Name  |firstName      |text, maxlength="40"   |string     |
-|Author Last Name   |lastName       |text, maxlength="40"   |string     |
+|Author             |author         |text, maxlength="100"  |string     |
 |Genre              |genre          |dropdown               |string     |
 |ISBN	            |isbn           |text, maxlength="17"   |string     |
-|URL                |url            |url, maxlength="100"   |string     |
+|Image URL          |image_url      |url, maxlength="200"   |string     |
 
 <br>
 
@@ -445,8 +445,9 @@ The Read n’ Reviewed website relies on three database collections:
 |User ID        |user_id        |None                   |ObjectId   |
 |Book ID        |book_id        |None                   |ObjectId   |
 |Date           |date           |None	                |datetime   |
-|Star Rating	|rating 	    |dropdown menu          |string     |
-|Review vote    |upVote         |button                 |integer    |
+|Rating	        |rating         |dropdown menu          |string     |
+|Review	        |review         |dropdown menu          |string     |
+|Vote           |vote           |button                 |integer    |
 <br>
 
 ##### back to [top](#table-of-contents)
