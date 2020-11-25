@@ -4,8 +4,87 @@ body {
     background-color: #FFFFFF;
     color: #222222;
     font-family: 'Open Sans', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+
+/* Code to make footer sticky found at: https://materializecss.com/footer.html */
+main {
+    flex: 1 0 auto;
+  }
 
 h1 {
     font-family: 'Merriweather', serif;
+}
+
+img {
+    height: auto;
+    width: 2rem;
+}
+
+img.cover {
+    height: auto;
+    width: 80%;
+}
+
+nav ul a {
+    color:#0288d1 ;
+}
+
+i.profile {
+    padding-right: 1rem;
+}
+
+.input-field>label {
+    position: absolute;
+}
+
+.subtitle:after {
+    content: "";
+    background-color: #e0e0e0;
+    width: 100px;
+    height: 2px;
+    display: block;
+    margin: 20px auto;
+}
+
+.section-md, 
+.section-lg, 
+.section-xl {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.bg-grey-light {
+    background-color: #f8f8f8;
+}
+
+.bg-cover {
+    background-size: cover;
+    background-position: center center;
+}
+
+@media (min-width: 768px)
+.section-lg {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+@media (min-width: 768px)
+.container {
+    max-width: 720px;
+}
+
+@media (min-width: 576px)
+.container {
+    max-width: 540px;
 }
