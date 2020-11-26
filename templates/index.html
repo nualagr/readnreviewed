@@ -1,40 +1,60 @@
 {% extends "base.html" %}
-{% block content %}
 
+{% block content %}
+<!-- Banner Image -->
+    <section class="section-lg container bg-cover center grey lighten-5">
+            <h1 class="subtitle">Uncover Your Next Great Read!</h1>
+            <div class="row">
+                <div class="col s12">
+                    <p>Join our community.  Read honest reviews.  Share your recommendations.</p>
+                    <a href="#" class="btn-large btn  orange">Register</a>                    
+                </div>
+            </div>
+    </section>
+    <!-- Latest Reviews -->
+        <div class="row">
+        <div class="col s12">
+            <h3 class="center subtitle">Latest Reviews</h3>
+        </div>
+    </div>
     {% for book in books %}
-        {{ book.image_url }}<br>
-        {{ book.title }}<br>
-        {{ book.author }}<br>
-        {{ book.genre }}<br>
-        {{ book.isbn }}<br>
+        <div class="row center">
+            <div class="col s12 m6">
+                <img src="{{ book.image_url }}" class="cover"><br>
+            </div>
+            <div class="col s12 m6">
+                <p>{{ book.genre }}</p>
+                <h5>{{ book.title }}</h5>
+                <p>{{ book.author }}</p> 
+            </div>
+        </div>
     {% endfor %}
-    <!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->
-    <section class="section-lg bg-grey-light bg-cover center">
-        <div class="container">
-            <h3>What Our Members Say About Us</h3>
+   <!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->
+    <section class="section-lg container bg-grey-light bg-cover center">
+            <h3 class="subtitle">What Our Members Say About Us</h3>
             <div class="carousel carousel-slider center">
-                <div class="carousel-item blue white-text" href="#one!">
+                <div class="carousel-item bg-blue white-text" href="#one!">
                     <h2>Jenny Wren</h2>
                     <br>
                     <i class="fas fa-quote-left"></i>
                     <p class="white-text">Read n' Reviewed community has saved me time and money.  I have found great book after great book since joining the site.</p>
                     <i class="fas fa-quote-right"></i>
                 </div>
-                <div class="carousel-item orange white-text" href="#two!">
+                <div class="carousel-item bg-orange white-text" href="#two!">
                     <h2>George Hill</h2>
                     <br>
                     <i class="fas fa-quote-left"></i>
                     <p class="white-text">The good members of Read n' Reviewed keep me up to date with the latest books.</p>
                     <i class="fas fa-quote-right"></i>
                 </div>
-                <div class="carousel-item blue white-text" href="#three!">
+                <div class="carousel-item bg-blue white-text" href="#three!">
                     <h2>Bernard Boyce</h2>
                     <br>
                     <i class="fas fa-quote-left"></i>
                     <p class="white-text">Good honest reviews.</p>
                     <i class="fas fa-quote-right"></i>
                 </div>
-                <div class="carousel-item orange white-text" href="#four!">
+                <div class="carousel-item bg-orange white-text" href="#four!">
                     <h2>Mary Murphy</h2>
                     <br>
                     <i class="fas fa-quote-left"></i>
@@ -42,7 +62,18 @@
                     <i class="fas fa-quote-right"></i>
                 </div>
             </div>
-        </div>
+    </section>
+    <!-- About Section -->
+    <section class="section-lg container white bg-cover center" id="about">
+            <h3 class="subtitle">About Us</h3>
+            <div class="row">
+                <div class="col s12">
+                    <p>Read n' Reviewed is a community-lead book recommendation website.  Unaffiliated with any publishing company
+                    Read n' Reviewed's mission is to provide our members with a platform where they can share and access honest and 
+                    revealing reviews making it easier to choose the perfect book to read next.</p>
+                    <a href="#" class="btn-large btn orange">Register</a>                    
+                </div>
+            </div>
     </section>
 
 {% endblock %}

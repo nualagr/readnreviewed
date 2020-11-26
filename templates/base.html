@@ -17,7 +17,7 @@
     <title>Read n' Reviewed</title>
 </head>
 <body>
-    <header>
+    <header class="header-wrapper">
         <!-- Top Navbar taken from https://materializecss.com/navbar.html and customized -->
         <nav class="nav-extended white">
             <div class="container">
@@ -34,19 +34,10 @@
                         <li><a href="{{ url_for('get_books') }}">Browse</a></li>
                         <li><a href="#">Login</a></li>
                         <li><a href="#">Register</a></li>
+                        <li id="searchbar"><a href="#" class="nav-link button icon"><i class="fas fa-search light-blue-text text-darken-2 left"></i></a></li>
                     </ul>
-                    <a href="#search" class="hide-on-large-only right"><i class="fa fa-user light-blue-text text-darken-2 profile" aria-hidden="true"></i></a>
+                    <a href="#searchbar" class="hide-on-large-only right"><i class="fa fa-user light-blue-text text-darken-2 profile" aria-hidden="true"></i></a>
                     <a href="#" class="hide-on-large-only right"><i class="fas fa-search light-blue-text text-darken-2 profile" aria-hidden="true"></i></a>
-                </div>
-                <!-- Search bar taken from https://materializecss.com/navbar.html and modified -->
-                <div class="row hide-on-med-and-down">
-                    <form class="orange">
-                        <div class="input-field searchbox">
-                        <input id="search" type="search" required>
-                        <label for="search"><i class="fas fa-search light-blue-text text-darken-2 left"></i></label>
-                        <i class="fas fa-times light-blue-text text-darken-2 right"></i>
-                        </div>
-                    </form>
                 </div>
             </div>
             </div>
@@ -55,7 +46,7 @@
         <!-- Mobile Side-Navbar taken from https://materializecss.com/navbar.html and customized -->
         <ul class="sidenav blue-text text-darken-2" id="mobile-demo">
                 <li><h4 class="center-align">Read n' Reviewed</h4></li>
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ url_for('get_books') }}">Home</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">My Reviews</a></li>
                 <li><a href="#">My Wish List</a></li>
@@ -63,76 +54,37 @@
                 <li><a href="#">Login</a></li>
                 <li><a href="#">Register</a></li>
         </ul>
-    </header>
-    <!-- Banner Image -->
-    <section class="section-lg container bg-cover center grey lighten-5">
-            <h1 class="subtitle">Uncover Your Next Great Read!</h1>
-            <div class="row">
-                <div class="col s12">
-                    <p>Join our community.  Read honest reviews.  Share your recommendations.</p>
-                    <a href="#" class="btn-large btn  orange">Register</a>                    
+        
+        <!-- Search Bar -->
+        <div class="header-search-wrapper" style="display: none;">
+            <div class="container">
+                <div class="big-search">
+                    <i class="big-search-icon"></i>
+                    <form id="searchfrm" name="searchForm"  action="/search" method="get" class="">
+                        <ul class="tags-wrapper">
+                            <li class="search-field">
+                                <input type="text" name="q" id="searchBox" class="form-control global-input">
+                            </li>
+                        </ul>
+                    </form>
+                    <a class="header-search-cancel" href="#"><i class="fas fa-times right"></i></a>
                 </div>
             </div>
-    </section>
+        </div>
+    </header>
     {% block content %}
     {% endblock %}
-    <!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->
-    <section class="section-lg container bg-grey-light bg-cover center">
-            <h3 class="subtitle">What Our Members Say About Us</h3>
-            <div class="carousel carousel-slider center">
-                <div class="carousel-item blue white-text" href="#one!">
-                    <h2>Jenny Wren</h2>
-                    <br>
-                    <i class="fas fa-quote-left"></i>
-                    <p class="white-text">Read n' Reviewed community has saved me time and money.  I have found great book after great book since joining the site.</p>
-                    <i class="fas fa-quote-right"></i>
-                </div>
-                <div class="carousel-item orange white-text" href="#two!">
-                    <h2>George Hill</h2>
-                    <br>
-                    <i class="fas fa-quote-left"></i>
-                    <p class="white-text">The good members of Read n' Reviewed keep me up to date with the latest books.</p>
-                    <i class="fas fa-quote-right"></i>
-                </div>
-                <div class="carousel-item blue white-text" href="#three!">
-                    <h2>Bernard Boyce</h2>
-                    <br>
-                    <i class="fas fa-quote-left"></i>
-                    <p class="white-text">Good honest reviews.</p>
-                    <i class="fas fa-quote-right"></i>
-                </div>
-                <div class="carousel-item orange white-text" href="#four!">
-                    <h2>Mary Murphy</h2>
-                    <br>
-                    <i class="fas fa-quote-left"></i>
-                    <p class="white-text">When I hear about a good book now I just pop it into my Wish List. Such a handy feature.</p>
-                    <i class="fas fa-quote-right"></i>
-                </div>
-            </div>
-    </section>
-    <!-- About Section -->
-    <section class="section-lg container white bg-cover center">
-            <h3 class="subtitle">About Us</h3>
-            <div class="row">
-                <div class="col s12">
-                    <p>Read n' Reviewed is a community-lead book recommendation website.  Unaffiliated with any publishing company
-                    Read n' Reviewed's mission is to provide our members with a platform where they can share and access honest and 
-                    revealing reviews making it easier to choose the perfect book to read next.</p>
-                    <a href="#" class="btn-large btn  orange">Register</a>                    
-                </div>
-            </div>
-    </section>
-    <!-- Footer component taken from https://materializecss.com/footer.html and modified -->
+     <!-- Footer component taken from https://materializecss.com/footer.html and modified -->
     <footer class="page-footer grey lighten-4">
         <div class="container">
             <div class="row">
                 <div class="col s6 offset-s3">
                     <div class="row">
                         <div class="col s4 center-align">
-                            <a class="blue-text" href="#!">Home</a>
+                            <a class="blue-text" href="{{ url_for('get_books') }}">Home</a>
                         </div>
                         <div class="col s4 center-align">
-                            <a class="blue-text" href="#!">About</a>
+                            <a class="blue-text" href="#about">About</a>
                         </div>
                         <div class="col s4 center-align">
                             <a class="blue-text" href="#!">Contact</a>

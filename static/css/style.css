@@ -9,6 +9,32 @@ body {
     flex-direction: column;
 }
 
+/* Colours ------------------------------------ */
+.bg-grey-light {
+    background-color: #f8f8f8;
+}
+
+.bg-orange {
+    background-color: #F69222;
+}
+
+.bg-blue {
+    background-color: #2AA9E0;
+}
+
+/* Fonts ------------------------------------- */
+h1, h2, h3, h4, h5 {
+    font-family: 'Merriweather', serif;
+}
+
+/* Navbar ------------------------------------- */
+.header-wrapper {
+    background: transparent;
+    position: relative;
+    width: 100%;
+    z-index: 9999;
+}
+
 nav .nav-wrapper {
     position: relative;
     height: 100%;
@@ -19,14 +45,93 @@ nav .nav-wrapper {
     position: absolute;
 }
 
+nav ul a {
+    color:#1F76BB;
+}
+
+i.profile {
+    padding-right: 1rem;
+}
+
+.header-search-wrapper {
+    background: rgb(31, 118, 187);
+    bottom: -2px;
+    display: none;
+    left: 0px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 111;
+}
+
+.header-search-wrapper .container {
+    height: 100%;
+    position: relative;
+}
+
+.header-search-wrapper .big-search {
+    bottom: 0px;
+    height: 40px;
+    left: 0px;
+    margin: auto;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 100%;
+}
+
+.header-search-wrapper .big-search i.big-search-icon {
+    background: url("../images/search-solid.svg") left 0px / 80% no-repeat scroll;
+    bottom: 0px;
+    height: 32px;
+    left: 0px;
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    width: 32px;
+}
+
+.tags-wrapper, .search-tags-wrapper {
+    border-bottom: 1px solid rgb(255, 255, 255);
+    cursor: text;
+    display: inline-block;
+    margin: 0px;
+    vertical-align: middle;
+    width: 100%;
+    padding: 0px 0px 0px 30px !important;
+}
+
+.tags-wrapper li, .search-tags-wrapper li {
+    margin: 0px;
+    vertical-align: middle;
+}
+
+.header-search-wrapper .header-search-cancel {
+    cursor: pointer;
+    display: block;
+    font-size: 2.5em;
+    height: 15px;
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
+    top: 10px;
+    width: 14px;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+#searchBox {
+    border-bottom: 0;
+}
+/* Main ------------------------- */
+
 /* Code to make footer sticky found at: https://materializecss.com/footer.html */
 main {
     flex: 1 0 auto;
   }
-
-h1 {
-    font-family: 'Merriweather', serif;
-}
 
 img {
     height: auto;
@@ -38,18 +143,7 @@ img.cover {
     width: 80%;
 }
 
-nav ul a {
-    color:#0288d1 ;
-}
-
-i.profile {
-    padding-right: 1rem;
-}
-
-.input-field>label {
-    position: absolute;
-}
-
+/* Divider ----------------------*/
 .subtitle:after {
     content: "";
     background-color: #e0e0e0;
@@ -74,27 +168,25 @@ i.profile {
     margin-left: auto;
 }
 
-.bg-grey-light {
-    background-color: #f8f8f8;
-}
-
 .bg-cover {
     background-size: cover;
     background-position: center center;
 }
 
-@media (min-width: 768px)
+/* Media Queries ----------------------*/
+
+@media (min-width: 768px) {
 .section-lg {
     padding-top: 80px;
     padding-bottom: 80px;
 }
-
-@media (min-width: 768px)
-.container {
-    max-width: 720px;
 }
 
-@media (min-width: 576px)
-.container {
-    max-width: 540px;
+@media screen and (max-width: 991px) and (min-width: 769px) {
+.header-search-wrapper .big-search {
+    left: 15px;
+    right: 15px;
+    text-align: center;
+    width: auto;
+}
 }
