@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3>Registration Form</h3>
+    <!-- Registration Form -->
+    <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
+    <div class="row container">
+        <form method="POST" action="{{ url_for('register') }}">
+            <div class="card white darken-1">
+                <div class="card-content">
+                     <div class="row">
+                        <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
+                        <div class="input-field col s12">
+                        <i class="fas fa-user-plus prefix"></i>
+                        <input id="username" name="username" type="text" class="validate">
+                        <label for="username">Username</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <i class="fas fa-lock prefix"></i>
+                        <input id="password" name="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <i class="fas fa-envelope prefix"></i>
+                        <input id="email" name="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action center">
+                    <a href="#" class="btn bg-orange">Submit</a>
+                    <a href="{{ url_for('get_books') }}" class="btn bg-blue">Home</a>
+                </div>
+            </div>
+        </form>
+  </div>
+
+{% endblock %}

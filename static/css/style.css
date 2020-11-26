@@ -11,7 +11,7 @@ body {
 
 /* Colours ------------------------------------ */
 .bg-grey-light {
-    background-color: #f8f8f8;
+    background-color: #F8F8F8;
 }
 
 .bg-orange {
@@ -25,6 +25,7 @@ body {
 /* Fonts ------------------------------------- */
 h1, h2, h3, h4, h5 {
     font-family: 'Merriweather', serif;
+    text-align: center;
 }
 
 /* Navbar ------------------------------------- */
@@ -91,7 +92,8 @@ i.profile {
     width: 32px;
 }
 
-.tags-wrapper, .search-tags-wrapper {
+.tags-wrapper, 
+.search-tags-wrapper {
     border-bottom: 1px solid rgb(255, 255, 255);
     cursor: text;
     display: inline-block;
@@ -101,7 +103,8 @@ i.profile {
     padding: 0px 0px 0px 30px !important;
 }
 
-.tags-wrapper li, .search-tags-wrapper li {
+.tags-wrapper li, 
+.search-tags-wrapper li {
     margin: 0px;
     vertical-align: middle;
 }

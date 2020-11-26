@@ -33,7 +33,7 @@
                         <li><a href="#">My Wish List</a></li>
                         <li><a href="{{ url_for('get_books') }}">Browse</a></li>
                         <li><a href="#">Login</a></li>
-                        <li><a href="#">Register</a></li>
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
                         <li id="searchbar"><a href="#" class="nav-link button icon"><i class="fas fa-search light-blue-text text-darken-2 left"></i></a></li>
                     </ul>
                     <a href="#searchbar" class="hide-on-large-only right"><i class="fa fa-user light-blue-text text-darken-2 profile" aria-hidden="true"></i></a>
@@ -52,14 +52,15 @@
                 <li><a href="#">My Wish List</a></li>
                 <li><a href="{{ url_for('get_books') }}">Browse</a></li>
                 <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
         
         <!-- Search Bar -->
         <div class="header-search-wrapper" style="display: none;">
             <div class="container">
                 <div class="big-search">
-                    <i class="big-search-icon"></i>
+                    <!-- <i class="big-search-icon"></i> -->
+                    <i class="fas fa-search prefix"></i>
                     <form id="searchfrm" name="searchForm"  action="/search" method="get" class="">
                         <ul class="tags-wrapper">
                             <li class="search-field">
@@ -72,8 +73,10 @@
             </div>
         </div>
     </header>
+
     {% block content %}
     {% endblock %}
+    
      <!-- Footer component taken from https://materializecss.com/footer.html and modified -->
     <footer class="page-footer grey lighten-4">
         <div class="container">
