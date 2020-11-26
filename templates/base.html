@@ -20,14 +20,11 @@
     <header>
         <!-- Top Navbar taken from https://materializecss.com/navbar.html and customized -->
         <nav class="nav-extended white">
+            <div class="container">
             <div class="nav-wrapper">
                 <div class="row">
-                    <a href="#!" class="brand-logo light-blue-text text-darken-2">
-                        <div class="row">
-                            <div class="col"><img src="static/images/blue-orange-book-logo.png"></div>
-                            <div class="col hide-on-med-and-down">Read n' Reviewed</div>
-                        </div>
-                    </a>
+                    <a href="#" class="brand-logo hide-on-large-only"><img src="static/images/blue-orange-book-logo.png" width="40" class="icon"></a>
+                    <a href="#!" class="brand-logo light-blue-text text-darken-2 hide-on-med-and-down">Read n' Reviewed</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger light-blue-text text-darken-2"><i class="fas fa-bars"></i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('get_books') }}">Home</a></li>
@@ -52,6 +49,7 @@
                     </form>
                 </div>
             </div>
+            </div>
         </nav>
 
         <!-- Mobile Side-Navbar taken from https://materializecss.com/navbar.html and customized -->
@@ -67,8 +65,7 @@
         </ul>
     </header>
     <!-- Banner Image -->
-    <section class="section-lg bg-cover center grey lighten-5">
-        <div class="container">
+    <section class="section-lg container bg-cover center grey lighten-5">
             <h1 class="subtitle">Uncover Your Next Great Read!</h1>
             <div class="row">
                 <div class="col s12">
@@ -76,13 +73,11 @@
                     <a href="#" class="btn-large btn  orange">Register</a>                    
                 </div>
             </div>
-        </div>
     </section>
     {% block content %}
     {% endblock %}
     <!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->
-    <section class="section-lg bg-grey-light bg-cover center">
-        <div class="container">
+    <section class="section-lg container bg-grey-light bg-cover center">
             <h3 class="subtitle">What Our Members Say About Us</h3>
             <div class="carousel carousel-slider center">
                 <div class="carousel-item blue white-text" href="#one!">
@@ -114,11 +109,9 @@
                     <i class="fas fa-quote-right"></i>
                 </div>
             </div>
-        </div>
     </section>
     <!-- About Section -->
-    <section class="section-lg white bg-cover center">
-        <div class="container">
+    <section class="section-lg container white bg-cover center">
             <h3 class="subtitle">About Us</h3>
             <div class="row">
                 <div class="col s12">
@@ -128,7 +121,6 @@
                     <a href="#" class="btn-large btn  orange">Register</a>                    
                 </div>
             </div>
-        </div>
     </section>
     <!-- Footer component taken from https://materializecss.com/footer.html and modified -->
     <footer class="page-footer grey lighten-4">

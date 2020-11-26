@@ -9,6 +9,16 @@ body {
     flex-direction: column;
 }
 
+nav .nav-wrapper {
+    position: relative;
+    height: 100%;
+    line-height: 64px;
+}
+
+#logoContainer {
+    position: absolute;
+}
+
 /* Code to make footer sticky found at: https://materializecss.com/footer.html */
 main {
     flex: 1 0 auto;
