@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3>Registration Form</h3>
-    <!-- Registration Form -->
+    <h3>Login</h3>
+    <!-- Login Form -->
     <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
     <div class="row container">
         <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
-        <form method="POST" action="{{ url_for('register') }}">
+        <form method="POST" action="{{ url_for('login') }}">
             <div class="card white darken-1">
                 <div class="card-content">
                      <div class="row">
                         <!-- Username Field-->
                         <div class="input-field col s12">
-                        <i class="fas fa-user-plus prefix"></i>
+                        <i class="fas fa-user prefix"></i>
                         <input id="username" name="username" type="text" minlength="8" maxlength="15" pattern="^[a-zA-Z0-9]{8,15}$" class="validate" required>
                         <label for="username">Username</label>
                         </div>
@@ -24,28 +24,20 @@
                         <label for="password">Password</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <!-- Email Address Field -->
-                        <div class="input-field col s12">
-                        <i class="fas fa-envelope prefix"></i>
-                        <input id="email" name="email" type="email" class="validate" required>
-                        <label for="email">Email</label>
-                        </div>
-                    </div>
                 </div>
                 <div class="card-action center">
-                    <button type="submit" class="btn bg-orange">Register <i class="fas fa-sign-in-alt"></i></button>
+                    <button type="submit" class="btn bg-orange">Login <i class="fas fa-sign-in-alt"></i></button>
                     <a href="{{ url_for('get_books') }}" class="btn bg-blue">Home <i class="fas fa-home"></i></a>
                 </div>
             </div>
         </form>
-  </div>
-  <div class="row container">
-    <div class="col s12">
-        <p class="center">
-            Already a member? Click <a href="{{ url_for('login') }}">here </a> to log in.
-        </p>
     </div>
-  </div>
+    <div class="row container">
+        <div class="col s12">
+            <p class="center">
+                Not yet a member? Click <a href="{{ url_for('register') }}">here</a> to register.
+            </p>
+        </div>
+    </div>
 
 {% endblock %}

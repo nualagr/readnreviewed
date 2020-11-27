@@ -33,11 +33,11 @@
                         <li><a href="#">My Reviews</a></li>
                         <li><a href="#">My Wish List</a></li>
                         <li><a href="{{ url_for('get_books') }}">Browse</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="{{ url_for('login') }}"></a></li>
                         <li><a href="{{ url_for('register') }}">Register</a></li>
                         <li><a href="#"><i class="fas fa-search"></i></a></li>
                     </ul>
-                    <a href="#searchbar" class="hide-on-large-only right"><i class="fa fa-user light-blue-text text-darken-2 profile" aria-hidden="true"></i></a>
+                    <a href="{{ url_for('login') }}" class="hide-on-large-only right"><i class="fa fa-user light-blue-text text-darken-2 profile" aria-hidden="true"></i></a>
                     <a href="#" class="hide-on-large-only right"><i class="fas fa-search light-blue-text text-darken-2 profile" aria-hidden="true"></i></a>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <li><a href="#">My Reviews</a></li>
                 <li><a href="#">My Wish List</a></li>
                 <li><a href="{{ url_for('get_books') }}">Browse</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
         
