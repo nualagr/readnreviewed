@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3>{{ username }}'s Profile</h3>
+    <!-- Profile Information -->
+    <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
+    <div class="row container">
+        <div class="card white darken-1">
+            <div class="card-content">
+                <div class="row">
+                    <!-- Username Field-->
+                    <div class="col s12">
+                        <p><i class="fas fa-user"></i> Username: {{ username }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Email Field -->
+                    <div class="col s12">
+                        <p><i class="fas fa-envelope"></i> Email Address: {{ email }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-action center">
+                <button type="submit" class="btn bg-orange">Edit <i class="fas fa-edit"></i></button>
+                <a href="{{ url_for('get_books') }}" class="btn bg-blue">Home <i class="fas fa-home"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="row container">
+        <div class="col s12">
+            <p class="center">
+                Not yet a member? Click <a href="{{ url_for('register') }}">here</a> to register.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

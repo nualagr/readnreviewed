@@ -19,6 +19,15 @@
 </head>
 <body>
     <header class="header-wrapper">
+        <!-- Dropdown Structure taken from https://materializecss.com/navbar.html#! and modified -->
+        <ul id="dropdown" class="dropdown-content">
+            <li><a href="{{ url_for('register') }}"><i class="fa fa-user-plus prefix"></i>Register</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ url_for('login') }}"><i class="fa fa-user prefix"></i>Login</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li class="divider"></li>
+        </ul>
         <!-- Top Navbar taken from https://materializecss.com/navbar.html and customized -->
         <nav class="nav-extended white">
             <div class="container">
@@ -29,12 +38,11 @@
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger light-blue-text text-darken-2"><i class="fas fa-bars"></i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('get_books') }}">Home</a></li>
-                        <li><a href="#">Profile</a></li>
                         <li><a href="#">My Reviews</a></li>
                         <li><a href="#">My Wish List</a></li>
                         <li><a href="{{ url_for('get_books') }}">Browse</a></li>
-                        <li><a href="{{ url_for('login') }}"></a></li>
-                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                        <!-- Dropdown Trigger taken from https://materializecss.com/navbar.html#! and modified -->
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown"><i class="fa fa-user"></i></a></li>
                         <li><a href="#"><i class="fas fa-search"></i></a></li>
                     </ul>
                     <a href="{{ url_for('login') }}" class="hide-on-large-only right"><i class="fa fa-user light-blue-text text-darken-2 profile" aria-hidden="true"></i></a>
@@ -48,7 +56,7 @@
         <ul class="sidenav blue-text text-darken-2" id="mobile-demo">
                 <li><h4 class="center-align">Read n' Reviewed</h4></li>
                 <li><a href="{{ url_for('get_books') }}">Home</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                 <li><a href="#">My Reviews</a></li>
                 <li><a href="#">My Wish List</a></li>
                 <li><a href="{{ url_for('get_books') }}">Browse</a></li>

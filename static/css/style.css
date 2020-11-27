@@ -189,6 +189,16 @@ form {
 #searchBox {
     border-bottom: 0;
 }
+
+.dropdown-content li>a, 
+.dropdown-content li>span {
+    font-size: 16px;
+    color: #1F76BB;
+    display: block;
+    line-height: 22px;
+    padding: 14px 16px;
+}
+
 /* Main ------------------------- */
 
 /* Code to make footer sticky found at: https://materializecss.com/footer.html */
