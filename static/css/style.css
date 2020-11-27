@@ -69,8 +69,8 @@ h1, h2, h3, h4, h5 {
 .input-field input[type=text].invalid,
 .input-field input[type=email].invalid,
 .input-field input[type=password].invalid {
-    border-bottom: 1px solid #FF0000;
-    box-shadow: 0 1px 0 0 #FF0000;
+    border-bottom: 1px solid #E86252;
+    box-shadow: 0 1px 0 0 #E86252;
 }
 
 /* icon prefix focus color */
@@ -234,6 +234,15 @@ img.cover {
 .bg-cover {
     background-size: cover;
     background-position: center center;
+}
+
+/* Footer ----------------------*/
+footer a {
+    color: #1F76BB;
+}
+
+footer a:hover{
+    color: #222222;
 }
 
 /* Media Queries ----------------------*/
