@@ -28,6 +28,48 @@ h1, h2, h3, h4, h5 {
     text-align: center;
 }
 
+.flashed-messages {
+    color: #F69222;
+}
+
+/* Form ------------------------------------- */
+/* label color */
+.input-field label {
+    color: #222222;
+}
+
+/* label underline focus color */
+.input-field input:focus {
+  border-bottom: 1px solid #1F76BB !important;
+  box-shadow: 0 1px 0 0 #1F76BB !important;
+}
+
+/* label focus color */
+.input-field label.active {
+  color: #1F76BB !important;
+}
+
+/* valid color */
+.input-field input[type=text].valid,
+.input-field input[type=email].valid,
+.input-field input[type=password].valid {
+    border-bottom: 1px solid #F69222;
+    box-shadow: 0 1px 0 0 #F69222;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid,
+.input-field input[type=email].invalid,
+.input-field input[type=password].invalid {
+    border-bottom: 1px solid #FF0000;
+    box-shadow: 0 1px 0 0 #FF0000;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #1F76BB;
+}
+
 /* Navbar ------------------------------------- */
 .header-wrapper {
     background: transparent;
@@ -46,8 +88,15 @@ nav .nav-wrapper {
     position: absolute;
 }
 
-nav ul a {
-    color:#1F76BB;
+nav ul a,
+nav ul a i {
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
+    font-size: 1rem;
+    color: #1F76BB;
+    display: block;
+    padding: 0 15px;
+    cursor: pointer;
 }
 
 i.profile {

@@ -39,14 +39,23 @@ def register():
         )
 
         if existing_user:
-            flash("Username already exists")
+            flash("Username Already Registered")
+            return redirect(url_for("register"))
+
+        # Check if email address is in the database already
+        existing_email = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()}
+        )
+
+        if existing_email:
+            flash("Email address already registered")
             return redirect(url_for("register"))
 
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(
-                request.form.get("password")
-            )
+                request.form.get("password")),
+            "email": request.form.get("email").lower()
         }
 
         # Insert the dictionary into the database.
