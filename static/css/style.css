@@ -57,7 +57,8 @@ h1, h2, h3, h4, h5 {
 }
 
 /* label underline focus color */
-.input-field input:focus {
+.input-field input:focus, 
+.input-field textarea:focus {
   border-bottom: 1px solid #1F76BB !important;
   box-shadow: 0 1px 0 0 #1F76BB !important;
 }
@@ -70,7 +71,8 @@ h1, h2, h3, h4, h5 {
 /* valid color */
 .input-field input[type=text].valid,
 .input-field input[type=email].valid,
-.input-field input[type=password].valid {
+.input-field input[type=password].valid, 
+.input-field input[type=textarea].valid {
     border-bottom: 1px solid #F69222;
     box-shadow: 0 1px 0 0 #F69222;
 }
@@ -78,7 +80,8 @@ h1, h2, h3, h4, h5 {
 /* invalid color */
 .input-field input[type=text].invalid,
 .input-field input[type=email].invalid,
-.input-field input[type=password].invalid {
+.input-field input[type=password].invalid,
+.input-field input[type=textarea].invalid {
     border-bottom: 1px solid #E86252;
     box-shadow: 0 1px 0 0 #E86252;
 }
@@ -88,6 +91,33 @@ h1, h2, h3, h4, h5 {
     color: #1F76BB;
 }
 
+.radio-group>label,
+.radio-group>input[type=radio] {
+    position: relative !important;
+    margin-right: 1em !important;
+    background-color: transparent;
+}
+
+.radio-group i.prefix {
+    position: relative !important;
+    top: 0.2rem;
+}
+
+.radio-group>input[type=radio] {
+    float: none !important;
+}
+
+/* Code to change radio button colour found on StackOverflow: https://stackoverflow.com/questions/47215861/changing-radio-color-material-design */
+[type="radio"]:checked+span:after, 
+[type="radio"].with-gap:checked+span:after {
+  background-color: #F69222;
+}
+
+[type="radio"]:checked+span:after, 
+[type="radio"].with-gap:checked+span:before, 
+[type="radio"].with-gap:checked+span:after {
+  border: 2px solid #F69222;
+}
 /* Navbar ------------------------------------- */
 .header-wrapper {
     background: transparent;

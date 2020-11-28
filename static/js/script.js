@@ -8,4 +8,6 @@
     fullWidth: true,
     indicators: true
   });
+      /* Initialization of the dropdown select form field taken from https://materializecss.com/carousel.html */
+    $('select').formSelect();
   });
