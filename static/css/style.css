@@ -36,6 +36,16 @@ h1, h2, h3, h4, h5 {
     text-align: center;
 }
 
+.profile {
+    font-size: 1.5rem;
+    padding-left: 2rem;
+    color: #1F76BB;
+}
+
+.profile i {
+    padding-right: 2rem;
+}
+
 .flashed-messages {
     color: #F69222;
 }
@@ -107,7 +117,7 @@ nav ul a i {
     cursor: pointer;
 }
 
-i.profile {
+i.nav-icon {
     padding-right: 1rem;
 }
 

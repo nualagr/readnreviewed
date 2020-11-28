@@ -9,13 +9,13 @@
                 <div class="row">
                     <!-- Username Field-->
                     <div class="col s12">
-                        <p><i class="fas fa-user"></i> Username: {{ username }}</p>
+                        <p class="profile"><i class="fas fa-user"></i> Username: {{ username }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <!-- Email Field -->
                     <div class="col s12">
-                        <p><i class="fas fa-envelope"></i> Email Address: {{ email }}</p>
+                        <p class="profile"><i class="fas fa-envelope"></i> Email Address: {{ email }}</p>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
     <div class="row container">
         <div class="col s12">
             <p class="center">
-                Not yet a member? Click <a href="{{ url_for('register') }}">here</a> to register.
+                Not {{ username }}? Click <a href="{{ url_for('login') }}">here</a> to log in to your account.
             </p>
         </div>
     </div>
