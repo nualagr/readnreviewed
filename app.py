@@ -99,11 +99,28 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    # Grab the session user's username and email address from the database
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     email = mongo.db.users.find_one(
         {"username": session["user"]})["email"]
-    return render_template("profile.html", username=username, email=email)
+
+    # If the session cookie exists
+    # then the user is logged in so open the profile page
+    if session["user"]:
+        return render_template("profile.html", username=username, email=email)
+
+    # If the session cookie does not exist
+    # then bring the user to the login page
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    # Remove user name from Session Cookie loggin them out
+    flash("You have been logged out.")
+    session.pop("user")
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

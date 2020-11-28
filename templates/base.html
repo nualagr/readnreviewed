@@ -22,12 +22,17 @@
         <!-- Navbar Dropdown -->
         <!-- Dropdown Structure taken from https://materializecss.com/navbar.html#! and modified -->
         <ul id="dropdown" class="dropdown-content">
-            <li><a href="{{ url_for('register') }}"><i class="fa fa-user-plus prefix"></i>Register</a></li>
-            <li class="divider"></li>
-            <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt prefix"></i>Login</a></li>
-            <li class="divider"></li>
-            <li><a href="{{ url_for('profile', username=session['user']) }}"><i class="fa fa-user prefix"></i>Profile</a></li>
-            <li class="divider"></li>
+            {% if session.user %}
+                <li><a href="{{ url_for('profile', username=session['user']) }}"><i class="fa fa-user prefix"></i>Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                <li class="divider"></li>
+            {% else %}
+                <li><a href="{{ url_for('register') }}"><i class="fa fa-user-plus prefix"></i>Register</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt prefix"></i>Login</a></li>
+                <li class="divider"></li>
+            {% endif %}
         </ul>
         <!-- Dropdown Search Bar -->
         <!-- Dropdown Structure taken from https://materializecss.com/navbar.html#! and modified -->
