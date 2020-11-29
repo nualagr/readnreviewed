@@ -105,6 +105,17 @@
         {% endwith %}
     </section>
 
+    <!-- API Content Block -->
+    <section>
+        <div class="row container">
+            <div class="col s6" id="bookCoverContainer">
+            </div>
+            <div class="col s6" id="bookContentContainer">
+            <button class="btn" id="apiBtn" onclick = "writeToDocument();">API</button>   
+            </div>
+        </div>
+    </section>
+
     <!-- Main Content Block -->
     <main class="container">
         {% block content %}
@@ -163,6 +174,8 @@
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!-- Materialize Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Google API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh0XfTug0WiNWVcDIwveUFY_EMXCnS8iM&callback=initMap"></script>
     <!-- Custom Scripts -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block scripts %}

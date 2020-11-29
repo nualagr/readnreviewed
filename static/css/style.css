@@ -201,11 +201,6 @@ main {
     flex: 1 0 auto;
   }
 
-img {
-    height: auto;
-    width: 2rem;
-}
-
 img.cover {
     height: auto;
     width: 80%;
