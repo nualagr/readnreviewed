@@ -50,6 +50,12 @@ h1, h2, h3, h4, h5 {
     color: #F69222;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 /* Form ------------------------------------- */
 /* label color */
 .input-field label {

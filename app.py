@@ -1,4 +1,5 @@
 import os
+import datetime
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -123,8 +124,40 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_review")
+@app.route("/add_review", methods=["GET", "POST"])
 def add_review():
+    if request.method == "POST":
+        # Grab the date and time of the review
+        e = datetime.datetime.now()
+        # Grab the book id in order to link the review to the correct book
+        book = mongo.db.books.find_one({
+             "title": request.form.get("title")
+         })
+        book_id = book['_id']
+    #     book = {
+    #         "thumbnail":
+    #         "title":
+    #         "author":
+    #         "genre":
+    #         "description":
+    #         "publisher":
+    #         "published_date":
+    #         "page_count":
+    #         "isbn":
+    #     }
+        # Create the review dict to submit to the database
+        review = {
+            "book_id": book_id,
+            "rating": request.form.get("rating"),
+            "review": request.form.get("review"),
+            "created_by": session["user"],
+            "review_date": e.strftime("%a, %b %d, %Y")
+        }
+        # Insert the review into the database
+        mongo.db.reviews.insert_one(review)
+        flash("Review Successfully Added")
+    #     mongo.db.book.insert_one(book)
+    #     return redirect(url_for("browse"))
     return render_template("add_review.html")
 
 

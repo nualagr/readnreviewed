@@ -1,13 +1,18 @@
 // API baseURL
-const baseURL = "https://www.googleapis.com/books/v1/volumes?q=intitle:foundation+inauthor:asimov+isbn:9780586017135&printType=books&key=AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI"; 
-
+// const baseURL = "https://www.googleapis.com/books/v1/volumes?q=intitle:foundation+inauthor:asimov+isbn:9780586017135&printType=books&key=AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI"; 
+const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
+const key = "&printType=books&key=AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI";
 
 //AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI
 
-function getData(cb){
+function getData(title, author, cb){
     let xhr = new XMLHttpRequest();
+    let bookTitle = "intitle:" + title;
+    let bookAuthor = "+inauthor:" + author;
+    // let bookIsbn = "+isbn:" + isbn;
 
-    xhr.open("GET", baseURL);
+    // xhr.open("GET", baseURL + bookTitle + bookAuthor + bookIsbn + key);
+    xhr.open("GET", baseURL + bookTitle + bookAuthor + key);
 
     xhr.send();
 
@@ -22,14 +27,14 @@ function getData(cb){
 }
 
 
-function writeToDocument(){
+function writeToDocument(title, author){
     let el = document.getElementById("bookContentContainer");
     // Sets the page back to blank every time the button is clicked.
     el.innerHTML = "";
     let img = document.getElementById("bookCoverContainer");
     img.innerHTML = "";
 
-    getData(function(data){
+    getData(title, author, function(data){
 
         // data is an object
         // it has items, data.items
@@ -38,43 +43,69 @@ function writeToDocument(){
 
         books = data.items;
         firstBook = books[0]; // data.items[0] is the first book
-        let author = books[0]["volumeInfo"]["authors"];
+        let thumbnail = books[0]["volumeInfo"]["imageLinks"]["thumbnail"];
         let title = books[0]["volumeInfo"]["title"];
+        let author = books[0]["volumeInfo"]["authors"];
+        let genre = books[0]["volumeInfo"]["categories"][0];
+        let description = books[0]["volumeInfo"]["description"];
         let publisher = books[0]["volumeInfo"]["publisher"];
         let publishedDate = books[0]["volumeInfo"]["publishedDate"];
         let pageCount = books[0]["volumeInfo"]["pageCount"];
-        let description = books[0]["volumeInfo"]["description"];
         let isbn = books[0]["volumeInfo"]["industryIdentifiers"][0]["identifier"];
-        let genre = books[0]["volumeInfo"]["categories"][0];
-        let thumbnail = books[0]["volumeInfo"]["imageLinks"]["thumbnail"];
 
-        //data = data.items;
-        //Print data to console
+        // Print data to console
         console.log(data);
-        // console.log(data.items[0]["volumeInfo"]);
-        // console.log(data[0].volumeInfo);
-        console.log("Title: " + title);
-        console.log("Author: " + author);
-        console.log("Genre: " + genre);
-        console.log("Image Link: " + thumbnail);
-        console.log("Publisher: " + publisher);
-        console.log("Date published: " + publishedDate);
-        console.log("Page Count: " + pageCount);
-        console.log("Description: " + description);
-        console.log("ISBN: " + isbn);
+        // Print data to screen
+        img.innerHTML += "<img src='" + thumbnail + "' class='center'>";
 
-        img.innerHTML += "<img src='" + thumbnail + "' width='50%' height='auto'>";
-
-        el.innerHTML += "<p>Title: " + title + "</p>" +
-        "<p>Author: " + author + "</p>" +
-        "<p>Genre: " + genre + "</p>" +
-        "<p>Publisher: " + publisher + "</p>" +
-        "<p>Date Published: " + publishedDate + "</p>" +
-        "<p>Page Count: " + pageCount + "</p>" +
-        "<p>Description: " + description + "</p>" +
-        "<p>ISBN: " + isbn + "</p>";
+        el.innerHTML += "<table><tr><td>Title:</td><td> " + title + "</td></tr>" +
+        "<tr><td>Author:</td><td>" + author + "</td></tr>" +
+        "<tr><td>Genre:</td><td>" + genre + "</td></tr>" +
+        "<tr><td>Description:</td><td>" + description + "</td></tr>" +
+        "<tr><td>Publisher:</td><td>" + publisher + "</td></tr>" +
+        "<tr><td>Date Published:</td><td>" + publishedDate + "</td></tr>" +
+        "<tr><td>Page Count:</td><td>" + pageCount + "</td></tr>" +
+        "<tr><td>ISBN:</td><td>" + isbn + "</td></tr></table>";
     })
 }
+
+
+// function saveDetail(){
+
+//     var name = $("#inputFirstname").val();
+//     var from = $("#sourceZone1").val();
+//     var to = $("#destinationZone1").val();
+//     var source = $("#sourceaddress").val();
+//     var destination = $("#destinationaddress").val();
+//     var srcTranslationType = $("#combo").val();
+//     var srcTranStaticIpTransAddr = $("#inputAddressLine5").val();
+
+//     var jsonToSend = {
+//         name: name,
+//         from: from,
+//         to: to,
+//         source: source,
+//         destination: destination,
+//         srcTranslationType: srcTranslationType,
+//         srcTranStaticIpTransAddr: srcTranStaticIpTransAddr
+
+//     };
+//     $.ajax({
+//         type: "POST",
+//         contentType: "application/json",
+//         url: "../policy/nat?id=" + id,
+//         data: JSON.stringify(sendInfo),
+//         success: function(data) {
+//         alert("Successfully added information");
+
+//         },
+//         error: function(error) {
+//         alert("Error while Adding Detail...");
+//         }
+//     });
+
+// }
+
 
   $(document).ready(function(){
     /* Initialization of the dropdown trigger taken from https://materializecss.com/navbar.html#! */

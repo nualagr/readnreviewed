@@ -12,7 +12,7 @@
                         <!-- Book Title Field-->
                         <div class="input-field col s12">
                         <i class="fas fa-book prefix"></i>
-                        <input id="title" name="title" type="text" minlength="8" maxlength="15" pattern="^[a-zA-Z0-9]{8,15}$" class="validate" required>
+                        <input id="title" name="title" type="text" minlength="2" maxlength="40" class="validate" required>
                         <label for="title">Book Title</label>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                         <!-- Author Field -->
                         <div class="input-field col s12">
                         <i class="fas fa-user-edit prefix"></i>
-                        <input id="author" name="author" type="text" minlength="8" maxlength="15" pattern="^[a-zA-Z0-9]{8,15}$" class="validate" required>
+                        <input id="author" name="author" type="text" minlength="4" maxlength="15" class="validate" required>
                         <label for="author">Author</label>
                         </div>
                     </div>
@@ -34,7 +34,20 @@
                     </div>
                     <div class="row">
                         <!-- Star Rating Field -->
-                        <div class="input-field col s12 radio-group">
+                        <div class="form-group">
+                            <div class="input-field col s12">
+                            <!-- <label for="rating">Rate the Book</label> -->
+                                <select name="rating" class="form-control" id="rating" required="">
+                                    <option value="" selected="">Rate the book</option>
+                                    <option value="1">⭐</option>
+                                    <option value="2">⭐ ⭐</option>
+                                    <option value="3">⭐ ⭐ ⭐</option>
+                                    <option value="4">⭐ ⭐ ⭐ ⭐</option>
+                                    <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- <div class="input-field col s12 radio-group">
                             <i class="fas fa-star-half-alt prefix"></i>
                             <label for="1star">
                                 <input id="1star" name="starRating" type="radio" value="1" />
@@ -56,7 +69,7 @@
                                 <input id="5star" name="starRating" type="radio" value="5" />
                                 <span>5 Star</span>
                             </label>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <!-- Review Field -->
@@ -68,7 +81,7 @@
                     </div>
                 </div>
                 <div class="card-action center">
-                    <button type="submit" class="btn bg-orange">Submit <i class="fas fa-check"></i></button>
+                    <button type="submit" class="btn bg-orange" onclick="writeToDocument(document.getElementById('title').value, document.getElementById('author').value);">Submit <i class="fas fa-check"></i></button>
                     <a href="{{ url_for('add_review') }}" class="btn bg-blue">Clear <i class="fas fa-times"></i></a>
                 </div>
             </div>
@@ -81,5 +94,4 @@
         </p>
     </div>
   </div>
-
 {% endblock %}
