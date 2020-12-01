@@ -50,11 +50,11 @@ h1, h2, h3, h4, h5 {
     color: #F69222;
 }
 
-.center {
+.centered {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 60%;
 }
 /* Form ------------------------------------- */
 /* label color */
@@ -123,6 +123,10 @@ h1, h2, h3, h4, h5 {
 [type="radio"].with-gap:checked+span:before, 
 [type="radio"].with-gap:checked+span:after {
   border: 2px solid #F69222;
+}
+
+.dropdown-content li>span {
+    color: #1F76BB;
 }
 /* Navbar ------------------------------------- */
 .header-wrapper {

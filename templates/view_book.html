@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Latest Book -->
+    <div class="row">
+        <div class="col s12">
+            <h3 class="center subtitle">Latest Book</h3>
+        </div>
+    </div>
+    {% for key, value in latest_book %}
+        <div class="row center">
+            <div class="col s12 m6">
+                <img src="{{ book.image_url }}" class="cover"><br>
+            </div>
+            <div class="col s12 m6">
+                <p>{{ book.genre }}</p>
+                <h5>{{ book.title }}</h5>
+                <p>{{ book.author }}</p> 
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

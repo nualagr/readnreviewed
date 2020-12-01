@@ -36,6 +36,7 @@
                         <!-- Star Rating Field -->
                         <div class="form-group">
                             <div class="input-field col s12">
+                            <i class="fas fa-star-half-alt prefix"></i>
                             <!-- <label for="rating">Rate the Book</label> -->
                                 <select name="rating" class="form-control" id="rating" required="">
                                     <option value="" selected="">Rate the book</option>
@@ -47,29 +48,6 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- <div class="input-field col s12 radio-group">
-                            <i class="fas fa-star-half-alt prefix"></i>
-                            <label for="1star">
-                                <input id="1star" name="starRating" type="radio" value="1" />
-                                <span>1 Star</span>
-                            </label>
-                            <label for="2star">
-                                <input id="2star" name="starRating" type="radio" value="2" />
-                                <span>2 Star</span>
-                            </label>
-                            <label for="3star">
-                                <input id="3star" name="starRating" type="radio" value="3" />
-                                <span>3 Star</span>
-                            </label>
-                            <label for="4star">
-                                <input id="4star" name="starRating" type="radio" value="4" />
-                                <span>4 Star</span>
-                            </label>
-                            <label for="5star">
-                                <input id="5star" name="starRating" type="radio" value="5" />
-                                <span>5 Star</span>
-                            </label>
-                        </div> -->
                     </div>
                     <div class="row">
                         <!-- Review Field -->
@@ -81,7 +59,7 @@
                     </div>
                 </div>
                 <div class="card-action center">
-                    <button type="submit" class="btn bg-orange" onclick="writeToDocument(document.getElementById('title').value, document.getElementById('author').value);">Submit <i class="fas fa-check"></i></button>
+                    <button type="submit" class="btn bg-orange">Submit <i class="fas fa-check"></i></button>
                     <a href="{{ url_for('add_review') }}" class="btn bg-blue">Clear <i class="fas fa-times"></i></a>
                 </div>
             </div>

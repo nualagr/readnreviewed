@@ -65,6 +65,8 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('get_books') }}">Home</a></li>
                         <li><a href="#">My Reviews</a></li>
+                        <li><a href="#">My Wish List</a></li>
+                        <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
                         <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
                         <li><a href="#">My Wish List</a></li>
                         <li><a href="{{ url_for('get_books') }}">Browse</a></li>
@@ -85,6 +87,8 @@
                 <li><h4 class="center-align">Read n' Reviewed</h4></li>
                 <li><a href="{{ url_for('get_books') }}">Home</a></li>
                 <li><a href="#">My Reviews</a></li>
+                <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
+                <li><a href="{{ url_for('add_review') }}">Add Review</a></li>
                 <li><a href="#">My Wish List</a></li>
                 <li><a href="{{ url_for('get_books') }}">Browse</a></li>
         </ul>
@@ -108,9 +112,9 @@
     <!-- API Content Block -->
     <section>
         <div class="row container">
-            <div class="col s12 m6 l4" id="bookCoverContainer">
+            <div class="col s12 m4 l4" id="bookCoverContainer">
             </div>
-            <div class="col s12 m6 l8" id="bookContentContainer">
+            <div class="col s12 m8 l8" id="bookContentContainer">
             <!-- <button class="btn" id="apiBtn" onclick="writeToDocument('foundation', 'asimov', '9780141301136');">API</button>    -->
             <button class="btn" id="apiBtn" onclick="writeToDocument('fantastic', 'dahl', '9780141301136');">API</button>
             </div>
@@ -175,8 +179,6 @@
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!-- Materialize Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- Google API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh0XfTug0WiNWVcDIwveUFY_EMXCnS8iM&callback=initMap"></script>
     <!-- Custom Scripts -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block scripts %}

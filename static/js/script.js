@@ -55,8 +55,33 @@ function writeToDocument(title, author){
 
         // Print data to console
         console.log(data);
+
+        // Create dictionary of the book
+        let book = {
+            "thumbnail": thumbnail,
+            "title": title,
+            "author": author,
+            "genre": genre,
+            "description": description,
+            "publisher": publisher,
+            "published_date": publishedDate,
+            "page_count": pageCount,
+            "isbn": isbn,
+        };
+
+        // POST book to Python
+        // So it can be uploaded to the database
+        fetch("/add_book", {
+            method: 'POST',
+            headers: { 
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(book),
+        })
+
+
         // Print data to screen
-        img.innerHTML += "<img src='" + thumbnail + "' class='center'>";
+        img.innerHTML += "<img src='" + thumbnail + "' class='centered'>";
 
         el.innerHTML += "<table><tr><td>Title:</td><td> " + title + "</td></tr>" +
         "<tr><td>Author:</td><td>" + author + "</td></tr>" +
@@ -68,43 +93,6 @@ function writeToDocument(title, author){
         "<tr><td>ISBN:</td><td>" + isbn + "</td></tr></table>";
     })
 }
-
-
-// function saveDetail(){
-
-//     var name = $("#inputFirstname").val();
-//     var from = $("#sourceZone1").val();
-//     var to = $("#destinationZone1").val();
-//     var source = $("#sourceaddress").val();
-//     var destination = $("#destinationaddress").val();
-//     var srcTranslationType = $("#combo").val();
-//     var srcTranStaticIpTransAddr = $("#inputAddressLine5").val();
-
-//     var jsonToSend = {
-//         name: name,
-//         from: from,
-//         to: to,
-//         source: source,
-//         destination: destination,
-//         srcTranslationType: srcTranslationType,
-//         srcTranStaticIpTransAddr: srcTranStaticIpTransAddr
-
-//     };
-//     $.ajax({
-//         type: "POST",
-//         contentType: "application/json",
-//         url: "../policy/nat?id=" + id,
-//         data: JSON.stringify(sendInfo),
-//         success: function(data) {
-//         alert("Successfully added information");
-
-//         },
-//         error: function(error) {
-//         alert("Error while Adding Detail...");
-//         }
-//     });
-
-// }
 
 
   $(document).ready(function(){

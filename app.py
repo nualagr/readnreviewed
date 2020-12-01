@@ -124,27 +124,43 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/add_book", methods=["GET", "POST"])
+def add_book():
+    if request.method == "POST":
+        # Unpack json into a dict
+        newBook = request.json
+        print(newBook)
+
+        # Add new book to the database
+        mongo.db.books.insert_one(newBook)
+        flash("New book Successfully Added")
+        #return redirect(url_for("view_book", latest_book=newBook))
+        return render_template("add_book.html")
+
+    if request.method == "GET":
+        return render_template("add_book.html")
+
+
+# @app.route("/view_book/<latest_book>")
+# def view_book(latest_book):
+#     for key, value in latest_book():
+#         print(f"{key}: {value}")
+#     return render_template("view_book.html", latest_book=latest_book)
+
+
 @app.route("/add_review", methods=["GET", "POST"])
 def add_review():
     if request.method == "POST":
-        # Grab the date and time of the review
+        # Grab the date
         e = datetime.datetime.now()
+        # Use the title input into the form to
         # Grab the book id in order to link the review to the correct book
         book = mongo.db.books.find_one({
              "title": request.form.get("title")
          })
+        print(book)
         book_id = book['_id']
-    #     book = {
-    #         "thumbnail":
-    #         "title":
-    #         "author":
-    #         "genre":
-    #         "description":
-    #         "publisher":
-    #         "published_date":
-    #         "page_count":
-    #         "isbn":
-    #     }
+
         # Create the review dict to submit to the database
         review = {
             "book_id": book_id,
@@ -156,8 +172,6 @@ def add_review():
         # Insert the review into the database
         mongo.db.reviews.insert_one(review)
         flash("Review Successfully Added")
-    #     mongo.db.book.insert_one(book)
-    #     return redirect(url_for("browse"))
     return render_template("add_review.html")
 
 
