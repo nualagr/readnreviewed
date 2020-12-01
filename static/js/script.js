@@ -77,7 +77,8 @@ function writeToDocument(title, author){
                 'Content-type': 'application/json',
             },
             body: JSON.stringify(book),
-        })
+        }).then(response => console.log(response))
+        .then(location.reload());
 
 
         // Print data to screen

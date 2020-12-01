@@ -18,16 +18,19 @@
         </div>
     </div>
     {% for book in books %}
+        {% if loop.index < 3 %}
         <div class="row center">
             <div class="col s12 m6">
                 <img src="{{ book.image_url }}" class="cover"><br>
             </div>
             <div class="col s12 m6">
+                <p>{{ loop.index }}</p>
                 <p>{{ book.genre }}</p>
                 <h5>{{ book.title }}</h5>
                 <p>{{ book.author }}</p> 
             </div>
         </div>
+        {% endif %}
     {% endfor %}
    <!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->
     <section class="section-lg container bg-grey-light bg-cover center">

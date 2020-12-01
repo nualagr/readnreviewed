@@ -31,6 +31,12 @@ def get_books():
     return render_template("index.html", books=books)
 
 
+@app.route("/browse")
+def browse():
+    books = mongo.db.books.find()
+    return render_template("browse.html", books=books)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -133,8 +139,8 @@ def add_book():
 
         # Add new book to the database
         mongo.db.books.insert_one(newBook)
-        flash("New book Successfully Added")
-        #return redirect(url_for("view_book", latest_book=newBook))
+        # flash("New book Successfully Added")
+        # return redirect(url_for("view_book", latest_book=newBook))
         return render_template("add_book.html")
 
     if request.method == "GET":
