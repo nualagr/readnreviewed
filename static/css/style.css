@@ -50,6 +50,10 @@ h1, h2, h3, h4, h5 {
     color: #F69222;
 }
 
+.star-rating i {
+    color: #F69222;
+}
+
 .centered {
   display: block;
   margin-left: auto;

@@ -14,6 +14,15 @@
                 <p>Author: {{ this_book.author[0] }}</p>
                 <p>Genre: {{ this_book.genre }}</p>
                 <p>Description: {{ this_book.description }}</p> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6 center">
+                <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
+                    <span class="btn orange">Buy it now</span> 
+                </a>
+            </div>
+            <div class="col s12 m6 left-align">
                 <p>Page Count: {{ this_book.page_count }}</p> 
                 <p>Date Published: {{ this_book.published_date }}</p> 
                 <p>Publisher: {{ this_book.publisher }}</p> 
@@ -26,7 +35,7 @@
                     <p>Reviewed By: {{ review.created_by }}</p>
                     <p>On: {{ review.review_date }}</p>
                 </div>
-                <div class="col s8">
+                <div class="col s8 star-rating">
                     <p>Star Rating: 
                         {% set starRating = review.rating | int %}
                         {% for i in range(starRating) %}

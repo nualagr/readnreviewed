@@ -166,9 +166,12 @@ def view_book(book_id):
     this_book_reviews = list(mongo.db.reviews.find(
         {"book_id": ObjectId(book_id)}).sort("review_date", -1)
     )
+    this_book_title = this_book["title"].replace(" ", "+")
+    print(this_book_title)
+    book_purchase_url = "https://www.amazon.com/s?tag=faketag&k=" + this_book_title
     return render_template(
         "view_book.html", this_book=this_book,
-        this_book_reviews=this_book_reviews)
+        this_book_reviews=this_book_reviews, book_purchase_url=book_purchase_url)
 
 
 @app.route("/add_review", methods=["GET", "POST"])
