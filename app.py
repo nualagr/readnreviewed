@@ -27,13 +27,13 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_books")
 def get_books():
-    books = mongo.db.books.find()
+    books = list(mongo.db.books.find().sort("author", 1))
     return render_template("index.html", books=books)
 
 
 @app.route("/browse")
 def browse():
-    books = mongo.db.books.find()
+    books = list(mongo.db.books.find().sort("title", 1))
     return render_template("browse.html", books=books)
 
 
