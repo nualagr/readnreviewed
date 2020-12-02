@@ -17,21 +17,28 @@
             <h3 class="center subtitle">Latest Reviews</h3>
         </div>
     </div>
-    {% for book in books %}
-        {% if loop.index < 3 %}
         <div class="row center">
             <div class="col s12 m6">
-                <img src="{{ book.thumbnail }}" class="cover"><br>
+                <img src="{{ book_one.thumbnail }}" class="cover"><br>
             </div>
             <div class="col s12 m6">
-                <p>{{ book.genre }}</p>
-                <h5>{{ book.title }}</h5>
-                <p>{{ book.author[0] }}</p> 
-                <p>{{ book.description }}</p>
+                <p>{{ book_one.genre }}</p>
+                <h5>{{ book_one.title }}</h5>
+                <p>{{ book_one.author[0] }}</p> 
+                <p>{{ book_one.description }}</p>
             </div>
         </div>
-        {% endif %}
-    {% endfor %}
+        <div class="row center">
+            <div class="col s12 m6">
+                <img src="{{ book_two.thumbnail }}" class="cover"><br>
+            </div>
+            <div class="col s12 m6">
+                <p>{{ book_two.genre }}</p>
+                <h5>{{ book_two.title }}</h5>
+                <p>{{ book_two.author[0] }}</p> 
+                <p>{{ book_two.description }}</p>
+            </div>
+        </div>
    <!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->
     <section class="section-lg container bg-grey-light bg-cover center">
             <h3 class="subtitle">What Our Members Say About Us</h3>
