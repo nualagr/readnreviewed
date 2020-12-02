@@ -26,6 +26,7 @@
                 <h5>{{ book_one.title }}</h5>
                 <p>{{ book_one.author[0] }}</p> 
                 <p>{{ book_one.description }}</p>
+                <p><a href="{{ url_for('view_book', book_id=book_one._id) }}">Read review...</a></p>
             </div>
         </div>
         <div class="row center">
@@ -37,6 +38,7 @@
                 <h5>{{ book_two.title }}</h5>
                 <p>{{ book_two.author[0] }}</p> 
                 <p>{{ book_two.description }}</p>
+                <p><a href="{{ url_for('view_book', book_id=book_two._id) }}">Read review...</a></p>
             </div>
         </div>
    <!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->

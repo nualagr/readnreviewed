@@ -27,22 +27,18 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_books")
 def get_books():
+    # Sort the reviews by date descending to find the latest reviews
     reviews = list(mongo.db.reviews.find().sort("review_date", -1))
     book_one_id = reviews[0]["book_id"]
     book_two_id = reviews[1]["book_id"]
     if book_one_id == book_two_id:
         book_two_id = reviews[2]["book_id"]
-    print(book_one_id)
-    print(book_two_id)
-    books = list(mongo.db.books.find().sort("_id", 1))
     book_one = mongo.db.books.find_one(
         {"_id": ObjectId(book_one_id)}
     )
     book_two = mongo.db.books.find_one(
         {"_id": ObjectId(book_two_id)}
     )
-    print(book_one)
-    print(book_two)
     return render_template("index.html", book_one=book_one, book_two=book_two)
 
 
