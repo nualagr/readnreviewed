@@ -27,8 +27,8 @@
                     <p>On: {{ review.review_date }}</p>
                 </div>
                 <div class="col s8">
-                    {% set starRating = review.rating | int %}
                     <p>Star Rating: 
+                        {% set starRating = review.rating | int %}
                         {% for i in range(starRating) %}
                             <i class="fas fa-star"></i>
                         {% endfor %} 

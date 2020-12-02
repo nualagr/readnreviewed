@@ -153,7 +153,7 @@ def view_book(book_id):
         {"_id": ObjectId(book_id)}
     )
     this_book_reviews = list(mongo.db.reviews.find(
-        {"book_id": ObjectId(book_id)})
+        {"book_id": ObjectId(book_id)}).sort("review_date", -1)
     )
     return render_template(
         "view_book.html", this_book=this_book,
