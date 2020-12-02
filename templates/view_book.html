@@ -21,14 +21,21 @@
             </div>
         </div>
         {% for review in this_book_reviews %}
-        <div class="row">
-            <div class="col s12">
-                <p>Reviewed By: {{ review.created_by }}</p>
-                <p>On: {{ review.review_date }}</p>
-                <p>Star Rating: {{ review.rating }}</p>
-                <p>Review: {{ review.review }}</p>
+            <div class="row">
+                <div class="col s3 offset-s1">
+                    <p>Reviewed By: {{ review.created_by }}</p>
+                    <p>On: {{ review.review_date }}</p>
+                </div>
+                <div class="col s8">
+                    {% set starRating = review.rating | int %}
+                    <p>Star Rating: 
+                        {% for i in range(starRating) %}
+                            <i class="fas fa-star"></i>
+                        {% endfor %} 
+                    </p>
+                    <p>Review: {{ review.review }}</p>
+                </div>
             </div>
-        </div>
         {% endfor %}
 
 {% endblock %}
