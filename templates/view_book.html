@@ -20,5 +20,13 @@
                 <p>ISBN 13: {{ this_book.isbn }}</p> 
             </div>
         </div>
+        <div class="row">
+            <div class="col s12">
+                <p>Reviewed By: {{ this_book_review.created_by }}</p>
+                <p>On: {{ this_book_review.review_date }}</p>
+                <p>Star Rating: {{ this_book_review.rating }}</p>
+                <p>Review: {{ this_book_review.review }}</p>
+            </div>
+        </div>
 
 {% endblock %}

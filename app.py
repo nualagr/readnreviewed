@@ -152,8 +152,12 @@ def view_book(book_id):
     this_book = mongo.db.books.find_one(
         {"_id": ObjectId(book_id)}
     )
-    print(type(this_book))
-    return render_template("view_book.html", this_book=this_book)
+    this_book_review = mongo.db.reviews.find_one(
+        {"book_id": ObjectId(book_id)}
+    )
+    return render_template(
+        "view_book.html", this_book=this_book,
+        this_book_review=this_book_review)
 
 
 @app.route("/add_review", methods=["GET", "POST"])
