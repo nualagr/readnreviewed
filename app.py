@@ -33,7 +33,7 @@ def get_books():
 
 @app.route("/browse")
 def browse():
-    books = list(mongo.db.books.find().sort("title", 1))
+    books = list(mongo.db.books.find().sort("_id", 1))
     return render_template("browse.html", books=books)
 
 
@@ -147,11 +147,13 @@ def add_book():
         return render_template("add_book.html")
 
 
-# @app.route("/view_book/<latest_book>")
-# def view_book(latest_book):
-#     for key, value in latest_book():
-#         print(f"{key}: {value}")
-#     return render_template("view_book.html", latest_book=latest_book)
+@app.route("/view_book/<book_id>")
+def view_book(book_id):
+    this_book = mongo.db.books.find_one(
+        {"_id": ObjectId(book_id)}
+    )
+    print(type(this_book))
+    return render_template("view_book.html", this_book=this_book)
 
 
 @app.route("/add_review", methods=["GET", "POST"])
@@ -164,7 +166,6 @@ def add_review():
         book = mongo.db.books.find_one({
              "title": request.form.get("title")
          })
-        print(book)
         book_id = book['_id']
 
         # Create the review dict to submit to the database
