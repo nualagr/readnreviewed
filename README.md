@@ -535,16 +535,19 @@ The Read n’ Reviewed website relies on three database collections:
 
 ### Bugs
 [Timestamp Issue](https://github.com/nualagr/readnreviewed/commit/99e0f0f19aa5044a82ed62983af332909c47ad8d):
-An issue cropped up early on in development with regard to sorting the review dates.  
-The Python 'datetime' module had been imported.  The 'datetime' class was used to get the date the review was posted in the format e.strftime("%a, %b %d, %Y") which printed out nicely on screen as "Wed, Dec 02, 2020".
+
+An issue cropped up early on in development with regard to sorting the review dates.
+The Python 'datetime' module had been imported.  The 'datetime' class was used to get the date the review was posted in the format e.strftime("%a, %b %d, %Y") which printed out 
+nicely on screen as "Wed, Dec 02, 2020".
 When it came to sorting the reviews initially .sort("review_date", -1) was used, however this was attempting
 to sort the stored review string alphabetically from 'z' to 'a' which bares no relation to the order in which the reviews were written.
 It was therefore necessary to store the date and time as a timestamp in the database.  A Unix timestamp is the number of seconds between a particular date and January 1, 1970 at 
 Universal Time Coordinated (UTC), the primary time standard by which the world regulates clocks and time.  The 'timestamp' class was used to return the POSIX
-timestamp as a float.  This was uploaded to the database in the field 'review_date' and allowed accurate ordering of the book reviews by date.  This float, however, posed another issue when it came to displaying
-this information for the user.  The list of review dictionaries associated with each book which had been passed straigh from the database to jinja now required formatting first.  
-A 'for loop' was used to iterate over each dictionary in the list.  The .fromtimestamp class method was used to convert each 'review_date' element to the local date corresponding to the POSIX timestamp.
-The .strftime("%d %B, %Y") method was then used to convert them into the format "03 December, 2020" which could then be passed through to jinja and displayed on the view_book.html page.
+timestamp as a float.  This was uploaded to the database in the field 'review_date' and allowed accurate ordering of the book reviews by date and time. 
+This float, however, posed another issue when it came to displaying this information for the user. 
+The list of review dictionaries associated with each book which had been passed straight from the database to jinja now required formatting first.
+A 'for loop' was used to iterate over each dictionary in the list. The .fromtimestamp class method was used to convert each 'review_date' element to the local date corresponding to the POSIX timestamp.
+The .strftime("%a, %b %d, %Y") method was then used to convert them into the format "Wed, Dec 02, 2020" which could then be passed through to jinja and displayed on the view_book.html page.
 
 
 

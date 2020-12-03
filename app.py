@@ -172,14 +172,13 @@ def view_book(book_id):
 
     # Create the book purchase url by adding the book title to the url
     this_book_title = this_book["title"].replace(" ", "+")
-    print(this_book_title)
     book_purchase_url = (
         "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
 
     # Convert floats to datetime format in each book review
     for book_review in this_book_reviews:
         book_review["review_date"] = datetime.datetime.fromtimestamp(
-            book_review["review_date"]).strftime("%d %B, %Y")
+            book_review["review_date"]).strftime("%a, %b %d, %Y")
 
     return render_template(
         "view_book.html", this_book=this_book,
