@@ -31,12 +31,14 @@ def get_books():
     reviews = list(mongo.db.reviews.find().sort("review_date", -1))
     book_one_id = reviews[0]["book_id"]
     book_two_id = reviews[1]["book_id"]
+    # If the two latest reviews relate to the same book move to the next review
     if book_one_id == book_two_id:
         book_two_id = reviews[2]["book_id"]
+    # Use the book id field from the review
+    # to find the corresponding book information
     book_one = mongo.db.books.find_one(
         {"_id": ObjectId(book_one_id)}
     )
-    print(book_one)
     book_two = mongo.db.books.find_one(
         {"_id": ObjectId(book_two_id)}
     )
@@ -165,7 +167,7 @@ def view_book(book_id):
         {"_id": ObjectId(book_id)}
     )
     this_book_reviews = list(mongo.db.reviews.find(
-        {"book_id": ObjectId(book_id)}).sort("review_date")
+        {"book_id": ObjectId(book_id)}).sort("review_date", -1)
     )
 
     # Create the book purchase url by adding the book title to the url
@@ -190,20 +192,12 @@ def add_review():
     if request.method == "POST":
         # Grab the date
         e = datetime.datetime.now()
-        print(e)
         # Convert it to seconds
         # so that the review times can be compared and sorted easily
         seconds = e.timestamp()
-        print(seconds)
-        # Convert it back into a human readable format
-        date_time = datetime.datetime.fromtimestamp(seconds)
 
-        print("Date time object:", date_time)
-
-        d = date_time.strftime("%m/%d/%Y, %H:%M:%S")
-        print("Output 2:", d)
         # Use the title input into the form to
-        # Grab the book id in order to link the review to the correct book
+        # grab the book id in order to link the review to the correct book
         book = mongo.db.books.find_one({
              "title": request.form.get("title")
         })
@@ -217,6 +211,7 @@ def add_review():
             "review": request.form.get("review"),
             "created_by": session["user"],
             "review_date": seconds,
+            "review_score": 0,
         }
         # Insert the review into the database
         mongo.db.reviews.insert_one(review)
