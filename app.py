@@ -36,6 +36,7 @@ def get_books():
     book_one = mongo.db.books.find_one(
         {"_id": ObjectId(book_one_id)}
     )
+    print(book_one)
     book_two = mongo.db.books.find_one(
         {"_id": ObjectId(book_two_id)}
     )
@@ -164,14 +165,24 @@ def view_book(book_id):
         {"_id": ObjectId(book_id)}
     )
     this_book_reviews = list(mongo.db.reviews.find(
-        {"book_id": ObjectId(book_id)}).sort("review_date", -1)
+        {"book_id": ObjectId(book_id)}).sort("review_date")
     )
+
+    # Create the book purchase url by adding the book title to the url
     this_book_title = this_book["title"].replace(" ", "+")
     print(this_book_title)
-    book_purchase_url = "https://www.amazon.com/s?tag=faketag&k=" + this_book_title
+    book_purchase_url = (
+        "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
+
+    # Convert floats to datetime format in each book review
+    for book_review in this_book_reviews:
+        book_review["review_date"] = datetime.datetime.fromtimestamp(
+            book_review["review_date"]).strftime("%d %B, %Y")
+
     return render_template(
         "view_book.html", this_book=this_book,
-        this_book_reviews=this_book_reviews, book_purchase_url=book_purchase_url)
+        this_book_reviews=this_book_reviews,
+        book_purchase_url=book_purchase_url)
 
 
 @app.route("/add_review", methods=["GET", "POST"])
@@ -179,12 +190,25 @@ def add_review():
     if request.method == "POST":
         # Grab the date
         e = datetime.datetime.now()
+        print(e)
+        # Convert it to seconds
+        # so that the review times can be compared and sorted easily
+        seconds = e.timestamp()
+        print(seconds)
+        # Convert it back into a human readable format
+        date_time = datetime.datetime.fromtimestamp(seconds)
+
+        print("Date time object:", date_time)
+
+        d = date_time.strftime("%m/%d/%Y, %H:%M:%S")
+        print("Output 2:", d)
         # Use the title input into the form to
         # Grab the book id in order to link the review to the correct book
         book = mongo.db.books.find_one({
              "title": request.form.get("title")
-         })
+        })
         book_id = book['_id']
+        print("book_id", book_id)
 
         # Create the review dict to submit to the database
         review = {
@@ -192,7 +216,7 @@ def add_review():
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
             "created_by": session["user"],
-            "review_date": e.strftime("%a, %b %d, %Y")
+            "review_date": seconds,
         }
         # Insert the review into the database
         mongo.db.reviews.insert_one(review)

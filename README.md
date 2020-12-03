@@ -534,8 +534,13 @@ The Read n’ Reviewed website relies on three database collections:
 ---
 
 ### Bugs
+An issue cropped up early on in development with regard to sorting the reviews by date.  
+The Python 'datetime' module had been imported and used to store the date the review was written in the format e.strftime("%a, %b %d, %Y") which printed out nicely on screen as "Wed, Dec 02, 2020".
+When it came to sorting the reviews initially .sort("review_date", -1) was used, however this was attempting
+to sort the stored review string alphabetically from 'z' to 'a' which bares no relation to the order in which the reviews were written.
+It was therefore necessary to store the date and time as a timestamp in the database.  A Unix timestamp is the number of seconds between a particular date and January 1, 1970 at 
+Universal Time Coordinated (UTC), the primary time standard by which the world regulates clocks and time.  
 
-#### Remaining Issues
 
 ##### back to [top](#table-of-contents)
 ---

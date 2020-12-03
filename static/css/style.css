@@ -108,27 +108,6 @@ h1, h2, h3, h4, h5 {
     background-color: transparent;
 }
 
-.radio-group i.prefix {
-    position: relative !important;
-    top: 0.2rem;
-}
-
-.radio-group>input[type=radio] {
-    float: none !important;
-}
-
-/* Code to change radio button colour found on StackOverflow: https://stackoverflow.com/questions/47215861/changing-radio-color-material-design */
-[type="radio"]:checked+span:after, 
-[type="radio"].with-gap:checked+span:after {
-  background-color: #F69222;
-}
-
-[type="radio"]:checked+span:after, 
-[type="radio"].with-gap:checked+span:before, 
-[type="radio"].with-gap:checked+span:after {
-  border: 2px solid #F69222;
-}
-
 .dropdown-content li>span {
     color: #1F76BB;
 }
