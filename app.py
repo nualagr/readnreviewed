@@ -163,12 +163,19 @@ def add_book():
 
 @app.route("/view_book/<book_id>")
 def view_book(book_id):
+    # Find the book document in the database
     this_book = mongo.db.books.find_one(
         {"_id": ObjectId(book_id)}
     )
+    # Find the reviews that relate to that book
     this_book_reviews = list(mongo.db.reviews.find(
-        {"book_id": ObjectId(book_id)}).sort("review_date", -1)
+        {"book_id": ObjectId(book_id)})
     )
+    # Sort by review score and then by date added
+    sorted_book_reviews = sorted(
+        this_book_reviews, key=lambda b: (
+            -b['review_score'], -b['review_date']))
+    print(sorted_book_reviews)
 
     # Create the book purchase url by adding the book title to the url
     this_book_title = this_book["title"].replace(" ", "+")
