@@ -230,8 +230,8 @@ def upvote_review(review_id):
         )
         print("review_id:", review_id)
         book_id = review['book_id']
-        print("book_id", book_id)
-        return redirect(url_for('success'))
+        print("The book_id is:", book_id)
+        return redirect(url_for('view_book', book_id=book_id))
     else:
         return redirect(url_for('index'))
 
