@@ -16,6 +16,7 @@
                 <h5>{{ book.title }}</h5>
                 <p>{{ book.author[0] }}</p> 
                 <p>{{ book.description }}</p>
+                <p><a href="{{ url_for('view_book', book_id=book._id) }}">Read review...</a></p>
             </div>
         </div>
     {% endfor %}
