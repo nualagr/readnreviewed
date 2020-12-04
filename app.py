@@ -189,7 +189,7 @@ def view_book(book_id):
 
     return render_template(
         "view_book.html", this_book=this_book,
-        this_book_reviews=this_book_reviews,
+        this_book_reviews=sorted_book_reviews,
         book_purchase_url=book_purchase_url)
 
 
