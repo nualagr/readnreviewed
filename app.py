@@ -193,21 +193,20 @@ def view_book(book_id):
         book_purchase_url=book_purchase_url)
 
 
-@app.route("/add_review", methods=["GET", "POST"])
-def add_review():
+@app.route("/add_review/<book_id>", methods=["GET", "POST"])
+def add_review(book_id):
+    # Use the book_id that was passed in to find the book in the database
+    this_book = mongo.db.books.find_one(
+        {"_id": ObjectId(book_id)}
+    )
+    book_id = this_book['_id']
+
     if request.method == "POST":
         # Grab the date
         e = datetime.datetime.now()
         # Convert it to seconds
         # so that the review times can be compared and sorted easily
         seconds = e.timestamp()
-
-        # Use the title input into the form to
-        # grab the book id in order to link the review to the correct book
-        book = mongo.db.books.find_one({
-             "title": request.form.get("title")
-        })
-        book_id = book['_id']
 
         # Create the review dict to submit to the database
         review = {
@@ -221,7 +220,14 @@ def add_review():
         # Insert the review into the database
         mongo.db.reviews.insert_one(review)
         flash("Review Successfully Added")
-    return render_template("add_review.html")
+        return render_template(
+            "view_book.html", book_id=book_id, this_book=this_book,)
+        # return redirect(url_for(
+        #     'view_book', book_id=book_id))
+
+    if request.method == "GET":
+        return render_template(
+            "add_review.html", book_id=book_id, this_book=this_book,)
 
 
 @app.route("/upvote_review/<review_id>", methods=["GET", "POST"])
@@ -235,9 +241,7 @@ def upvote_review(review_id):
             {"_id": ObjectId(review_id)},
             {"$inc": {"review_score": 1}}
         )
-        print("review_id:", review_id)
         book_id = review['book_id']
-        print("The book_id is:", book_id)
         return redirect(url_for('view_book', book_id=book_id))
     else:
         return redirect(url_for('index'))

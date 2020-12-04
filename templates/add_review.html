@@ -5,14 +5,14 @@
     <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
     <div class="row container">
         <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
-        <form method="POST" action="{{ url_for('add_review') }}">
+        <form method="POST" action="{{ url_for('add_review', book_id=this_book._id) }}">
             <div class="card white darken-1">
                 <div class="card-content">
                      <div class="row">
                         <!-- Book Title Field-->
                         <div class="input-field col s12">
                         <i class="fas fa-book prefix"></i>
-                        <input id="title" name="title" type="text" minlength="2" maxlength="100" class="validate" required>
+                        <input id="title" name="title" type="text" disabled value="{{ this_book.title }}">
                         <label for="title">Book Title</label>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                         <!-- Author Field -->
                         <div class="input-field col s12">
                         <i class="fas fa-user-edit prefix"></i>
-                        <input id="author" name="author" type="text" minlength="4" maxlength="40" class="validate" required>
+                        <input id="author" name="author" type="text" disabled value="{{ this_book.author[0] }}">
                         <label for="author">Author</label>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                         <!-- ISBN Field -->
                         <div class="input-field col s12">
                         <i class="fas fa-barcode prefix"></i>
-                        <input id="isbn" name="isbn" type="text" minlength="11" maxlength="13" pattern="^[a-zA-Z0-9]{8,15}$" class="validate" required>
+                        <input id="isbn" name="isbn" type="text" disabled value="{{ this_book.isbn }}">
                         <label for="isbn">ISBN 13</label>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="card-action center">
                     <button type="submit" class="btn bg-orange">Submit <i class="fas fa-check"></i></button>
-                    <a href="{{ url_for('add_review') }}" class="btn bg-blue">Clear <i class="fas fa-times"></i></a>
+                    <a href="{{ url_for('add_review', book_id=this_book._id) }}" class="btn bg-blue">Clear <i class="fas fa-times"></i></a>
                 </div>
             </div>
         </form>
