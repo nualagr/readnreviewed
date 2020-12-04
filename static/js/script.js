@@ -53,9 +53,6 @@ function writeToDocument(title, author){
         let pageCount = books[0]["volumeInfo"]["pageCount"];
         let isbn = books[0]["volumeInfo"]["industryIdentifiers"][0]["identifier"];
 
-        // Print data to console
-        console.log(data);
-
         // Create dictionary of the book
         let book = {
             "thumbnail": thumbnail,

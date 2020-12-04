@@ -47,7 +47,7 @@ def get_books():
 
 @app.route("/browse")
 def browse():
-    books = list(mongo.db.books.find().sort("_id", 1))
+    books = list(mongo.db.books.find().sort("review_date", 1))
     return render_template("browse.html", books=books)
 
 
@@ -201,7 +201,6 @@ def add_review():
              "title": request.form.get("title")
         })
         book_id = book['_id']
-        print("book_id", book_id)
 
         # Create the review dict to submit to the database
         review = {
@@ -216,6 +215,30 @@ def add_review():
         mongo.db.reviews.insert_one(review)
         flash("Review Successfully Added")
     return render_template("add_review.html")
+
+
+@app.route("/upvote_review/<review_id>", methods=["GET", "POST"])
+def upvote_review(review_id):
+    review = mongo.db.reviews.find_one({
+        "_id": ObjectId(review_id)
+    })
+
+    if request.method == "POST":
+        mongo.db.reviews.update_one(
+            {"_id": ObjectId(review_id)},
+            {"$inc": {"review_score": 1}}
+        )
+        print("review_id:", review_id)
+        book_id = review['book_id']
+        print("book_id", book_id)
+        return redirect(url_for('success'))
+    else:
+        return redirect(url_for('index'))
+
+
+@app.route('/success')
+def success():
+    return 'Success'
 
 
 if __name__ == "__main__":
