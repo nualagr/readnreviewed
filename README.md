@@ -556,7 +556,8 @@ book it became apparent that it was necessary to prevent users from being able t
 their own reviews.  
 
 First of all it was necessary to add an extra field to the reviews collection in Mongodb in order to store a list of 
-users who had upvoted the review. 
+users who had upvoted the review. This was done using $addToSet operator to add the logged-in user's username to the 'upvoters' array unless the value was already present,
+in which case $addToSet does nothing to that array.
 
 Then a jinja 'if' statement was added to the view_book.html page in order to check whether the logged in user wrote the review being displayed.
 If they did, the button to upvote would not be displayed.  
