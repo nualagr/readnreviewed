@@ -81,7 +81,7 @@ def get_books():
 
 @app.route("/browse")
 def browse():
-    books = list(mongo.db.books.find().sort("review_date", -1))
+    books = list(mongo.db.books.find().sort("published_date", -1))
     return render_template("browse.html", books=books)
 
 
@@ -249,8 +249,6 @@ def upvote_review(review_id):
         )
         book_id = review['book_id']
         return render_book_template(book_id)
-    else:
-        return redirect(url_for('index'))
 
 
 @app.route('/success')
