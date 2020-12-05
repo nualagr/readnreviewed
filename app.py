@@ -175,7 +175,6 @@ def view_book(book_id):
     sorted_book_reviews = sorted(
         this_book_reviews, key=lambda b: (
             -b['review_score'], -b['review_date']))
-    print(sorted_book_reviews)
 
     # Create the book purchase url by adding the book title to the url
     this_book_title = this_book["title"].replace(" ", "+")

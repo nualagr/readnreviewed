@@ -35,11 +35,13 @@
                     <div class="col s3 offset-s1">
                         <p>Reviewed By: {{ review.created_by }}</p>
                         <p>On: {{ review.review_date }}</p>
-                        <p>
-                            <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
-                                <button type="submit" name="upvote" value="1" class="btn grey"><i class="fas fa-caret-up prefix"></i> {{ review.review_score }} Upvote</button>
-                            </form>
-                        </p>
+                            {% if review.created_by != session.user %}
+                            <p>
+                                <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
+                                    <button type="submit" name="upvote" value="1" class="btn grey"><i class="fas fa-caret-up prefix"></i> {{ review.review_score }} Upvote</button>
+                                </form>
+                            </p>
+                            {% endif %}
                     </div>
                     <div class="col s8 star-rating">
                         <p>Star Rating: 
