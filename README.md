@@ -549,12 +549,23 @@ The list of review dictionaries associated with each book which had been passed 
 A 'for loop' was used to iterate over each dictionary in the list. The .fromtimestamp class method was used to convert each 'review_date' element to the local date corresponding to the POSIX timestamp.
 The .strftime("%a, %b %d, %Y") method was then used to convert them into the format "Wed, Dec 02, 2020" which could then be passed through to jinja and displayed on the view_book.html page.
 
-[Upvoters]
+[Upvoters](https://github.com/nualagr/readnreviewed/commit/ce734e28149185c06f53b49646c35c798a39a9bb):
 
 After creating the logic behind users being able to upvote a review that they feel was helpful or reflected their views of the same 
 book it became apparent that it was necessary to prevent users from being able to upvote the same review multiple times or to upvote 
-their own reviews.  Therefore it was necessary to add an extra field to the reviews collection in Mongodb in order to store a list of 
+their own reviews.  
+
+First of all it was necessary to add an extra field to the reviews collection in Mongodb in order to store a list of 
 users who had upvoted the review. 
+
+Then a jinja 'if' statement was added to the view_book.html page in order to check whether the logged in user wrote the review being displayed.
+If they did, the button to upvote would not be displayed.  
+
+Once that was working, an extra check was added into the same if statement to see whether there was a session user cookie. 
+If a user was logged in, and if they had not written the review being iterated over, then the upvote button would be displayed beside that review.
+This prevented non-site-members from voting on reviews.
+
+Next 
 
 ##### back to [top](#table-of-contents)
 ---
