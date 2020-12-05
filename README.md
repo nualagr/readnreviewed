@@ -549,7 +549,12 @@ The list of review dictionaries associated with each book which had been passed 
 A 'for loop' was used to iterate over each dictionary in the list. The .fromtimestamp class method was used to convert each 'review_date' element to the local date corresponding to the POSIX timestamp.
 The .strftime("%a, %b %d, %Y") method was then used to convert them into the format "Wed, Dec 02, 2020" which could then be passed through to jinja and displayed on the view_book.html page.
 
+[Upvoters]
 
+After creating the logic behind users being able to upvote a review that they feel was helpful or reflected their views of the same 
+book it became apparent that it was necessary to prevent users from being able to upvote the same review multiple times or to upvote 
+their own reviews.  Therefore it was necessary to add an extra field to the reviews collection in Mongodb in order to store a list of 
+users who had upvoted the review. 
 
 ##### back to [top](#table-of-contents)
 ---

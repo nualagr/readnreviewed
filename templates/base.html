@@ -67,7 +67,6 @@
                         <li><a href="#">My Reviews</a></li>
                         <li><a href="#">My Wish List</a></li>
                         <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
-                        <li><a href="#">My Wish List</a></li>
                         <li><a href="{{ url_for('browse') }}">Browse</a></li>
                         <!-- Dropdown Trigger taken from https://materializecss.com/navbar.html#! and modified -->
                         <li><a class="dropdown-trigger" href="#!" data-target="dropdown"><i class="fa fa-user"></i></a></li>
@@ -108,13 +107,13 @@
     </section>
 
     <!-- API Content Block -->
-    <section>
-        <div class="row container">
+    <section class="container">
+        <div class="row">
             <div class="col s12 m4 l4" id="bookCoverContainer">
             </div>
             <div class="col s12 m8 l8" id="bookContentContainer">
             <!-- <button class="btn" id="apiBtn" onclick="writeToDocument('foundation', 'asimov', '9780141301136');">API</button>    -->
-            <button class="btn" id="apiBtn" onclick="writeToDocument('fantastic', 'dahl', '9780141301136');">API</button>
+            <!-- <button class="btn" id="apiBtn" onclick="writeToDocument('fantastic', 'dahl', '9780141301136');">API</button> -->
             </div>
         </div>
     </section>

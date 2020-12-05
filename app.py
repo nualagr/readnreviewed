@@ -47,7 +47,7 @@ def get_books():
 
 @app.route("/browse")
 def browse():
-    books = list(mongo.db.books.find().sort("review_date", 1))
+    books = list(mongo.db.books.find().sort("review_date", -1))
     return render_template("browse.html", books=books)
 
 
@@ -216,14 +216,13 @@ def add_review(book_id):
             "created_by": session["user"],
             "review_date": seconds,
             "review_score": 0,
+            "upvoters": [],
         }
         # Insert the review into the database
         mongo.db.reviews.insert_one(review)
         flash("Review Successfully Added")
         return render_template(
             "view_book.html", book_id=book_id, this_book=this_book,)
-        # return redirect(url_for(
-        #     'view_book', book_id=book_id))
 
     if request.method == "GET":
         return render_template(
@@ -239,7 +238,8 @@ def upvote_review(review_id):
     if request.method == "POST":
         mongo.db.reviews.update_one(
             {"_id": ObjectId(review_id)},
-            {"$inc": {"review_score": 1}}
+            {"$inc": {"review_score": 1},
+                "$addToSet": {"upvoters": session["user"]}}
         )
         book_id = review['book_id']
         return redirect(url_for('view_book', book_id=book_id))
