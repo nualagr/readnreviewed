@@ -24,6 +24,40 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+def render_book_template(book_id):
+    # Find the book document in the database
+    this_book = mongo.db.books.find_one(
+        {"_id": ObjectId(book_id)}
+    )
+    # Find the reviews that relate to that book
+    this_book_reviews = list(mongo.db.reviews.find(
+        {"book_id": ObjectId(book_id)})
+    )
+    # Sort by review score and then by date added
+    sorted_book_reviews = sorted(
+        this_book_reviews, key=lambda b: (
+            -b['review_score'], -b['review_date']))
+
+    # Create the book purchase url by adding the book title to the url
+    this_book_title = this_book["title"].replace(" ", "+")
+    book_purchase_url = (
+        "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
+
+    # Create a list of users who have reviewed this book already
+    reviewers = []
+    # Convert floats to datetime format in each book review
+    for book_review in this_book_reviews:
+        book_review["review_date"] = datetime.datetime.fromtimestamp(
+            book_review["review_date"]).strftime("%a, %b %d, %Y")
+        # Add reviewers to the reviewers list
+        reviewers.append(book_review["created_by"])
+
+    return render_template(
+        "view_book.html", this_book=this_book,
+        this_book_reviews=sorted_book_reviews,
+        book_purchase_url=book_purchase_url, reviewers=reviewers)
+
+
 @app.route("/")
 @app.route("/get_books")
 def get_books():
@@ -163,33 +197,7 @@ def add_book():
 
 @app.route("/view_book/<book_id>")
 def view_book(book_id):
-    # Find the book document in the database
-    this_book = mongo.db.books.find_one(
-        {"_id": ObjectId(book_id)}
-    )
-    # Find the reviews that relate to that book
-    this_book_reviews = list(mongo.db.reviews.find(
-        {"book_id": ObjectId(book_id)})
-    )
-    # Sort by review score and then by date added
-    sorted_book_reviews = sorted(
-        this_book_reviews, key=lambda b: (
-            -b['review_score'], -b['review_date']))
-
-    # Create the book purchase url by adding the book title to the url
-    this_book_title = this_book["title"].replace(" ", "+")
-    book_purchase_url = (
-        "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
-
-    # Convert floats to datetime format in each book review
-    for book_review in this_book_reviews:
-        book_review["review_date"] = datetime.datetime.fromtimestamp(
-            book_review["review_date"]).strftime("%a, %b %d, %Y")
-
-    return render_template(
-        "view_book.html", this_book=this_book,
-        this_book_reviews=sorted_book_reviews,
-        book_purchase_url=book_purchase_url)
+    return render_book_template(book_id)
 
 
 @app.route("/add_review/<book_id>", methods=["GET", "POST"])
@@ -220,8 +228,7 @@ def add_review(book_id):
         # Insert the review into the database
         mongo.db.reviews.insert_one(review)
         flash("Review Successfully Added")
-        return render_template(
-            "view_book.html", book_id=book_id, this_book=this_book,)
+        return render_book_template(book_id)
 
     if request.method == "GET":
         return render_template(
@@ -241,7 +248,7 @@ def upvote_review(review_id):
                 "$addToSet": {"upvoters": session["user"]}}
         )
         book_id = review['book_id']
-        return redirect(url_for('view_book', book_id=book_id))
+        return render_book_template(book_id)
     else:
         return redirect(url_for('index'))
 

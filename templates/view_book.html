@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- One Book -->
+    <!-- Selected Book -->
     <div class="row">
         <div class="col s12">
             <h3 class="center subtitle">{{ this_book.title }}</h3>
@@ -23,9 +23,13 @@
                 </a>
             </div>
             <div class="col s6 m3">
+            {% if this_book_reviews %}
+                {% if session.user not in reviewers %}
                     <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
                         <span class="btn orange">Write a Review</span> 
                     </a>
+                {% endif %}
+            {% endif %}
             </div>
             <div class="col s12 m6 left-align">
                 <p>Page Count: {{ this_book.page_count }}</p> 
