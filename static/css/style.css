@@ -200,7 +200,8 @@ main {
 
 img.cover {
     height: auto;
-    width: 80%;
+    width: 50%;
+    margin: 5px auto;
 }
 
 /* Divider ----------------------*/

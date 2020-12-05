@@ -18,14 +18,14 @@
         </div>
         <div class="row">
             <div class="col s6 m3 center">
-                <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
-                    <span class="btn blue">Write a Review</span> 
+                <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
+                    <span class="btn blue">Buy it now</span> 
                 </a>
             </div>
             <div class="col s6 m3">
-                <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
-                    <span class="btn orange">Buy it now</span> 
-                </a>
+                    <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
+                        <span class="btn orange">Write a Review</span> 
+                    </a>
             </div>
             <div class="col s12 m6 left-align">
                 <p>Page Count: {{ this_book.page_count }}</p> 
@@ -36,27 +36,20 @@
         </div>
         {% if not this_book_reviews %}
             <div class="row">
-                <div class="col s6 center">
-                    <p class="strong">Read this book?</p>
-                    <p>Share your thoughts with other readers now.</p>
-                    <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
-                        <span class="btn orange">Write a Review</span> 
-                    </a>
-                </div>
-                <div class="col s6">
+                <div class="col s12 m6 offset-m6">
                     <p>No reviews currently exist for this book.</p>
                 </div>
             </div>
         {% else %}
             {% for review in this_book_reviews %}
                 <div class="row">
-                    <div class="col s3 offset-s1">
+                    <div class="col s4 m3 offset-m1">
                         <p>Reviewed By: {{ review.created_by }}</p>
                         <p>On: {{ review.review_date }}</p>
                             {% if session.user and review.created_by != session.user %}
                             <p>
                                 <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
-                                    <button type="submit" name="upvote" value="1" class="btn grey"><i class="fas fa-caret-up prefix"></i> {{ review.review_score }} Upvote</button>
+                                    <button type="submit" name="upvote" value="1" class="btn grey">{{ review.review_score }} <i class="fas fa-caret-up prefix"></i> Upvote</button>
                                 </form>
                             </p>
                             {% endif %}
