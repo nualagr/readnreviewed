@@ -183,11 +183,12 @@ def add_book():
     if request.method == "POST":
         # Unpack json into a dict
         newBook = request.json
-        print(newBook)
+        print(request)
+        print(type(newBook))
 
         # Add new book to the database
         mongo.db.books.insert_one(newBook)
-        # flash("New book Successfully Added")
+        flash("New book Successfully Added")
         # return redirect(url_for("view_book", latest_book=newBook))
         return render_template("add_book.html")
 

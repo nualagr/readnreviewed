@@ -28,13 +28,14 @@
                         <!-- ISBN Field -->
                         <div class="input-field col s12">
                         <i class="fas fa-barcode prefix"></i>
-                        <input id="isbn" name="isbn" type="text" minlength="11" maxlength="13" pattern="^[a-zA-Z0-9]{8,15}$" class="validate" required>
+                        <input id="isbn" name="isbn" type="text" minlength="11" maxlength="13" pattern="^[0-9]{8,15}$" class="validate" required>
                         <label for="isbn">ISBN 13</label>
                         </div>
                     </div>
                 </div>
                 <div class="card-action center">
-                    <button type="submit" class="btn bg-orange" onclick="writeToDocument(document.getElementById('title').value, document.getElementById('author').value);">Submit <i class="fas fa-check"></i></button>
+                    <!-- <button type="submit" class="btn bg-orange" onclick="writeToDocument(document.getElementById('title').value, document.getElementById('author').value);">Submit <i class="fas fa-check"></i></button> -->
+                    <button type="submit" class="btn bg-orange" onclick="writeToDocument($('#title').val(), $('#author').val());return false;">Submit <i class="fas fa-check"></i></button>                    
                     <a href="{{ url_for('add_book') }}" class="btn bg-blue">Clear <i class="fas fa-times"></i></a>
                 </div>
             </div>

@@ -11,8 +11,8 @@
                 <img src="{{ this_book.thumbnail }}" class="cover"><br>
             </div>
             <div class="col s12 m6 left-align">
-                <p>Author: {{ this_book.author[0] }}</p>
-                <p>Genre: {{ this_book.genre }}</p>
+                <p>Author: {{ this_book.authors[0] }}</p>
+                <p>Category: {{ this_book.category }}</p>
                 <p>Description: {{ this_book.description }}</p> 
             </div>
         </div>
@@ -29,6 +29,10 @@
                         <span class="btn orange">Write a Review</span> 
                     </a>
                 {% endif %}
+            {% else %}
+                    <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
+                        <span class="btn orange">Write a Review</span> 
+                    </a>
             {% endif %}
             </div>
             <div class="col s12 m6 left-align">
