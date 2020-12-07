@@ -768,10 +768,12 @@ git push
 
 ## Credits
 ### Content
-- The [Materialize Navbar component](https://materializecss.com/navbar.html) was used and modified.
+The following [Materialize](https://materializecss.com/) components were used and modified:
+- [Navbar](https://materializecss.com/navbar.html) 
 
-- The [Materialize Footer component](https://materializecss.com/footer.html) was used and modified.
+- [Footer](https://materializecss.com/footer.html) 
 
+- [Carousel](https://materializecss.com/carousel.html) 
 
 
 ### Media
