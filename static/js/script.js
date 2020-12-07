@@ -5,6 +5,14 @@ const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const key = "&printType=books&key=AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI";
 //AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI
 
+// Solution to remove HTML entities in the textSnippets from the API found at : https://stackoverflow.com/questions/7394748/whats-the-right-way-to-decode-a-string-that-has-special-html-entities-in-it
+function decodeEntities(encodedString) {
+  var textArea = document.createElement('textarea');
+  textArea.innerHTML = encodedString;
+  return textArea.value;
+}
+
+
 function getData(title, author, cb){
     let xhr = new XMLHttpRequest();
     // Use encodeURIcomponent() to replace each instance of a space in the 
@@ -60,7 +68,8 @@ function writeToDocument(title, author){
         let publishedDate = books[0]["volumeInfo"]["publishedDate"];
         let pageCount = books[0]["volumeInfo"]["pageCount"];
         let isbn = books[0]["volumeInfo"]["industryIdentifiers"][0]["identifier"];
-        let textSnippet = books[0]["searchInfo"]["textSnippet"];
+        // Use decodeEntities() function to remove HTML entities from the string
+        let textSnippet = decodeEntities(books[0]["searchInfo"]["textSnippet"]);
         console.log(textSnippet);
 
         // Create dictionary of the book
