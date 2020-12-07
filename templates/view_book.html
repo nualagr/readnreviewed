@@ -56,15 +56,23 @@
                     <div class="col s4 m3 offset-m1">
                         <p>Reviewed By: {{ review.created_by }}</p>
                         <p>On: {{ review.review_date }}</p>
-                            <!-- Check to see whether the logged in user wrote this review and if so, don't display the upvote button -->
-                            {% if session.user and review.created_by != session.user %}
-                                {% if session.user in review.upvoters %}
-                                {% else %}
-                                    <p>
-                                        <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
-                                            <button type="submit" name="upvote" value="1" class="btn grey">{{ review.review_score }} <i class="fas fa-caret-up prefix"></i> Upvote</button>
-                                        </form>
+                            <!-- Check to see whether there is a user logged in -->
+                            {% if session.user %}
+                                <!-- Check to see whether the user wrote the review, if so, display the Edit button -->
+                                {% if session.user == review.created_by %}
+                                    <p>                                        
+                                        <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn grey"><i class="fas fa-user-edit"></i> Edit</a>
                                     </p>
+                                {% else %}
+                                    <!-- Check to see whether the logged in user upvoted the review already, if not, display the Upvote button -->
+                                    {% if session.user in review.upvoters %}
+                                    {% else %}
+                                        <p>
+                                            <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
+                                                <button type="submit" name="upvote" value="1" class="btn grey">{{ review.review_score }} <i class="fas fa-caret-up prefix"></i> Upvote</button>
+                                            </form>
+                                        </p>
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                     </div>

@@ -33,6 +33,7 @@ def render_book_template(book_id):
     this_book_reviews = list(mongo.db.reviews.find(
         {"book_id": ObjectId(book_id)})
     )
+    print(this_book_reviews)
     # Sort by review score and then by date added
     sorted_book_reviews = sorted(
         this_book_reviews, key=lambda b: (
@@ -51,6 +52,7 @@ def render_book_template(book_id):
             book_review["review_date"]).strftime("%a, %b %d, %Y")
         # Add reviewers to the reviewers list
         reviewers.append(book_review["created_by"])
+        print(reviewers)
 
     return render_template(
         "view_book.html", this_book=this_book,
@@ -250,6 +252,43 @@ def upvote_review(review_id):
         )
         book_id = review['book_id']
         return render_book_template(book_id)
+
+
+@app.route("/edit_review/<book_id>/<review_id>", methods=["GET", "POST"])
+def edit_review(book_id, review_id):
+    # Find this review in the reviews collection in the database
+    this_review = mongo.db.reviews.find_one(
+        {"_id": ObjectId(review_id)}
+    )
+    # Find the book document in the database
+    this_book = mongo.db.books.find_one(
+        {"_id": ObjectId(book_id)}
+    )
+
+    if request.method == "POST":
+        # Grab the date
+        e = datetime.datetime.now()
+        # Convert it to seconds
+        seconds = e.timestamp()
+
+        # Create a new dictionary to submit to Mongodb
+        # to overwrite the current review
+        submit = {
+            "book_id": ObjectId(book_id),
+            "rating": request.form.get("rating"),
+            "review": request.form.get("review"),
+            "created_by": session["user"],
+            "review_date": seconds,
+            "review_score": 0,
+            "upvoters": [],
+        }
+        mongo.db.reviews.update({"_id": ObjectId(review_id)}, submit)
+        flash("Review Successfully Updated")
+        return redirect(url_for("get_books"))
+
+    if request.method == "GET":
+        return render_template(
+            "edit_review.html", this_book=this_book, this_review=this_review)
 
 
 @app.route('/success')
