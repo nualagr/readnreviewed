@@ -24,6 +24,7 @@
             </div>
             <div class="col s6 m3">
             {% if this_book_reviews %}
+                <!-- If the user has not already written a review for this book display the Write a Review button -->
                 {% if session.user not in reviewers %}
                     <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
                         <span class="btn orange">Write a Review</span> 
@@ -42,6 +43,7 @@
                 <p>ISBN 13: {{ this_book.isbn }}</p> 
             </div>
         </div>
+        <!-- Message to display if no reviews exist -->
         {% if not this_book_reviews %}
             <div class="row">
                 <div class="col s12 m6 offset-m6">
@@ -54,12 +56,16 @@
                     <div class="col s4 m3 offset-m1">
                         <p>Reviewed By: {{ review.created_by }}</p>
                         <p>On: {{ review.review_date }}</p>
+                            <!-- Check to see whether the logged in user wrote this review and if so, don't display the upvote button -->
                             {% if session.user and review.created_by != session.user %}
-                            <p>
-                                <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
-                                    <button type="submit" name="upvote" value="1" class="btn grey">{{ review.review_score }} <i class="fas fa-caret-up prefix"></i> Upvote</button>
-                                </form>
-                            </p>
+                                {% if session.user in review.upvoters %}
+                                {% else %}
+                                    <p>
+                                        <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
+                                            <button type="submit" name="upvote" value="1" class="btn grey">{{ review.review_score }} <i class="fas fa-caret-up prefix"></i> Upvote</button>
+                                        </form>
+                                    </p>
+                                {% endif %}
                             {% endif %}
                     </div>
                     <div class="col s8 star-rating">
