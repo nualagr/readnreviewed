@@ -568,6 +568,40 @@ This prevented non-site-members from voting on reviews.
 
 Next 
 
+[API]()
+
+Google Books API was chosen due to the large amount of information that was made freely available, however many issues
+cropped up during development relating to the API.  
+Initially the API call was made using the special keywords 'intitle', 'inauthor' and 'isbn', that can be used in the volumes search
+to specify the search terms to search in those particular fields.  This often returned searches where no books could be found.  Removing
+the 'isbn' keyword and unlinking the associated field in the form on the add_book.html page resulted in a more consistent result, however
+it was not always successful.  This problem was ignored to begin with. The response, when successful, was used to populate the readnreviewed database. 
+
+The response often consisted of an array of a number of different books and/or editions of the same book that fit the search criteria.
+As they are automatically ordered by relevance by the API the first book in each response was chosen.  Within the volumeInfo element the fields of:
+* title (a string), 
+* authors (an array of strings, often only containing one string), 
+* categories (initially thought to contain the genre, it later became obvious that 
+categories was a more nebulous term and included terms such as 'archived' and 'murder'), 
+* description (a string), 
+* publisher (a string), 
+* publishedDate (a string), 
+* pageCount (an integer), 
+* industryIdentifiers (an array containing objects with strings of the isbn 10 and/or isbn 13 numbers, although it later became apparent that this was not always the 
+case and other formats were used for different books), 
+* imageLinks (an object containing the urls to a smallThumbnail and a thumbnail image of the book cover)
+
+From the searchInfo element the field of textSnippet (a string) was also included in the book dictionary to be uploaded to the database.
+
+Many issues arose relating to these fields. 
+
+The imageLinks provided non-secure http urls that resulted in console warnings whenever a page was loaded that attempted to display the images using the urls.
+With a warning for each image being displayed the console was often full of warnings. After reading about the issue on Stack Overflow the 'thumbnail' url was split into 
+substrings and concatenated with an 's' before being uploaded to the Mongodb database.
+
+It was discovered when attempting to add various books that the Google Books API does not store dummy data.
+It could not be guaranteed that many of the fields would be present.  'Categories', 'description', 'publisher', 'imageLinks' and 'textSnippet' were all found to be 
+missing from book to book.  
 ##### back to [top](#table-of-contents)
 ---
 
