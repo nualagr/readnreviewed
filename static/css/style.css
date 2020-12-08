@@ -129,6 +129,10 @@ nav .nav-wrapper {
     line-height: 64px;
 }
 
+nav .brand-logo {
+    padding: 5px;
+}
+
 #logoContainer {
     position: absolute;
 }
