@@ -24,13 +24,14 @@
             </div>
             <div class="col s6 m3">
             {% if this_book_reviews %}
-                <!-- If the user has not already written a review for this book display the Write a Review button -->
+                <!-- If there are book reviews and this user has not already written one for this book display the Write a Review button -->
                 {% if session.user not in reviewers %}
                     <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
                         <span class="btn orange">Write a Review</span> 
                     </a>
                 {% endif %}
             {% else %}
+                    <!-- If there are currently no reviews for this book display the Write a Review button -->
                     <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
                         <span class="btn orange">Write a Review</span> 
                     </a>
