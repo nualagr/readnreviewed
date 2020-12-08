@@ -253,7 +253,6 @@ def upvote_review(review_id):
                 "$addToSet": {"upvoters": session["user"]}}
         )
         book_id = ObjectId(review['book_id'])
-        print(book_id)
         return render_book_template(book_id)
 
 
@@ -299,6 +298,15 @@ def delete_review(book_id, review_id):
     mongo.db.reviews.remove(this_review)
     flash("Review Successfully Deleted")
     return render_book_template(book_id)
+
+
+@app.route("/my_reviews/")
+def my_reviews():
+    current_user = session["user"]
+    my_reviews = list(
+        mongo.db.reviews.find({"created_by": current_user}))
+    print(my_reviews)
+    return render_template("my_reviews.html", my_reviews=my_reviews)
 
 
 @app.route('/success')
