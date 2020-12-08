@@ -274,10 +274,8 @@ def edit_review(book_id, review_id):
         # Create a new dictionary to submit to Mongodb
         # to overwrite the current review
         submit = {"$set": {
-            "book_id": ObjectId(book_id),
             "rating": request.form.get("rating"),
             "review": request.form.get("review"),
-            "created_by": session["user"],
             "review_date": seconds,
             "review_score": 0,
             "upvoters": [],
