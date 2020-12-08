@@ -33,7 +33,6 @@ def render_book_template(book_id):
     this_book_reviews = list(mongo.db.reviews.find(
         {"book_id": ObjectId(book_id)})
     )
-    print(this_book_reviews)
     # Sort by review score and then by date added
     sorted_book_reviews = sorted(
         this_book_reviews, key=lambda b: (
@@ -52,7 +51,6 @@ def render_book_template(book_id):
             book_review["review_date"]).strftime("%a, %b %d, %Y")
         # Add reviewers to the reviewers list
         reviewers.append(book_review["created_by"])
-        print(reviewers)
 
     return render_template(
         "view_book.html", this_book=this_book,
@@ -66,18 +64,24 @@ def get_books():
     # Sort the reviews by date descending to find the latest reviews
     reviews = list(mongo.db.reviews.find().sort("review_date", -1))
     book_one_id = reviews[0]["book_id"]
-    book_two_id = reviews[1]["book_id"]
-    # If the two latest reviews relate to the same book move to the next review
-    if book_one_id == book_two_id:
-        book_two_id = reviews[2]["book_id"]
     # Use the book id field from the review
     # to find the corresponding book information
     book_one = mongo.db.books.find_one(
         {"_id": ObjectId(book_one_id)}
     )
-    book_two = mongo.db.books.find_one(
-        {"_id": ObjectId(book_two_id)}
-    )
+    # Create a list to store the two books to be displayed
+    latest_reviewed_books = [book_one]
+    while (len(latest_reviewed_books) < 2):
+        for review in reviews:
+            # If the review is linked to the first book shown, skip book
+            if review["book_id"] == book_one_id:
+                continue
+            else:
+                book_two_id = review["book_id"]
+                book_two = mongo.db.books.find_one(
+                    {"_id": ObjectId(book_two_id)}
+                )
+                latest_reviewed_books.append(book_two)
     return render_template("index.html", book_one=book_one, book_two=book_two)
 
 
@@ -185,8 +189,6 @@ def add_book():
     if request.method == "POST":
         # Unpack json into a dict
         newBook = request.json
-        print(request)
-        print(type(newBook))
 
         # Add new book to the database
         mongo.db.books.insert_one(newBook)
@@ -283,11 +285,19 @@ def edit_review(book_id, review_id):
         }
         mongo.db.reviews.update_one({"_id": ObjectId(review_id)}, submit)
         flash("Review Successfully Updated")
-        return redirect(url_for("get_books"))
+        return render_book_template(book_id)
 
     if request.method == "GET":
         return render_template(
             "edit_review.html", this_book=this_book, this_review=this_review)
+
+
+@app.route("/delete_review/<book_id>/<review_id>")
+def delete_review(book_id, review_id):
+    this_review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    mongo.db.reviews.remove(this_review)
+    flash("Review Successfully Deleted")
+    return render_book_template(book_id)
 
 
 @app.route('/success')

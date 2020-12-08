@@ -7,9 +7,11 @@
         </div>
     </div>
         <div class="row">
+            <!-- Selected Book Cover Image -->
             <div class="col s12 m6 center">
                 <img src="{{ this_book.thumbnail }}" class="cover"><br>
             </div>
+            <!-- Selected Book Title, Author and Description -->
             <div class="col s12 m6 left-align">
                 <p>Author: {{ this_book.authors[0] }}</p>
                 <p>Category: {{ this_book.category }}</p>
@@ -17,26 +19,31 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s6 m3 center">
+            <!-- Link to buy the Selected Book on Amazon -->
+            <div class="col s6 m3">
                 <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
                     <span class="btn blue">Buy it now</span> 
                 </a>
             </div>
+            <!-- Selected Book Book Reviews -->
             <div class="col s6 m3">
+            <!-- If there are book reviews for this book -->
             {% if this_book_reviews %}
-                <!-- If there are book reviews and this user has not already written one for this book display the Write a Review button -->
+                <!-- If this user has not already written a review for this book display the Write a Review button -->
                 {% if session.user not in reviewers %}
                     <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
                         <span class="btn orange">Write a Review</span> 
                     </a>
                 {% endif %}
+            <!-- If there are no book reviews for this book -->
             {% else %}
-                    <!-- If there are currently no reviews for this book display the Write a Review button -->
+                    <!-- Display the Write a Review button -->
                     <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
                         <span class="btn orange">Write a Review</span> 
                     </a>
             {% endif %}
             </div>
+            <!-- Selected Book Information -->
             <div class="col s12 m6 left-align">
                 <p>Page Count: {{ this_book.page_count }}</p> 
                 <p>Date Published: {{ this_book.published_date }}</p> 
@@ -44,25 +51,28 @@
                 <p>ISBN 13: {{ this_book.isbn }}</p> 
             </div>
         </div>
-        <!-- Message to display if no reviews exist -->
+        <!-- If no reviews exist display this message to the user -->
         {% if not this_book_reviews %}
             <div class="row">
                 <div class="col s12 m6 offset-m6">
                     <p>No reviews currently exist for this book.</p>
                 </div>
             </div>
+        <!-- If reviews exist -->
         {% else %}
+            <!-- Display each review -->
             {% for review in this_book_reviews %}
                 <div class="row">
-                    <div class="col s4 m3 offset-m1">
+                    <div class="col s4">
                         <p>Reviewed By: {{ review.created_by }}</p>
                         <p>On: {{ review.review_date }}</p>
                             <!-- Check to see whether there is a user logged in -->
                             {% if session.user %}
-                                <!-- Check to see whether the user wrote the review, if so, display the Edit button -->
+                                <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
                                 {% if session.user == review.created_by %}
                                     <p>                                        
-                                        <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn grey"><i class="fas fa-user-edit"></i> Edit</a>
+                                        <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp;                                       
+                                        <a href="{{ url_for('delete_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-red"><i class="fas fa-trash-alt"></i> Delete</a>
                                     </p>
                                 {% else %}
                                     <!-- Check to see whether the logged in user upvoted the review already, if not, display the Upvote button -->
@@ -70,7 +80,7 @@
                                     {% else %}
                                         <p>
                                             <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
-                                                <button type="submit" name="upvote" value="1" class="btn grey">{{ review.review_score }} <i class="fas fa-caret-up prefix"></i> Upvote</button>
+                                                <button type="submit" name="upvote" value="1" class="btn bg-grey">{{ review.review_score }} <i class="fas fa-caret-up prefix"></i> Upvote</button>
                                             </form>
                                         </p>
                                     {% endif %}

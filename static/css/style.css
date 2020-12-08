@@ -14,6 +14,14 @@ body {
     background-color: #F8F8F8;
 }
 
+.bg-grey {
+    background-color: #9E9E9E;
+}
+
+.bg-grey:hover {
+    background-color: #8F8F8F;
+}
+
 .bg-orange {
     background-color: #F69222;
 }
@@ -28,6 +36,14 @@ body {
 
 .bg-blue:hover {
     background-color: #1F76BB;
+}
+
+.bg-red {
+    background-color: #E86252;
+}
+
+.bg-red:hover {
+    background-color: #E54A38;
 }
 
 /* Special Fonts and Text Styling ------------------------------------- */
