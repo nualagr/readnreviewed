@@ -252,7 +252,8 @@ def upvote_review(review_id):
             {"$inc": {"review_score": 1},
                 "$addToSet": {"upvoters": session["user"]}}
         )
-        book_id = review['book_id']
+        book_id = ObjectId(review['book_id'])
+        print(book_id)
         return render_book_template(book_id)
 
 
