@@ -16,7 +16,12 @@
                 <p>By: {{ review.authors[0] }}</p>
             </div>
             <div class="col s6 m3 star-rating review-column">
-                <p>{{ review.rating }}&nbsp;<i class="fas fa-star"></i></p>
+                <p>Rating: 
+                    {% set starRating = review.rating | int %}
+                        {% for i in range(starRating) %}
+                            <i class="fas fa-star"></i>
+                        {% endfor %} 
+                </p>
                 <p>{{ review.review_date }}</p>
                 <p><a href="{{ url_for('view_book', book_id=review.book_id) }}">Read review...</a></p>
             </div>

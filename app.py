@@ -242,6 +242,7 @@ def add_review(book_id):
 
 @app.route("/upvote_review/<review_id>", methods=["GET", "POST"])
 def upvote_review(review_id):
+    print("This is the upvote review id: ", review_id)
     review = mongo.db.reviews.find_one({
         "_id": ObjectId(review_id)
     })
@@ -295,7 +296,7 @@ def edit_review(book_id, review_id):
 @app.route("/delete_review/<book_id>/<review_id>")
 def delete_review(book_id, review_id):
     this_review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-    mongo.db.reviews.remove(this_review)
+    mongo.db.reviews.delete_one(this_review)
     flash("Review Successfully Deleted")
     return render_book_template(book_id)
 
@@ -318,9 +319,10 @@ def my_reviews():
             {"_id": review['book_id']})
         # Combine the review and book into one dictionary
         book_and_review = dict(
-            list(review.items()) + list(corresponding_book.items()))
+            list(corresponding_book.items()) + list(review.items()))
         # Add to list of books and reviews to be passed to the template
         list_of_books_and_reviews.append(book_and_review)
+    print(list_of_books_and_reviews)
     return render_template(
         "my_reviews.html", books_and_reviews=list_of_books_and_reviews)
 
