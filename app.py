@@ -303,10 +303,26 @@ def delete_review(book_id, review_id):
 @app.route("/my_reviews/")
 def my_reviews():
     current_user = session["user"]
+    # Get list of all reviews by this user and sort by date added
     my_reviews = list(
-        mongo.db.reviews.find({"created_by": current_user}))
-    print(my_reviews)
-    return render_template("my_reviews.html", my_reviews=my_reviews)
+        mongo.db.reviews.find(
+            {"created_by": current_user}).sort("review_date", -1))
+    # Convert floats to datetime format in each book review
+    for book_review in my_reviews:
+        book_review["review_date"] = datetime.datetime.fromtimestamp(
+            book_review["review_date"]).strftime("%a, %b %d, %Y")
+    list_of_books_and_reviews = []
+    for review in my_reviews:
+        # Find the book document relating to the review
+        corresponding_book = mongo.db.books.find_one(
+            {"_id": review['book_id']})
+        # Combine the review and book into one dictionary
+        book_and_review = dict(
+            list(review.items()) + list(corresponding_book.items()))
+        # Add to list of books and reviews to be passed to the template
+        list_of_books_and_reviews.append(book_and_review)
+    return render_template(
+        "my_reviews.html", books_and_reviews=list_of_books_and_reviews)
 
 
 @app.route('/success')
