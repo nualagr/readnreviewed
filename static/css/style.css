@@ -262,7 +262,24 @@ footer a {
 footer a:hover{
     color: #222222;
 }
+/* My Review Page ----------------------*/
+.review-container a.btn {
+    margin: 5px;
+}
 
+.review-container p.title {
+    font-size: 1.5rem;
+    padding-bottom: 20px;
+}
+
+.review-container p {
+    padding: 5px 0px;
+}
+
+/* Solution to keep the two columns side-by-side on mobile screen found at: https://stackoverflow.com/questions/2997767/how-do-i-keep-two-side-by-side-divs-the-same-height */
+.review-container div.review-column {
+    min-height: 200px;
+}
 /* Media Queries ----------------------*/
 
 @media (min-width: 768px) {

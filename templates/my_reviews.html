@@ -7,27 +7,22 @@
         </div>
     </div>
     {% for review in books_and_reviews %}
-        <div class="row">
-            <div class="col s3 l2">
+        <div class="row review-container">
+            <div class="col s6 m3 review-column">
                 <img src="{{ review.thumbnail }}" alt="{{ review.title }} by {{ review.authors[0] }} book cover">
             </div>
-            <div class="col s3 l2">
-                {{ review.title }}
+            <div class="col s6 m3 review-column">
+                <p class="title">{{ review.title }}</p>
+                <p>By: {{ review.authors[0] }}</p>
             </div>
-            <div class="col s3 l2">
-                {{ review.authors[0] }}
+            <div class="col s6 m3 star-rating review-column">
+                <p>{{ review.rating }}&nbsp;<i class="fas fa-star"></i></p>
+                <p>{{ review.review_date }}</p>
+                <p><a href="{{ url_for('view_book', book_id=review.book_id) }}">Read review...</a></p>
             </div>
-            <div class="col s3 l2 star-rating">
-                {{ review.rating }}&nbsp;<i class="fas fa-star"></i>
-            </div>
-            <div class="col s3 l2">
-                {{ review.review_date }}
-            </div>
-            <div class="col s3 l2">
-                <a href="{{ url_for('view_book', book_id=review.book_id) }}">Read review...</a>
-            </div>
-            <div class="col s3 l2">
-                <a href="{{ url_for('edit_review', book_id=review.book_id, review_id=review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>
+            <div class="col s6 m3 review-column valign-wrapper">
+                <a href="{{ url_for('edit_review', book_id=review.book_id, review_id=review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp;
+                <a href="{{ url_for('delete_review', book_id=review.book_id, review_id=review._id) }}" class="btn bg-red"><i class="fas fa-trash-alt"></i> Delete</a>
             </div>
         </div>
     {% endfor %}
