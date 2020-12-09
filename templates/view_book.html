@@ -19,29 +19,9 @@
             </div>
         </div>
         <div class="row">
-            <!-- Link to buy the Selected Book on Amazon -->
-            <div class="col s6 m3">
-                <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
-                    <span class="btn blue">Buy it now</span> 
-                </a>
-            </div>
-            <!-- Selected Book Book Reviews -->
-            <div class="col s6 m3">
-            <!-- If there are book reviews for this book -->
-            {% if this_book_reviews %}
-                <!-- If this user has not already written a review for this book display the Write a Review button -->
-                {% if session.user not in reviewers %}
-                    <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
-                        <span class="btn orange">Write a Review</span> 
-                    </a>
-                {% endif %}
-            <!-- If there are no book reviews for this book -->
-            {% else %}
-                    <!-- Display the Write a Review button -->
-                    <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
-                        <span class="btn orange">Write a Review</span> 
-                    </a>
-            {% endif %}
+            <!-- If the viewer is not a logged in member do not show these buttons -->
+            {% if not session.user %}
+            <div class="col s12 m6">
             </div>
             <!-- Selected Book Information -->
             <div class="col s12 m6 left-align">
@@ -50,6 +30,40 @@
                 <p>Publisher: {{ this_book.publisher }}</p> 
                 <p>ISBN 13: {{ this_book.isbn }}</p> 
             </div>
+            <!-- If the viewer is a logged-in member-->
+            {% else %}
+                <!-- Link to buy the Selected Book on Amazon -->
+                <div class="col s6 m3">
+                    <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
+                        <span class="btn blue">Buy it now</span> 
+                    </a>
+                </div>
+                <!-- Selected Book Book Reviews -->
+                <div class="col s6 m3">
+                <!-- If there are book reviews for this book -->
+                {% if this_book_reviews %}
+                    <!-- If this user has not already written a review for this book display the Write a Review button -->
+                    {% if session.user not in reviewers %}
+                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
+                            <span class="btn orange">Write a Review</span> 
+                        </a>
+                    {% endif %}
+                <!-- If there are no book reviews for this book -->
+                {% else %}
+                        <!-- Display the Write a Review button -->
+                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
+                            <span class="btn orange">Write a Review</span> 
+                        </a>
+                {% endif %}
+            </div>
+            <!-- Selected Book Information -->
+            <div class="col s12 m6 left-align">
+                <p>Page Count: {{ this_book.page_count }}</p> 
+                <p>Date Published: {{ this_book.published_date }}</p> 
+                <p>Publisher: {{ this_book.publisher }}</p> 
+                <p>ISBN 13: {{ this_book.isbn }}</p> 
+            </div>
+            {% endif %}
         </div>
         <!-- If no reviews exist display this message to the user -->
         {% if not this_book_reviews %}
