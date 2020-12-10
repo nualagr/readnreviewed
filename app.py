@@ -243,7 +243,6 @@ def add_review(book_id):
 
 @app.route("/upvote_review/<review_id>", methods=["GET", "POST"])
 def upvote_review(review_id):
-    print("This is the upvote review id: ", review_id)
     review = mongo.db.reviews.find_one({
         "_id": ObjectId(review_id)
     })
@@ -302,7 +301,7 @@ def delete_review(book_id, review_id):
     return render_book_template(book_id)
 
 
-@app.route("/my_reviews/")
+@app.route("/my_reviews")
 def my_reviews():
     current_user = session["user"]
     # Get list of all reviews by this user and sort by date added
@@ -332,14 +331,38 @@ def my_reviews():
 def wish_list():
     wishlist = list(mongo.db.users.find_one(
         {"username": session["user"]})["wishlist"])
-    booklist = []
-    for bookId in wishlist:
-        book = mongo.db.books.find_one(
-            {"_id": bookId}
-        )
-        booklist.append(book)
+    if (wishlist[0] == ""):
+        flash("No saved books yet.")
+        return redirect(url_for("browse"))
+    else:
+        booklist = []
+        for bookId in wishlist:
+            book = mongo.db.books.find_one(
+                {"_id": bookId}
+            )
+            # Create the book purchase url by adding the book title to the url
+            this_book_title = book["title"].replace(" ", "+")
+            book_purchase_url = (
+                "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
+            book["book_purchase_url"] = book_purchase_url
+            # Add the book to the booklist list
+            booklist.append(book)
     return render_template(
         "wish_list.html", booklist=booklist)
+
+
+@app.route("/bookmark/<book_id>", methods=["GET", "POST"])
+def bookmark(book_id):
+    book = mongo.db.books.find_one({
+        "_id": ObjectId(book_id)
+    })
+    if request.method == "POST":
+        mongo.db.users.update_one(
+            {"username": session["user"]},
+            {"$addToSet": {"wishlist": ObjectId(book_id)}}
+        )
+        flash("Book Saved to Wish List")
+        return render_book_template(book_id)
 
 
 @app.route('/success')

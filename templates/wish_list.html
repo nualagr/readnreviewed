@@ -1,26 +1,41 @@
 {% extends "base.html" %}
 {% block content %}
     <!-- Wish List -->
-    <div class="row">
+    <div class="row container">
         <div class="col s12">
             <h3 class="center subtitle">Wish List</h3>
         </div>
     </div>
+    <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
+    <div class="row container">
     {% for book in booklist %}
-        <div class="row center">
-            <div class="col s12 m6">
-                <img src="{{ book.thumbnail }}" class="cover">
-                <i class="fas fa-bookmark icon-marked"></i> 
-            </div>
-            <div class="col s12 m6">
-                <p>{{ book.category }}</p>
-                <h5>{{ book.title }}</h5>
-                <p>{{ book.authors }}</p> 
-                <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity-->
-                <p>{{ book.text_snippet | safe }}</p>
-                <p><a href="{{ url_for('view_book', book_id=book._id) }}">Read review...</a></p>
+        <div class="col s12 m6">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="{{ book.thumbnail }}">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p class="bookmark">          
+                            <i class="fas fa-bookmark icon-marked right"></i>
+                            <i class="fas fa-bookmark icon-unmarked right"></i>
+                        </p>
+                        <br>
+                        <h5 class="header">{{ book.title }}</h5>
+                        <br>
+                        <p class="center">{{ book.authors[0] }}</p>
+                        <br> 
+                    </div>
+                    <div class="card-action center">
+                        <a href="{{ book.book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
+                            <span class="btn bg-blue">Buy it now</span> 
+                        </a>&nbsp;
+                        <a href="{{ url_for('view_book', book_id=book._id) }}" class="button">View Book</a>
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}
+    </div>
 
 {% endblock %}

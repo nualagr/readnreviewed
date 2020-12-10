@@ -301,6 +301,14 @@ footer a:hover{
 .review-container div.review-column {
     min-height: 200px;
 }
+
+/* Wish List Page ----------------------*/
+.card.horizontal .card-image img {
+    padding: 24px;
+    height: 200px; /* Your height here */
+    overflow: hidden;
+}
+
 /* Media Queries ----------------------*/
 
 @media (min-width: 768px) {
