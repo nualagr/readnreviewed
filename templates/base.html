@@ -64,6 +64,7 @@
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger light-blue-text text-darken-2"><i class="fas fa-bars"></i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('get_books') }}">Home</a></li>
+                        <!-- If a site member is logged in, display the following links -->
                         {% if session.user %}
                             <li><a href="{{ url_for('my_reviews') }}">My Reviews</a></li>
                             <li><a href="#">My Wish List</a></li>

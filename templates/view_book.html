@@ -9,7 +9,12 @@
         <div class="row">
             <!-- Selected Book Cover Image -->
             <div class="col s12 m6 center">
-                <img src="{{ this_book.thumbnail }}" class="cover"><br>
+                <img src="{{ this_book.thumbnail }}" class="cover">&nbsp;
+                <!-- Link to add the current book to Wish List -->
+                <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Add to Wish List" class="button bookmark">
+                        <i class="far fa-bookmark icon-unmarked"></i>
+                        <i class="fas fa-bookmark icon-marked"></i> 
+                </a>
             </div>
             <!-- Selected Book Title, Author and Description -->
             <div class="col s12 m6 left-align">
@@ -35,7 +40,7 @@
                 <!-- Link to buy the Selected Book on Amazon -->
                 <div class="col s6 m3">
                     <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
-                        <span class="btn blue">Buy it now</span> 
+                        <span class="btn bg-blue">Buy it now</span> 
                     </a>
                 </div>
                 <!-- Selected Book Book Reviews -->
@@ -44,14 +49,14 @@
                 {% if this_book_reviews %}
                     <!-- If this user has not already written a review for this book display the Write a Review button -->
                     {% if session.user not in reviewers %}
-                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
+                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
                             <span class="btn orange">Write a Review</span> 
                         </a>
                     {% endif %}
                 <!-- If there are no book reviews for this book -->
                 {% else %}
                         <!-- Display the Write a Review button -->
-                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Buy it now" class="button">
+                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
                             <span class="btn orange">Write a Review</span> 
                         </a>
                 {% endif %}

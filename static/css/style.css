@@ -80,6 +80,21 @@ h1, h2, h3, h4, h5 {
 .strong {
     font-weight: bolder !important;
 }
+
+.bookmark:hover .icon-unmarked,
+.bookmark .icon-marked {
+    display: none;
+}
+
+.bookmark:hover .icon-marked {
+    display: inline;
+}
+
+.bookmark i,
+.bookmark i:hover {
+    vertical-align: top;
+    font-size: 2rem;
+}
 /* Forms ------------------------------------- */
 /* label color */
 .input-field label {
