@@ -67,7 +67,7 @@
                         <!-- If a site member is logged in, display the following links -->
                         {% if session.user %}
                             <li><a href="{{ url_for('my_reviews') }}">My Reviews</a></li>
-                            <li><a href="#">My Wish List</a></li>
+                            <li><a href="{{ url_for('wish_list') }}">My Wish List</a></li>
                             <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
                         {% endif %}
                         <li><a href="{{ url_for('browse') }}">Browse</a></li>
@@ -90,7 +90,7 @@
                 {% if session.user %}
                     <li><a href="{{ url_for('my_reviews') }}">My Reviews</a></li>
                     <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
-                    <li><a href="#">My Wish List</a></li>
+                    <li><a href="{{ url_for('wish_list') }}">My Wish List</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('browse') }}">Browse</a></li>
         </ul>

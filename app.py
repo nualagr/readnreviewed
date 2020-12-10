@@ -116,7 +116,8 @@ def register():
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(
                 request.form.get("password")),
-            "email": request.form.get("email").lower()
+            "email": request.form.get("email").lower(),
+            "wishlist": []
         }
 
         # Insert the dictionary into the database.
@@ -325,6 +326,20 @@ def my_reviews():
     print(list_of_books_and_reviews)
     return render_template(
         "my_reviews.html", books_and_reviews=list_of_books_and_reviews)
+
+
+@app.route("/wish_list")
+def wish_list():
+    wishlist = list(mongo.db.users.find_one(
+        {"username": session["user"]})["wishlist"])
+    booklist = []
+    for bookId in wishlist:
+        book = mongo.db.books.find_one(
+            {"_id": bookId}
+        )
+        booklist.append(book)
+    return render_template(
+        "wish_list.html", booklist=booklist)
 
 
 @app.route('/success')
