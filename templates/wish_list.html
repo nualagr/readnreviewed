@@ -16,10 +16,17 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <p class="bookmark">          
+                        <!-- Button to remove the current book from the Wish List array -->
+                        <form action="{{ url_for('unmark', book_id=book._id ) }}" method="post">
+                            <button type="submit" name="unmark" value="{{ book._id }}" class="bookmark right">
+                                <i class="far fa-bookmark icon-unmarked"></i>
+                                <i class="fas fa-bookmark icon-marked"></i>
+                            </button>
+                        </form>
+                        <!-- <p class="bookmark">          
                             <i class="fas fa-bookmark icon-marked right"></i>
                             <i class="fas fa-bookmark icon-unmarked right"></i>
-                        </p>
+                        </p> -->
                         <br>
                         <h5 class="header">{{ book.title }}</h5>
                         <br>

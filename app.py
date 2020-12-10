@@ -322,7 +322,6 @@ def my_reviews():
             list(corresponding_book.items()) + list(review.items()))
         # Add to list of books and reviews to be passed to the template
         list_of_books_and_reviews.append(book_and_review)
-    print(list_of_books_and_reviews)
     return render_template(
         "my_reviews.html", books_and_reviews=list_of_books_and_reviews)
 
@@ -363,6 +362,20 @@ def bookmark(book_id):
         )
         flash("Book Saved to Wish List")
         return render_book_template(book_id)
+
+
+@app.route("/unmark/<book_id>", methods=["GET", "POST"])
+def unmark(book_id):
+    book = mongo.db.books.find_one({
+        "_id": ObjectId(book_id)
+    })
+    if request.method == "POST":
+        mongo.db.users.update_one(
+            {"username": session["user"]},
+            {"$pull": {"wishlist": ObjectId(book_id)}}
+        )
+        flash("Book Removed from Wish List")
+        return redirect(url_for("wish_list"))
 
 
 @app.route('/success')
