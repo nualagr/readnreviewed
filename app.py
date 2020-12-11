@@ -330,28 +330,29 @@ def my_reviews():
 def wish_list():
     wishlist = list(mongo.db.users.find_one(
         {"username": session["user"]})["wishlist"])
-    if (wishlist[0] == ""):
+    if (wishlist == []):
         flash("No saved books yet.")
         return redirect(url_for("browse"))
     else:
         booklist = []
-        for bookId in wishlist:
-            book = mongo.db.books.find_one(
-                {"_id": bookId}
+        for book_id in wishlist:
+            # Find the book document in the database
+            this_book = mongo.db.books.find_one(
+                {"_id": ObjectId(book_id)}
             )
             # Create the book purchase url by adding the book title to the url
-            this_book_title = book["title"].replace(" ", "+")
+            this_book_title = this_book["title"].replace(" ", "+")
             book_purchase_url = (
                 "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
-            book["book_purchase_url"] = book_purchase_url
+            this_book["book_purchase_url"] = book_purchase_url
             # Add the book to the booklist list
-            booklist.append(book)
+            booklist.append(this_book)
     return render_template(
         "wish_list.html", booklist=booklist)
 
 
 @app.route("/bookmark/<book_id>", methods=["GET", "POST"])
-def bookmark(book_id):
+def mark(book_id):
     book = mongo.db.books.find_one({
         "_id": ObjectId(book_id)
     })

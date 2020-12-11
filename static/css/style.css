@@ -81,6 +81,11 @@ h1, h2, h3, h4, h5 {
     font-weight: bolder !important;
 }
 
+button.bookmark {
+    border-color: transparent;
+    background-color: transparent;
+}
+
 .bookmark:hover .icon-unmarked,
 .bookmark .icon-marked {
     display: none;
