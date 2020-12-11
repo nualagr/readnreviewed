@@ -43,6 +43,16 @@ def render_book_template(book_id):
     book_purchase_url = (
         "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
 
+    # Grab the session user's wishlist from the database
+    wishlist = mongo.db.users.find_one(
+        {"username": session["user"]})["wishlist"]
+    # Check to see whether the current user
+    # has already saved this book to their wishlist
+    if (this_book["_id"] in wishlist):
+        bookmark = True
+    else:
+        bookmark = False
+
     # Create a list of users who have reviewed this book already
     reviewers = []
     # Convert floats to datetime format in each book review
@@ -55,7 +65,8 @@ def render_book_template(book_id):
     return render_template(
         "view_book.html", this_book=this_book,
         this_book_reviews=sorted_book_reviews,
-        book_purchase_url=book_purchase_url, reviewers=reviewers)
+        book_purchase_url=book_purchase_url,
+        reviewers=reviewers, bookmark=bookmark)
 
 
 @app.route("/")

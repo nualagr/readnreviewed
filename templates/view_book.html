@@ -13,13 +13,16 @@
             </div>
             <div class="col s12 m6 left-align">
                 {% if session.user %}
-                    <!-- Button to add the current book to Wish List array -->
-                    <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
-                        <button type="submit" name="mark" id="mark" value="{{ this_book._id }}" class="bookmark right">
-                            <i class="far fa-bookmark icon-unmarked"></i>
-                            <i class="fas fa-bookmark icon-marked"></i>
-                        </button>
-                    </form>
+                    {% if bookmark %}
+                    {% else %}
+                        <!-- Button to add the current book to Wish List array -->
+                        <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
+                            <button type="submit" name="mark" id="mark" value="{{ this_book._id }}" class="bookmark right">
+                                <i class="far fa-bookmark icon-unmarked"></i>
+                                <i class="fas fa-bookmark icon-marked"></i>
+                            </button>
+                        </form>
+                    {% endif %}
                 {% endif %}
                 <!-- Selected Book Title, Author and Description -->
                 <p>Author: {{ this_book.authors[0] }}</p>
