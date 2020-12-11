@@ -81,6 +81,7 @@ h1, h2, h3, h4, h5 {
     font-weight: bolder !important;
 }
 
+/* Bookmarks ------------------------------------- */
 button.bookmark {
     border-color: transparent;
     background-color: transparent;
@@ -330,7 +331,6 @@ footer a:hover{
 /* Wish List Page ----------------------*/
 .card.horizontal .card-image img {
     padding: 24px;
-    height: 200px; /* Your height here */
     overflow: hidden;
 }
 

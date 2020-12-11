@@ -360,9 +360,6 @@ def wish_list():
 
 @app.route("/bookmark/<book_id>", methods=["GET", "POST"])
 def mark(book_id):
-    book = mongo.db.books.find_one({
-        "_id": ObjectId(book_id)
-    })
     if request.method == "POST":
         mongo.db.users.update_one(
             {"username": session["user"]},
@@ -374,9 +371,6 @@ def mark(book_id):
 
 @app.route("/unmark/<book_id>", methods=["GET", "POST"])
 def unmark(book_id):
-    book = mongo.db.books.find_one({
-        "_id": ObjectId(book_id)
-    })
     if request.method == "POST":
         mongo.db.users.update_one(
             {"username": session["user"]},

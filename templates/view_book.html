@@ -30,15 +30,15 @@
         <div class="row">
             <!-- If the viewer is not a logged in member do not show these buttons -->
             {% if not session.user %}
-            <div class="col s12 m6">
-            </div>
-            <!-- Selected Book Information -->
-            <div class="col s12 m6 left-align">
-                <p>Page Count: {{ this_book.page_count }}</p> 
-                <p>Date Published: {{ this_book.published_date }}</p> 
-                <p>Publisher: {{ this_book.publisher }}</p> 
-                <p>ISBN 13: {{ this_book.isbn }}</p> 
-            </div>
+                <div class="col s12 m6">
+                </div>
+                <!-- Selected Book Information -->
+                <div class="col s12 m6 left-align">
+                    <p>Page Count: {{ this_book.page_count }}</p> 
+                    <p>Date Published: {{ this_book.published_date }}</p> 
+                    <p>Publisher: {{ this_book.publisher }}</p> 
+                    <p>ISBN 13: {{ this_book.isbn }}</p> 
+                </div>
             <!-- If the viewer is a logged-in member-->
             {% else %}
                 <!-- Link to buy the Selected Book on Amazon -->
