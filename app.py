@@ -398,6 +398,17 @@ def unmark(book_id):
         return redirect(url_for("wish_list"))
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    books = list(mongo.db.books.find({"$text": {"$search": query}}))
+    if (books == []):
+        flash("No results found.")
+        return render_template("browse.html", books=books)
+    else:
+        return render_template("browse.html", books=books)
+
+
 @app.route('/success')
 def success():
     return 'Success'

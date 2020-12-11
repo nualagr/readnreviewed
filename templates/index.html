@@ -35,7 +35,7 @@
                 <img src="{{ book_two.thumbnail }}" class="cover" alt="{{ book_two.title }} by {{ book_two.authors[0] }} book cover"><br>
             </div>
             <div class="col s12 m6">
-                <p>{{ book_two.genre }}</p>
+                <p>{{ book_two.category }}</p>
                 <h5>{{ book_two.title }}</h5>
                 <p>{{ book_two.authors[0] }}</p> 
                 <p>{{ book_two.text_snippet | safe | truncate(300, True) }}</p>
