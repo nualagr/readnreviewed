@@ -208,9 +208,12 @@ def add_book():
 
         # Add new book to the database
         mongo.db.books.insert_one(newBook)
+        book_id = newBook["_id"]
         flash("New book Successfully Added")
-        # return redirect(url_for("view_book", latest_book=newBook))
-        return render_template("add_book.html")
+        print(url_for("view_book", book_id=book_id))
+        return redirect(url_for(
+            "view_book", _external=True, _scheme="https", book_id=book_id))
+        # return render_template("view_book.html", book_id=book_id)
 
     if request.method == "GET":
         return render_template("add_book.html")
