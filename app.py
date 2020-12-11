@@ -43,13 +43,17 @@ def render_book_template(book_id):
     book_purchase_url = (
         "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
 
-    # Grab the session user's wishlist from the database
-    wishlist = mongo.db.users.find_one(
-        {"username": session["user"]})["wishlist"]
-    # Check to see whether the current user
-    # has already saved this book to their wishlist
-    if (this_book["_id"] in wishlist):
-        bookmark = True
+    # If the session cookie exists then the user is logged in
+    if session:
+        # Grab the session user's wishlist from the database
+        wishlist = mongo.db.users.find_one(
+            {"username": session["user"]})["wishlist"]
+        # Check to see whether the current user
+        # has already saved this book to their wishlist
+        if (this_book["_id"] in wishlist):
+            bookmark = True
+        else:
+            bookmark = False
     else:
         bookmark = False
 
