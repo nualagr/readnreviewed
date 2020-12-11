@@ -15,7 +15,7 @@
                 {% if session.user %}
                     <!-- Button to add the current book to Wish List array -->
                     <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
-                        <button type="submit" name="mark" value="{{ this_book._id }}" class="bookmark right">
+                        <button type="submit" name="mark" id="mark" value="{{ this_book._id }}" class="bookmark right">
                             <i class="far fa-bookmark icon-unmarked"></i>
                             <i class="fas fa-bookmark icon-marked"></i>
                         </button>
@@ -54,14 +54,14 @@
                     <!-- If this user has not already written a review for this book display the Write a Review button -->
                     {% if session.user not in reviewers %}
                         <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
-                            <span class="btn orange">Write a Review</span> 
+                            <span class="btn bg-orange">Write a Review</span> 
                         </a>
                     {% endif %}
                 <!-- If there are no book reviews for this book -->
                 {% else %}
                         <!-- Display the Write a Review button -->
                         <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
-                            <span class="btn orange">Write a Review</span> 
+                            <span class="btn bg-orange">Write a Review</span> 
                         </a>
                 {% endif %}
             </div>
