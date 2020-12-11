@@ -100,6 +100,26 @@ button.bookmark {
     vertical-align: top;
     font-size: 2rem;
 }
+
+button.bookmarked {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.bookmarked:hover .icon-marked,
+.bookmarked .icon-unmarked {
+    display: none;
+}
+
+.bookmarked:hover .icon-unmarked {
+    display: inline;
+}
+
+.bookmarked i,
+.bookmarked i:hover {
+    vertical-align: top;
+    font-size: 2rem;
+}
 /* Forms ------------------------------------- */
 /* label color */
 .input-field label {
