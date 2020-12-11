@@ -81,6 +81,12 @@ h1, h2, h3, h4, h5 {
     font-weight: bolder !important;
 }
 
+/* Search Bar ------------------------------------ */
+.btn i.search {
+    margin-right: 5px;
+    line-height: 36px;
+}
+
 /* Bookmarks ------------------------------------- */
 button.bookmark {
     border-color: transparent;
