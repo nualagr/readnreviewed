@@ -88,7 +88,7 @@
         {% else %}
             <!-- Display each review -->
             {% for review in this_book_reviews %}
-                <div class="row">
+                <div class="row my-reviews">
                     <div class="col s4">
                         <p>Reviewed By: {{ review.created_by }}</p>
                         <p>On: {{ review.review_date }}</p>

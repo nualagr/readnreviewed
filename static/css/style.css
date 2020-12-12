@@ -331,12 +331,24 @@ footer a:hover{
 }
 
 .review-container p {
-    padding: 5px 0px;
+    padding: 10px 0px;
 }
 
 /* Solution to keep the two columns side-by-side on mobile screen found at: https://stackoverflow.com/questions/2997767/how-do-i-keep-two-side-by-side-divs-the-same-height */
 .review-container div.review-column {
-    min-height: 200px;
+    min-height: 230px;
+}
+
+.review-container {
+    position: relative;
+    margin: .5rem 0 1rem 0;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.review-container img {
+    padding: 15px 0px 0px 5px;
 }
 
 /* Wish List Page ----------------------*/
