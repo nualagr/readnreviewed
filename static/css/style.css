@@ -66,10 +66,6 @@ h1, h2, h3, h4, h5 {
     color: #F69222;
 }
 
-.star-rating i {
-    color: #F69222;
-}
-
 .centered {
   display: block;
   margin-left: auto;
@@ -84,7 +80,16 @@ h1, h2, h3, h4, h5 {
 /* Search Bar ------------------------------------ */
 .btn i.search {
     margin-right: 5px;
-    line-height: 36px;
+    /* line-height: 36px; */
+}
+
+/* Buttons ------------------------------------- */
+.star-rating i {
+    color: #F69222;
+}
+
+.btn {
+    margin-bottom: 5px;
 }
 
 /* Bookmarks ------------------------------------- */
