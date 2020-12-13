@@ -602,6 +602,29 @@ substrings and concatenated with an 's' before being uploaded to the Mongodb dat
 It was discovered when attempting to add various books that the Google Books API does not store dummy data.
 It could not be guaranteed that many of the fields would be present.  'Categories', 'description', 'publisher', 'imageLinks' and 'textSnippet' were all found to be 
 missing from book to book.  
+
+Session Cookie Username 
+
+At first the way in which users were logged in and identified from page to page was through the use of a session cookie that stored their username. 
+This was a security flaw as it would have been possible to access someone's account by artifically creating the cookie an account holder's username.
+It was therefore decided to use the Werkzeug generate_password_hash() function to generate a hash of the site member's username. 
+This was then stored in the session cookie. It was also stored in a document in the Sessions Collection in the database, alongside their unhashed username.
+A function, identify_user() was then written to find the hashed cookie within the Sessions collection and located the associated username. 
+This function is called on within the different views to identify the user in question and access their reviews and wish list etc.
+The cookie and its associated document in the the database are deleted when the user clicks the logout button. 
+A hashed cookie is generated on each login, increasing the site's security.  
+After reading about user authentification it was decided that this was beyond the scope of this project due to time constraints. 
+These changes were rolled back and the rudimentary user authentification of the session['user'] cookie was reinstated with the user's username.
+
+[url_for()](https://github.com/nualagr/readnreviewed/commit/8a6d67a0905226abbebbab747363011e105e2414)
+
+During development Chrome, Firefox and other browsers started showing a warning page declaring that the connection was not secure when a user's profile page was being loaded after login.
+Reading numerous posts on [Stack Overflow](https://stackoverflow.com/questions/14810795/flask-url-for-generating-http-url-instead-of-https/26636880) revealed that this is a problem associated with Flask's url_for() function. 
+It was suggested that adding a scheme parameter stating that the scheme='https' and that the connection was external=True, forcing the use of the full url, would fix the problem.
+Rather than adding this each time url_for was called, a wrapper function was defined that called the url_for and added these parameters. 
+This https_url_for() function was thenb called for each redirect.  This removed the issue of the browser warnings.
+
+
 ##### back to [top](#table-of-contents)
 ---
 
