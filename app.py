@@ -24,6 +24,10 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+def https_url_for(*args, **kwargs):
+    return url_for(*args, **kwargs, _scheme='https', _external=True)
+
+
 def render_book_template(book_id):
     # Find the book document in the database
     this_book = mongo.db.books.find_one(
@@ -116,7 +120,7 @@ def register():
 
         if existing_user:
             flash("Username Already Registered")
-            return redirect(url_for("register"))
+            return redirect(https_url_for("register"))
 
         # Check if email address is in the database already
         existing_email = mongo.db.users.find_one(
@@ -125,7 +129,7 @@ def register():
 
         if existing_email:
             flash("Email address already registered")
-            return redirect(url_for("register"))
+            return redirect(https_url_for("register"))
 
         register = {
             "username": request.form.get("username").lower(),
@@ -141,7 +145,7 @@ def register():
         # Put the new user into the 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful")
-        return redirect(url_for("profile", username=session["user"]))
+        return redirect(https_url_for("profile", username=session["user"]))
 
     return render_template("register.html")
 
@@ -160,16 +164,16 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
                     request.form.get("username")))
-                return redirect(url_for("profile", username=session["user"]))
+                return redirect(https_url_for("profile", username=session["user"]))
             else:
                 # Invalid password match
                 flash("Incorrect Username and/or Password.")
-                return redirect(url_for("login"))
+                return redirect(https_url_for("login"))
 
         else:
             # Username doesn't exist
             flash("Incorrect Username and/or Password.")
-            return redirect(url_for("login"))
+            return redirect(https_url_for("login"))
 
     return render_template("login.html")
 
@@ -189,7 +193,7 @@ def profile(username):
 
     # If the session cookie does not exist
     # then bring the user to the login page
-    return redirect(url_for("login"))
+    return redirect(https_url_for("login"))
 
 
 @app.route("/logout")
@@ -197,7 +201,7 @@ def logout():
     # Remove user name from Session Cookie loggin them out
     flash("You have been logged out.")
     session.pop("user")
-    return redirect(url_for("login"))
+    return redirect(https_url_for("login"))
 
 
 @app.route("/add_book", methods=["GET", "POST"])
@@ -210,9 +214,8 @@ def add_book():
         mongo.db.books.insert_one(newBook)
         book_id = newBook["_id"]
         flash("New book Successfully Added")
-        print(url_for("view_book", book_id=book_id))
-        return redirect(url_for(
-            "view_book", _external=True, _scheme="https", book_id=book_id))
+        return redirect(https_url_for(
+            "view_book", book_id=book_id))
         # return render_template("view_book.html", book_id=book_id)
 
     if request.method == "GET":
@@ -356,7 +359,7 @@ def wish_list():
     # If the user has no saved books yet
     if (wishlist == []):
         flash("No saved books yet.")
-        return redirect(url_for("browse"))
+        return redirect(https_url_for("browse"))
     # If the user has saved books to their wishlist
     else:
         booklist = []
@@ -395,7 +398,7 @@ def unmark(book_id):
             {"$pull": {"wishlist": ObjectId(book_id)}}
         )
         flash("Book Removed from Wish List")
-        return redirect(url_for("wish_list"))
+        return redirect(https_url_for("wish_list"))
 
 
 @app.route("/search", methods=["GET", "POST"])
