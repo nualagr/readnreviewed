@@ -72,6 +72,7 @@ def render_book_template(book_id):
         # Grab the session user's wishlist from the database
         wishlist = mongo.db.users.find_one(
             {"username": session["user"]})["wishlist"]
+        
         # Check to see whether the current user
         # has already saved this book to their wishlist
         # If so, remove the bookmark
@@ -79,7 +80,8 @@ def render_book_template(book_id):
             bookmark = True
         else:
             bookmark = False
-            # Check and see whether the current user has reviewed this book
+
+        # Check and see whether the current user has reviewed this book
         if session["user"] in reviewers:
             purchase = False
         else:

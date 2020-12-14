@@ -382,3 +382,15 @@ footer a:hover{
     width: auto;
 }
 }
+
+@media screen and (max-width: 768px) {
+.card .card-content {
+    padding: 24px 0px;
+}
+h3 {
+    font-size: 2.5rem;
+}
+.profile {
+    padding-left: 1rem;
+}
+}
