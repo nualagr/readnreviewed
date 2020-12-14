@@ -12,16 +12,18 @@
                 <img src="{{ this_book.thumbnail }}" class="cover">
             </div>
             <div class="col s12 m6 left-align">
+                <!-- If the user is logged in -->
                 {% if session.user %}
-                    {% if bookmark %}
+                    <!-- If they have saved this book to their wishlist or already reviewed this book hide bookmark -->
+                    {% if bookmark or not purchase %}
                     {% else %}
-                        <!-- Button to add the current book to Wish List array -->
-                        <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
-                            <button type="submit" name="mark" id="mark" value="{{ this_book._id }}" class="bookmark right">
-                                <i class="far fa-bookmark icon-unmarked"></i>
-                                <i class="fas fa-bookmark icon-marked"></i>
-                            </button>
-                        </form>
+                            <!-- Button to add the current book to Wish List array -->
+                            <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
+                                <button type="submit" name="mark" id="mark" value="{{ this_book._id }}" class="bookmark right">
+                                    <i class="far fa-bookmark icon-unmarked"></i>
+                                    <i class="fas fa-bookmark icon-marked"></i>
+                                </button>
+                            </form>
                     {% endif %}
                 {% endif %}
                 <!-- Selected Book Title, Author and Description -->
@@ -46,9 +48,12 @@
             {% else %}
                 <!-- Link to buy the Selected Book on Amazon -->
                 <div class="col s6 m3">
+                    {% if purchase %}
                     <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
                         <span class="btn bg-blue">Buy it now</span> 
                     </a>
+                    {% else %}
+                    {% endif %}
                 </div>
                 <!-- Selected Book Book Reviews -->
                 <div class="col s6 m3">

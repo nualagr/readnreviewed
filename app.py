@@ -33,6 +33,13 @@ def https_url_for(*args, **kwargs):
 
 
 def render_book_template(book_id):
+    """
+    Function to find a specific book in the database,
+    to locate the associated reviews (sorted by
+    score and date), to create the purchase url and to
+    check whether the user has saved the book to their
+    wishlist.
+    """
     # Find the book document in the database
     this_book = mongo.db.books.find_one(
         {"_id": ObjectId(book_id)}
@@ -58,6 +65,7 @@ def render_book_template(book_id):
             {"username": session["user"]})["wishlist"]
         # Check to see whether the current user
         # has already saved this book to their wishlist
+        # If so, remove the bookmark
         if (this_book["_id"] in wishlist):
             bookmark = True
         else:
@@ -74,11 +82,17 @@ def render_book_template(book_id):
         # Add reviewers to the reviewers list
         reviewers.append(book_review["created_by"])
 
+    # Check and see whether the current user has reviewed this book
+        if session["user"] in reviewers:
+            purchase = False
+        else:
+            purchase = True
+
     return render_template(
         "view_book.html", this_book=this_book,
         this_book_reviews=sorted_book_reviews,
         book_purchase_url=book_purchase_url,
-        reviewers=reviewers, bookmark=bookmark)
+        reviewers=reviewers, bookmark=bookmark, purchase=purchase)
 
 
 @app.route("/")
