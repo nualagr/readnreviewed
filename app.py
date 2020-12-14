@@ -58,6 +58,15 @@ def render_book_template(book_id):
     book_purchase_url = (
         "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
 
+    # Create a list of users who have reviewed this book already
+    reviewers = []
+    # Convert floats to datetime format in each book review
+    for book_review in this_book_reviews:
+        book_review["review_date"] = datetime.datetime.fromtimestamp(
+            book_review["review_date"]).strftime("%a, %b %d, %Y")
+        # Add reviewers to the reviewers list
+        reviewers.append(book_review["created_by"])
+
     # If the session cookie exists then the user is logged in
     if session:
         # Grab the session user's wishlist from the database
@@ -70,23 +79,14 @@ def render_book_template(book_id):
             bookmark = True
         else:
             bookmark = False
-    else:
-        bookmark = False
-
-    # Create a list of users who have reviewed this book already
-    reviewers = []
-    # Convert floats to datetime format in each book review
-    for book_review in this_book_reviews:
-        book_review["review_date"] = datetime.datetime.fromtimestamp(
-            book_review["review_date"]).strftime("%a, %b %d, %Y")
-        # Add reviewers to the reviewers list
-        reviewers.append(book_review["created_by"])
-
-    # Check and see whether the current user has reviewed this book
+            # Check and see whether the current user has reviewed this book
         if session["user"] in reviewers:
             purchase = False
         else:
             purchase = True
+    else:
+        bookmark = False
+        purchase = False
 
     return render_template(
         "view_book.html", this_book=this_book,
