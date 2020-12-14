@@ -316,12 +316,15 @@ def upvote_review(review_id):
     })
 
     if request.method == "POST":
+        print("upvoting review", review_id)
         mongo.db.reviews.update_one(
             {"_id": ObjectId(review_id)},
             {"$inc": {"review_score": 1},
                 "$addToSet": {"upvoters": session["user"]}}
         )
+        print("getting book id")
         book_id = ObjectId(review['book_id'])
+        print("returning book page")
         return render_book_template(book_id)
 
 

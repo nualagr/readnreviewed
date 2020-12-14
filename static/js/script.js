@@ -114,24 +114,48 @@ function writeToDocument(title, author){
 
 
 // Copied from Putting it All Together project and then modified
-function sendMail(contactForm){
-    emailjs.send("gmail", "read_n_reviewed_template", {
-        "from_name": contactForm.name.value,
-        "from_email": contactForm.email.value,
-        "message": contactForm.message.value,
-    })
-    .then(function(response) {
-            console.log("SUCCESS", response.status, response.text);
-            location.reload();
-            window.alert("Message received. Someone will be in touch with you shortly regarding your enquiry.");
-        }, function(error) {
-            console.log("FAILED...", error);
-        });
-    return false; //to block from loading a new page
+// function sendMail(contactForm){
+//     emailjs.send("gmail", "read_n_reviewed_template", {
+//         "from_name": contactForm.name.value,
+//         "from_email": contactForm.email.value,
+//         "message": contactForm.message.value,
+//     })
+//     .then(function(response) {
+//             console.log("SUCCESS", response.status, response.text);
+//             location.reload();
+//             window.alert("Message received. Someone will be in touch with you shortly regarding your enquiry.");
+//         }, function(error) {
+//             console.log("FAILED...", error);
+//         });
+//     return false; //to block from loading a new page
+// }
+
+
+function sendEmail(){
+    var data = {
+        service_id: 'gmail',
+        template_id: 'read_n_reviewed_template',
+        user_id: 'user_7qNcYyPmXwfLnlz5m9BYA',
+        template_params: {
+            'from_name': contactForm.name.value,
+            'from_email': contactForm.email.value,
+            'message': contactForm.message.value,
+        }
+    };
+ 
+    $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json'
+    }).done(function() {
+        alert('Your mail is sent!');
+    }).fail(function(error) {
+        alert('Oops... ' + JSON.stringify(error));
+    });
 }
 
 
-  $(document).ready(function(){
+$(document).ready(function(){
     /* Initialization of the dropdown trigger taken from https://materializecss.com/navbar.html#! */
     $(".dropdown-trigger").dropdown();
     /* Initialization of the side-nav trigger taken from https://materializecss.com/navbar.html */
@@ -140,7 +164,7 @@ function sendMail(contactForm){
     $('.carousel.carousel-slider').carousel({
     fullWidth: true,
     indicators: true
-  });
-      /* Initialization of the dropdown select form field taken from https://materializecss.com/carousel.html */
-    $('select').formSelect();
     });
+    /* Initialization of the dropdown select form field taken from https://materializecss.com/carousel.html */
+    $('select').formSelect();
+});
