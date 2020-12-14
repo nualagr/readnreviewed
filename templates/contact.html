@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3>Contact Us</h3>
+    <!-- Contact Us Form -->
+    <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
+    <div class="row container">
+        <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
+        <form method="POST" action="{{ url_for('contact') }}">
+            <div class="card white darken-1">
+                <div class="card-content">
+                    <div class="row">
+                        <!-- First Name -->
+                        <div class="input-field col s12">
+                        <i class="fas fa-user prefix"></i>
+                        <input id="name" name="name" type="text" required>
+                        <label for="name">Your Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Email Address -->
+                        <div class="input-field col s12">
+                        <i class="fas fa-envelope prefix"></i>
+                        <input id="email" name="email" type="email" required>
+                        <label for="email">Your Email Address</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Message  -->
+                        <div class="input-field col s12">
+                            <i class="fas fa-edit prefix"></i>
+                            <textarea id="message" name="message" class="materialize-textarea validate" required></textarea>
+                            <label for="message">Type your message here:</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action center">
+                    <button type="submit" class="btn bg-orange">Submit <i class="fas fa-check"></i></button>
+                    <a href="{{ url_for('contact') }}" class="btn bg-blue">Clear <i class="fas fa-times"></i></a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

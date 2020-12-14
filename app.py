@@ -72,7 +72,7 @@ def render_book_template(book_id):
         # Grab the session user's wishlist from the database
         wishlist = mongo.db.users.find_one(
             {"username": session["user"]})["wishlist"]
-        
+
         # Check to see whether the current user
         # has already saved this book to their wishlist
         # If so, remove the bookmark
@@ -128,6 +128,16 @@ def get_books():
 def browse():
     books = list(mongo.db.books.find().sort("published_date", -1))
     return render_template("browse.html", books=books)
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        flash(
+            "We will be in contact shortly regarding your enquiry.")
+        return render_template("contact.html")
+    else:
+        return render_template("contact.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
