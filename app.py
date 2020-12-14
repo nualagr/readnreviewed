@@ -25,6 +25,10 @@ mongo = PyMongo(app)
 
 
 def https_url_for(*args, **kwargs):
+    """
+    Function to ensure that the wrapped url_for call is external and
+    therefore uses the full url and that that url is https not http.
+    """
     return url_for(*args, **kwargs, _scheme='https', _external=True)
 
 
@@ -164,7 +168,8 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
                     request.form.get("username")))
-                return redirect(https_url_for("profile", username=session["user"]))
+                return redirect(https_url_for(
+                    "profile", username=session["user"]))
             else:
                 # Invalid password match
                 flash("Incorrect Username and/or Password.")
@@ -225,6 +230,27 @@ def add_book():
 @app.route("/view_book/<book_id>")
 def view_book(book_id):
     return render_book_template(book_id)
+
+
+@app.route("/my_review/<book_id>")
+def my_review(book_id):
+    # Find the book document in the database
+    this_book = mongo.db.books.find_one(
+        {"_id": ObjectId(book_id)}
+    )
+    # Find the reviews that relate to that book
+    # Isolate the current user's review
+    my_review = mongo.db.reviews.find_one(
+        {"book_id": ObjectId(book_id),
+            "created_by": session["user"]})
+
+    # Convert float to datetime format in book review
+    my_review["review_date"] = datetime.datetime.fromtimestamp(
+        my_review["review_date"]).strftime("%a, %b %d, %Y")
+
+    return render_template(
+        "my_review.html", this_book=this_book,
+        my_review=my_review,)
 
 
 @app.route("/add_review/<book_id>", methods=["GET", "POST"])

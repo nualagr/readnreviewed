@@ -12,18 +12,6 @@
                 <img src="{{ this_book.thumbnail }}" class="cover">
             </div>
             <div class="col s12 m6 left-align">
-                {% if session.user %}
-                    {% if bookmark %}
-                    {% else %}
-                        <!-- Button to add the current book to Wish List array -->
-                        <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
-                            <button type="submit" name="mark" id="mark" value="{{ this_book._id }}" class="bookmark right">
-                                <i class="far fa-bookmark icon-unmarked"></i>
-                                <i class="fas fa-bookmark icon-marked"></i>
-                            </button>
-                        </form>
-                    {% endif %}
-                {% endif %}
                 <!-- Selected Book Title, Author and Description -->
                 <p>Author: {{ this_book.authors[0] }}</p>
                 <p>Category: {{ this_book.category }}</p>
@@ -31,42 +19,7 @@
             </div>
         </div>
         <div class="row">
-            <!-- If the viewer is not a logged in member do not show these buttons -->
-            {% if not session.user %}
-                <div class="col s12 m6">
-                </div>
-                <!-- Selected Book Information -->
-                <div class="col s12 m6 left-align">
-                    <p>Page Count: {{ this_book.page_count }}</p> 
-                    <p>Date Published: {{ this_book.published_date }}</p> 
-                    <p>Publisher: {{ this_book.publisher }}</p> 
-                    <p>ISBN 13: {{ this_book.isbn }}</p> 
-                </div>
-            <!-- If the viewer is a logged-in member-->
-            {% else %}
-                <!-- Link to buy the Selected Book on Amazon -->
-                <div class="col s6 m3">
-                    <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
-                        <span class="btn bg-blue">Buy it now</span> 
-                    </a>
-                </div>
-                <!-- Selected Book Book Reviews -->
-                <div class="col s6 m3">
-                <!-- If there are book reviews for this book -->
-                {% if this_book_reviews %}
-                    <!-- If this user has not already written a review for this book display the Write a Review button -->
-                    {% if session.user not in reviewers %}
-                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
-                            <span class="btn bg-orange">Write a Review</span> 
-                        </a>
-                    {% endif %}
-                <!-- If there are no book reviews for this book -->
-                {% else %}
-                        <!-- Display the Write a Review button -->
-                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
-                            <span class="btn bg-orange">Write a Review</span> 
-                        </a>
-                {% endif %}
+            <div class="col s12 m6">
             </div>
             <!-- Selected Book Information -->
             <div class="col s12 m6 left-align">
@@ -74,58 +27,29 @@
                 <p>Date Published: {{ this_book.published_date }}</p> 
                 <p>Publisher: {{ this_book.publisher }}</p> 
                 <p>ISBN 13: {{ this_book.isbn }}</p> 
-            </div>
-            {% endif %}
+            </div>                
         </div>
-        <!-- If no reviews exist display this message to the user -->
-        {% if not this_book_reviews %}
-            <div class="row">
-                <div class="col s12 m6 offset-m6">
-                    <p>No reviews currently exist for this book.</p>
-                </div>
+        <div class="row">
+            <div class="col s12 m6 offset-m6">
             </div>
-        <!-- If reviews exist -->
-        {% else %}
-            <!-- Display each review -->
-            {% for review in this_book_reviews %}
-                <div class="row my-reviews">
-                    <div class="col s4">
-                        <p>Reviewed By: {{ review.created_by }}</p>
-                        <p>On: {{ review.review_date }}</p>
-                            <!-- Check to see whether there is a user logged in -->
-                            {% if session.user %}
-                                <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
-                                {% if session.user == review.created_by %}
-                                    <p>                                        
-                                        <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp;                                       
-                                        <a href="{{ url_for('delete_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-red"><i class="fas fa-trash-alt"></i> Delete</a>
-                                    </p>
-                                {% else %}
-                                    <!-- Check to see whether the logged in user upvoted the review already, if not, display the Upvote button -->
-                                    {% if session.user in review.upvoters %}
-                                    {% else %}
-                                        <p>
-                                            <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
-                                                <button type="submit" name="upvote" value="1" class="btn bg-grey">{{ review.review_score }} <i class="fas fa-caret-up prefix"></i> Upvote</button>
-                                            </form>
-                                        </p>
-                                    {% endif %}
-                                {% endif %}
-                            {% endif %}
-                    </div>
-                    <div class="col s8 star-rating">
-                        <p>Star Rating: 
-                            {% set starRating = review.rating | int %}
-                            {% for i in range(starRating) %}
-                                <i class="fas fa-star"></i>
-                            {% endfor %} 
-                        </p>
-                        <p>Review: {{ review.review }}</p>
-                    </div>
-                </div>
-            {% endfor %}        
-        {% endif %}
-
-
-
+        <div class="row my-reviews">
+            <div class="col s4">
+                <p>Reviewed By: {{ my_review.created_by }}</p>
+                <p>On: {{ my_review.review_date }}</p>
+                <p>                                        
+                    <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp;                                       
+                    <a href="{{ url_for('delete_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn bg-red"><i class="fas fa-trash-alt"></i> Delete</a>
+                </p>
+            </div>
+            <div class="col s8 star-rating">
+                <p>Star Rating: 
+                    {% set starRating = my_review.rating | int %}
+                    {% for i in range(starRating) %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %} 
+                </p>
+                <p>Review: {{ my_review.review }}
+                </p>
+            </div>
+        </div>
 {% endblock %}
