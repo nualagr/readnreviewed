@@ -471,6 +471,7 @@ The Read n’ Reviewed website relies on three database collections:
   * [Am I Responsive](http://ami.responsivedesign.is/). Used to create the mock-up image showing the site as it would behave when viewed on desktop, mobile and tablet devices. 
   * [Code Institute](https://codeinstitute.net/). Used to review concepts covered in preceding modules and walk-through projects. 
   * [Coolors](https://coolors.co/ffbe0b-fb5607-ff006e-8338ec-3a86ff). Used to analyse the film poster and choose a suitable colour scheme for the site.
+  * [Emailjs](https://emailjs.com/). Used to connect EmailJS to gmail, create an email template, and use their Javascript library to trigger an email with dynamic variables that are populated from the Contact Us form.
   * [Font Awesome](https://fontawesome.com/). Used to source the free icons that were used for the social media links in the footer and for the mute, home and help buttons.
   * [Google Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools). Used throughout the project to test the responsiveness of elements, to target and apply CSS styles during the design phase and to test the site's performance once built. 
   * [Google Fonts](https://fonts.google.com/). Used to choose and source the font used in the body of the site.
@@ -813,6 +814,7 @@ The following [Materialize](https://materializecss.com/) components were used an
 - A special thank you to my partner Kevin for his patience and support throughout this project. 
 - I received inspiration for this project from:
     - The [Code Institue](https://codeinstitute.net/) 'Task Manager' project.
+    - The [Code Institue](https://codeinstitute.net/) 'Putting it all together' project.
     - [GoodReads](https://www.goodreads.com/)
     - [BookPage](https://bookpage.com/)
     - [LoveReading](https://www.lovereading.co.uk/)

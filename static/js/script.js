@@ -113,6 +113,24 @@ function writeToDocument(title, author){
 }
 
 
+// Copied from Putting it All Together project and then modified
+function sendMail(contactForm){
+    emailjs.send("gmail", "read_n_reviewed_template", {
+        "from_name": contactForm.name.value,
+        "from_email": contactForm.email.value,
+        "message": contactForm.message.value,
+    })
+    .then(function(response) {
+            console.log("SUCCESS", response.status, response.text);
+            location.reload();
+            window.alert("Message received. Someone will be in touch with you shortly regarding your enquiry.");
+        }, function(error) {
+            console.log("FAILED...", error);
+        });
+    return false; //to block from loading a new page
+}
+
+
   $(document).ready(function(){
     /* Initialization of the dropdown trigger taken from https://materializecss.com/navbar.html#! */
     $(".dropdown-trigger").dropdown();

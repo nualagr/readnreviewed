@@ -132,12 +132,7 @@ def browse():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-    if request.method == "POST":
-        flash(
-            "We will be in contact shortly regarding your enquiry.")
-        return render_template("contact.html")
-    else:
-        return render_template("contact.html")
+    return render_template("contact.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
