@@ -1,9 +1,6 @@
 // API baseURL
-// const baseURL = "https://www.googleapis.com/books/v1/volumes?q=intitle:foundation+inauthor:asimov+isbn:9780586017135&printType=books&key=AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI"; 
 const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
-// const key = "&orderBy=relevance&langRestrict=en&printType=books&key=AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI";
-const key = "&printType=books&key=AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI";
-//AIzaSyDR3pb09aEo_zdemgtte5eM0eLsHFNXmVI
+const key = "&printType=books";
 
 // Solution to remove HTML entities in the textSnippets from the API found at : https://stackoverflow.com/questions/7394748/whats-the-right-way-to-decode-a-string-that-has-special-html-entities-in-it
 function decodeEntities(encodedString) {
@@ -130,29 +127,25 @@ function writeToDocument(title, author){
 //     return false; //to block from loading a new page
 // }
 
-
-function sendEmail(){
-    var data = {
-        service_id: 'gmail',
-        template_id: 'read_n_reviewed_template',
-        user_id: 'user_7qNcYyPmXwfLnlz5m9BYA',
-        template_params: {
-            'from_name': contactForm.name.value,
-            'from_email': contactForm.email.value,
-            'message': contactForm.message.value,
-        }
-    };
+$('#myForm').on('submit', function(event) {
+    event.preventDefault(); // prevent reload
+    
+    var formData = new FormData(this);
+    formData.append('service_id', 'gmail');
+    formData.append('template_id', 'read_n_reviewed_template');
+    formData.append('user_id', 'user_7qNcYyPmXwfLnlz5m9BYA');
  
-    $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
+    $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
         type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json'
+        data: formData,
+        contentType: false, // auto-detection
+        processData: false // no need to parse formData to string
     }).done(function() {
         alert('Your mail is sent!');
     }).fail(function(error) {
         alert('Oops... ' + JSON.stringify(error));
     });
-}
+});
 
 
 $(document).ready(function(){
