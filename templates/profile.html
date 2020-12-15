@@ -20,7 +20,8 @@
                 </div>
             </div>
             <div class="card-action center">
-                <button type="submit" class="btn bg-orange"><i class="fas fa-user-edit"></i> Edit</button>
+                <a href="{{ url_for('edit_profile', username=session['user']) }}" class="btn bg-orange"><i class="fas fa-user-edit"></i> Edit</a>
+                <!-- <button type="submit" class="btn bg-orange"><i class="fas fa-user-edit"></i> Edit</button> -->
                 <a href="{{ url_for('get_books') }}" class="btn bg-blue"><i class="fas fa-home"></i> Home</a>
             </div>
         </div>
