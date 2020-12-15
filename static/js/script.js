@@ -111,41 +111,20 @@ function writeToDocument(title, author){
 
 
 // Copied from Putting it All Together project and then modified
-// function sendMail(contactForm){
-//     emailjs.send("gmail", "read_n_reviewed_template", {
-//         "from_name": contactForm.name.value,
-//         "from_email": contactForm.email.value,
-//         "message": contactForm.message.value,
-//     })
-//     .then(function(response) {
-//             console.log("SUCCESS", response.status, response.text);
-//             location.reload();
-//             window.alert("Message received. Someone will be in touch with you shortly regarding your enquiry.");
-//         }, function(error) {
-//             console.log("FAILED...", error);
-//         });
-//     return false; //to block from loading a new page
-// }
-
-$('#myForm').on('submit', function(event) {
-    event.preventDefault(); // prevent reload
-    
-    var formData = new FormData(this);
-    formData.append('service_id', 'gmail');
-    formData.append('template_id', 'read_n_reviewed_template');
-    formData.append('user_id', 'user_7qNcYyPmXwfLnlz5m9BYA');
- 
-    $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
-        type: 'POST',
-        data: formData,
-        contentType: false, // auto-detection
-        processData: false // no need to parse formData to string
-    }).done(function() {
-        alert('Your mail is sent!');
-    }).fail(function(error) {
-        alert('Oops... ' + JSON.stringify(error));
-    });
-});
+function sendMail(contactForm){
+    emailjs.send("gmail", "read_n_reviewed_template", {
+        "from_name": contactForm.name.value,
+        "from_email": contactForm.email.value,
+        "message": contactForm.message.value,
+    })
+    .then(function(response) {
+            console.log("SUCCESS", response.status, response.text);
+            window.location.href = "https://8080-f9f7f7e8-efad-42bf-b233-9ac190277ac2.ws-eu03.gitpod.io/";
+        }, function(error) {
+            console.log("FAILED...", error);
+        });
+    return false; //to block from loading a new page
+}
 
 
 $(document).ready(function(){
