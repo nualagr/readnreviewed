@@ -119,7 +119,8 @@ function sendMail(contactForm){
     })
     .then(function(response) {
             console.log("SUCCESS", response.status, response.text);
-            window.location.href = "https://8080-f9f7f7e8-efad-42bf-b233-9ac190277ac2.ws-eu03.gitpod.io/";
+            // Solution to loading the homepage found on Stack Overflow: https://stackoverflow.com/questions/4231605/how-to-redirect-to-home-page
+            window.location.href = "/";
         }, function(error) {
             console.log("FAILED...", error);
         });
