@@ -17,6 +17,8 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 # Grab our secret key
 app.secret_key = os.environ.get("SECRET_KEY")
+# Grab our emailjs key
+app.email_key = os.environ.get("EMAIL_KEY")
 
 
 # Set up an instance of PyMongo.
@@ -220,6 +222,41 @@ def profile(username):
     # If the session cookie does not exist
     # then bring the user to the login page
     return redirect(https_url_for("login"))
+
+
+@app.route("/edit_profile/<username>", methods=["GET", "POST"])
+def edit_profile(username):
+    # Grab the session user's username and email address from the database
+    user = mongo.db.users.find_one(
+        {"username": username})
+    email = mongo.db.users.find_one(
+        {"username": session["user"]})["email"]
+
+    if request.method == "GET":
+        # If the session cookie exists
+        # then the user is logged in so open the edit profile page
+        if session["user"]:
+            return render_template(
+                "edit_profile.html", username=username, email=email)
+
+        # If the session cookie does not exist
+        # then bring the user to the login page
+        return redirect(https_url_for("login"))
+
+    if request.method == "POST":
+        # Ensure hashed password matches user input
+        if check_password_hash(
+                user["password"], request.form.get("currentPassword")):
+            new_password = generate_password_hash(
+                request.form.get("newPassword"))
+            mongo.db.users.update_one(
+                {"username": username},
+                {"$set": {"password": new_password}})
+            flash("Password Updated")
+            return redirect(https_url_for("profile", username=session["user"]))
+        else:
+            flash("Password Incorrect")
+            return redirect(https_url_for("profile", username=session["user"]))
 
 
 @app.route("/logout")
