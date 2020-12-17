@@ -23,14 +23,34 @@
                         {% endfor %} 
                 </p>
                 <p>{{ review.review_date }}</p>
-                <!-- <p><a href="{{ url_for('view_book', book_id=review.book_id) }}">Read review...</a></p> -->
                 <p><a href="{{ url_for('my_review', book_id=review.book_id) }}">Read review...</a></p>
             </div>
             <div class="col s6 m3 review-column valign-wrapper">
                 <a href="{{ url_for('edit_review', book_id=review.book_id, review_id=review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp;
-                <a href="{{ url_for('delete_review', book_id=review.book_id, review_id=review._id) }}" class="btn bg-red"><i class="fas fa-trash-alt"></i> Delete</a>
+                <!-- Modal Trigger -->
+                <a class="btn bg-red modal-trigger" href="#{{ review._id }}"><i class="fas fa-trash-alt"></i> Delete</a>
             </div>
         </div>
     {% endfor %}
-
+        <!-- Modals Section -->
+        <!-- Modal component taken from https://materializecss.com/modals.html#! and modified -->
+        <section id="modalContainer" class="container">
+            {% for review in books_and_reviews %}
+            <!-- Modal Structure -->
+            <div id="{{ review._id }}" class="modal modal-fixed-footer">
+                <div class="modal-header">
+                    <a class="btn modal-close close" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </a>
+                </div>
+                <div class="modal-content">
+                    <h5>Your reviews are important <br><br>to the Read n' Reviewed community!<br><br>Can we change your mind?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn modal-close bg-blue" id="close"><i class="fas fa-check prefix"></i> Retain</button>
+                    <a href="{{ url_for('delete_review', book_id=review.book_id, review_id=review._id) }}" class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
 {% endblock %}

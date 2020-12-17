@@ -3,6 +3,7 @@ const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
 
 const key = "&printType=books";
 
+
 function getData(title, author, cb){
     let xhr = new XMLHttpRequest();
     // Use encodeURIcomponent() to replace each instance of a space in the 
@@ -55,7 +56,6 @@ function writeToDocument(title, author){
         let searchList = [];
         let books = data.items;
         for (i in books) {
-            let index = i;
             let img = "";
             let thumbnail = "";
             let title = "";
@@ -181,4 +181,6 @@ $(document).ready(function(){
     });
     /* Initialization of the dropdown select form field taken from https://materializecss.com/carousel.html */
     $('select').formSelect();
+    /* Initialization of the modal trigger taken from https://materializecss.com/modals.html#! */
+    $('.modal').modal();
 });

@@ -9,7 +9,8 @@
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="static/images/favicon.png">
+    <link rel="icon" sizes="32x32" href="{{ url_for( 'static', filename='images/favicon.png' ) }}"/>
+    <!-- <link rel="icon" type="image/svg+xml" href="static/images/favicon.png"> -->
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <!-- <link rel="stylesheet" href="../static/css/style.css" type="text/css"> -->
@@ -110,7 +111,6 @@
                 <button class="btn" id="apiBtn" onclick="writeToDocument('bfg', 'dahl');">API</button>
         </section>
     </main>
-
     <!-- Footer component taken from https://materializecss.com/footer.html and modified -->
     <footer class="page-footer grey lighten-4">
         <div class="container">

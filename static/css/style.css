@@ -373,6 +373,45 @@ footer a:hover{
     color: #BF7218 !important;
 }
 
+/* Modals ----------------------*/
+.modal-content {
+    margin-top: 2rem;
+    /* overflow-y: hidden !important; */
+}
+
+.modal-content h5 {
+    padding: 15px;
+}
+
+.modal.modal-fixed-footer {
+    height: 40%;
+}
+
+.modal .modal-footer {
+    text-align: center;
+}
+
+.close {
+    float: right;
+    background-color: transparent;
+    border: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222222;
+    text-shadow: 0 1px 0 #FFFFFF;
+    opacity: .5;
+    margin: 6px;
+    box-shadow: none!important;
+}
+
+.btn.close:hover,
+.btn.close:active,
+.btn.close:focus {
+    opacity: 1;
+    background-color: transparent;
+
+}
+
 /* Media Queries ----------------------*/
 
 @media (min-width: 768px) {
@@ -400,5 +439,12 @@ h3 {
 }
 .profile {
     padding-left: 1rem;
+}
+}
+
+@media screen and (max-width: 414px) {
+.modal.modal-fixed-footer {
+    height: 60%;
+    margin-top: 20px;
 }
 }
