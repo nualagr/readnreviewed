@@ -1,27 +1,28 @@
 // API baseURL
 const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
+
 const key = "&printType=books";
-
-// Solution to remove HTML entities in the textSnippets from the API found at : https://stackoverflow.com/questions/7394748/whats-the-right-way-to-decode-a-string-that-has-special-html-entities-in-it
-function decodeEntities(encodedString) {
-  var textArea = document.createElement('textarea');
-  textArea.innerHTML = encodedString;
-  return textArea.value;
-}
-
 
 function getData(title, author, cb){
     let xhr = new XMLHttpRequest();
     // Use encodeURIcomponent() to replace each instance of a space in the 
     // title or author inputs with %20
     let bookTitle = "intitle:" + encodeURIComponent(title);
-    console.log(bookTitle);
+    console.log("The searched for book title is:", bookTitle);
     let bookAuthor = "+inauthor:" + encodeURIComponent(author);
-    console.log(bookAuthor);
+    console.log("The searched for book author is:", bookAuthor);
     // let bookIsbn = "+isbn:" + isbn;
 
     // xhr.open("GET", baseURL + bookTitle + bookAuthor + bookIsbn + key);
-    xhr.open("GET", baseURL + bookTitle + bookAuthor + key);
+    let path = baseURL;
+    if (title) {
+        path += bookTitle;
+    }
+    if (author) {
+        path += bookAuthor;
+    }
+    path += key;
+    xhr.open("GET", path);
 
     xhr.send();
 
@@ -37,13 +38,12 @@ function getData(title, author, cb){
 
 
 function writeToDocument(title, author){
+    
     console.log(title)
     console.log(author)
     let el = document.getElementById("bookContentContainer");
     // Sets the page back to blank every time the button is clicked.
     el.innerHTML = "";
-    let cover = document.getElementById("bookCoverContainer");
-    cover.innerHTML = "";
 
     getData(title, author, function(data){
 
@@ -52,61 +52,101 @@ function writeToDocument(title, author){
         // data.items is an array of book objects
         // each book object has a bunch of properties, such as volumeInfo, searchInfo
         console.log(data);
-        books = data.items;
-        firstBook = books[0]; // data.items[0] is the first book
-        let img = books[0]["volumeInfo"]["imageLinks"]["thumbnail"];
-        // insert "s" into http
-        let thumbnail = img.substring(0, 4) + 's' + img.substring(4);
-        let title = books[0]["volumeInfo"]["title"];
-        let authors = books[0]["volumeInfo"]["authors"];
-        let category = books[0]["volumeInfo"]["categories"][0];
-        let description = books[0]["volumeInfo"]["description"];
-        let publisher = books[0]["volumeInfo"]["publisher"];
-        let publishedDate = books[0]["volumeInfo"]["publishedDate"];
-        let pageCount = books[0]["volumeInfo"]["pageCount"];
-        let isbn = books[0]["volumeInfo"]["industryIdentifiers"][0]["identifier"];
-        // Use decodeEntities() function to remove HTML entities from the string
-        let textSnippet = decodeEntities(books[0]["searchInfo"]["textSnippet"]);
-        console.log(textSnippet);
+        let searchList = [];
+        let books = data.items;
+        for (i in books) {
+            let index = i;
+            let img = "";
+            let thumbnail = "";
+            let title = "";
+            let authors = "";
+            let category = "";
+            let description = "";
+            let publisher = "";
+            let publishedDate = "";
+            let pageCount = "";
+            let isbn = "";
+            let textSnippet = "";
 
-        // Create dictionary of the book
-        let book = {
-            "thumbnail": thumbnail,
-            "title": title,
-            "authors": authors,
-            "category": category,
-            "description": description,
-            "publisher": publisher,
-            "published_date": publishedDate,
-            "page_count": pageCount,
-            "isbn": isbn,
-            "text_snippet": textSnippet,
-        };
-        console.log(book);
-        // POST book to Python
-        // So it can be uploaded to the database
-        fetch("/add_book", {
-            method: 'POST',
-            headers: { 
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify(book),
-        }).then(response => console.log(response));
-        // .then(location.reload());
+            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["imageLinks"] && books[i]["volumeInfo"]["imageLinks"]["thumbnail"]) {
+                img = books[i]["volumeInfo"]["imageLinks"]["thumbnail"];
+                thumbnail = img.substring(0, 4) + 's' + img.substring(4);
+            }
+            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["title"]) {
+                title = books[i]["volumeInfo"]["title"];
+            }
+            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["authors"]) {
+                authors = books[i]["volumeInfo"]["authors"];
+            }
+            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["categories"] && books[i]["volumeInfo"]["categories"][0]) {
+                category = books[i]["volumeInfo"]["categories"][0];
+            }
+            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["description"]) {
+                description = books[i]["volumeInfo"]["description"];
+            }
+            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["publisher"]) {
+                publisher = books[i]["volumeInfo"]["publisher"];
+            }
+            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["publishedDate"]) {
+                publishedDate = books[i]["volumeInfo"]["publishedDate"];
+            }
+            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["pageCount"]) {
+                pageCount = books[i]["volumeInfo"]["pageCount"];
+            }
+            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["industryIdentifiers"] && books[i]["volumeInfo"]["industryIdentifiers"][0] && books[i]["volumeInfo"]["industryIdentifiers"][0]["identifier"]) {
+                isbn = books[i]["volumeInfo"]["industryIdentifiers"][0]["identifier"];
+            }
+            if (books[i]["searchInfo"] && books[i]["searchInfo"]["textSnippet"]) {
+                textSnippet = books[i]["searchInfo"]["textSnippet"];
+            }
 
+            var dict = {
+                "thumbnail" : thumbnail,
+                "title" : title,
+                "authors" : authors,
+                "category" : category,
+                "description" : description,
+                "publisher" : publisher,
+                "publishedDate" : publishedDate,
+                "pageCount" : pageCount,
+                "isbn" : isbn,
+                "textSnippet" : textSnippet,
+            }
+            searchList.push(dict)
+        }
+        console.log("SearchList:", searchList);
 
         // Print data to screen
-        cover.innerHTML += "<img src='" + thumbnail + "' class='centered'>";
-
-        el.innerHTML += "<table><tr><td>Title:</td><td> " + title + "</td></tr>" +
-        "<tr><td>Author:</td><td>" + authors[0] + "</td></tr>" +
-        "<tr><td>Category:</td><td>" + category + "</td></tr>" +
-        "<tr><td>Snippet:</td><td>" + textSnippet + "</td></tr>" +
-        "<tr><td>Publisher:</td><td>" + publisher + "</td></tr>" +
-        "<tr><td>Date Published:</td><td>" + publishedDate + "</td></tr>" +
-        "<tr><td>Page Count:</td><td>" + pageCount + "</td></tr>" +
-        "<tr><td>ISBN:</td><td>" + isbn + "</td></tr></table>";
+            for (i in searchList) {
+                // How to encode string to base 64 found at Stack Overflow: https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript
+                el.innerHTML += `<div class='row'><div class='col s12 m6 center-align'><img src='${searchList[i]["thumbnail"]}' class='centered'><br><button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button></div><div class='col s12 m6'><table><tr><td>Title:</td><td> ${searchList[i]["title"]}</td></tr>
+                <tr><td>Author:</td><td>${searchList[i]["authors"]}</td></tr>
+                <tr><td>Category:</td><td>${searchList[i]["category"]}</td></tr>
+                <tr><td>Snippet:</td><td>${searchList[i]["textSnippet"]}</td></tr>
+                <tr><td>Publisher:</td><td>${searchList[i]["publisher"]}</td></tr>
+                <tr><td>Date Published:</td><td>${searchList[i]["publishedDate"]}</td></tr>
+                <tr><td>Page Count:</td><td>${searchList[i]["pageCount"]}</td></tr>
+                <tr><td>ISBN:</td><td>${searchList[i]["isbn"]}</td></tr></table><br></div></div>`;
+        }
     })
+}
+
+
+function sendToPython(book){
+    console.log("I have been called");
+    let newBook = JSON.parse(decodeURIComponent(atob(book)));
+    console.log("This is the new book coming to you from JS:", newBook);
+    // POST book to Python
+    // So it can be uploaded to the database
+    fetch("/add_book", {
+        method: 'POST',
+        headers: { 
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newBook),
+        }).then(response => window.location.href = response["url"]); //redirect to the view_page for the new book
+    // .then(location.reload());
+        console.log("This is the chosen book:", newBook)
 }
 
 

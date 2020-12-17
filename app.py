@@ -102,6 +102,12 @@ def render_book_template(book_id):
 @app.route("/")
 @app.route("/get_books")
 def get_books():
+    """
+    Function to find the two latest reviews in the database,
+    sorted by date descending. Find the first two reviews on
+    the list that do not relate the same book. Find the
+    associated book information and display on the home page.
+    """
     # Sort the reviews by date descending to find the latest reviews
     reviews = list(mongo.db.reviews.find().sort("review_date", -1))
     book_one_id = reviews[0]["book_id"]
@@ -128,6 +134,10 @@ def get_books():
 
 @app.route("/browse")
 def browse():
+    """
+    Function to find all the books in the database and sort by
+    date published, newest to oldest. Display each on browse page.
+    """
     books = list(mongo.db.books.find().sort("published_date", -1))
     return render_template("browse.html", books=books)
 
@@ -269,17 +279,26 @@ def logout():
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
+    """
+    Function to find take the fetch api post from script.js.
+    Add the book to the database.
+    Return the url for the view_book page for the new book.
+    """
     if request.method == "POST":
         # Unpack json into a dict
         newBook = request.json
+        print(
+            "This is the newBook coming to you from Python add_book.html",
+            newBook)
+        print("This is the new book title:", newBook["title"])
 
         # Add new book to the database
         mongo.db.books.insert_one(newBook)
-        book_id = newBook["_id"]
-        flash("New book Successfully Added")
-        return redirect(https_url_for(
-            "view_book", book_id=book_id))
-        # return render_template("view_book.html", book_id=book_id)
+        book_id = mongo.db.books.find_one({
+            "title": newBook["title"]
+        })["_id"]
+        print(book_id)
+        return redirect(https_url_for("view_book", book_id=book_id))
 
     if request.method == "GET":
         return render_template("add_book.html")
@@ -494,7 +513,7 @@ def search():
     books = list(mongo.db.books.find({"$text": {"$search": query}}))
     if (books == []):
         flash("No results found.")
-        return render_template("browse.html", books=books)
+        return render_template("add_book.html")
     else:
         return render_template("browse.html", books=books)
 

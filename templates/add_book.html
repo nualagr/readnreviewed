@@ -1,42 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
     <h3>Add Book</h3>
-    <!-- New Review Form -->
     <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
     <div class="row container">
         <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
-        <form method="POST" action="{{ url_for('add_book') }}">
+        <!-- <form method="POST" action="{{ url_for('add_book') }}"> -->
+        <form id="apiForm">
             <div class="card white darken-1">
                 <div class="card-content">
                      <div class="row">
                         <!-- Book Title Field-->
                         <div class="input-field col s12">
-                        <i class="fas fa-book prefix"></i>
-                        <input id="title" name="title" type="text" minlength="2" maxlength="40" class="validate" required>
-                        <label for="title">Book Title</label>
+                            <i class="fas fa-book prefix"></i>
+                            <input id="searchTitle" name="searchTitle" type="text" pattern="^(?=.*[a-zA-Z].*)([a-zA-Z0-9]{3,12})$" minlength="2" maxlength="40" class="validate" title="This field is required" required>
+                            <label for="searchTitle">Book Title</label>
                         </div>
                     </div>
                     <div class="row">
                         <!-- Author Field -->
                         <div class="input-field col s12">
                         <i class="fas fa-user-edit prefix"></i>
-                        <input id="author" name="author" type="text" minlength="4" maxlength="25" class="validate" required>
-                        <label for="author">Author</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- ISBN Field -->
-                        <div class="input-field col s12">
-                        <i class="fas fa-barcode prefix"></i>
-                        <input id="isbn" name="isbn" type="text" minlength="11" maxlength="13" pattern="^[0-9]{8,15}$" class="validate" required>
-                        <label for="isbn">ISBN 13</label>
+                        <!-- Pattern to ensure at least one non-whitespace character and no whitespace at the beginning or end of the input found on Stack Overflow: https://stackoverflow.com/questions/13766015/is-it-possible-to-configure-a-required-field-to-ignore-white-space/17323588#17323588-->
+                        <input id="searchAuthor" name="searchAuthor" type="text" pattern="\S(.*\S)?" minlength="4" maxlength="25" class="validate" title="This field is required" required>
+                        <label for="searchAuthor">Author</label>
                         </div>
                     </div>
                 </div>
                 <div class="card-action center">
-                    <!-- <button type="submit" class="btn bg-orange" onclick="writeToDocument(document.getElementById('title').value, document.getElementById('author').value);">Submit <i class="fas fa-check"></i></button> -->
-                    <button type="submit" class="btn bg-orange" onclick="writeToDocument($('#title').val(), $('#author').val());return false;">Submit <i class="fas fa-check"></i></button>                    
-                    <a href="{{ url_for('add_book') }}" class="btn bg-blue">Clear <i class="fas fa-times"></i></a>
+                    <button type="button" class="btn bg-orange" onclick="writeToDocument(document.getElementById('searchTitle').value, document.getElementById('searchAuthor').value); return false;"><i class="fas fa-check prefix"></i> Submit</button>
+                    <a href="{{ url_for('add_book') }}" class="btn bg-blue"><i class="fas fa-times prefix"></i> Clear</a>
                 </div>
             </div>
         </form>

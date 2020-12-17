@@ -18,7 +18,9 @@ body {
     background-color: #9E9E9E;
 }
 
-.bg-grey:hover {
+.bg-grey:hover,
+.bg-grey:active,
+.bg-grey:focus {
     background-color: #8F8F8F;
 }
 
@@ -26,7 +28,9 @@ body {
     background-color: #F69222;
 }
 
-.bg-orange:hover {
+.bg-orange:hover,
+.bg-orange:active,
+.bg-orange:focus {
     background-color: #BF7218;
 }
 
@@ -34,7 +38,9 @@ body {
     background-color: #2AA9E0;
 }
 
-.bg-blue:hover {
+.bg-blue:hover, 
+.bg-blue:active,
+.bg-blue:focus {
     background-color: #1F76BB;
 }
 
@@ -42,7 +48,9 @@ body {
     background-color: #E86252;
 }
 
-.bg-red:hover {
+.bg-red:hover,
+.bg-red:active,
+.bg-red:focus {
     background-color: #E54A38;
 }
 
