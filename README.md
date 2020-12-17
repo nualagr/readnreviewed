@@ -611,7 +611,7 @@ and displayed in rows and columns, with the information separated into tables wi
 sendToPython(), was created for each instance.  As this information contained strings, integers and many escape characters this led to complications when the browser attempted to write it to the screen.
 At first JSON.stringify() was used to convert the dictionary to a string.  This did not solve the issue on its own.  Next encodeURIComponent() was used to encode the remaining problematic special characters.
 This also did not fully solve the problem. Finally btoa() was used to encode the information to base64 before rendering on the screen.  
-When the user clicked the now working button, the sendToPython() function was called.  This function uses atob(), decodeURIComponent() and JSON.parse to unpack the book information.
+When the user clicked the now working button, the sendToPython() function was called.  This function uses atob() and decodeURIComponent unpack the book information into its JSON string.
 fetch()'s 'POST' method is then used to send the newBook to Python. Within the add_book() the newBook is unpacked into a dictionary and added to the database. 
 The redirect url for the view_book.html page of this new book is then sent as a response back to fetch() and window.location.href is used to load that page in the browser. 
 

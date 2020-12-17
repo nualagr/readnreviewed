@@ -134,7 +134,7 @@ function writeToDocument(title, author){
 
 function sendToPython(book){
     console.log("I have been called");
-    let newBook = JSON.parse(decodeURIComponent(atob(book)));
+    let newBook = decodeURIComponent(atob(book));
     console.log("This is the new book coming to you from JS:", newBook);
     // POST book to Python
     // So it can be uploaded to the database
@@ -143,7 +143,8 @@ function sendToPython(book){
         headers: { 
             'Content-type': 'application/json',
         },
-        body: JSON.stringify(newBook),
+        // newBook is still a JSON string
+        body: newBook,
         }).then(response => window.location.href = response["url"]); //redirect to the view_page for the new book
     // .then(location.reload());
         console.log("This is the chosen book:", newBook)
