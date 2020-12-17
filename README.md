@@ -604,6 +604,17 @@ It was discovered when attempting to add various books that the Google Books API
 It could not be guaranteed that many of the fields would be present.  'Categories', 'description', 'publisher', 'imageLinks' and 'textSnippet' were all found to be 
 missing from book to book.  
 
+[Later on](https://github.com/nualagr/readnreviewed/commit/3082773796944d8b111b671d74819e58894f0007) in the development process this issue was returned to.
+Google Books API returns up to ten books per call.  It was decided to display all the information returned in each call. 
+A dictionary of each book was created. They were written to the screen using the JavaScript .innterHTML() function 
+and displayed in rows and columns, with the information separated into tables within each row.  A button, which passed the dictionary's information to a JavaScript function
+sendToPython(), was created for each instance.  As this information contained strings, integers and many escape characters this led to complications when the browser attempted to write it to the screen.
+At first JSON.stringify() was used to convert the dictionary to a string.  This did not solve the issue on its own.  Next encodeURIComponent() was used to encode the remaining problematic special characters.
+This also did not fully solve the problem. Finally btoa() was used to encode the information to base64 before rendering on the screen.  
+When the user clicked the now working button, the sendToPython() function was called.  This function uses atob(), decodeURIComponent() and JSON.parse to unpack the book information.
+fetch()'s 'POST' method is then used to send the newBook to Python. Within the add_book() the newBook is unpacked into a dictionary and added to the database. 
+The redirect url for the view_book.html page of this new book is then sent as a response back to fetch() and window.location.href is used to load that page in the browser. 
+
 Session Cookie Username 
 
 At first the way in which users were logged in and identified from page to page was through the use of a session cookie that stored their username. 
