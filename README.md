@@ -815,6 +815,7 @@ The following [Materialize](https://materializecss.com/) components were used an
 
 ### Images
 - Book-reading-logo from [Vecteezy](https://www.vecteezy.com/vector-art/599621-book-reading-logo-and-symbols-template-icons) was used for the Read n' Reviewed site logo.
+- Door-on-beach from [Vecteezy](https://www.vecteezy.com/vector-art/375219-closed-white-entrance-door-on-beach-vector-illustration) was used for the 404 page background image.
 <br>
 
 
