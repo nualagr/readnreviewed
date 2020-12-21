@@ -197,25 +197,8 @@ textarea.materialize-textarea.valid {
     color: #1F76BB;
 }
 /* Navbar ------------------------------------- */
-.header-wrapper {
-    background: transparent;
-    position: relative;
-    width: 100%;
-    z-index: 9999;
-}
-
-nav .nav-wrapper {
-    position: relative;
-    height: 100%;
-    line-height: 64px;
-}
-
-nav .brand-logo {
-    padding: 5px;
-}
-
-#logoContainer {
-    position: absolute;
+nav .brand-logo .solo-book-icon {
+    margin-top: 12px;
 }
 
 nav ul a,
@@ -231,46 +214,7 @@ nav ul a i {
 
 i.nav-icon {
     padding-right: 1rem;
-}
-
-.header-search-wrapper {
-    background: rgb(31, 118, 187);
-    bottom: -2px;
-    display: block;
-    left: 0px;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    z-index: 111;
-}
-
-.header-search-cancel i {
-    width: 3rem;
-    font-size: 2rem;
-    -webkit-transition: color .2s;
-    transition: color .2s;
-    top: .5rem;
-}
-
-.dropdown-content-search {
-    margin: 0;
-    min-width: 100% !important;
-    overflow-y: auto;
-    opacity: 0;
-    position: absolute;
-    left: 0 !important;
-    top: 0;
-    z-index: 9999;
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-}
-
-.dropdown-content li>a {
-    font-size: 16px;
-    color: #1F76BB;
-    display: block;
-    line-height: 22px;
-    padding: 14px 16px;
+    line-height: 56px;
 }
 
 .dropdown-content {
