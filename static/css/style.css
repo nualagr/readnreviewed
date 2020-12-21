@@ -201,11 +201,15 @@ nav .brand-logo .solo-book-icon {
     margin-top: 12px;
 }
 
+nav .brand-logo {
+    padding: 0px;
+}
+
 nav ul a,
 nav ul a i {
     -webkit-transition: background-color .3s;
     transition: background-color .3s;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #1F76BB;
     display: block;
     padding: 0 15px;

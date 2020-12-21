@@ -12,7 +12,7 @@
                         <!-- Book Title Field-->
                         <div class="input-field col s12">
                             <i class="fas fa-book prefix"></i>
-                            <input id="searchTitle" name="searchTitle" type="text" pattern="^(?=.*[a-zA-Z].*)([a-zA-Z0-9]{3,12})$" minlength="2" maxlength="40" class="validate" title="This field is required" required>
+                            <input id="searchTitle" name="searchTitle" type="text" pattern="^.*[a-zA-Z0-9',.-]+.*$" minlength="2" maxlength="40" class="validate" title="This field is required" required>
                             <label for="searchTitle">Book Title</label>
                         </div>
                     </div>
@@ -20,14 +20,14 @@
                         <!-- Author Field -->
                         <div class="input-field col s12">
                         <i class="fas fa-user-edit prefix"></i>
-                        <!-- Pattern to ensure at least one non-whitespace character and no whitespace at the beginning or end of the input found on Stack Overflow: https://stackoverflow.com/questions/13766015/is-it-possible-to-configure-a-required-field-to-ignore-white-space/17323588#17323588-->
-                        <input id="searchAuthor" name="searchAuthor" type="text" pattern="\S(.*\S)?" minlength="4" maxlength="25" class="validate" title="This field is required" required>
+                        <input id="searchAuthor" name="searchAuthor" type="text" pattern="^.*[a-zA-Z0-9',.-]+.*$" minlength="4" maxlength="25" class="validate" title="This field is required" required>
                         <label for="searchAuthor">Author</label>
                         </div>
                     </div>
                 </div>
                 <div class="card-action center">
-                    <button type="button" class="btn bg-orange" onclick="writeToDocument(document.getElementById('searchTitle').value, document.getElementById('searchAuthor').value); return false;"><i class="fas fa-check prefix"></i> Submit</button>
+                    <!-- <button type="button" class="btn bg-orange" onclick="writeToDocument(document.getElementById('searchTitle').value, document.getElementById('searchAuthor').value); return false;"><i class="fas fa-check prefix"></i> Submit</button> -->
+                    <button type="button" id="okButton" class="btn bg-orange" onclick="checkApiFormValidity(document.getElementById('searchTitle').value, document.getElementById('searchAuthor').value); return false;"><i class="fas fa-check prefix"></i> Submit</button>
                     <a href="{{ url_for('add_book') }}" class="btn bg-blue"><i class="fas fa-times prefix"></i> Clear</a>
                 </div>
             </div>

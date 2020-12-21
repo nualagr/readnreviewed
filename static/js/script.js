@@ -38,6 +38,25 @@ function getData(title, author, cb){
 }
 
 
+function checkApiFormValidity(title, author){
+    let isValidSearchTitle = searchTitle.checkValidity();
+    let isValidSearchAuthor = searchAuthor.checkValidity();
+    let okButton = document.getElementById("okButton");
+    let messageContainer = document.getElementById("messages");
+    // Sets the flashed messages back to blank every time the button is clicked.
+    messageContainer.innerHTML = "";
+
+    if (isValidSearchTitle && isValidSearchAuthor) {
+        okButton.disabled = false;
+        writeToDocument(title, author);
+    }
+    else {
+        okButton.disabled = true;
+        messageContainer.innerHTML += `<div class="row flashed-messages"><div class="col s12"><h4>Invalid Search. Please clear the form and try again.</h4></div></div>`
+    }
+}
+
+
 function writeToDocument(title, author){
     
     console.log(title)

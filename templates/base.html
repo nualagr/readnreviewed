@@ -86,7 +86,7 @@
     </header>
 
     <!-- Flash Messages -->
-    <section class="container">
+    <section class="container" id="messages">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
