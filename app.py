@@ -102,7 +102,10 @@ def render_book_template(book_id):
 @app.errorhandler(404)
 @app.route("/404")
 def page_not_found(e):
-    # note that we set the 404 status explicitly
+    """
+    Function to set the 404 status explicitly
+    and display the custom 404.html page.
+    """
     return render_template('404.html'), 404
 
 
@@ -136,7 +139,8 @@ def get_books():
                     {"_id": ObjectId(book_two_id)}
                 )
                 latest_reviewed_books.append(book_two)
-    return render_template("index.html", book_one=book_one, book_two=book_two)
+                return render_template(
+                    "index.html", book_one=book_one, book_two=book_two)
 
 
 @app.route("/browse")
