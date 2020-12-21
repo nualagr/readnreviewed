@@ -37,8 +37,9 @@
                 <p>Reviewed By: {{ my_review.created_by }}</p>
                 <p>On: {{ my_review.review_date }}</p>
                 <p>                                        
-                    <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp;                                       
-                    <a href="{{ url_for('delete_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn bg-red"><i class="fas fa-trash-alt"></i> Delete</a>
+                    <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp; 
+                    <!-- Modal Trigger -->
+                    <a class="btn bg-red modal-trigger" href="#{{ my_review._id }}"><i class="fas fa-trash-alt"></i> Delete</a>                                      
                 </p>
             </div>
             <div class="col s8 star-rating">
@@ -52,4 +53,28 @@
                 </p>
             </div>
         </div>
+        <!-- Modal Section -->
+        <section id="modalContainer" class="container">
+            <!-- Check to see whether there is a user logged in -->
+                {% if session.user %}
+                    <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
+                    {% if session.user == my_review.created_by %}
+                        <!-- Modal Structure -->
+                        <div id="{{ my_review._id }}" class="modal modal-fixed-footer">
+                            <div class="modal-header">
+                                <a class="btn modal-close close" aria-label="Close">
+                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                </a>
+                            </div>
+                            <div class="modal-content">
+                                <h5>Your reviews are important <br><br>to the Read n' Reviewed community!<br><br>Can we change your mind?</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn modal-close bg-blue" id="close"><i class="fas fa-check prefix"></i> Retain</button>
+                                <a href="{{ url_for('delete_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+        </section>
 {% endblock %}
