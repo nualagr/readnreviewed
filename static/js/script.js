@@ -145,7 +145,7 @@ function writeToDocument(title, author){
             // Print data to screen
                 for (i in searchList) {
                     // How to encode string to base 64 found at Stack Overflow: https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript
-                    el.innerHTML += `<div class='row'><div class='col s12 m6 center-align'><img src='${searchList[i]["thumbnail"]}' class='centered'><br><button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button></div><div class='col s12 m6'><table><tr><td>Title:</td><td> ${searchList[i]["title"]}</td></tr>
+                    el.innerHTML += `<div class='row'><hr><hr><br><div class='col s12 m6 center-align'><img src='${searchList[i]["thumbnail"]}' class='centered'><br><button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button></div><div class='col s12 m6'><table><tr><td>Title:</td><td> ${searchList[i]["title"]}</td></tr>
                     <tr><td>Author:</td><td>${searchList[i]["authors"]}</td></tr>
                     <tr><td>Category:</td><td>${searchList[i]["category"]}</td></tr>
                     <tr><td>Snippet:</td><td>${searchList[i]["textSnippet"]}</td></tr>
@@ -159,10 +159,12 @@ function writeToDocument(title, author){
 )}
 
 
+/** 
+* Function to post the newBook to Python (app.py)
+* So that it can be uploaded to the Read n' Reviewed database
+*/
 function sendToPython(book){
     let newBook = decodeURIComponent(atob(book));
-    // POST book to Python
-    // So it can be uploaded to the database
     fetch("/add_book", {
         method: 'POST',
         headers: { 
@@ -171,7 +173,6 @@ function sendToPython(book){
         // newBook is still a JSON string
         body: newBook,
         }).then(response => window.location.href = response["url"]); //redirect to the view_page for the new book
-    // .then(location.reload());
         console.log("This is the chosen book:", newBook)
 }
 
