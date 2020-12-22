@@ -55,10 +55,13 @@ def render_book_template(book_id):
         this_book_reviews, key=lambda b: (
             -b['review_score'], -b['review_date']))
 
-    # Create the book purchase url by adding the book title to the url
+    # Create the book purchase url
+    # by adding the book title and author to the url
     this_book_title = this_book["title"].replace(" ", "+")
+    this_book_author = this_book["authors"][0].replace(" ", "+")
     book_purchase_url = (
-        "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
+        "https://www.amazon.com/s?tag=faketag&k="
+        + this_book_title + " " + this_book_author)
 
     # Create a list of users who have reviewed this book already
     reviewers = []
@@ -485,10 +488,13 @@ def wish_list():
             this_book = mongo.db.books.find_one(
                 {"_id": ObjectId(book_id)}
             )
-            # Create the book purchase url by adding the book title to the url
+            # Create the book purchase url
+            # by adding the book title and author to the url
             this_book_title = this_book["title"].replace(" ", "+")
+            this_book_author = this_book["authors"][0].replace(" ", "+")
             book_purchase_url = (
-                "https://www.amazon.com/s?tag=faketag&k=" + this_book_title)
+                "https://www.amazon.com/s?tag=faketag&k="
+                + this_book_title + " " + this_book_author)
             this_book["book_purchase_url"] = book_purchase_url
             # Add the book to the booklist list
             booklist.append(this_book)
