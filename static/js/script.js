@@ -38,6 +38,12 @@ function getData(title, author, cb){
 }
 
 
+/**
+ * Function to check whether the user's input into the 
+ * API Search Form matches the pattern set on the fields.
+ * If so, call the writeToDocument() function to make the API call.
+ * If not, disable the submit button and alert the user.
+ */
 function checkApiFormValidity(title, author){
     let isValidSearchTitle = searchTitle.checkValidity();
     let isValidSearchAuthor = searchAuthor.checkValidity();
@@ -57,10 +63,7 @@ function checkApiFormValidity(title, author){
 }
 
 
-function writeToDocument(title, author){
-    
-    console.log(title)
-    console.log(author)
+function writeToDocument(title, author){   
     let el = document.getElementById("bookContentContainer");
     // Sets the page back to blank every time the button is clicked.
     el.innerHTML = "";
@@ -74,87 +77,90 @@ function writeToDocument(title, author){
         console.log(data);
         let searchList = [];
         let books = data.items;
-        for (i in books) {
-            let img = "";
-            let thumbnail = "";
-            let title = "";
-            let authors = "";
-            let category = "";
-            let description = "";
-            let publisher = "";
-            let publishedDate = "";
-            let pageCount = "";
-            let isbn = "";
-            let textSnippet = "";
+        if (data.totalItems == 0) {
+            el.innerHTML = `<div class="row"><h4 class>No Results Found</h4></div>`
+        } 
+        else {
+            for (i in books) {
+                let img = "";
+                let thumbnail = "";
+                let title = "";
+                let authors = "";
+                let category = "";
+                let description = "";
+                let publisher = "";
+                let publishedDate = "";
+                let pageCount = "";
+                let isbn = "";
+                let textSnippet = "";
 
-            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["imageLinks"] && books[i]["volumeInfo"]["imageLinks"]["thumbnail"]) {
-                img = books[i]["volumeInfo"]["imageLinks"]["thumbnail"];
-                thumbnail = img.substring(0, 4) + 's' + img.substring(4);
-            }
-            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["title"]) {
-                title = books[i]["volumeInfo"]["title"];
-            }
-            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["authors"]) {
-                authors = books[i]["volumeInfo"]["authors"];
-            }
-            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["categories"] && books[i]["volumeInfo"]["categories"][0]) {
-                category = books[i]["volumeInfo"]["categories"][0];
-            }
-            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["description"]) {
-                description = books[i]["volumeInfo"]["description"];
-            }
-            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["publisher"]) {
-                publisher = books[i]["volumeInfo"]["publisher"];
-            }
-            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["publishedDate"]) {
-                publishedDate = books[i]["volumeInfo"]["publishedDate"];
-            }
-            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["pageCount"]) {
-                pageCount = books[i]["volumeInfo"]["pageCount"];
-            }
-            if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["industryIdentifiers"] && books[i]["volumeInfo"]["industryIdentifiers"][0] && books[i]["volumeInfo"]["industryIdentifiers"][0]["identifier"]) {
-                isbn = books[i]["volumeInfo"]["industryIdentifiers"][0]["identifier"];
-            }
-            if (books[i]["searchInfo"] && books[i]["searchInfo"]["textSnippet"]) {
-                textSnippet = books[i]["searchInfo"]["textSnippet"];
-            }
+                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["imageLinks"] && books[i]["volumeInfo"]["imageLinks"]["thumbnail"]) {
+                    img = books[i]["volumeInfo"]["imageLinks"]["thumbnail"];
+                    thumbnail = img.substring(0, 4) + 's' + img.substring(4);
+                }
+                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["title"]) {
+                    title = books[i]["volumeInfo"]["title"];
+                }
+                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["authors"]) {
+                    authors = books[i]["volumeInfo"]["authors"];
+                }
+                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["categories"] && books[i]["volumeInfo"]["categories"][0]) {
+                    category = books[i]["volumeInfo"]["categories"][0];
+                }
+                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["description"]) {
+                    description = books[i]["volumeInfo"]["description"];
+                }
+                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["publisher"]) {
+                    publisher = books[i]["volumeInfo"]["publisher"];
+                }
+                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["publishedDate"]) {
+                    publishedDate = books[i]["volumeInfo"]["publishedDate"];
+                }
+                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["pageCount"]) {
+                    pageCount = books[i]["volumeInfo"]["pageCount"];
+                }
+                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["industryIdentifiers"] && books[i]["volumeInfo"]["industryIdentifiers"][0] && books[i]["volumeInfo"]["industryIdentifiers"][0]["identifier"]) {
+                    isbn = books[i]["volumeInfo"]["industryIdentifiers"][0]["identifier"];
+                }
+                if (books[i]["searchInfo"] && books[i]["searchInfo"]["textSnippet"]) {
+                    textSnippet = books[i]["searchInfo"]["textSnippet"];
+                }
 
-            var dict = {
-                "thumbnail" : thumbnail,
-                "title" : title,
-                "authors" : authors,
-                "category" : category,
-                "description" : description,
-                "publisher" : publisher,
-                "publishedDate" : publishedDate,
-                "pageCount" : pageCount,
-                "isbn" : isbn,
-                "textSnippet" : textSnippet,
+                var dict = {
+                    "thumbnail" : thumbnail,
+                    "title" : title,
+                    "authors" : authors,
+                    "category" : category,
+                    "description" : description,
+                    "publisher" : publisher,
+                    "publishedDate" : publishedDate,
+                    "pageCount" : pageCount,
+                    "isbn" : isbn,
+                    "textSnippet" : textSnippet,
+                }
+                searchList.push(dict)
             }
-            searchList.push(dict)
-        }
-        console.log("SearchList:", searchList);
+            console.log("SearchList:", searchList);
 
-        // Print data to screen
-            for (i in searchList) {
-                // How to encode string to base 64 found at Stack Overflow: https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript
-                el.innerHTML += `<div class='row'><div class='col s12 m6 center-align'><img src='${searchList[i]["thumbnail"]}' class='centered'><br><button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button></div><div class='col s12 m6'><table><tr><td>Title:</td><td> ${searchList[i]["title"]}</td></tr>
-                <tr><td>Author:</td><td>${searchList[i]["authors"]}</td></tr>
-                <tr><td>Category:</td><td>${searchList[i]["category"]}</td></tr>
-                <tr><td>Snippet:</td><td>${searchList[i]["textSnippet"]}</td></tr>
-                <tr><td>Publisher:</td><td>${searchList[i]["publisher"]}</td></tr>
-                <tr><td>Date Published:</td><td>${searchList[i]["publishedDate"]}</td></tr>
-                <tr><td>Page Count:</td><td>${searchList[i]["pageCount"]}</td></tr>
-                <tr><td>ISBN:</td><td>${searchList[i]["isbn"]}</td></tr></table><br></div></div>`;
-        }
-    })
-}
+            // Print data to screen
+                for (i in searchList) {
+                    // How to encode string to base 64 found at Stack Overflow: https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript
+                    el.innerHTML += `<div class='row'><div class='col s12 m6 center-align'><img src='${searchList[i]["thumbnail"]}' class='centered'><br><button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button></div><div class='col s12 m6'><table><tr><td>Title:</td><td> ${searchList[i]["title"]}</td></tr>
+                    <tr><td>Author:</td><td>${searchList[i]["authors"]}</td></tr>
+                    <tr><td>Category:</td><td>${searchList[i]["category"]}</td></tr>
+                    <tr><td>Snippet:</td><td>${searchList[i]["textSnippet"]}</td></tr>
+                    <tr><td>Publisher:</td><td>${searchList[i]["publisher"]}</td></tr>
+                    <tr><td>Date Published:</td><td>${searchList[i]["publishedDate"]}</td></tr>
+                    <tr><td>Page Count:</td><td>${searchList[i]["pageCount"]}</td></tr>
+                    <tr><td>ISBN:</td><td>${searchList[i]["isbn"]}</td></tr></table><br></div></div>`;
+                }
+            }
+    }      
+)}
 
 
 function sendToPython(book){
-    console.log("I have been called");
     let newBook = decodeURIComponent(atob(book));
-    console.log("This is the new book coming to you from JS:", newBook);
     // POST book to Python
     // So it can be uploaded to the database
     fetch("/add_book", {
@@ -170,7 +176,7 @@ function sendToPython(book){
 }
 
 
-// Copied from Putting it All Together project and then modified
+// Function copied from Code Institute 'Putting it All Together' project and then modified
 function sendMail(contactForm){
     emailjs.send("gmail", "read_n_reviewed_template", {
         "from_name": contactForm.name.value,
