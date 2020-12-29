@@ -64,6 +64,7 @@ function checkApiFormValidity(title, author){
 
 function writeToDocument(title, author){   
     let el = document.getElementById("bookContentContainer");
+    let messageContainer = document.getElementById("messages");
     // Sets the page back to blank every time the button is clicked.
     el.innerHTML = "";
 
@@ -77,7 +78,7 @@ function writeToDocument(title, author){
         let searchList = [];
         let books = data.items;
         if (data.totalItems == 0) {
-            el.innerHTML = `<div class="row"><h4 class>No Results Found</h4></div>`
+            messageContainer.innerHTML = `<div class="row flashed-messages"><h4 class>No Results Found</h4></div>`
         } 
         else {
             for (i in books) {

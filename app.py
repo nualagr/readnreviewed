@@ -532,11 +532,20 @@ def search():
     if request.method == "POST":
         query = request.form.get("query")
         books = list(mongo.db.books.find({"$text": {"$search": query}}))
-        if (books == []):
-            flash("No results found.")
-            return render_template("add_book.html")
+        if session:
+            if (books == []):
+                flash(
+                    "No result found. "
+                    "Fill in the form below to add a book to the site.")
+                return render_template("add_book.html")
+            else:
+                return render_template("search.html", books=books)
         else:
-            return render_template("search.html", books=books)
+            if (books == []):
+                flash("No results found.")
+                return render_template("search.html", books=[])
+            else:
+                return render_template("search.html", books=books)
 
 
 @app.route('/success')
