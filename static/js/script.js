@@ -145,14 +145,29 @@ function writeToDocument(title, author){
             // Print data to screen
                 for (i in searchList) {
                     // How to encode string to base 64 found at Stack Overflow: https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript
-                    el.innerHTML += `<div class='row'><hr><hr><br><div class='col s12 m6 center-align'><img src='${searchList[i]["thumbnail"]}' class='centered'><br><button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button></div><div class='col s12 m6'><table><tr><td>Title:</td><td> ${searchList[i]["title"]}</td></tr>
+                    el.innerHTML += `<div class='row'>\
+                    <hr>\
+                    <hr\
+                    <br>\
+                    <div class='col s12 m6 center-align'>\
+                    <img src='${searchList[i]["thumbnail"]}' class='centered'>\
+                    <br>\
+                    <button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button>\
+                    </div>\
+                    <div class='col s12 m6'>\
+                    <table>\
+                    <tr><td>Title:</td><td> ${searchList[i]["title"]}</td></tr>
                     <tr><td>Author:</td><td>${searchList[i]["authors"]}</td></tr>
                     <tr><td>Category:</td><td>${searchList[i]["category"]}</td></tr>
                     <tr><td>Snippet:</td><td>${searchList[i]["textSnippet"]}</td></tr>
                     <tr><td>Publisher:</td><td>${searchList[i]["publisher"]}</td></tr>
                     <tr><td>Date Published:</td><td>${searchList[i]["publishedDate"]}</td></tr>
                     <tr><td>Page Count:</td><td>${searchList[i]["pageCount"]}</td></tr>
-                    <tr><td>ISBN:</td><td>${searchList[i]["isbn"]}</td></tr></table><br></div></div>`;
+                    <tr><td>ISBN:</td><td>${searchList[i]["isbn"]}</td></tr>\
+                    </table>\
+                    <br>\
+                    </div>\
+                    </div>`;
                 }
             }
     }      
