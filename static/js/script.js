@@ -1,3 +1,7 @@
+/*jshint esversion: 6 */
+// Suggestion found on StackOverflow (https://stackoverflow.com/questions/8852765/jshint-and-jquery-is-not-defined) to bypass replacing the $ with jquery when passing the code into jshint //
+/*globals $:false */
+
 // API baseURL
 const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const key = "&printType=books";
@@ -59,7 +63,7 @@ function checkApiFormValidity(title, author){
     }
     else {
         okButton.disabled = true;
-        messageContainer.innerHTML += `<div class="row flashed-messages"><div class="col s12"><h4>Invalid Search. Please clear the form and try again.</h4></div></div>`
+        messageContainer.innerHTML += `<div class="row flashed-messages"><div class="col s12"><h4>Invalid Search. Please clear the form and try again.</h4></div></div>`;
     }
 }
 
@@ -83,10 +87,10 @@ function writeToDocument(title, author){
         let searchList = [];
         let books = data.items;
         if (data.totalItems == 0) {
-            messageContainer.innerHTML = `<div class="row flashed-messages"><h4 class>No Results Found</h4></div>`
+            messageContainer.innerHTML = `<div class="row flashed-messages"><h4 class>No Results Found</h4></div>`;
         } 
         else {
-            for (i in books) {
+            for (var i in books) {
                 let img = "";
                 let thumbnail = "";
                 let title = "";
