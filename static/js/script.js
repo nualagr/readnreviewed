@@ -1,6 +1,5 @@
 // API baseURL
 const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
-
 const key = "&printType=books";
 
 
@@ -194,6 +193,7 @@ function sendToPython(book){
 
 // Function copied from Code Institute 'Putting it All Together' project and then modified
 function sendMail(contactForm){
+    let messageContainer = document.getElementById("messages");
     emailjs.send("gmail", "read_n_reviewed_template", {
         "from_name": contactForm.name.value,
         "from_email": contactForm.email.value,
@@ -201,10 +201,20 @@ function sendMail(contactForm){
     })
     .then(function(response) {
             console.log("SUCCESS", response.status, response.text);
-            // Solution to loading the homepage found on Stack Overflow: https://stackoverflow.com/questions/4231605/how-to-redirect-to-home-page
-            window.location.href = "/";
+            messageContainer.innerHTML += `<div class="row flashed-messages">\
+            <div class="col s12">\
+            <h4>Your message has been sent.<br>A member of staff will be in touch shortly.</h4>\
+            </div></div>`;
+            // Visually clear the form input fields
+            contactForm.name.value = "";
+            contactForm.email.value = "";
+            contactForm.message.value = "";
         }, function(error) {
             console.log("FAILED...", error);
+            messageContainer.innerHTML += `<div class="row flashed-messages">\
+            <div class="col s12">\
+            <h4>Error: Your message failed to send. Please try again.</h4>\
+            </div></div>`;
         });
     return false; //to block from loading a new page
 }
