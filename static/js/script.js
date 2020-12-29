@@ -133,10 +133,10 @@ function writeToDocument(title, author){
                     "category" : category,
                     "description" : description,
                     "publisher" : publisher,
-                    "publishedDate" : publishedDate,
-                    "pageCount" : pageCount,
+                    "published_date" : publishedDate,
+                    "page_count" : pageCount,
                     "isbn" : isbn,
-                    "textSnippet" : textSnippet,
+                    "text_snippet" : textSnippet,
                 }
                 searchList.push(dict)
             }
@@ -159,10 +159,10 @@ function writeToDocument(title, author){
                     <tr><td>Title:</td><td> ${searchList[i]["title"]}</td></tr>
                     <tr><td>Author:</td><td>${searchList[i]["authors"]}</td></tr>
                     <tr><td>Category:</td><td>${searchList[i]["category"]}</td></tr>
-                    <tr><td>Snippet:</td><td>${searchList[i]["textSnippet"]}</td></tr>
+                    <tr><td>Snippet:</td><td>${searchList[i]["text_snippet"]}</td></tr>
                     <tr><td>Publisher:</td><td>${searchList[i]["publisher"]}</td></tr>
-                    <tr><td>Date Published:</td><td>${searchList[i]["publishedDate"]}</td></tr>
-                    <tr><td>Page Count:</td><td>${searchList[i]["pageCount"]}</td></tr>
+                    <tr><td>Date Published:</td><td>${searchList[i]["published_date"]}</td></tr>
+                    <tr><td>Page Count:</td><td>${searchList[i]["page_count"]}</td></tr>
                     <tr><td>ISBN:</td><td>${searchList[i]["isbn"]}</td></tr>\
                     </table>\
                     <br>\
