@@ -1,13 +1,20 @@
 {% extends "base.html" %}
+{% block styles %}
+    <!-- EmailJS code to initialize emailjs found at https://www.emailjs.com/docs/sdk/installation/ -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("user_7qNcYyPmXwfLnlz5m9BYA");
+        })();
+    </script>
+{% endblock %}
 {% block content %}
     <h3>Contact Us</h3>
     <!-- Contact Us Form -->
     <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
     <div class="row container">
         <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
-        <!-- <form method="POST" action="{{ url_for('contact') }}"> -->
         <form onsubmit="return sendMail(this);">
-        <!-- <form id="myForm"> -->
             <div class="card white darken-1">
                 <div class="card-content">
                     <div class="row">
