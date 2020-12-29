@@ -1,6 +1,6 @@
 <h1 align="center">Read n' Reviewed</h1>
 
-![alt text](documentation/readme-images/amiresponsive-mockup.png "Mockup of Read n' Reviewed index.html page when viewed on a desktop, tablet and mobile device.")
+![alt text](documentation/readme-images/amiresponsive-screenshot.png "Mockup of Read n' Reviewed index.html page when viewed on a desktop, tablet and mobile device.")
 <sub>*Created using* [Am I Responsive](http://ami.responsivedesign.is/)</sub>
 <br>
 
@@ -9,7 +9,7 @@ This is a community-lead site on which members can share their book reviews with
 
 The site is geared towards avid readers.  Membership of the site provides users with the ability to contribute to the site by writing reviews, 
 which can subsequently be edited or deleted, up-voting other members’ reviews, as well as providing users with a range of helpful tools including 
-the ability to save books to a Wish List and providing them with links to online stores where their desired book can be purchased.
+the ability to save books to a Wish List and providing them with links to an online store where their desired book can be purchased.
 
 This project is the third of four Milestone Projects that make up the Full Stack Web Development Program at The Code Institute, the main requirements 
 of which were to make a full-stack site that allows users to manage a common dataset about a particular domain using [HTML5](http://en.wikipedia.org/wiki/HTML5), 
@@ -147,7 +147,7 @@ As the owner of Read n' Reviewed website I would like:
 ### 1 Strategy Plane
 
 The main goals of the website include attracting new members to sign up to the site and encouraging existing members to upload book reviews and recommend books to 
-the community in order to increase participation on the site and ultimately raise revenue from the partner book stores where members are encouraged to buy their books 
+the community in order to increase participation on the site and ultimately raise revenue from the partner book store where members are encouraged to buy their books 
 through the provision of direct links. The website is a Business to Consumer model aimed at a literary conscious audience. It should include minimal, relevant, 
 content displayed in an attractive and intuitive manner. The UX process started with the creation of the User Stories above which helped to maintain a focus on user needs 
 and business goals during the design process.  
@@ -173,14 +173,14 @@ Users should be able to do the following on the website:
 -	Log in to the site.
 -	Log out of the site.
 -	Upload a book review for a book that hasn’t yet been reviewed on the site.
--	Upload a book review for a book that has already been reviewed on the site.
+-	Write and upload a book review for a book that has already been reviewed on the site.
 -	View their own book reviews.
 -	Edit their own book reviews.
 -	Delete their own book reviews.
 -	View other members’ book reviews.
 -	Up-vote other members’ book reviews.
 -	Create and curate their own Wish List of books that they want to read.
--	Search the site for a book by title, author or genre.
+-	Search the site for a book by title or author.
 -	Follow a link directly to an online store that sells the book in question.
 
 
@@ -192,22 +192,29 @@ Users should be able to do the following on the website:
 ### 3 Structure Plane
 After identifying the needs of the site's users and after visiting book review and recommendation websites the following website design and features were chosen:
 
-For ease of navigation there will be a navigation bar at the top with the brand logo and links to other pages on the site.  
-This will collapse into the hamburger icon when viewed on a mobile or tablet screen.  
-There will also be a common footer on each page with social media links, site administrator contact details and copyright information.
-The site is going to have different options for each of the following users: new visitors, site members and administrative users.  
+For ease of navigation there is a navigation bar at the top with the brand logo and links to other pages on the site.  
+This collapses into the hamburger icon when viewed on a mobile or tablet screen.  
+There is a common footer on each page with social media links, site administrator contact details and copyright information.
+The site has different options for each of the following users: new visitors, site members and administrative users.  
 
-1. **New visitors** to the site will be able to see the public landing page which will have three buttons on the navigation bar: Home, Log In and Register.  
-   -	The Log In page will consist of a simple form asking for the member’s username and password.
-   -	The Registration page will consist of a simple form asking the visitor to enter their email address, a username and a password.
-   -	The Home page or Landing page will explain what membership to the site offers its users, it will display positive site member testimonials and sample latest book reviews uploaded to the site.
+1. **New visitors** to the site are able to see the public landing page which has four links on the navigation bar: Home, Browse, Log In / Register and Search.  
+   -	The Log In page consists of a simple form asking for the member’s username and password.
+   -	The Registration page consists of a simple form asking the visitor to enter their email address, a username and a password.
+   -	The Home page or Landing page explains what membership to the site offers its users, it displays positive site member testimonials and the two latest books that have been reviewed on the site.
+   -    The Browse page, where users can browse through the books on the Read n' Reviewed site.
+   -    The Search page consists of a single search box where users can search for books on the site, by author or title.
 
 
-2. **Site members** will be able to log in to the site from the landing page.  Their logged in navigation bar will consist of:
-   -	A link to their Profile page which displays their username and a list of the reviews they have contributed to the site. Edit and Delete buttons will be provided beside these reviews allowing the user to curate their own reviews. 
+2. **Site members** are able to log in to the site from the landing page.  Their logged in navigation bar consists of:
+   -	A link to their Profile page which displays their username and email address.
+   -    The My Reviews page displays a list of the user's reviews submitted to the site along with Edit and Delete buttons allowing the user to curate their own reviews. 
    -	A link to the New Review page consisting of a form where they can input their new review and submit it to the database.  
-   -	A Wish-List page which consists of a bookshelf of book covers, that the member has earmarked for future reading. These cover images are links to those books as they have been reviewed on the site. 
+   -	The My Wish List page consists of a grid of book covers, that the member has earmarked for future reading. There are links to those books as they have been reviewed on the site along with 
+   links to buy the books. A simple bookmark icon beside each book allows the user to easily remove any book from the Wish List. 
+   -    The Browse page, where users can browse through the books on the Read n' Reviewed site.
    -	A Log Out button.
+   -    The Search page where users can search the site for any book by title or by author.  If no book currently exists on the 
+   site the logged in user is brought to the Add Book page and allowed to search for the edition they want and add it to the site.
 
 
 3. **Administrative Users** will be able to see the public site:
@@ -215,10 +222,10 @@ The site is going to have different options for each of the following users: new
    -	Log In Page
    -	Log Out button
    -	Registration Page
+   -    Browse Page
    -	Administrator Profile Page
-   -	New Review Page
-   -   Edit Review Page
-   -	Wish-List Page
+   -    My Reviews Page
+   -	My Wish List Page
 
 <br>
 
@@ -235,7 +242,7 @@ A book **favicon**, displayed on the web browser's tab allows the user to identi
 
 The **Title**, displayed on the web browser's tab at all times, clearly identifies the site as a book review website.
 
-**Search box**  - located just below the navigation bar on the desktop and mobile view this feature allows users to search the entire site for a specific book by title or by author without having to click on a separate button or tab.
+**Search icon**  - located on the navigation bar on the desktop, ipad and mobile views this feature opens the search page and allows users to search the entire site for a specific book by title or by author without having to click on a separate button or tab.
 
 **Logo/Home button** - Visible at all times, this feature foregrounds the website's brand and allows the user to navigate back to the home page without requiring an extra click.
 
@@ -267,8 +274,7 @@ Main content areas were expressed in similar ways, to create consistency.
 
 After visiting existing book review sites including [GoodReads](https://www.goodreads.com/), [BookPage](https://bookpage.com/), 
 [LoveReading](https://www.lovereading.co.uk/), [SFBook Reviews](https://sfbook.com/) and [Reedsy Discovery](https://reedsy.com/discovery), 
-it was deemed necessary to place a search box under the navigation menu on all screens. 
-On mobile view this will remain hidden unless the user clicks on the magnifying glass icon on the navbar so that the screen remains uncluttered.  
+it was deemed necessary to place a search icon on the navigation menu on all screens. 
 It was also deemed necessary to include a user icon on the top left of the navbar.
 The prioritisation of these function, through their placement outside of the collapsible menus on the competitor sites, indicates that these 
 functions are the most commonly used, or desired, by book review site users.  
@@ -347,14 +353,13 @@ which are found in the site logo, were used to draw attention to links and call-
 
 ![alt text](documentation/readme-images/blue-orange-book-logo.png "Read n' Reviewed logo.")
 
--	To keep the design clean, and professional the navigation bar will be #FFFFFF, white, matching the background of the body each page. 
--	The background colour of site will be #FFFFFF, white, to keep the website’s image clean and to provide easy contrast.
--	#CCCCCC, light gray, will be used to indicate changes in content areas or for horizontal dividers between sections.
--	When a user scrolls over navigation links a grey line will appear below the link being hovered over.  The line will change to blue when the link is active.  
--	The footer will be light gray, #CCCCCC, with eerie black, #222222, text.  To provide visual feedback to the user the social media and other links in the footer will turn blue when hovered over. 
--	Deep Saffron, #F69222, will be used as an accent colour throughout the site, from the logo to horizontal lines between sections, to call-to-action buttons.
--	Ochre, #BF7218, will be used for the books star ratings.
--	Text colour throughout the site will be Eerie Black (#222222) which a strong contrast to the other colours in the site.  The use of this colour ensures that the text should be legible and meet accessibility standards regardless of the background colour of the element in question.
+-	To keep the design clean, and professional the navigation bar is #FFFFFF, white, matching the background of the body each page. 
+-	The background colour of site is also #FFFFFF, white, to keep the website’s image clean and to provide easy contrast.
+-	#CCCCCC, light gray, has been used to indicate changes in content areas and for horizontal dividers between sections.
+-	When a user scrolls or hovers over the links on the navigation bar the background changes to a light grey in order to provide the user with visual feedback.  
+-	Light gray, #CCCCCC, has been used for the Footer, with eerie black, #222222, text.  To provide visual feedback to the user the social media and other links in the footer turn from blue to eerie black when hovered over. 
+-	Deep Saffron, #F69222, has been used as an accent colour throughout the site, from the logo to call-to-action buttons and the star rating stars.
+-	Text colour throughout the site is Eerie Black (#222222) in colour, which provides a strong contrast to the other colours in the site.  The use of this colour ensures that the text should be legible and meet accessibility standards regardless of the background colour of the element in question.
 
 #### Icons
 
@@ -420,12 +425,11 @@ The Read n’ Reviewed website relies on three database collections:
 | Title	        |Key in db	    |form validation type	|Data type  |
 | :------------ |:--------------| :---------------------|:--------- |
 |User ID        |_id	        |None	                |ObjectId   |
-|First Name	    |firstName	    |text, maxlength="40"   |string     |
-|Last Name	    |lastName	    |text, maxlength="40"	|string     |
 |Username	    |username	    |text, maxlength="40"   |string     |
+|Password	    |password	    |text, maxlength="40"	|string     |
 |Email Address	|email	        |email, maxlength="40"  |string     |
 |Password	    |password	    |text, maxlength="15"	|string     |
-|Wish List      |wishList       |checked box            |ObjectId - Book ID     |
+|Wish List      |wishlist       |checked box            |Array of ObjectIds - Book ID     |
 
 <br>
 
@@ -433,11 +437,16 @@ The Read n’ Reviewed website relies on three database collections:
 | Title	            |Key in db	    |form validation type	|Data type  |
 | :------------     |:--------------| :---------------------|:--------- |
 |Book ID            |_id            |None                   |ObjectId   |
+|Thumbnail          |thumbnail      |None                   |string of the book cover url     |
 |Title	            |title	        |text, maxlength="200"  |string     |
-|Author             |author         |text, maxlength="100"  |string     |
-|Genre              |genre          |dropdown               |string     |
-|ISBN	            |isbn           |text, maxlength="17"   |string     |
-|Image URL          |image_url      |url, maxlength="200"   |string     |
+|Authors            |authors        |text, maxlength="100"  |array of strings     |
+|Category           |category       |None                   |string     |
+|Description        |description    |None                   |string     |
+|Publisher          |publisher      |None                   |string     |
+|Published Date     |published_date |None                   |string     |
+|Page Count         |page_count     |None                   |integer    |
+|ISBN	            |isbn           |None                   |string     |
+|Text Snippet       |text_snippet   |None                   |string     |
 
 <br>
 
@@ -445,12 +454,14 @@ The Read n’ Reviewed website relies on three database collections:
 | Title	        |Key in db	    |form validation type	|Data type  |
 | :------------ |:--------------| :---------------------|:--------- |
 |Review ID      |_id            |None                   |ObjectId   |
-|User ID        |user_id        |None                   |ObjectId   |
 |Book ID        |book_id        |None                   |ObjectId   |
-|Date           |date           |None	                |datetime   |
 |Rating	        |rating         |dropdown menu          |string     |
-|Review	        |review         |dropdown menu          |string     |
-|Vote           |vote           |button                 |integer    |
+|Review	        |review         |text                   |string     |
+|Reviewer       |created_by     |None                   |string     |
+|Date           |review_date    |None	                |datetime   |
+|Review Score   |review_score   |None                   |integer    |
+|Upvoters       |upvoters       |None                   |array of strings, usernames     |
+
 <br>
 
 ##### back to [top](#table-of-contents)
@@ -461,27 +472,28 @@ The Read n’ Reviewed website relies on three database collections:
 
 - Languages: 
 
-  * [HTML5](http://en.wikipedia.org/wiki/HTML5). Used to create the structure of the game page and the 404 page.
+  * [HTML5](http://en.wikipedia.org/wiki/HTML5). Used to create the structure of the Read n' Reviewed website and the custom 404 page.
   * [CSS3](http://en.wikipedia.org/wiki/CSS). Used to add style to the website. 
-  * [JavaScript](https://en.wikipedia.org/wiki/JavaScript). Used to create the dynamic, interactive elements of the website.
-  * [Python](https://en.wikipedia.org/wiki/Python_(programming_language)).
+  * [JavaScript](https://en.wikipedia.org/wiki/JavaScript). Used to create the dynamic, interactive elements of the website such as the carousel and to call the Google Books API.
+  * [Python](https://en.wikipedia.org/wiki/Python_(programming_language)).  Used to create and run the web application.
   * [Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine)).  Used to simplify displaying data from the backend of this project smoothly and effectively in html.
   
 - Websites
   * [Am I Responsive](http://ami.responsivedesign.is/). Used to create the mock-up image showing the site as it would behave when viewed on desktop, mobile and tablet devices. 
   * [Code Institute](https://codeinstitute.net/). Used to review concepts covered in preceding modules and walk-through projects. 
-  * [Coolors](https://coolors.co/ffbe0b-fb5607-ff006e-8338ec-3a86ff). Used to analyse the film poster and choose a suitable colour scheme for the site.
+  * [Coolors](https://coolors.co/ffbe0b-fb5607-ff006e-8338ec-3a86ff). Used to analyse the site logo to isolate the colours used within and to construct the colour palette for the site.
   * [Emailjs](https://emailjs.com/). Used to connect EmailJS to gmail, create an email template, and use their Javascript library to trigger an email with dynamic variables that are populated from the Contact Us form.
-  * [Font Awesome](https://fontawesome.com/). Used to source the free icons that were used for the social media links in the footer and for the mute, home and help buttons.
+  * [Font Awesome](https://fontawesome.com/). Used to source the free icons that were used for the social media links in the footer and for the profile, home, edit, delete and search buttons.
   * [Google Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools). Used throughout the project to test the responsiveness of elements, to target and apply CSS styles during the design phase and to test the site's performance once built. 
   * [Google Fonts](https://fonts.google.com/). Used to choose and source the font used in the body of the site.
-  * [Github](https://github.com/). Used to host the deployed site and used as a respository for all previous versions of the build.
+  * [Github](https://github.com/). Used as a respository for all previous versions of the build.
   * [Gitpod](https://www.gitpod.io/). This online IDE was used to build and develop the website.
+  * [Heroku](https://www.heroku.com/). The cloud platform used to host the deployed site.
   * [jQuery](https://jquery.com/). This JavaScript library was used to traverse the DOM and used for dynamic event handling. 
   * [RandomKeyGen](https://randomkeygen.com/). Used to generate the Secret Key.
   * [Slack](code-institute-room.slack.com). Used during development and testing to find the solutions to problems enountered.
   * [Stack Overflow](https://stackoverflow.com/). Used to search for the answers to problems encountered during the development and testing of the website.
-  * [Vecteezy](https://www.vecteezy.com/vector-art/599621-book-reading-logo-and-symbols-template-icons). Used to source the site icon.
+  * [Vecteezy](https://www.vecteezy.com/vector-art/599621-book-reading-logo-and-symbols-template-icons). Used to source the site icon and the custom 404 page background.
   * [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator). Used to validate the CSS file.
   * [W3C HTML Validation Service](https://validator.w3.org/). Used to validate the HTML files.
 
@@ -567,11 +579,10 @@ Once that was working, an extra check was added into the same if statement to se
 If a user was logged in, and if they had not written the review being iterated over, then the upvote button would be displayed beside that review.
 This prevented non-site-members from voting on reviews.
 
-Next 
 
 [API]()
 
-Google Books API was chosen due to the large amount of information that was made freely available, however many issues
+Google Books API was chosen due to the large amount of information that is freely available, however many issues
 cropped up during development relating to the API.  
 Initially the API call was made using the special keywords 'intitle', 'inauthor' and 'isbn', that can be used in the volumes search
 to specify the search terms to search in those particular fields.  This often returned searches where no books could be found.  Removing
@@ -579,7 +590,7 @@ the 'isbn' keyword and unlinking the associated field in the form on the add_boo
 it was not always successful.  This problem was ignored to begin with. The response, when successful, was used to populate the readnreviewed database. 
 
 The response often consisted of an array of a number of different books and/or editions of the same book that fit the search criteria.
-As they are automatically ordered by relevance by the API the first book in each response was chosen.  Within the volumeInfo element the fields of:
+As they are automatically ordered by relevance by the API the first book in each response was initially chosen.  Within the volumeInfo element the fields of:
 * title (a string), 
 * authors (an array of strings, often only containing one string), 
 * categories (initially thought to contain the genre, it later became obvious that 
@@ -597,7 +608,7 @@ From the searchInfo element the field of textSnippet (a string) was also include
 Many issues arose relating to these fields. 
 
 The imageLinks provided non-secure http urls that resulted in console warnings whenever a page was loaded that attempted to display the images using the urls.
-With a warning for each image being displayed the console was often full of warnings. After reading about the issue on Stack Overflow the 'thumbnail' url was split into 
+With a warning for each image being displayed, the console was often full of warnings. After reading about the issue on Stack Overflow the 'thumbnail' url was split into 
 substrings and concatenated with an 's' before being uploaded to the Mongodb database.
 
 It was discovered when attempting to add various books that the Google Books API does not store dummy data.
@@ -606,12 +617,14 @@ missing from book to book.
 
 [Later on](https://github.com/nualagr/readnreviewed/commit/3082773796944d8b111b671d74819e58894f0007) in the development process this issue was returned to.
 Google Books API returns up to ten books per call.  It was decided to display all the information returned in each call. 
-A dictionary of each book was created. They were written to the screen using the JavaScript .innterHTML() function 
+A variable was created for each field in the database.  These variables were assigned blank strings initially.  A series of if statements checks
+whether the associated field exists in the API response.  If so, then that information overwrites the empty string. A dictionary of each book is created. 
+These are appended to an empty array using push().  This array is then iterated over and each dictionary is written to the screen using the JavaScript .innterHTML() function 
 and displayed in rows and columns, with the information separated into tables within each row.  A button, which passed the dictionary's information to a JavaScript function
-sendToPython(), was created for each instance.  As this information contained strings, integers and many escape characters this led to complications when the browser attempted to write it to the screen.
+sendToPython(), is created for each instance.  As this information contains strings, integers and many escape characters this led to complications when the browser attempted to write it to the screen.
 At first JSON.stringify() was used to convert the dictionary to a string.  This did not solve the issue on its own.  Next encodeURIComponent() was used to encode the remaining problematic special characters.
 This also did not fully solve the problem. Finally btoa() was used to encode the information to base64 before rendering on the screen.  
-When the user clicked the now working button, the sendToPython() function was called.  This function uses atob() and decodeURIComponent unpack the book information into its JSON string.
+When the user clicks the now working button, the sendToPython() function is called.  This function uses atob() and decodeURIComponent to unpack the book information into its JSON string.
 fetch()'s 'POST' method is then used to send the newBook to Python. Within the add_book() the newBook is unpacked into a dictionary and added to the database. 
 The redirect url for the view_book.html page of this new book is then sent as a response back to fetch() and window.location.href is used to load that page in the browser. 
 
@@ -634,7 +647,7 @@ During development Chrome, Firefox and other browsers started showing a warning 
 Reading numerous posts on [Stack Overflow](https://stackoverflow.com/questions/14810795/flask-url-for-generating-http-url-instead-of-https/26636880) revealed that this is a problem associated with Flask's url_for() function. 
 It was suggested that adding a scheme parameter stating that the scheme='https' and that the connection was external=True, forcing the use of the full url, would fix the problem.
 Rather than adding this each time url_for was called, a wrapper function was defined that called the url_for and added these parameters. 
-This https_url_for() function was thenb called for each redirect.  This removed the issue of the browser warnings.
+This https_url_for() function was then called for each redirect.  This removed the issue of the browser warnings.
 
 
 ##### back to [top](#table-of-contents)
@@ -810,6 +823,8 @@ The following [Materialize](https://materializecss.com/) components were used an
 
 - [Carousel](https://materializecss.com/carousel.html) 
 
+- [Modal](https://materializecss.com/modals.html)
+
 
 ### Media
 
@@ -823,7 +838,7 @@ The following [Materialize](https://materializecss.com/) components were used an
 - [Code Institue](https://codeinstitute.net/) and the very helpful tutors.
 - Thank you to my project mentor [Reuben Ferrante](https://uk.linkedin.com/in/reuben-ferrante).
 - The [Code Institue](https://codeinstitute.net/) community on [Slack](code-institute-room.slack.com) for their support.
-- A special thank you to my partner Kevin for his patience and support throughout this project. 
+- A very special thank you to my partner Kevin for his patience and support throughout this project. 
 - I received inspiration for this project from:
     - The [Code Institue](https://codeinstitute.net/) 'Task Manager' project.
     - The [Code Institue](https://codeinstitute.net/) 'Putting it all together' project.
