@@ -395,4 +395,8 @@ h3 {
     height: 60%;
     margin-top: 20px;
 }
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    margin-right: 0px;
+}
 }
