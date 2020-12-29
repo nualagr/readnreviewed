@@ -155,7 +155,7 @@ function writeToDocument(title, author){
                     <hr\
                     <br>\
                     <div class='col s12 m6 center-align'>\
-                    <img src='${searchList[i]["thumbnail"]}' class='centered'>\
+                    <img src='${searchList[i]["thumbnail"]}' alt='${searchList[i]["title"]} book cover' class='centered'>\
                     <br>\
                     <button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button>\
                     </div>\
