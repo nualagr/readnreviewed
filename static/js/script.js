@@ -2,7 +2,9 @@
 const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const key = "&printType=books";
 
-
+/**
+ * Function to call Google Books API
+ */
 function getData(title, author, cb){
     let xhr = new XMLHttpRequest();
     // Use encodeURIcomponent() to replace each instance of a space in the 
@@ -61,7 +63,15 @@ function checkApiFormValidity(title, author){
     }
 }
 
-
+/**
+ * Function to take in the title and author from the Add Book form
+ * Call the getData function to make the API call
+ * If call returns no books flash a message to user
+ * If call returns books, create a dictionary of each one
+ * Substituting empty strings for information not supplied
+ * Add each dict to a list
+ * Iterate through the list of dicts, printing each to the screen for the user to see.
+ */
 function writeToDocument(title, author){   
     let el = document.getElementById("bookContentContainer");
     let messageContainer = document.getElementById("messages");
@@ -69,11 +79,6 @@ function writeToDocument(title, author){
     el.innerHTML = "";
 
     getData(title, author, function(data){
-
-        // data is an object
-        // it has items, data.items
-        // data.items is an array of book objects
-        // each book object has a bunch of properties, such as volumeInfo, searchInfo
         console.log(data);
         let searchList = [];
         let books = data.items;
@@ -142,7 +147,7 @@ function writeToDocument(title, author){
             }
             console.log("SearchList:", searchList);
 
-            // Print data to screen
+                // Print data to screen
                 for (i in searchList) {
                     // How to encode string to base 64 found at Stack Overflow: https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript
                     el.innerHTML += `<div class='row'>\
@@ -191,9 +196,13 @@ function sendToPython(book){
         console.log("This is the chosen book:", newBook)
 }
 
-
-// Function copied from Code Institute 'Putting it All Together' project and then modified
+/** 
+* Function to send the user's name, email address and message
+* to the site administrator in an email 
+* using the email service EmailJS
+*/
 function sendMail(contactForm){
+    // Function copied from Code Institute 'Putting it All Together' project and then modified
     let messageContainer = document.getElementById("messages");
     emailjs.send("gmail", "read_n_reviewed_template", {
         "from_name": contactForm.name.value,
