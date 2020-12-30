@@ -379,7 +379,7 @@ def add_review(book_id):
             "add_review.html", book_id=book_id, this_book=this_book,)
 
 
-@app.route("/upvote_review/<review_id>", methods=["GET", "POST"])
+@app.route("/upvote_review/<review_id>", methods=["POST"])
 def upvote_review(review_id):
     review = mongo.db.reviews.find_one({
         "_id": ObjectId(review_id)
@@ -449,7 +449,7 @@ def my_reviews():
     my_reviews = list(
         mongo.db.reviews.find(
             {"created_by": current_user}).sort("review_date", -1))
-    if (my_reviews == []):
+    if my_reviews == []:
         flash("You have not posted a review yet.")
         return render_template(
             "my_reviews.html", books_and_reviews=my_reviews)
@@ -530,7 +530,7 @@ def search():
         query = request.form.get("query")
         books = list(mongo.db.books.find({"$text": {"$search": query}}))
         if session:
-            if (books == []):
+            if books == []:
                 flash(
                     "No result found. "
                     "Fill in the form below to add a book to the site.")
@@ -538,7 +538,7 @@ def search():
             else:
                 return render_template("search.html", books=books)
         else:
-            if (books == []):
+            if books == []:
                 flash("No results found.")
                 return render_template("search.html", books=[])
             else:
