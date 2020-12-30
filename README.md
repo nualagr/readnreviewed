@@ -18,7 +18,7 @@ of which were to make a full-stack site that allows users to manage a common dat
 , [MongoDB](https://en.wikipedia.org/wiki/MongoDB).
 
 
-Click <a href="">here</a> to visit the site.
+Click <a href="https://read-n-reviewed.herokuapp.com/">here</a> to visit the site.
 <br>
 
 ## **Table of Contents**
@@ -554,9 +554,15 @@ Each instance highlighted by JSHint was changed to dot notation.
 ![alt text](documentation/readme-images/pep8-online-results.png "Screenshot of pep8online.com's results showing that the app.py file is PEP8 compliant.")
 <br>
 
+When the same code was run through the [infoheap](https://infoheap.com/python-lint-online/) Python linter however it showed the following error:
 ![alt text](documentation/readme-images/infoheap-python-lint-syntax-error.png "Screenshot of infoheap Python linter results.")
 <br>
+I am grateful to my mentor Mr. Reuben Ferrante for pointing out the solution to this problem, reversing the order of the arguments, placing the _scheme and _external ahead of the args and kwargs. 
 
+The app.py file now passes through the linter with no errors.
+
+![alt text](documentation/readme-images/infoheap-python-lint-no-errors.png "Screenshot infoheap Python linter results showing no errors.")
+<br>
 ### Chrome Developer Tools
 ![alt text](documentation/readme-images/non-passive-event-listener-error.png "Screenshot of Chrome Developer Tools non-passive-event-listener warnings.")
 <br>

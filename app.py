@@ -31,7 +31,7 @@ def https_url_for(*args, **kwargs):
     Function to ensure that the wrapped url_for call is external and
     therefore uses the full url and that that url is https not http.
     """
-    return url_for(*args, **kwargs, _scheme='https', _external=True)
+    return url_for(_scheme='https', _external=True, *args, **kwargs)
 
 
 def render_book_template(book_id):
