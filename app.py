@@ -60,7 +60,7 @@ def render_book_template(book_id):
     this_book_title = this_book["title"].replace(" ", "+")
     this_book_author = this_book["authors"][0].replace(" ", "+")
     book_purchase_url = (
-        "https://www.amazon.com/s?tag=faketag&k=" +
+        "https://www.amazon.com/s?tag=falsetag&k=" +
         this_book_title + " " + this_book_author)
 
     # Create a list of users who have reviewed this book already
@@ -294,7 +294,7 @@ def logout():
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     """
-    Function to find take the fetch api post from script.js.
+    Function to find take the fetch API post from script.js.
     Add the book to the database.
     Return the url for the view_book page for the new book.
     """
@@ -393,9 +393,9 @@ def upvote_review(review_id):
                 "$addToSet": {"upvoters": session["user"]}}
         )
         print("getting book id")
-        book_id = ObjectId(review['book_id'])
+        # book_id = ObjectId(review['book_id'])
         print("returning book page")
-        return render_book_template(book_id)
+        return render_book_template(review['book_id'])
 
 
 @app.route("/edit_review/<book_id>/<review_id>", methods=["GET", "POST"])
@@ -493,7 +493,7 @@ def wish_list():
             this_book_title = this_book["title"].replace(" ", "+")
             this_book_author = this_book["authors"][0].replace(" ", "+")
             book_purchase_url = (
-                "https://www.amazon.com/s?tag=faketag&k=" +
+                "https://www.amazon.com/s?tag=falsetag&k=" +
                 this_book_title + " " + this_book_author)
             this_book["book_purchase_url"] = book_purchase_url
             # Add the book to the booklist list
