@@ -516,6 +516,20 @@ The Read n’ Reviewed website relies on three database collections:
 
 ## Testing
 
+Before the second meeting with my mentor the project was run through linters and validators.
+
+When the script.js file was entered into [JSHint](https://jshint.com/) it returned many warnings regarding the use of square-bracket, as opposed to dot notation.
+
+![alt text](documentation/readme-images/jshint-dot-notation-warnings.png "Screenshot showing dot notation warnings from JSHint.")
+<br>
+
+Although square-bracket notation is valid, the dot notation is preferred because it is easier to read and works better with aggressive JavaScript minimizers.
+
+Each instance highlighted by JSHint was changed to dot notation.
+
+![alt text](documentation/readme-images/jshint-dot-notation-warnings-fixed.jpg "Screenshot of JSHint results showing no warnings regarding dot notation.")
+<br>
+
 ### Performance
 
 
@@ -547,7 +561,7 @@ The Read n’ Reviewed website relies on three database collections:
 ---
 
 ### Bugs
-[Timestamp Issue](https://github.com/nualagr/readnreviewed/commit/99e0f0f19aa5044a82ed62983af332909c47ad8d):
+### [Timestamp Issue](https://github.com/nualagr/readnreviewed/commit/99e0f0f19aa5044a82ed62983af332909c47ad8d):
 
 An issue cropped up early on in development with regard to sorting the review dates.
 The Python 'datetime' module had been imported.  The 'datetime' class was used to get the date the review was posted in the format e.strftime("%a, %b %d, %Y") which printed out 
@@ -562,7 +576,7 @@ The list of review dictionaries associated with each book which had been passed 
 A 'for loop' was used to iterate over each dictionary in the list. The .fromtimestamp class method was used to convert each 'review_date' element to the local date corresponding to the POSIX timestamp.
 The .strftime("%a, %b %d, %Y") method was then used to convert them into the format "Wed, Dec 02, 2020" which could then be passed through to jinja and displayed on the view_book.html page.
 
-[Upvoters](https://github.com/nualagr/readnreviewed/commit/ce734e28149185c06f53b49646c35c798a39a9bb):
+### [Upvoters](https://github.com/nualagr/readnreviewed/commit/ce734e28149185c06f53b49646c35c798a39a9bb):
 
 After creating the logic behind users being able to upvote a review that they feel was helpful or reflected their views of the same 
 book it became apparent that it was necessary to prevent users from being able to upvote the same review multiple times or to upvote 
@@ -580,7 +594,7 @@ If a user was logged in, and if they had not written the review being iterated o
 This prevented non-site-members from voting on reviews.
 
 
-[API]()
+### [API]()
 
 Google Books API was chosen due to the large amount of information that is freely available, however many issues
 cropped up during development relating to the API.  
@@ -628,7 +642,7 @@ When the user clicks the now working button, the sendToPython() function is call
 fetch()'s 'POST' method is then used to send the newBook to Python. Within the add_book() the newBook is unpacked into a dictionary and added to the database. 
 The redirect url for the view_book.html page of this new book is then sent as a response back to fetch() and window.location.href is used to load that page in the browser. 
 
-Session Cookie Username 
+### Session Cookie Username 
 
 At first the way in which users were logged in and identified from page to page was through the use of a session cookie that stored their username. 
 This was a security flaw as it would have been possible to access someone's account by artifically creating the cookie an account holder's username.
@@ -641,13 +655,23 @@ A hashed cookie is generated on each login, increasing the site's security.
 After reading about user authentification it was decided that this was beyond the scope of this project due to time constraints. 
 These changes were rolled back and the rudimentary user authentification of the session['user'] cookie was reinstated with the user's username.
 
-[url_for()](https://github.com/nualagr/readnreviewed/commit/8a6d67a0905226abbebbab747363011e105e2414)
+### [url_for()](https://github.com/nualagr/readnreviewed/commit/8a6d67a0905226abbebbab747363011e105e2414)
 
 During development Chrome, Firefox and other browsers started showing a warning page declaring that the connection was not secure when a user's profile page was being loaded after login.
 Reading numerous posts on [Stack Overflow](https://stackoverflow.com/questions/14810795/flask-url-for-generating-http-url-instead-of-https/26636880) revealed that this is a problem associated with Flask's url_for() function. 
 It was suggested that adding a scheme parameter stating that the scheme='https' and that the connection was external=True, forcing the use of the full url, would fix the problem.
 Rather than adding this each time url_for was called, a wrapper function was defined that called the url_for and added these parameters. 
 This https_url_for() function was then called for each redirect.  This removed the issue of the browser warnings.
+
+
+
+### Heroku Server Request Interrupted Error
+
+During development the app was tested regularly on Heroku.  A Server Request Interrupted Error occurred intermittently, usually when the user tried to upvote another user's review.
+Although the page would not load and the error was logged, when the page was refreshed, the review had successfully been upvoted. 
+
+![alt text](documentation/readme-images/heroku-server-request-interrupted-error.png "Screenshot of Heroku Logs showing the Server Request Interrupted Error.")
+<br>
 
 
 ##### back to [top](#table-of-contents)
