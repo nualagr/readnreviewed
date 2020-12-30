@@ -519,6 +519,16 @@ The Read n’ Reviewed website relies on three database collections:
 
 Before the second meeting with my mentor the project was run through linters and validators.
 
+### HTML files
+[W3C HTML Validation Service](https://validator.w3.org/) was used to validate the HTML code. 
+The home page produced the following error regarding the Materialize carousel div elements which have an href attribute.
+
+![alt text](documentation/readme-images/html-validator-href-attribute-error.png "Screenshot showing error from https://validator.w3.org/ regarding the href attribute in the div tag.")
+<br>
+
+Posts on [Stack Overflow](https://stackoverflow.com/questions/18824009/attribute-href-not-allowed-on-element-button-at-this-point) suggested changing the attribute to a 'data-' attribute.
+This succeeded in removing the error.
+
 ### JavaScript File
 When the script.js file was entered into [JSHint](https://jshint.com/) it returned many warnings regarding the use of square-bracket, as opposed to dot notation.
 
