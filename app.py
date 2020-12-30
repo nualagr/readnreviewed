@@ -75,6 +75,9 @@ def render_book_template(book_id):
         # Add reviewers to the reviewers list
         reviewers.append(book_review["created_by"])
 
+    bookmark = False
+    purchase = False
+
     # If the session cookie exists then the user is logged in
     if session:
         # Grab the session user's wishlist from the database
@@ -86,17 +89,10 @@ def render_book_template(book_id):
         # If so, remove the bookmark
         if (this_book["_id"] in wishlist):
             bookmark = True
-        else:
-            bookmark = False
 
         # Check and see whether the current user has reviewed this book
-        if session["user"] in reviewers:
-            purchase = False
-        else:
+        if (session["user"] not in reviewers):
             purchase = True
-    else:
-        bookmark = False
-        purchase = False
 
     return render_template(
         "view_book.html", this_book=this_book,
