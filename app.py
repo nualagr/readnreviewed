@@ -26,6 +26,9 @@ app.email_key = os.environ.get("EMAIL_KEY")
 mongo = PyMongo(app)
 
 
+BOOK_REVIEW_LIMIT = 2
+
+
 def https_url_for(*args, **kwargs):
     """
     Function to ensure that the wrapped url_for call is external and
@@ -123,27 +126,18 @@ def get_books():
     """
     # Sort the reviews by date descending to find the latest reviews
     reviews = list(mongo.db.reviews.find().sort("review_date", -1))
-    book_one_id = reviews[0]["book_id"]
-    # Use the book id field from the review
-    # to find the corresponding book information
-    book_one = mongo.db.books.find_one(
-        {"_id": ObjectId(book_one_id)}
-    )
-    # Create a list to store the two books to be displayed
-    latest_reviewed_books = [book_one]
-    while (len(latest_reviewed_books) < 2):
-        for review in reviews:
-            # If the review is linked to the first book shown, skip book
-            if review["book_id"] == book_one_id:
-                continue
-            else:
-                book_two_id = review["book_id"]
-                book_two = mongo.db.books.find_one(
-                    {"_id": ObjectId(book_two_id)}
-                )
-                latest_reviewed_books.append(book_two)
-                return render_template(
-                    "index.html", book_one=book_one, book_two=book_two)
+    latest_reviewed_books = []
+    reviewed_book_ids = []
+    # Simplification of code suggested by Mr. Reuben Ferrante
+    for review in reviews:
+        if review["book_id"] not in reviewed_book_ids:
+            book = mongo.db.books.find_one(
+                {"_id": ObjectId(review["book_id"])})
+            latest_reviewed_books.append(book)
+            reviewed_book_ids.append(review["book_id"])
+            if len(latest_reviewed_books) >= BOOK_REVIEW_LIMIT:
+                break
+    return render_template("index.html", books=latest_reviewed_books)
 
 
 @app.route("/browse")
