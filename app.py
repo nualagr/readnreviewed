@@ -526,9 +526,6 @@ def unmark(book_id):
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    if request.method == "GET":
-        return render_template("search.html", books=[])
-
     if request.method == "POST":
         query = request.form.get("query")
         books = list(mongo.db.books.find({"$text": {"$search": query}}))
@@ -546,6 +543,8 @@ def search():
                 return render_template("search.html", books=[])
             else:
                 return render_template("search.html", books=books)
+
+    return render_template("search.html", books=[])
 
 
 @app.route('/success')
