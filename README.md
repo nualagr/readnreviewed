@@ -529,6 +529,13 @@ The home page produced the following error regarding the Materialize carousel di
 Posts on [Stack Overflow](https://stackoverflow.com/questions/18824009/attribute-href-not-allowed-on-element-button-at-this-point) suggested changing the attribute to a 'data-' attribute.
 This succeeded in removing the error.
 
+![alt text](documentation/readme-images/html-validator-no-errors.png "Screenshot showing HTML validator results.")
+<br>
+### CSS files
+[W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator) was used to validate the CSS file.  No errors were found.
+![alt text](documentation/readme-images/css-validator-results.png "Screenshot showing results from CSS validator.")
+<br>
+
 ### JavaScript File
 When the script.js file was entered into [JSHint](https://jshint.com/) it returned many warnings regarding the use of square-bracket, as opposed to dot notation.
 
@@ -546,6 +553,14 @@ Each instance highlighted by JSHint was changed to dot notation.
 [pep8online.com](http://pep8online.com/) was used to check whether the app.py Python file was PEP8 compliant.
 ![alt text](documentation/readme-images/pep8-online-results.png "Screenshot of pep8online.com's results showing that the app.py file is PEP8 compliant.")
 <br>
+
+![alt text](documentation/readme-images/infoheap-python-lint-syntax-error.png "Screenshot of infoheap Python linter results.")
+<br>
+
+### Chrome Developer Tools
+![alt text](documentation/readme-images/non-passive-event-listener-error.png "Screenshot of Chrome Developer Tools non-passive-event-listener warnings.")
+<br>
+
 ### Performance
 
 
