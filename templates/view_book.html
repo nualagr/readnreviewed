@@ -133,7 +133,7 @@
         {% endif %}
         <!-- Modal Section -->
         {% for review in this_book_reviews %}
-        <section id="modalContainer" class="container">
+        <div id="modalContainer" class="container">
             <!-- Check to see whether there is a user logged in -->
                 {% if session.user %}
                     <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
@@ -156,7 +156,7 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
-        </section>
+        </div>
 
 
 {% endblock %}

@@ -34,7 +34,7 @@
     {% endfor %}
         <!-- Modals Section -->
         <!-- Modal component taken from https://materializecss.com/modals.html#! and modified -->
-        <section id="modalContainer" class="container">
+        <div id="modalContainer" class="container">
             {% for review in books_and_reviews %}
             <!-- Modal Structure -->
             <div id="{{ review._id }}" class="modal modal-fixed-footer">
@@ -52,5 +52,5 @@
                 </div>
             </div>
             {% endfor %}
-        </section>
+        </div>
 {% endblock %}

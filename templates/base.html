@@ -78,7 +78,7 @@
     </header>
 
     <!-- Flash Messages -->
-    <section class="container" id="messages">
+    <div class="container" id="messages">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -90,18 +90,18 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-    </section>
+    </div>
     <!-- Main Content Block -->
     <main class="container">
         {% block content %}
         {% endblock %}
         <!-- API Content Block -->
-        <section class="container">
+        <div class="container">
             <div id="bookContentContainer"></div>
                 <!-- <button class="btn" id="apiBtn" onclick="writeToDocument('foundation', 'asimov', '9780141301136');">API</button>    -->
                 <!-- <button class="btn" id="apiBtn" onclick="writeToDocument('fantastic', 'dahl', '9780141301136');">API</button> -->
                 <!-- <button class="btn" id="apiBtn" onclick="writeToDocument('bfg', 'dahl');">API</button> -->
-        </section>
+        </div>
     </main>
     <!-- Footer component taken from https://materializecss.com/footer.html and modified -->
     <footer class="page-footer grey lighten-4">

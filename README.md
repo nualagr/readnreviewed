@@ -493,6 +493,7 @@ The Read n’ Reviewed website relies on three database collections:
   * [RandomKeyGen](https://randomkeygen.com/). Used to generate the Secret Key.
   * [Slack](code-institute-room.slack.com). Used during development and testing to find the solutions to problems enountered.
   * [Stack Overflow](https://stackoverflow.com/). Used to search for the answers to problems encountered during the development and testing of the website.
+  * [TinyPNG](https://tinypng.com/). Used to compress the site logo to improve performance results.
   * [Vecteezy](https://www.vecteezy.com/vector-art/599621-book-reading-logo-and-symbols-template-icons). Used to source the site icon and the custom 404 page background.
   * [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator). Used to validate the CSS file.
   * [W3C HTML Validation Service](https://validator.w3.org/). Used to validate the HTML files.
