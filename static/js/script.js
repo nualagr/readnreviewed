@@ -103,36 +103,36 @@ function writeToDocument(title, author){
                 let isbn = "";
                 let textSnippet = "";
 
-                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["imageLinks"] && books[i]["volumeInfo"]["imageLinks"]["thumbnail"]) {
-                    img = books[i]["volumeInfo"]["imageLinks"]["thumbnail"];
+                if (books[i].volumeInfo && books[i].volumeInfo.imageLinks && books[i].volumeInfo.imageLinks.thumbnail) {
+                    img = books[i].volumeInfo.imageLinks.thumbnail;
                     thumbnail = img.substring(0, 4) + 's' + img.substring(4);
                 }
-                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["title"]) {
-                    title = books[i]["volumeInfo"]["title"];
+                if (books[i].volumeInfo && books[i].volumeInfo.title) {
+                    title = books[i].volumeInfo.title;
                 }
-                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["authors"]) {
-                    authors = books[i]["volumeInfo"]["authors"];
+                if (books[i].volumeInfo && books[i].volumeInfo.authors) {
+                    authors = books[i].volumeInfo.authors;
                 }
-                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["categories"] && books[i]["volumeInfo"]["categories"][0]) {
-                    category = books[i]["volumeInfo"]["categories"][0];
+                if (books[i].volumeInfo && books[i].volumeInfo.categories && books[i].volumeInfo.categories[0]) {
+                    category = books[i].volumeInfo.categories[0];
                 }
-                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["description"]) {
-                    description = books[i]["volumeInfo"]["description"];
+                if (books[i].volumeInfo && books[i].volumeInfo.description) {
+                    description = books[i].volumeInfo.description;
                 }
-                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["publisher"]) {
-                    publisher = books[i]["volumeInfo"]["publisher"];
+                if (books[i].volumeInfo && books[i].volumeInfo.publisher) {
+                    publisher = books[i].volumeInfo.publisher;
                 }
-                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["publishedDate"]) {
-                    publishedDate = books[i]["volumeInfo"]["publishedDate"];
+                if (books[i].volumeInfo && books[i].volumeInfo.publishedDate) {
+                    publishedDate = books[i].volumeInfo.publishedDate;
                 }
-                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["pageCount"]) {
-                    pageCount = books[i]["volumeInfo"]["pageCount"];
+                if (books[i].volumeInfo && books[i].volumeInfo.pageCount) {
+                    pageCount = books[i].volumeInfo.pageCount;
                 }
-                if (books[i]["volumeInfo"] && books[i]["volumeInfo"]["industryIdentifiers"] && books[i]["volumeInfo"]["industryIdentifiers"][0] && books[i]["volumeInfo"]["industryIdentifiers"][0]["identifier"]) {
-                    isbn = books[i]["volumeInfo"]["industryIdentifiers"][0]["identifier"];
+                if (books[i].volumeInfo && books[i].volumeInfo.industryIdentifiers && books[i].volumeInfo.industryIdentifiers[0] && books[i].volumeInfo.industryIdentifiers[0].identifier) {
+                    isbn = books[i].volumeInfo.industryIdentifiers[0].identifier;
                 }
-                if (books[i]["searchInfo"] && books[i]["searchInfo"]["textSnippet"]) {
-                    textSnippet = books[i]["searchInfo"]["textSnippet"];
+                if (books[i].searchInfo && books[i].searchInfo.textSnippet) {
+                    textSnippet = books[i].searchInfo.textSnippet;
                 }
 
                 var dict = {
@@ -146,8 +146,8 @@ function writeToDocument(title, author){
                     "page_count" : pageCount,
                     "isbn" : isbn,
                     "text_snippet" : textSnippet,
-                }
-                searchList.push(dict)
+                };
+                searchList.push(dict);
             }
             console.log("SearchList:", searchList);
 
@@ -159,20 +159,20 @@ function writeToDocument(title, author){
                     <hr\
                     <br>\
                     <div class='col s12 m6 center-align'>\
-                    <img src='${searchList[i]["thumbnail"]}' alt='${searchList[i]["title"]} book cover' class='centered'>\
+                    <img src='${searchList[i].thumbnail}' alt='${searchList[i].title} book cover' class='centered'>\
                     <br>\
                     <button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button>\
                     </div>\
                     <div class='col s12 m6'>\
                     <table>\
-                    <tr><td>Title:</td><td> ${searchList[i]["title"]}</td></tr>
-                    <tr><td>Author:</td><td>${searchList[i]["authors"]}</td></tr>
-                    <tr><td>Category:</td><td>${searchList[i]["category"]}</td></tr>
-                    <tr><td>Snippet:</td><td>${searchList[i]["text_snippet"]}</td></tr>
-                    <tr><td>Publisher:</td><td>${searchList[i]["publisher"]}</td></tr>
-                    <tr><td>Date Published:</td><td>${searchList[i]["published_date"]}</td></tr>
-                    <tr><td>Page Count:</td><td>${searchList[i]["page_count"]}</td></tr>
-                    <tr><td>ISBN:</td><td>${searchList[i]["isbn"]}</td></tr>\
+                    <tr><td>Title:</td><td> ${searchList[i].title}</td></tr>
+                    <tr><td>Author:</td><td>${searchList[i].authors}</td></tr>
+                    <tr><td>Category:</td><td>${searchList[i].category}</td></tr>
+                    <tr><td>Snippet:</td><td>${searchList[i].text_snippet}</td></tr>
+                    <tr><td>Publisher:</td><td>${searchList[i].publisher}</td></tr>
+                    <tr><td>Date Published:</td><td>${searchList[i].published_date}</td></tr>
+                    <tr><td>Page Count:</td><td>${searchList[i].page_count}</td></tr>
+                    <tr><td>ISBN:</td><td>${searchList[i].isbn}</td></tr>\
                     </table>\
                     <br>\
                     </div>\
@@ -180,7 +180,7 @@ function writeToDocument(title, author){
                 }
             }
     }      
-)}
+);}
 
 
 /** 
@@ -196,8 +196,8 @@ function sendToPython(book){
         },
         // newBook is still a JSON string
         body: newBook,
-        }).then(response => window.location.href = response["url"]); //redirect to the view_page for the new book
-        console.log("This is the chosen book:", newBook)
+        }).then(response => window.location.href = response.url); //redirect to the view_page for the new book
+        console.log("This is the chosen book:", newBook);
 }
 
 /** 
