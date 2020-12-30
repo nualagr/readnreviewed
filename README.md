@@ -489,7 +489,9 @@ The Read n’ Reviewed website relies on three database collections:
   * [Github](https://github.com/). Used as a respository for all previous versions of the build.
   * [Gitpod](https://www.gitpod.io/). This online IDE was used to build and develop the website.
   * [Heroku](https://www.heroku.com/). The cloud platform used to host the deployed site.
+  * [Infoheap](https://infoheap.com/python-lint-online/).  Used to validate the Python app.py code.
   * [jQuery](https://jquery.com/). This JavaScript library was used to traverse the DOM and used for dynamic event handling. 
+  * [Pep8online](http://pep8online.com/).  Used to check the app.py file for PEP8 compliance.
   * [RandomKeyGen](https://randomkeygen.com/). Used to generate the Secret Key.
   * [Slack](code-institute-room.slack.com). Used during development and testing to find the solutions to problems enountered.
   * [Stack Overflow](https://stackoverflow.com/). Used to search for the answers to problems encountered during the development and testing of the website.
@@ -506,7 +508,7 @@ The Read n’ Reviewed website relies on three database collections:
   * [MongoDB](https://en.wikipedia.org/wiki/MongoDB), the document-oriented database program.  Used to store the users' information, book reviews and other data.
 
 - APIs
-  * [GoodReads API](https://www.goodreads.com/api/index). Used to source the book synopsis, author information and book covers.
+  * [Google Books API](https://developers.google.com/books). Used to source the book synopsis, author information and book covers.
 
 - Apps:
   * [Balsamiq](https://balsamiq.com/). Used to create the project wireframes.
