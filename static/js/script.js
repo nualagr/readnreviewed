@@ -70,9 +70,9 @@ function checkApiFormValidity(title, author){
 /**
  * Function to take in the title and author from the Add Book form
  * Call the getData function to make the API call
- * If call returns no books flash a message to user
- * If call returns books, create a dictionary of each one
- * Substituting empty strings for information not supplied
+ * If API call returns no books flash a message to user
+ * If API call returns books, create a dictionary of each one
+ * Substitute empty strings for information not supplied by Google Books API
  * Add each dict to a list
  * Iterate through the list of dicts, printing each to the screen for the user to see.
  */
@@ -91,6 +91,8 @@ function writeToDocument(title, author){
         } 
         else {
             for (var i in books) {
+                // Assign an empty string to the variables
+                // as Google Books API does not always contain these fields
                 let img = "";
                 let thumbnail = "";
                 let title = "";
@@ -103,6 +105,7 @@ function writeToDocument(title, author){
                 let isbn = "";
                 let textSnippet = "";
 
+                // If fields exist overwrite the empty string with the returned information
                 if (books[i].volumeInfo && books[i].volumeInfo.imageLinks && books[i].volumeInfo.imageLinks.thumbnail) {
                     img = books[i].volumeInfo.imageLinks.thumbnail;
                     thumbnail = img.substring(0, 4) + 's' + img.substring(4);
