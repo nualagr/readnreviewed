@@ -518,6 +518,7 @@ The Read n’ Reviewed website relies on three database collections:
 
 Before the second meeting with my mentor the project was run through linters and validators.
 
+### JavaScript File
 When the script.js file was entered into [JSHint](https://jshint.com/) it returned many warnings regarding the use of square-bracket, as opposed to dot notation.
 
 ![alt text](documentation/readme-images/jshint-dot-notation-warnings.png "Screenshot showing dot notation warnings from JSHint.")
@@ -530,6 +531,10 @@ Each instance highlighted by JSHint was changed to dot notation.
 ![alt text](documentation/readme-images/jshint-dot-notation-warnings-fixed.jpg "Screenshot of JSHint results showing no warnings regarding dot notation.")
 <br>
 
+### Python File
+[pep8online.com](http://pep8online.com/) was used to check whether the app.py Python file was PEP8 compliant.
+![alt text](documentation/readme-images/pep8-online-results.png "Screenshot of pep8online.com's results showing that the app.py file is PEP8 compliant.")
+<br>
 ### Performance
 
 
