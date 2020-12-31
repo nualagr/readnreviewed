@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap');
 
 body {
-    /* background-color: #F69222; */
-    background-image: url('../images/blue-sky-background.jpg'); 
+    background-color: #FFFFFF;
+    /* background-image: url('../images/blue-sky-background.jpg'); 
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     color: #222222;
     font-family: 'Open Sans', sans-serif;
     display: flex;
@@ -236,6 +236,13 @@ img.cover {
 }
 
 /* Dividers and Containers ------------------------*/
+.banner-image {
+    background-image: url('../images/blue-sky-background.jpg'); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .subtitle:after {
     content: "";
     background-color: #e0e0e0;
