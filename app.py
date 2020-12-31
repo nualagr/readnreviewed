@@ -526,7 +526,7 @@ def search():
         print("This is the books result: ", books)
         if session:
             if books == []:
-                flash("The book you requested has not yet been reviewed.")
+                flash("The requested book has not yet been reviewed.")
                 flash("Fill in the form below to add the book to the site.")
                 return render_template("add_book.html")
             else:
