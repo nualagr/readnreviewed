@@ -440,7 +440,10 @@ def my_reviews():
         mongo.db.reviews.find(
             {"created_by": current_user}).sort("review_date", -1))
     if my_reviews == []:
-        flash("You have not posted a review yet.")
+        flash("No reviews posted. ")
+        flash(
+            "Search for the book you wish to review and "
+            "share your thoughts with the Read n' Reviewed community.")
         return render_template(
             "my_reviews.html", books_and_reviews=my_reviews)
     else:
@@ -468,7 +471,8 @@ def wish_list():
         {"username": session["user"]})["wishlist"])
     # If the user has no saved books yet
     if (wishlist == []):
-        flash("No saved books yet.")
+        flash("No books saved.")
+        flash("Click on a bookmark to save a book to your Wish List.")
         return redirect(https_url_for("browse"))
     # If the user has saved books to their wishlist
     else:
@@ -522,9 +526,8 @@ def search():
         print("This is the books result: ", books)
         if session:
             if books == []:
-                flash(
-                    "The book you requested has not yet been reviewed. "
-                    "Fill in the form below to add the book to the site.")
+                flash("The book you requested has not yet been reviewed.")
+                flash("Fill in the form below to add the book to the site.")
                 return render_template("add_book.html")
             else:
                 return render_template("search.html", books=books)
