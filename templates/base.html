@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read ‘n Reviewed is a community-led book recommendation website. Members share their book reviews with a view to helping others choose the perfect book to read next.">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" type="text/css">
@@ -40,9 +41,9 @@
             <div class="container">
             <div class="nav-wrapper">
                 <div class="row">
-                    <a href="{{ url_for('get_books') }}" class="brand-logo hide-on-large-only"><img src="{{ url_for('static', filename='images/readnreviewedlogo-smaller.png') }}" width="40" alt="Read n' Reviewed brand logo" class="solo-book-icon"></a>
-                    <a href="{{ url_for('get_books') }}" class="brand-logo light-blue-text text-darken-2 hide-on-med-and-down"><img src="{{ url_for('static', filename='images/readnreviewedlogo-smaller.png') }}" width="40" alt="Read n' Reviewed brand logo" class="book-icon-near-text"> Read n' Reviewed</a>
-                    <a href="#" data-target="mobile" class="sidenav-trigger light-blue-text text-darken-2"><i class="fas fa-bars"></i></a>
+                    <a href="{{ url_for('get_books') }}" class="brand-logo hide-on-large-only" aria-label="Read n' Reviewed logo button to open the home page"><img src="{{ url_for('static', filename='images/readnreviewedlogo-smaller.png') }}" width="40" height="37" alt="Read n' Reviewed brand logo" class="solo-book-icon"></a>
+                    <a href="{{ url_for('get_books') }}" class="brand-logo light-blue-text text-darken-2 hide-on-med-and-down" aria-label="Read n' Reviewed logo button to open the home page"><img src="{{ url_for('static', filename='images/readnreviewedlogo-smaller.png') }}" width="40" height="37" alt="Read n' Reviewed brand logo" class="book-icon-near-text"> Read n' Reviewed</a>
+                    <a href="#" data-target="mobile" class="sidenav-trigger light-blue-text text-darken-2" aria-label="Hamburger icon button to open navigation menu"><i class="fas fa-bars"></i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('get_books') }}">Home</a></li>
                         <!-- If a site member is logged in, display the following links -->
@@ -53,12 +54,12 @@
                         {% endif %}
                         <li><a href="{{ url_for('browse') }}">Browse</a></li>
                         <!-- Dropdown Trigger taken from https://materializecss.com/navbar.html#! and modified -->
-                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown"><i class="fa fa-user"></i></a></li>
-                        <li><a href="{{ url_for('search') }}"><i class="fas fa-search"></i></a></li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown" aria-label="User icon, button to open dropdown menu"><i class="fa fa-user"></i></a></li>
+                        <li><a href="{{ url_for('search') }}" aria-label="Search icon, button to open search page"><i class="fas fa-search"></i></a></li>
                     </ul>
                     <!-- Dropdown Trigger taken from https://materializecss.com/navbar.html#! and modified -->
-                    <a class="dropdown-trigger hide-on-large-only right" href="#!" data-target="dropdown"><i class="fa fa-user light-blue-text text-darken-2 nav-icon"></i></a>
-                    <a href="{{ url_for('search') }}" class="hide-on-large-only right"><i class="fas fa-search light-blue-text text-darken-2 nav-icon" aria-hidden="true"></i></a>
+                    <a class="dropdown-trigger hide-on-large-only right" href="#!" data-target="dropdown" aria-label="User icon, button to open dropdown menu"><i class="fa fa-user light-blue-text text-darken-2 nav-icon"></i></a>
+                    <a href="{{ url_for('search') }}" class="hide-on-large-only right" aria-label="Search icon, button to open search page"><i class="fas fa-search light-blue-text text-darken-2 nav-icon" aria-hidden="true"></i></a>
                 </div>
             </div>
             </div>

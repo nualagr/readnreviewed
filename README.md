@@ -5,7 +5,7 @@
 <br>
 
 Read ‘n Reviewed is a fictitious book recommendation website. 
-This is a community-lead site on which members can share their book reviews with a view to helping others choose the perfect book to read next.
+This is a community-led site on which members can share their book reviews with a view to helping others choose the perfect book to read next.
 
 The site is geared towards avid readers.  Membership of the site provides users with the ability to contribute to the site by writing reviews, 
 which can subsequently be edited or deleted, up-voting other members’ reviews, as well as providing users with a range of helpful tools including 
