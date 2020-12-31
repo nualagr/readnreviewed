@@ -154,6 +154,7 @@ function writeToDocument(title, author){
             console.log("SearchList:", searchList);
 
                 // Print data to screen
+                messageContainer.innerHTML += `<div class="row flashed-messages"><div class="col s12"><h4>Choose the edition you wish to review.</h4></div></div>`;
                 for (i in searchList) {
                     // How to encode string to base 64 found at Stack Overflow: https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript
                     el.innerHTML += `<div class='row'>\
