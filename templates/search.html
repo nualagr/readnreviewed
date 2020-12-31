@@ -54,5 +54,15 @@
             </div>
         </div>
     {% endfor %}
+    {% block scripts %}
+        <script>
+            document.getElementById('searchTitle').addEventListener('input', function(e) {
+                okButton.disabled = false;
+            })
 
+            document.getElementById('searchAuthor').addEventListener('input', function(e) {
+                okButton.disabled = false;
+            })
+        </script>
+    {% endblock %}
 {% endblock %}
