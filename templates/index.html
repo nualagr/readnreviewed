@@ -2,7 +2,7 @@
 
 {% block content %}
 <!-- Banner Image -->
-    <section class="section-lg container bg-cover center grey lighten-5">
+    <section class="section-lg container bg-cover center bg-grey-light">
             <h1 class="subtitle">Uncover Your Next Great Read!</h1>
             {% if session %}
             {% else %}
@@ -15,26 +15,28 @@
             {% endif %}
     </section>
     <!-- Latest Reviews -->
-    <div class="row">
-        <div class="col s12">
-            <h3 class="center subtitle">Latest Reviews</h3>
-        </div>
-    </div>
-    {% for book in books %}
-        <div class="row center">
-            <div class="col s12 m6">
-                <img src="{{ book.thumbnail }}" class="cover" alt="{{ book.title }} by {{ book.authors[0] }} book cover"><br>
-            </div>
-            <div class="col s12 m6">
-                <p>{{ book.category }}</p>
-                <h5>{{ book.title }}</h5>
-                <p>{{ book.authors[0] }}</p>
-                <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity -->
-                <p>{{ book.text_snippet | safe | truncate(300, True)}}</p>
-                <p><a href="{{ url_for('view_book', book_id=book._id) }}">Read review...</a></p>
+    <section class="section-lg container white">
+        <div class="row">
+            <div class="col s12">
+                <h3 class="center subtitle">Latest Reviews</h3>
             </div>
         </div>
-    {% endfor %}
+        {% for book in books %}
+            <div class="row center">
+                <div class="col s12 m6">
+                    <img src="{{ book.thumbnail }}" class="cover" alt="{{ book.title }} by {{ book.authors[0] }} book cover"><br>
+                </div>
+                <div class="col s12 m6">
+                    <p>{{ book.category }}</p>
+                    <h5>{{ book.title }}</h5>
+                    <p>{{ book.authors[0] }}</p>
+                    <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity -->
+                    <p>{{ book.text_snippet | safe | truncate(300, True)}}</p>
+                    <p><a href="{{ url_for('view_book', book_id=book._id) }}">View book...</a></p>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
    <!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->
     <section class="section-lg container bg-grey-light bg-cover center">
             <h3 class="subtitle">What Our Members Say About Us</h3>
@@ -46,7 +48,7 @@
                     <p class="white-text">Read n' Reviewed community has saved me time and money.  I have found great book after great book since joining the site.</p>
                     <i class="fas fa-quote-right"></i>
                 </div>
-                <div class="carousel-item orange darken-2 white-text" data-href="#two!">
+                <div class="carousel-item blue darken-2 white-text" data-href="#two!">
                     <h2>George Hill</h2>
                     <br>
                     <i class="fas fa-quote-left"></i>
@@ -60,7 +62,7 @@
                     <p class="white-text">Good honest reviews.</p>
                     <i class="fas fa-quote-right"></i>
                 </div>
-                <div class="carousel-item orange darken-2 white-text" data-href="#four!">
+                <div class="carousel-item blue darken-2 white-text" data-href="#four!">
                     <h2>Mary Murphy</h2>
                     <br>
                     <i class="fas fa-quote-left"></i>

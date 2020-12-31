@@ -78,7 +78,7 @@
     </header>
 
     <!-- Flash Messages -->
-    <div class="container" id="messages">
+    <div class="container bg-grey-light" id="messages">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -92,7 +92,7 @@
         {% endwith %}
     </div>
     <!-- Main Content Block -->
-    <main class="container">
+    <main class="container bg-grey-light">
         {% block content %}
         {% endblock %}
         <!-- API Content Block -->

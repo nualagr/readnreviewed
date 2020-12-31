@@ -251,4 +251,6 @@ $(document).ready(function(){
     $('select').formSelect();
     /* Initialization of the modal trigger taken from https://materializecss.com/modals.html#! */
     $('.modal').modal();
+    /* Initialization of the tool tip taken from https://materializecss.com/tooltips.html */
+    $('.tooltipped').tooltip();
 });
