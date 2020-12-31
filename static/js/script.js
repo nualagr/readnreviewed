@@ -6,6 +6,41 @@
 const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const key = "&printType=books";
 
+
+document.getElementById('searchTitle').addEventListener('input', function(e) {
+    okButton.disabled = false;
+})
+
+
+document.getElementById('searchAuthor').addEventListener('input', function(e) {
+    okButton.disabled = false;
+})
+
+
+/**
+ * Function to check whether the user's input into the 
+ * API Search Form matches the pattern set on the fields.
+ * If so, call the writeToDocument() function to make the API call.
+ * If not, disable the submit button and alert the user.
+ */
+function checkApiFormValidity(title, author){
+    let isValidSearchTitle = searchTitle.checkValidity();
+    let isValidSearchAuthor = searchAuthor.checkValidity();
+    let okButton = document.getElementById("okButton");
+    let messageContainer = document.getElementById("messages");
+    // Sets the flashed messages back to blank every time the button is clicked.
+    messageContainer.innerHTML = "";
+
+    if (isValidSearchTitle && isValidSearchAuthor) {
+        okButton.disabled = false;
+        writeToDocument(title, author);
+    }
+    else {
+        messageContainer.innerHTML += `<div class="row flashed-messages"><div class="col s12"><h4>Invalid Search. Please try again.</h4></div></div>`;
+    }
+}
+
+
 /**
  * Function to call Google Books API
  */
@@ -42,30 +77,6 @@ function getData(title, author, cb){
     };
 }
 
-
-/**
- * Function to check whether the user's input into the 
- * API Search Form matches the pattern set on the fields.
- * If so, call the writeToDocument() function to make the API call.
- * If not, disable the submit button and alert the user.
- */
-function checkApiFormValidity(title, author){
-    let isValidSearchTitle = searchTitle.checkValidity();
-    let isValidSearchAuthor = searchAuthor.checkValidity();
-    let okButton = document.getElementById("okButton");
-    let messageContainer = document.getElementById("messages");
-    // Sets the flashed messages back to blank every time the button is clicked.
-    messageContainer.innerHTML = "";
-
-    if (isValidSearchTitle && isValidSearchAuthor) {
-        okButton.disabled = false;
-        writeToDocument(title, author);
-    }
-    else {
-        okButton.disabled = true;
-        messageContainer.innerHTML += `<div class="row flashed-messages"><div class="col s12"><h4>Invalid Search. Please clear the form and try again.</h4></div></div>`;
-    }
-}
 
 /**
  * Function to take in the title and author from the Add Book form

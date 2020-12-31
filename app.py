@@ -533,7 +533,7 @@ def search():
                 return render_template("search.html", books=[])
             else:
                 return render_template("search.html", books=books)
-
+    
     return render_template("search.html", books=[])
 
 
