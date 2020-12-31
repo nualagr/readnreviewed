@@ -23,6 +23,7 @@
                         {% endfor %} 
                 </p>
                 <p>{{ review.review_date }}</p>
+                <p>Upvotes: {{ review.review_score }}</p>
                 <p><a href="{{ url_for('my_review', book_id=review.book_id) }}">Read review...</a></p>
             </div>
             <div class="col s6 m3 review-column valign-wrapper">

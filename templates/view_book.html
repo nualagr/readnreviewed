@@ -97,6 +97,7 @@
                     <div class="col s4">
                         <p>Reviewed By: {{ review.created_by }}</p>
                         <p>On: {{ review.review_date }}</p>
+                        <p>Upvotes: {{ review.review_score }}</p>
                             <!-- Check to see whether there is a user logged in -->
                             {% if session.user %}
                                 <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
