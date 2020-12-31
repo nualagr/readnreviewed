@@ -533,8 +533,8 @@ def search():
                 return render_template("search.html", books=books)
         else:
             if books == []:
+                flash("No result found.")
                 flash(
-                    "No results found. "
                     "Join our community and be the first to review this book.")
                 return render_template("search.html", books=[])
             else:
