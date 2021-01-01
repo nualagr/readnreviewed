@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <!-- Selected Book -->
+    <div class="container">
     <div class="row">
         <div class="col s12">
             <h3 class="center subtitle">{{ this_book.title }}</h3>
@@ -50,7 +51,7 @@
                 <div class="col s6 m3 center">
                     {% if purchase %}
                         <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
-                            <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-med-and-down"> it now</span></span> 
+                            <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-small-only"> it now</span></span> 
                         </a>
                     {% else %}
                     {% endif %}
@@ -158,6 +159,5 @@
                 {% endif %}
             {% endfor %}
         </div>
-
-
+    </div>
 {% endblock %}

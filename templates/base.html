@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Read n' Reviewed | Book Recommendation Website</title>
     <meta charset="UTF-8">
+    <meta name="author" content="Nuala Greenwood">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Read ‘n Reviewed is a community-led book recommendation website. Members share their book reviews helping others choose the perfect book to read next.">
+    <meta name="keywords" content="Book reviews, Reviews, Books, Reading, Recommendations, Book Recommendation Website, Community, Review Books, Book Inspiration, Love of Books">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" type="text/css">
@@ -16,10 +19,9 @@
     <!-- <link rel="stylesheet" href="../static/css/style.css" type="text/css"> -->
     {% block styles %}
     {% endblock %}
-    <title>Read n' Reviewed</title>
 </head>
 <body>
-    <header class="header-wrapper">
+    <header>
         <!-- Navbar Dropdown -->
         <!-- Dropdown Structure taken from https://materializecss.com/navbar.html#! and modified -->
         <ul id="dropdown" class="dropdown-content">
@@ -90,7 +92,7 @@
         {% endwith %}
     </div>
     <!-- Main Content Block -->
-    <main class="container bg-grey-light">
+    <main class="bg-grey-light">
         {% block content %}
         {% endblock %}
         <!-- API Content Block -->

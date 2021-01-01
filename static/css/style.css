@@ -187,7 +187,12 @@ textarea.materialize-textarea.valid {
 .dropdown-content li>span {
     color: #1F76BB;
 }
+
 /* Navbar ----------------------------------------- */
+nav.nav-extended {
+    margin-bottom: 2px;
+    height: 64px;
+}
 nav .brand-logo .solo-book-icon {
     margin-top: 12px;
 }
@@ -241,6 +246,11 @@ img.cover {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 2px;
+    width: 100%;
+    margin: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .subtitle:after {
@@ -255,8 +265,8 @@ img.cover {
 .section-md, 
 .section-lg, 
 .section-xl {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .container {
@@ -374,15 +384,6 @@ footer a:hover{
 .section-lg {
     padding-top: 80px;
     padding-bottom: 80px;
-}
-}
-
-@media screen and (max-width: 991px) and (min-width: 769px) {
-.header-search-wrapper .big-search {
-    left: 15px;
-    right: 15px;
-    text-align: center;
-    width: auto;
 }
 }
 

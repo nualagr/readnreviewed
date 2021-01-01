@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <!-- Selected Book -->
+    <div class="container">
     <div class="row">
         <div class="col s12">
             <h3 class="center subtitle">{{ this_book.title }}</h3>
@@ -78,4 +79,5 @@
                     {% endif %}
                 {% endif %}
         </div>
+    </div>
 {% endblock %}
