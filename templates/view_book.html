@@ -47,29 +47,29 @@
             <!-- If the viewer is a logged-in member-->
             {% else %}
                 <!-- Link to buy the Selected Book on Amazon -->
-                <div class="col s6 m3">
+                <div class="col s6 m3 center">
                     {% if purchase %}
-                    <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
-                        <span class="btn bg-blue">Buy it now</span> 
-                    </a>
+                        <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
+                            <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-med-and-down"> it now</span></span> 
+                        </a>
                     {% else %}
                     {% endif %}
                 </div>
                 <!-- Selected Book Book Reviews -->
-                <div class="col s6 m3">
+                <div class="col s6 m3 center">
                 <!-- If there are book reviews for this book -->
                 {% if this_book_reviews %}
                     <!-- If this user has not already written a review for this book display the Write a Review button -->
                     {% if session.user not in reviewers %}
                         <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
-                            <span class="btn bg-orange">Write a Review</span> 
+                            <span class="btn bg-orange"><i class="fas fa-pen"></i><span class="hide-on-med-and-down"> Write a </span>Review</span> 
                         </a>
                     {% endif %}
                 <!-- If there are no book reviews for this book -->
                 {% else %}
                         <!-- Display the Write a Review button -->
                         <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
-                            <span class="btn bg-orange">Write a Review</span> 
+                            <span class="btn bg-orange"><i class="fas fa-pen"></i><span class="hide-on-med-and-down"> Write a </span>Review</span> 
                         </a>
                 {% endif %}
             </div>
@@ -103,9 +103,9 @@
                                 <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
                                 {% if session.user == review.created_by %}
                                     <p>                                        
-                                        <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp;                                       
+                                        <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-grey" title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only"> Edit</span></a>&nbsp;                                       
                                         <!-- Modal Trigger -->
-                                        <a class="btn bg-red modal-trigger" href="#{{ review._id }}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                        <a class="btn bg-red modal-trigger" href="#{{ review._id }}" title="Delete Review button"> <i class="fas fa-trash-alt"></i> <span class="hide-on-small-only"> Delete</span></a>
                                     </p>
                                 {% else %}
                                     <!-- Check to see whether the logged in user upvoted the review already, if not, display the Upvote button -->
@@ -113,7 +113,7 @@
                                     {% else %}
                                         <p>
                                             <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
-                                                <button type="submit" name="upvote" value="1" class="btn bg-grey">{{ review.review_score }} <i class="fas fa-caret-up prefix"></i> Upvote</button>
+                                                <button type="submit" name="upvote" value="1" class="btn bg-grey"><i class="fas fa-caret-up prefix"></i><span class="hide-on-small-only"> Upvote Review</span></button>
                                             </form>
                                         </p>
                                     {% endif %}

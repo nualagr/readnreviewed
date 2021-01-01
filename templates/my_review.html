@@ -38,9 +38,9 @@
                 <p>On: {{ my_review.review_date }}</p>
                 <p>Upvotes: {{ my_review.review_score }}</p>
                 <p>                                        
-                    <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp; 
+                    <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn bg-grey" title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only"> Edit</span></a>&nbsp; 
                     <!-- Modal Trigger -->
-                    <a class="btn bg-red modal-trigger" href="#{{ my_review._id }}"><i class="fas fa-trash-alt"></i> Delete</a>                                      
+                    <a class="btn bg-red modal-trigger" href="#{{ my_review._id }}" title="Delete Review button"><i class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>                                      
                 </p>
             </div>
             <div class="col s8 star-rating">

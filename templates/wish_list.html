@@ -30,7 +30,7 @@
                         <br> 
                     </div>
                     <div class="card-action wishlist center">
-                        <a href="{{ book.book_purchase_url }}" rel="noopener" target="_blank" title="Buy it now" class="button" aria-label="Link to purchase book.">
+                        <a href="{{ book.book_purchase_url }}" rel="noopener" target="_blank" title="Link to buy book online." class="button" aria-label="Link to purchase book.">
                             <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-med-and-down"> it now</span></span> 
                         </a>
                         <a href="{{ url_for('view_book', book_id=book._id) }}" title="Link to View Book page" class="button btn" aria-label="Link to view book."><i class="fas fa-book"></i> View<span class="hide-on-med-and-down"> Book</span></a>

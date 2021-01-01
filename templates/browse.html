@@ -7,10 +7,25 @@
         </div>
     </div>
     <!-- Books to Browse -->
-    {% for book in books %}
+    {% for book in books[0:1] %}
+    <div class="row center">
+        <div class="col s12 m6">
+            <img src="{{ book.thumbnail }}" alt="{{ book.title }} by {{ book.authors[0] }} book cover" class="cover" loading="eager"><br>
+        </div>
+        <div class="col s12 m6">
+            <p>{{ book.category }}</p>
+            <h5>{{ book.title }}</h5>
+            <p>{{ book.authors[0] }}</p> 
+            <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity-->
+            <p>{{ book.text_snippet | safe }}</p>
+            <p><a href="{{ url_for('view_book', book_id=book._id) }}" class="subtitle">Read review...</a></p>
+        </div>
+    </div>
+    {% endfor %}
+    {% for book in books[1:] %}
         <div class="row center">
             <div class="col s12 m6">
-                <img src="{{ book.thumbnail }}" alt="{{ book.title }} book cover" class="cover" loading="auto"><br>
+                <img src="{{ book.thumbnail }}" alt="{{ book.title }} book cover" class="cover" loading="lazy"><br>
             </div>
             <div class="col s12 m6">
                 <p>{{ book.category }}</p>
