@@ -9,7 +9,7 @@
     {% for review in books_and_reviews %}
         <div class="row review-container">
             <div class="col s6 m3 review-column">
-                <img src="{{ review.thumbnail }}" alt="{{ review.title }} by {{ review.authors[0] }} book cover">
+                <img src="{{ review.thumbnail }}" alt="{{ review.title }} by {{ review.authors[0] }} book cover" loading="auto">
             </div>
             <div class="col s6 m3 review-column">
                 <p class="title">{{ review.title }}</p>
@@ -27,9 +27,9 @@
                 <p><a href="{{ url_for('my_review', book_id=review.book_id) }}">Read review...</a></p>
             </div>
             <div class="col s6 m3 review-column valign-wrapper">
-                <a href="{{ url_for('edit_review', book_id=review.book_id, review_id=review._id) }}" class="btn bg-grey"><i class="fas fa-user-edit"></i> Edit</a>&nbsp;
+                <a href="{{ url_for('edit_review', book_id=review.book_id, review_id=review._id) }}" class="btn bg-grey" title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only"> Edit</span></a>&nbsp;&nbsp;
                 <!-- Modal Trigger -->
-                <a class="btn bg-red modal-trigger" href="#{{ review._id }}"><i class="fas fa-trash-alt"></i> Delete</a>
+                <a class="btn bg-red modal-trigger" href="#{{ review._id }}" title="Delete Review button"><i class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>
             </div>
         </div>
     {% endfor %}

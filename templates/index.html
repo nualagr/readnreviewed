@@ -24,7 +24,7 @@
         {% for book in books %}
             <div class="row center">
                 <div class="col s12 m6">
-                    <img src="{{ book.thumbnail }}" class="cover" alt="{{ book.title }} by {{ book.authors[0] }} book cover"><br>
+                    <img src="{{ book.thumbnail }}" class="cover" alt="{{ book.title }} by {{ book.authors[0] }} book cover" loading="auto"><br>
                 </div>
                 <div class="col s12 m6">
                     <p>{{ book.category }}</p>
@@ -79,7 +79,7 @@
                     <p>Read n' Reviewed is a community-led book recommendation website.  Unaffiliated with any publishing company
                     Read n' Reviewed's mission is to provide our members with a platform where they can share and access honest and 
                     revealing reviews making it easier to choose the perfect book to read next.</p>
-                    <p><img src="{{ url_for( 'static', filename='images/star-community-small.jpg') }}" alt="Star Community image" width="200"></p>
+                    <p><img src="{{ url_for( 'static', filename='images/star-community-small-w200.png') }}" alt="Star Community icon" width="200" height="160" loading="lazy"></p>
                     {% if session %}
                     {% else %}
                         <a href="{{ url_for('register') }}" class="btn-large btn orange">Register</a>

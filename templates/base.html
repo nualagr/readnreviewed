@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Read ‘n Reviewed is a community-led book recommendation website. Members share their book reviews with a view to helping others choose the perfect book to read next.">
+    <meta name="description" content="Read ‘n Reviewed is a community-led book recommendation website. Members share their book reviews helping others choose the perfect book to read next.">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" type="text/css">
@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <!-- Favicon -->
     <link rel="icon" sizes="32x32" href="{{ url_for( 'static', filename='images/favicon.png' ) }}"/>
-    <!-- <link rel="icon" type="image/svg+xml" href="static/images/favicon.png"> -->
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <!-- <link rel="stylesheet" href="../static/css/style.css" type="text/css"> -->
@@ -41,7 +40,7 @@
             <div class="container">
             <div class="nav-wrapper">
                 <div class="row">
-                    <a href="{{ url_for('get_books') }}" class="brand-logo hide-on-large-only" aria-label="Read n' Reviewed logo button to open the home page"><img src="{{ url_for('static', filename='images/readnreviewedlogo-smaller.png') }}" width="40" height="37" alt="Read n' Reviewed brand logo" class="solo-book-icon"></a>
+                    <a href="{{ url_for('get_books') }}" class="brand-logo hide-on-large-only" aria-label="Read n' Reviewed logo button to open the home page"><img src="{{ url_for('static', filename='images/rnr-logo-100w-small.png') }}" width="40" height="37" alt="Read n' Reviewed brand logo" class="solo-book-icon"></a>
                     <a href="{{ url_for('get_books') }}" class="brand-logo light-blue-text text-darken-2 hide-on-med-and-down" aria-label="Read n' Reviewed logo button to open the home page"><img src="{{ url_for('static', filename='images/readnreviewedlogo-smaller.png') }}" width="40" height="37" alt="Read n' Reviewed brand logo" class="book-icon-near-text">&nbsp;&nbsp;Read n' Reviewed</a>
                     <a href="#" data-target="mobile" class="sidenav-trigger light-blue-text text-darken-2" aria-label="Hamburger icon button to open navigation menu"><i class="fas fa-bars"></i></a>
                     <ul class="right hide-on-med-and-down">
@@ -50,7 +49,6 @@
                         {% if session.user %}
                             <li><a href="{{ url_for('my_reviews') }}">My Reviews</a></li>
                             <li><a href="{{ url_for('wish_list') }}">My Wish List</a></li>
-                            <!-- <li><a href="{{ url_for('add_book') }}">Add Book</a></li> -->
                         {% endif %}
                         <li><a href="{{ url_for('browse') }}">Browse</a></li>
                         <!-- Dropdown Trigger taken from https://materializecss.com/navbar.html#! and modified -->
@@ -71,7 +69,6 @@
                 <li><a href="{{ url_for('get_books') }}">Home</a></li>
                 {% if session.user %}
                     <li><a href="{{ url_for('my_reviews') }}">My Reviews</a></li>
-                    <!-- <li><a href="{{ url_for('add_book') }}">Add Book</a></li> -->
                     <li><a href="{{ url_for('wish_list') }}">My Wish List</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('browse') }}">Browse</a></li>

@@ -315,14 +315,20 @@ footer a:hover{
     overflow: hidden;
 }
 
-.card .card-action.wishlist a {
-    color: #F69222 !important;
-}
-
 .card .card-action.wishlist a:hover {
     color: #BF7218 !important;
 }
 
+.card .card-action.wishlist a.btn {
+    color: #F69222 !important;
+    font-weight: 500;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    margin-right: 0px;
+}
 /* Modals -------------------------------------------*/
 .modal-content {
     margin-top: 2rem;
