@@ -237,7 +237,7 @@ img.cover {
 
 /* Dividers and Containers ------------------------*/
 .banner-image {
-    background-image: url('../images/blue-sky-background.jpg'); 
+    background-image: url('../images/blue-sky-background-small.jpg'); 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
