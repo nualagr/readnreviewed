@@ -101,8 +101,9 @@ def render_book_template(book_id):
         reviewers=reviewers, bookmark=bookmark, purchase=purchase)
 
 
+# Error handler format found at:
+# https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
 @app.errorhandler(404)
-@app.route("/404")
 def page_not_found(e):
     """
     Function to set the 404 status explicitly
@@ -111,8 +112,11 @@ def page_not_found(e):
     return render_template("404.html"), 404
 
 
-@ app.errorhandler(500)
-def internal_server(error):
+@app.errorhandler(500)
+def internal_server_error(error):
+    """
+    Function to display the custom 500 error page.
+    """
     return render_template("500.html"), 500
 
 
@@ -139,7 +143,6 @@ def get_books():
             if len(latest_reviewed_books) >= BOOK_REVIEW_LIMIT:
                 break
     return render_template("index.html", books=latest_reviewed_books)
-
 
 @app.route("/browse")
 def browse():

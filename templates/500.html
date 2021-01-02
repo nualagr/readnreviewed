@@ -8,7 +8,6 @@
 
         .error-image {
         background-image: url({{ url_for( 'static', filename='images/broken-pencil.jpg' ) }});
-        /* background-color: #cccccc; */
         height: 700px;
         background-position: center;
         background-repeat: no-repeat;
@@ -16,7 +15,7 @@
         position: relative;
         }
 
-        .lost-text {
+        .error-text {
         text-align: center;
         position: absolute;
         top: 50%;
@@ -27,12 +26,12 @@
     </style>
 {% endblock %} 
 {% block content %}
-    <div class="error-image">
+    <div class="error-image container">
         <div class="error-text">
-            <h1>Error 500</h1>
-            <p>Ooops..Something went wrong.</p>
+            <h1>An unexpected error has occurred</h1>
+            <p>The administrator has been notified. Sorry for the inconvenience!</p>
             <p>Click 
-                <a href="{{url_for('get_books')}}">here</a>
+                <a href="{{ url_for('get_books') }}">here</a>
                 to head back to safety.
             </p>
         </div>
