@@ -76,22 +76,22 @@
                 <li><a href="{{ url_for('browse') }}">Browse</a></li>
         </ul>
     </header>
-    <!-- Flash Messages -->
-    <div class="container bg-grey-light" id="messages">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="row flashed-messages" id="flashedMessages">
-                        <h4>
-                            {{ message }}
-                        </h4>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </div>
     <!-- Main Content Block -->
     <main class="bg-grey-light">
+        <!-- Flash Messages -->
+        <div class="container" id="messages">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="row flashed-messages" id="flashedMessages">
+                            <h4>
+                                {{ message }}
+                            </h4>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
         {% block content %}
         {% endblock %}
         <!-- API Content Block -->

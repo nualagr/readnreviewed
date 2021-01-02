@@ -2,10 +2,6 @@
 
 body {
     background-color: #FFFFFF;
-    /* background-image: url('../images/blue-sky-background.jpg'); 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; */
     color: #222222;
     font-family: 'Open Sans', sans-serif;
     display: flex;
@@ -244,7 +240,7 @@ img.cover {
 
 /* Dividers and Containers ------------------------*/
 .banner-image {
-    background-image: url('../images/starry-gas-nebula.jpg'); 
+    background-image: url('../images/starburst3.jpg'); 
     /* background-image: radial-gradient(#FFFFFF, #70C6EB, #2AA9E0); */
     background-position: center;
     background-repeat: no-repeat;
