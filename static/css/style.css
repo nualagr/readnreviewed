@@ -250,8 +250,8 @@ img.cover {
 
 /* Dividers and Containers ------------------------*/
 .banner-image {
-    /* background-image: url('../images/starburst3.jpg');  */
-    background-image: radial-gradient(#FFFFFF, #70C6EB, #2AA9E0);
+    background-image: url('../images/starburst3.jpg'); 
+    /* background-image: radial-gradient(#FFFFFF, #70C6EB, #2AA9E0); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

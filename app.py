@@ -108,7 +108,12 @@ def page_not_found(e):
     Function to set the 404 status explicitly
     and display the custom 404.html page.
     """
-    return render_template('404.html'), 404
+    return render_template("404.html"), 404
+
+
+@ app.errorhandler(500)
+def internal_server(error):
+    return render_template("500.html"), 500
 
 
 @app.route("/")

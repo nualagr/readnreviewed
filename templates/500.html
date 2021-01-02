@@ -1,13 +1,13 @@
-{% extends "base.html" %}
-    {% block styles %}
+{% extends 'base.html' %}
+{% block styles %}
     <style>
         body {
         margin: 0;
         background-color: #FFFFFF;
         }
 
-        .lost-image {
-        background-image: url({{ url_for( 'static', filename='images/door-on-beach.jpg' ) }});
+        .error-image {
+        background-image: url({{ url_for( 'static', filename='images/broken-pencil.jpg' ) }});
         /* background-color: #cccccc; */
         height: 700px;
         background-position: center;
@@ -25,12 +25,16 @@
         color: #222222;
         }
     </style>
-    {% endblock %}
-    {% block content %}
-    <div class="lost-image">
-        <div class="lost-text">
-            <h1>Oops! Page Not Found</h1>
-            <p>Click <a href="{{ url_for('get_books') }}">here</a> to head back to safety</p>
+{% endblock %} 
+{% block content %}
+    <div class="error-image">
+        <div class="error-text">
+            <h1>Error 500</h1>
+            <p>Ooops..Something went wrong.</p>
+            <p>Click 
+                <a href="{{url_for('get_books')}}">here</a>
+                to head back to safety.
+            </p>
         </div>
     </div>
-    {% endblock %}
+{% endblock %}
