@@ -101,8 +101,6 @@ def render_book_template(book_id):
         reviewers=reviewers, bookmark=bookmark, purchase=purchase)
 
 
-# Error handler format found at:
-# https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
 @app.errorhandler(404)
 def page_not_found(e):
     """
@@ -115,7 +113,8 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(error):
     """
-    Function to display the custom 500 error page.
+    Function to display the custom 500
+    Internal Server Error page.
     """
     return render_template("500.html"), 500
 
@@ -144,6 +143,7 @@ def get_books():
                 break
     return render_template("index.html", books=latest_reviewed_books)
 
+
 @app.route("/browse")
 def browse():
     """
@@ -156,11 +156,22 @@ def browse():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
+    """
+    Function to render the Contact Us page.
+    """
     return render_template("contact.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    Function to render the register.html page.
+    Check whether the entered username and email address already
+    exist in the database and alert the user if either do.
+    If username and email address are unique
+    create a new user and save their details to the database.
+    Redirect to the new user's profile page.
+    """
     if request.method == "POST":
         # Check if username already exists in the database.
         existing_user = mongo.db.users.find_one(
@@ -283,7 +294,10 @@ def edit_profile(username):
 
 @app.route("/logout")
 def logout():
-    # Remove user name from Session Cookie loggin them out
+    """
+    Function to remove the username from the
+    Session Cookie, logging them out.
+    """
     flash("You have been logged out.")
     session.pop("user")
     return redirect(https_url_for("login"))
@@ -528,10 +542,14 @@ def unmark(book_id):
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    """
+    Function to take the user's input
+    and query the database which has indexes
+    on the title and author fields in the books collection.
+    """
     if request.method == "POST":
         query = request.form.get("query")
         books = list(mongo.db.books.find({"$text": {"$search": query}}))
-        print("This is the books result: ", books)
         if session:
             if books == []:
                 flash("The requested book has not yet been reviewed.")
@@ -549,11 +567,6 @@ def search():
                 return render_template("search.html", books=books)
 
     return render_template("search.html", books=[])
-
-
-@app.route('/success')
-def success():
-    return 'Success'
 
 
 if __name__ == "__main__":
