@@ -570,8 +570,36 @@ The app.py file now passes through the linter with no errors.
 <br>
 
 ### Performance
+Google Chrome Developer Tools Lighthouse test was used to test the quality of the various pages on the website. Overall performance and errors are highlighted below.
+![alt text](documentation/readme-images/lighthouse-performance-result-53.png "Screenshot of Chrome Developer Tools Lighthouse Performance results.")
+<br>
+
+The low-performance result was mainly driven by the following metrics:
+
+![alt text](documentation/readme-images/lighthouse-opportunities-to-improve-performance.png "Screenshot of Chrome Developer Tools Lighthouse Performance results.")
+<br>
+
+Images:
+
+Using the image compressor [TinyPNG](https://tinypng.com/) the site logo, 
+community icon and banner image were compressed to increase performance.
+
+As the book cover images are sourced from the Google Books API and rendered using the image URL the quality or actual size of the images 
+provided is currently beyond control. 
+
+The suggested next-gen formats, such as WEBP, are currently limited to certain browsers therefore, until they are more widely adopted, the icons and banner image used remain in png or jpg format.
+
+The loading attribute was added to img tags and lazy loading was applied to those images not visible on the screen immediately.
+
+Render-blocking Resources:
+
+The render-blocking resources that Lighthouse identified as slowing performance relate to 
+Fontawesome and Materialize CSS CDNs and therefore could not be improved upon.  
 
 
+The steps taken resulted in a noticeable improvement in Performance results.
+![alt text](documentation/readme-images/read-n-reviewed-lighthouse-results-75-performance.png "Screenshot of improved Lighthouse test results.")
+<br>
 ##### back to [top](#table-of-contents)
 ---
 

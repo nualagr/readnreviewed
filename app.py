@@ -104,8 +104,8 @@ def render_book_template(book_id):
 @app.errorhandler(404)
 def page_not_found(e):
     """
-    Function to set the 404 status explicitly
-    and display the custom 404.html page.
+    Function to display the custom 404
+    Page Not Found page.
     """
     return render_template("404.html"), 404
 
@@ -212,6 +212,13 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Function to check whether the username 
+    exists in the database. Check whether the input
+    password matches the hashed password stored in the 
+    database for that username.  If both are true render 
+    the home page.  If not, redirect to the login page.
+    """
     if request.method == "POST":
         # Check if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -241,6 +248,10 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    """
+    Function to render the logged in user's profile page.
+    If the user is not logged in, redirect to the login page.
+    """
     # Grab the session user's username and email address from the database
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -259,6 +270,14 @@ def profile(username):
 
 @app.route("/edit_profile/<username>", methods=["GET", "POST"])
 def edit_profile(username):
+    """
+    Function to render the edit_profile page
+    which displays the logged in user's username
+    and offers them the option of changing their 
+    password if their input into the current password
+    field matches the hashed password
+    stored in the database.
+    """
     # Grab the session user's username and email address from the database
     user = mongo.db.users.find_one(
         {"username": username})
@@ -332,11 +351,17 @@ def add_book():
 
 @app.route("/view_book/<book_id>")
 def view_book(book_id):
+    """
+    Function to call the render_book_template function.
+    """
     return render_book_template(book_id)
 
 
 @app.route("/my_review/<book_id>")
 def my_review(book_id):
+    """
+    
+    """
     # Find the book document in the database
     this_book = mongo.db.books.find_one(
         {"_id": ObjectId(book_id)}
