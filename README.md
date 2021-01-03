@@ -589,15 +589,21 @@ provided is currently beyond control.
 
 The suggested next-gen formats, such as WEBP, are currently limited to certain browsers therefore, until they are more widely adopted, the icons and banner image used remain in png or jpg format.
 
-The loading attribute was added to img tags and lazy loading was applied to those images not visible on the screen immediately.
+In order to improve loading times the loading attribute was added to all img tags on the site and lazy loading was applied to those images not visible above the fold.
 
 Render-blocking Resources:
 
 The render-blocking resources that Lighthouse identified as slowing performance relate to 
 Fontawesome and Materialize CSS CDNs and therefore could not be improved upon.  
 
+Remove unused CSS and JavaScript:
 
-The steps taken resulted in a noticeable improvement in Performance results.
+The improvements suggested in relation to unused CSS related to the Font Awesome CSS CDN 
+and the Materialize CSS CDN. The JavaScript files that Lighthouse highlighted as being 'unused'
+were the JQuery and Materialize files.
+
+
+The steps taken, although limited, resulted in a noticeable improvement in Performance results.
 ![alt text](documentation/readme-images/read-n-reviewed-lighthouse-results-75-performance.png "Screenshot of improved Lighthouse test results.")
 <br>
 ##### back to [top](#table-of-contents)

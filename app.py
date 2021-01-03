@@ -360,7 +360,10 @@ def view_book(book_id):
 @app.route("/my_review/<book_id>")
 def my_review(book_id):
     """
-    
+    Function to find a book by id.
+    Find the review related to that book,
+    written by the logged-in user.
+    Render the view_book page with that information.
     """
     # Find the book document in the database
     this_book = mongo.db.books.find_one(
@@ -383,6 +386,12 @@ def my_review(book_id):
 
 @app.route("/add_review/<book_id>", methods=["GET", "POST"])
 def add_review(book_id):
+    """
+    Function to find a book in the database by id.
+    Create a dict of the new review related to that book,
+    complete with timestamp.
+    Post the new review to the database.
+    """
     # Use the book_id that was passed in to find the book in the database
     this_book = mongo.db.books.find_one(
         {"_id": ObjectId(book_id)}
@@ -418,6 +427,11 @@ def add_review(book_id):
 
 @app.route("/upvote_review/<review_id>", methods=["POST"])
 def upvote_review(review_id):
+    """
+    Function to find a review in the database by id.
+    Increment the review_score field by one.
+    Render the view_book page.
+    """
     review = mongo.db.reviews.find_one({
         "_id": ObjectId(review_id)
     })
@@ -432,11 +446,21 @@ def upvote_review(review_id):
         print("getting book id")
         # book_id = ObjectId(review['book_id'])
         print("returning book page")
-        return render_book_template(review['book_id'])
+        return redirect(https_url_for("view_book", book_id=review['book_id']))
+        # return render_book_template(review['book_id'])
 
 
 @app.route("/edit_review/<book_id>/<review_id>", methods=["GET", "POST"])
 def edit_review(book_id, review_id):
+    """
+    Function to populate the edit_review form with
+    the chosen review from the database, located using the review id.
+    If the information, rating or written review, is changed and the
+    form submitted, these two fields are saved to a new dictionary,
+    along with a new review_date, review_score of 0 and an empty
+    upvoters array. These fields overwrite the originals,
+    stored in the database.
+    """
     # Find this review in the reviews collection in the database
     this_review = mongo.db.reviews.find_one(
         {"_id": ObjectId(review_id)}
@@ -473,6 +497,11 @@ def edit_review(book_id, review_id):
 
 @app.route("/delete_review/<book_id>/<review_id>")
 def delete_review(book_id, review_id):
+    """
+    Function to locate a specific review in the database using the review id
+    and delete that review.
+    Render the view_book page for that book.
+    """
     this_review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     mongo.db.reviews.delete_one(this_review)
     flash("Review Successfully Deleted")
@@ -481,6 +510,13 @@ def delete_review(book_id, review_id):
 
 @app.route("/my_reviews")
 def my_reviews():
+    """
+    Function to create a list of the logged-in user's reviews.
+    If they exist, sort them by date created.
+    Find the corresponding book information for each review.
+    Amalgamate the information into a single list and pass it
+    through to the my_reviews page to be written to screen.
+    """
     current_user = session["user"]
     # Get list of all reviews by this user and sort by date added
     my_reviews = list(
@@ -514,6 +550,13 @@ def my_reviews():
 
 @app.route("/wish_list")
 def wish_list():
+    """
+    Function to get the logged-in user's wishlist array from the database.
+    If one exists, find the associated information for each book id.
+    Create a book purchase url for each book. Append each book, along with
+    it's new url to a list and pass that through to the wish_list.html page
+    to be written to screen.
+    """
     wishlist = list(mongo.db.users.find_one(
         {"username": session["user"]})["wishlist"])
     # If the user has no saved books yet
@@ -545,17 +588,28 @@ def wish_list():
 
 @app.route("/bookmark/<book_id>", methods=["GET", "POST"])
 def mark(book_id):
+    """
+    Function to add the selected book id to the logged-in user's
+    wishlist array in the database.
+    Redirect to the view_book page for that book.
+    """
     if request.method == "POST":
         mongo.db.users.update_one(
             {"username": session["user"]},
             {"$addToSet": {"wishlist": ObjectId(book_id)}}
         )
         flash("Book Saved to Wish List")
-        return render_book_template(book_id)
+        # return render_book_template(book_id)
+        return redirect(https_url_for("view_book", book_id=book_id))
 
 
 @app.route("/unmark/<book_id>", methods=["GET", "POST"])
 def unmark(book_id):
+    """
+    Function to remove the selected book id from the
+    logged-in user's wishlish array in the database.
+    Redirect to the user's wish_list page.
+    """
     if request.method == "POST":
         mongo.db.users.update_one(
             {"username": session["user"]},
