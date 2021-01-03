@@ -6,6 +6,7 @@
 const baseURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const key = "&printType=books";
 
+
 /**
  * Function to call Google Books API
  */
@@ -187,7 +188,7 @@ function writeToDocument(title, author){
 
 
 /** 
-* Function to post the newBook to Python (app.py)
+* Function to post the newBook to the back end
 * So that it can be uploaded to the Read n' Reviewed database
 */
 function sendToPython(book){
@@ -202,6 +203,7 @@ function sendToPython(book){
         }).then(response => window.location.href = response.url); //redirect to the view_page for the new book
         console.log("This is the chosen book:", newBook);
 }
+
 
 /** 
 * Function to send the user's name, email address and message

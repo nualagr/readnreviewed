@@ -50,7 +50,7 @@
                 <!-- Link to buy the Selected Book on Amazon -->
                 <div class="col s6 m3 center">
                     {% if purchase %}
-                        <a href="{{ book_purchase_url }}" rel="nofollow" target="_blank" title="Buy it now" class="button">
+                        <a href="{{ book_purchase_url }}" rel="noopener" target="_blank" title="Buy it now" class="button">
                             <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-small-only"> it now</span></span> 
                         </a>
                     {% else %}
@@ -62,14 +62,14 @@
                 {% if this_book_reviews %}
                     <!-- If this user has not already written a review for this book display the Write a Review button -->
                     {% if session.user not in reviewers %}
-                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
+                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" title="Write a Review" class="button">
                             <span class="btn bg-orange"><i class="fas fa-pen"></i><span class="hide-on-med-and-down"> Write a </span>Review</span> 
                         </a>
                     {% endif %}
                 <!-- If there are no book reviews for this book -->
                 {% else %}
                         <!-- Display the Write a Review button -->
-                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" rel="nofollow" title="Write a Review" class="button">
+                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" title="Write a Review" class="button">
                             <span class="btn bg-orange"><i class="fas fa-pen"></i><span class="hide-on-med-and-down"> Write a </span>Review</span> 
                         </a>
                 {% endif %}

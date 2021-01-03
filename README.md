@@ -565,9 +565,12 @@ The app.py file now passes through the linter with no errors.
 
 ![alt text](documentation/readme-images/infoheap-python-lint-no-errors.png "Screenshot infoheap Python linter results showing no errors.")
 <br>
+
 ### Chrome Developer Tools
 ![alt text](documentation/readme-images/non-passive-event-listener-error.png "Screenshot of Chrome Developer Tools non-passive-event-listener warnings.")
 <br>
+Chrome Developer Tools console highlighted the above violation, however it relates to non-passive event listeners within the Materialize JavaScript script.
+Solutions have so far been unsuccessful in solving this issue.
 
 ### Performance
 Google Chrome Developer Tools Lighthouse test was used to test the quality of the various pages on the website. Overall performance and errors are highlighted below.
@@ -740,12 +743,16 @@ This https_url_for() function was then called for each redirect.  This removed t
 
 ### Heroku Server Request Interrupted Error
 
-During development the app was tested regularly on Heroku.  A Server Request Interrupted Error occurred intermittently, usually when the user tried to upvote another user's review.
+During development the app was tested regularly on Heroku.  A Server Request Interrupted Error occurred intermittently, usually when the user tried to upvote another user's review
+or when bookmarking a book and saving it to the logged-in user's Wish List.
 Although the page would not load and the error was logged, when the page was refreshed, the review had successfully been upvoted. 
 
 ![alt text](documentation/readme-images/heroku-server-request-interrupted-error.png "Screenshot of Heroku Logs showing the Server Request Interrupted Error.")
 <br>
 
+The H18 error indicated that the HTTP request had been interrupted by a closed socket before the router had received the HTTP response from the app's web process.
+Changing the return value of the upvote_review() and mark() functions from rendering the view_book.html template to a redirect to the https_url_for view_book.html
+succeeded in eliminating the error. 
 
 ##### back to [top](#table-of-contents)
 ---

@@ -147,10 +147,10 @@ def get_books():
 @app.route("/browse")
 def browse():
     """
-    Function to find all the books in the database and sort by
-    date published, newest to oldest. Display each on browse page.
+    Function to find all the books in the database and sort alphabetically.
+    Display each on browse page.
     """
-    books = list(mongo.db.books.find().sort("published_date", -1))
+    books = list(mongo.db.books.find().sort("title"))
     return render_template("browse.html", books=books)
 
 
@@ -213,11 +213,11 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """
-    Function to check whether the username 
-    exists in the database. Check whether the input
-    password matches the hashed password stored in the 
-    database for that username.  If both are true render 
-    the home page.  If not, redirect to the login page.
+    Function to check whether the username
+    exists in the database. If it does, check whether the input
+    password matches the hashed password stored in the
+    database for that username.  If both are true, render
+    the home page.  If not, redirect to the login page with a message.
     """
     if request.method == "POST":
         # Check if username exists in db
