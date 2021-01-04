@@ -624,9 +624,11 @@ The steps taken, although limited, resulted in a noticeable improvement in Perfo
 I am a prospective Read n’ Reviewed site member I want to be able to:
 
 &#9745;	Immediately comprehend the purpose behind the Read n’ Reviewed site.
+
 Upon opening the homepage the user is presented with a banner heading, "Uncover Your Next Great Read!", which succinctly encapsulates the purpose of the site.
 This is expanded upon in the subheading, "Join our community. Read honest reviews. Share your recommendations.", which alerts the visitor to the 
 fact that this is a community-led site, whose aim is to allow users to share their book reviews and recommendations.
+
 ![alt text](documentation/readme-images/homescreen-mobile-view.jpg "Screenshot of Read n' Reviewed homepage on a mobile device.")
 <br>
 
@@ -634,6 +636,7 @@ fact that this is a community-led site, whose aim is to allow users to share the
 
 On the Read n' Reviewed home page, beneath the banner head and subheading, which explain the site's purpose, there is an About Us section which explains the site's ethos
 and features, such as the Wish List, where members can save a list of the books they want to read next. 
+
 ![alt text](documentation/readme-images/about-us-mobile-view.png "Screenshot of Read n' Reviewed About Us section on a mobile viewing device.")
 <br>
 A link to the About Us section is provided in the site footer, available on every page, to facilitate ease of navigation to this key information.
@@ -652,10 +655,12 @@ what Read n' Reviewed members think about the site.
 &#9745;	Read some book review samples.
 
 On the homepage, new visitors are presented with the book covers, title, author, category and a text-snippet of the two latest books to be reviewed by Read n' Reviewed members. 
+
 ![alt text](documentation/readme-images/latest-reviews-mobile-view.png "Screenshot of latest books to be reviewed as they appears on the homepage when viewed on a mobile device.")
 <br>
 
 A link, 'View book...' brings the visitor to the page displaying the book summary and all of its associated book reviews, ordered by up-vote rating and date entered.
+
 ![alt text](documentation/readme-images/holding-reviews-mobile-view.png "Screenshot of book reviews ordered by up-vote and then by date as shown when viewed on a mobile device.")
 <br>
 
@@ -671,19 +676,27 @@ This page consists of a form, which the visitor can fill in with their name, ema
 <br>
 
 &#9745;	Easily locate any social media accounts connected to the site.
+
 In the site footer, available on every page, there are links to the Read n' Reviewed social media accounts on Facebook, Instagram and Twitter.
 
 ![alt text](documentation/readme-images/footer-mobile-view.png "Screenshot of Read n' Reviewed social media links in the site footer, as it appears when viewed on a mobile device.")
 <br>
 
 &#9745; Navigate through the site with ease.
+
 As well as the links to the Homepage, About Us page, Contact Us form and social media links which are available in the site footer, 
 site navigation is also facilitated by the navigation bar at the top of each page.
 
 ![alt text](documentation/readme-images/new-visitor-desktop-navbar.png "Screenshot of Read n' Reviewed navbar, as it appears to a new visitor when viewed on a desktop screen.")
 <br>
-New visitors on a desktop device have the option of clicking on the Read n' Reviewed logo or title to bring them back to the homepage.  
-They also have the option of visiting the Browse.html page where they can browse through all of the reviews on the Read n' Reviewed site.
+New visitors on a desktop device have the option of clicking on the Read n' Reviewed logo or title to bring them back to the homepage. 
+
+On a mobile device the menu is accessed through the hamburger icon. When clicked it reveals a side-navigation bar with the options available.
+
+![alt text](documentation/readme-images/side-nav-new-visitor-mobile-view.png "Screenshot of Read n' Reviewed side nav, as it appears when viewed on a mobile device.")
+<br>
+
+New visitors are presented with the option of visiting the Browse.html page where they can browse through all of the reviews on the Read n' Reviewed site.
 
 ![alt text](documentation/readme-images/browse-mobile-view.png "Screenshot of Read n' Reviewed Browse page as it appears on a mobile device.")
 <br>
@@ -693,7 +706,7 @@ Similarly, they can access these reviews by entering a specific title or author 
 ![alt text](documentation/readme-images/search-mobile-view.png "Screenshot of Read n' Reviewed Search page as it appears on a mobile device.")
 <br>
 
-The user icon expands into a dropdown menu and offers the option of navigating to the Login page or the Register page.
+The user icon, visible at all times on the navbar in desktop or mobile view, expands into a dropdown menu and offers the option of navigating to the Login page or the Register page.
 
 ![alt text](documentation/readme-images/new-user-dropdown-menu.png "Screenshot of Read n' Reviewed user icon dropdown menu as it appears on a mobile device.")
 <br>
