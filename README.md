@@ -719,8 +719,118 @@ located on the home page, also facilitate easy navigation to the register.html p
 ![alt text](documentation/readme-images/homescreen-mobile-view.jpg "Screenshot of the Register call-to-action button on the banner on the home page.")
 <br>
 
+The registration form itself is a clearly laid out form, with intuitive icons to aid understanding,
+such as the use of the lock symbol beside the password input field.  Tooltips appear when the fields 
+are hovered over.  These clearly state what format the username and password should take.
 
-#### General User
+![alt text](documentation/readme-images/registration-form-mobile-view.png "Screenshot of the Read n' Reviewed Registration Form.")
+<br>
+
+#### Existing User
+
+I am an existing Read n’ Reviewed site member I want to be able to:
+
+&#9745;	Log in to the site.
+
+&#9745; Navigate through the site with ease.
+
+&#9745;	Log out of the site.
+
+&#9745;	Edit my account information.
+
+&#9745;	Read the most recent book reviews added to the site, which will give me an idea of what books are being read by other site members right now.
+
+&#9745;	Search for my next book to read based on reviews written by fellow book lovers, reviews that are ranked by popularity.
+
+&#9745;	Read general information about the books, including the authors’ names and the publication dates as well as being able to see images of the book covers.
+
+&#9745;	Be facilitated in my goal of buying a specific book immediately through direct links to an online book store.
+
+&#9745;	Search to see whether a book has already been reviewed on the site by entering the book title, or author into a search box within the site.
+
+&#9745;	Search for books by genre by entering the desired genre into a search box within the site.
+
+&#9745;	Share my own book reviews with fellow readers.
+
+&#9745;	Input my own review easily into a user-friendly form that is straightforward to use. 
+
+&#9745;	Edit or delete my own book reviews.
+
+&#9745;	Be secure in the knowledge that no other user can edit or delete my reviews.
+
+When viewing reviews within the site, a logged-in user can see that the Edit and Delete buttons and their associated functionality
+are only offered in relation to the reviews that they themselves have authored.
+
+![alt text](documentation/readme-images/reviews-tablet-device.png "Screenshot of book reviews by different members as they appear when viewed on a tablet device by a logged-in member.")
+<br>
+
+Similarly, when the user logs out of the site these buttons disappear.  It is only logged in users who can edit their own reviews.
+
+![alt text](documentation/readme-images/reviews-tablet-device-logged-out.png "Screenshot of book reviews by different members as they appear when viewed on a tablet device.")
+<br>
+
+&#9745;	Be secure in the knowledge that measures have been put in place to prevent me from accidentally deleting one of my own reviews.
+
+When a user chooses to press the delete button next to one of their reviews a modal appears which offers them the choice to reconsider their decision and retain their review.
+If they still wish to delete the review they can confirm their decision by choosing the red Delete button within the modal.
+
+![alt text](documentation/readme-images/delete-modal-tablet-device.png "Screenshot of delete modal as it appears when viewed on a tablet device.")
+<br>
+
+&#9745;	Up-vote other members’ reviews that I feel are helpful and accurately reflect the book being reviewed.
+
+When viewing a book and its associated reviews, members are presented with an Upvote Review button next to other site members' reviews.
+The button enables them to up-vote the review in question if they feel that it was helpful or accurate. 
+The Upvote buttons disappear once they have been used, preventing members from voting for the same review multiple times.  
+
+![alt text](documentation/readme-images/upvote-review-desktop-view.png "Screenshot of book reviews, showing Upvote Review button for another member's review.")
+<br>
+
+&#9745;	Curate my own Wish List of books that I would like to read in the future.
+
+A site member, when logged in, can access their Wish List using the link in the navigation bar, or in the compressed hamburger menu on a mobile device.
+This link brings the site member to a page where the book cover, title and author are presented in individual cards.  
+
+![alt text](documentation/readme-images/wish-list-mobile-view.png "Screenshot of Read n' Reviewed member's Wish List page as it appears when viewed on a mobile device.")
+<br>
+
+Each card also contains a bookmark icon
+which, when clicked, removes the book from the wishlist.  Two buttons, with explanatory icons, are displayed in each card.  The blue button with the shopping
+bag icon, brings the user to the Amazon search result page for that book title and author.  The white, View Book, button brings the user to the view_book.html
+page for that book and its associated reviews.
+
+![alt text](documentation/readme-images/wish-list-desktop-view.png "Screenshot of Read n' Reviewed member's Wish List page as it appears when viewed on a desktop screen.")
+<br>
+
+
+&#9745;	See a list of my own book reviews on the site.
+
+A site member can access their book reviews using the My Reviews link in the navigation bar.  This brings the user to a page where
+the book cover image, title, author, rating, date and upvotes for each book reviewed are presented 
+to the user in a list format. 
+
+![alt text](documentation/readme-images/my-reviews-desktop-view.png "Screenshot of Read n' Reviewed member's My Reviews page as it appears when viewed on a desktop screen.")
+<br>
+
+The book review itself can be seen by clicking on the Read review... link which takes the
+user to a page displaying the book's information and that user's review.
+
+![alt text](documentation/readme-images/individual-review-mobile-view.png "Screenshot of a site member's my_review.html page as it appears when viewed on a desktop screen.")
+<br>
+
+
+&#9745;	Contact the site owner.
+
+At the bottom of each page, in the site footer, there is a link to the Contact Us page.
+![alt text](documentation/readme-images/footer-mobile-view.png "Screenshot of Read n' Reviewed Contact Us link in the site footer, as it appears when viewed on a mobile device.")
+<br>
+
+This page consists of a form, which the site member can fill out.  
+It provides the member with three input fields, which are clearly labelled with text and explanatory icons.
+The user is asked for their name, email address and enquiry.  Submitting the form sends an email containing this information directly to the site administrator.
+
+![alt text](documentation/readme-images/contact-us-form-mobile-view.png "Screenshot of Read n' Reviewed Contact Us page as it appears when viewed on a mobile device.")
+<br>
 
 
 
