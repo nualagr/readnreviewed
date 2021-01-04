@@ -35,10 +35,9 @@
                     <div class="row">
                         <!-- Star Rating Field -->
                         <div class="form-group">
-                            <div class="input-field col s12">
+                            <div class="input-field col s12 tooltipped" data-position="bottom" data-tooltip="Choose your star rating for this book.">
                             <i class="fas fa-star-half-alt prefix"></i>
-                            <!-- <label for="rating">Rate the Book</label> -->
-                                <select name="rating" class="form-control" id="rating" required="">
+                                <select name="rating" class="form-control" id="rating">
                                     <option value="" selected="">{{ this_review.rating }}</option>
                                     <option value="1">&#x2b50;</option>
                                     <option value="2">&#x2b50; &#x2b50;</option>
@@ -51,7 +50,7 @@
                     </div>
                     <div class="row">
                         <!-- Review Field -->
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 tooltipped" tooltipped data-position="bottom" data-tooltip="Edit your review text.">
                             <i class="fas fa-edit prefix"></i>
                             <textarea id="review" name="review" class="materialize-textarea validate" required>{{ this_review.review }}</textarea>
                             <label for="review">Tell us what you thought:</label>
@@ -59,8 +58,8 @@
                     </div>
                 </div>
                 <div class="card-action center">
-                    <button type="submit" class="btn bg-orange"><i class="fas fa-check"></i> Submit </button>
-                    <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=this_review._id) }}" class="btn bg-blue"><i class="fas fa-redo"></i> Reset</a>
+                    <button type="submit" class="btn bg-orange" name="editreview"><i class="fas fa-check"></i> Submit </button>
+                    <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=this_review._id) }}" title="Reset Form button" class="btn bg-blue"><i class="fas fa-redo"></i> Reset</a>
                 </div>
             </div>
         </form>

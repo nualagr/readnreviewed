@@ -273,7 +273,7 @@ def edit_profile(username):
     """
     Function to render the edit_profile page
     which displays the logged in user's username
-    and offers them the option of changing their 
+    and offers them the option of changing their
     password if their input into the current password
     field matches the hashed password
     stored in the database.
@@ -443,11 +443,7 @@ def upvote_review(review_id):
             {"$inc": {"review_score": 1},
                 "$addToSet": {"upvoters": session["user"]}}
         )
-        print("getting book id")
-        # book_id = ObjectId(review['book_id'])
-        print("returning book page")
         return redirect(https_url_for("view_book", book_id=review['book_id']))
-        # return render_book_template(review['book_id'])
 
 
 @app.route("/edit_review/<book_id>/<review_id>", methods=["GET", "POST"])
@@ -469,6 +465,8 @@ def edit_review(book_id, review_id):
     this_book = mongo.db.books.find_one(
         {"_id": ObjectId(book_id)}
     )
+    # Find the review rating from the db
+    old_rating = this_review["rating"]
 
     if request.method == "POST":
         # Grab the date
@@ -476,10 +474,16 @@ def edit_review(book_id, review_id):
         # Convert it to seconds
         seconds = e.timestamp()
 
+        # Check to see whether the user has changed the star rating
+        if request.form.get("rating") == "":
+            new_rating = old_rating
+        else:
+            new_rating = request.form.get("rating")
+
         # Create a new dictionary to submit to Mongodb
         # to overwrite the current review
         submit = {"$set": {
-            "rating": request.form.get("rating"),
+            "rating": new_rating,
             "review": request.form.get("review"),
             "review_date": seconds,
             "review_score": 0,

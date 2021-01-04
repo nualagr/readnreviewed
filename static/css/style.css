@@ -87,11 +87,11 @@ h1, h2, h3, h4, h5 {
     font-weight: bolder !important;
 }
 
-/* Buttons --------------------------------------- */
 .star-rating i {
     color: #F69222;
 }
 
+/* Buttons --------------------------------------- */
 .btn {
     margin-bottom: 5px;
 }
@@ -107,8 +107,6 @@ i.back-to-top:focus {
     color: #1F76BB;
 }
 
-
-/* Bookmarks --------------------------------------- */
 button.bookmark {
     border-color: transparent;
     background-color: transparent;
@@ -203,6 +201,7 @@ nav.nav-extended {
     margin-bottom: 2px;
     height: 64px;
 }
+
 nav .brand-logo .solo-book-icon {
     margin-top: 12px;
 }
