@@ -96,6 +96,18 @@ h1, h2, h3, h4, h5 {
     margin-bottom: 5px;
 }
 
+i.back-to-top {
+    font-size: 2rem;
+    color: #9E9E9E;
+}
+
+i.back-to-top:hover,
+i.back-to-top:active,
+i.back-to-top:focus {
+    color: #1F76BB;
+}
+
+
 /* Bookmarks --------------------------------------- */
 button.bookmark {
     border-color: transparent;
@@ -339,7 +351,6 @@ footer a:hover{
 /* Modals -------------------------------------------*/
 .modal-content {
     margin-top: 2rem;
-    /* overflow-y: hidden !important; */
 }
 
 .modal-content h5 {
