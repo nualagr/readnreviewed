@@ -94,11 +94,13 @@
                     <p>Read n' Reviewed is a community-led book recommendation website.  Unaffiliated with any publishing company
                     Read n' Reviewed's mission is to provide our members with a platform where they can share and access honest and 
                     revealing reviews making it easier to choose the perfect book to read next.</p>
-                    <p><img src="{{ url_for( 'static', filename='images/star-community-small-w200.png') }}" alt="Star Community icon" width="200" height="160" loading="lazy"></p>
                     {% if session %}
                     {% else %}
+                        <p>Join today to be able to contribute your own reviews, up-vote other members’ recommendations, save books to a personal Wish List and 
+                        navigate directly to an online store where your next great read can be purchased immediately.</p>
                         <a href="{{ url_for('register') }}" class="btn-large btn bg-orange">Register</a>
-                    {% endif %}                    
+                    {% endif %}
+                    <p><img src="{{ url_for( 'static', filename='images/star-community-small-w200.png') }}" alt="Star Community icon" width="200" height="160" loading="lazy"></p>                    
                 </div>
             </div>
     </section>

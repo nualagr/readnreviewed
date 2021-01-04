@@ -475,6 +475,7 @@ def edit_review(book_id, review_id):
         seconds = e.timestamp()
 
         # Check to see whether the user has changed the star rating
+        # if not, resubmit old rating
         if request.form.get("rating") == "":
             new_rating = old_rating
         else:
@@ -612,7 +613,7 @@ def unmark(book_id):
     """
     Function to remove the selected book id from the
     logged-in user's wishlish array in the database.
-    Redirect to the user's wish_list page.
+    Redirect to the updated user's wish_list page.
     """
     if request.method == "POST":
         mongo.db.users.update_one(
