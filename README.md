@@ -1,6 +1,6 @@
 <h1 align="center">Read n' Reviewed</h1>
 
-![alt text](documentation/readme-images/amiresponsive-screenshot.png "Mockup of Read n' Reviewed index.html page when viewed on a desktop, tablet and mobile device.")
+![alt text](documentation/readme-images/amiresponsive-screenshot2.png "Mockup of Read n' Reviewed index.html page when viewed on a desktop, tablet and mobile device.")
 <sub>*Created using* [Am I Responsive](http://ami.responsivedesign.is/)</sub>
 <br>
 
@@ -749,13 +749,96 @@ I am an existing Read n’ Reviewed site member I want to be able to:
 
 &#9745;	Search to see whether a book has already been reviewed on the site by entering the book title, or author into a search box within the site.
 
+The magnifying-glass icon, which brings the user to the search.html page is visible on the navigation bar on all viewing devices at all times.
+
+The Search page consists of a simple input element with placeholder text "Search the Read n' Reviewed site".
+
+![alt text](documentation/readme-images/search-mobile-view.png "Screenshot of the Search Page as it appears when viewed on a mobile device.")
+<br>
+
+The search queries the database title and author fields and prints any results found to the screen.
+
+![alt text](documentation/readme-images/search-result-mobile-view.png "Screenshot of the Search Page with results as it appears when viewed on a mobile device.")
+<br>
+
+If no results are found the user is brought to the Add Book page so that they can search the Google Books API and add the desired book to the site.
+
+![alt text](documentation/readme-images/add-book-with-flash-message-mobile-view.png "Screenshot of the Add Book page and flash message as it appears when viewed on a mobile device.")
+<br>
+
 &#9745;	Search for books by genre by entering the desired genre into a search box within the site.
 
-&#9745;	Share my own book reviews with fellow readers.
+&#9745;	Share my own book reviews with fellow readers. 
+
+When a logged-in user wishes to review a book they are provided with an eye-catching orange 'Write a Review' button on the View Book page for each book already stored in the database.
+
+![alt text](documentation/readme-images/write-a-review-button-desktop-view.png "Screenshot of the Write a Review button on the View Book page when viewed on a desktop screen.")
+<br>
+
+Links at the top of the My Reviews page and the Browse page bring the user to the Search page so that they can search the database for the book they wish to review.
+
+![alt text](documentation/readme-images/my-reviews-mobile-view.png "Screenshot of the link to the Search page that is provided at the top of the My Reviews page.")
+<br>
+
+If the book does not yet exist in the database the user will be flashed a message and brought to the Add Book page to search for the book in the Google Books API.
+
+![alt text](documentation/readme-images/add-book-with-flash-message-mobile-view.png "Screenshot of the Add Book page and flashed message.")
+<br>
+
+The API returns up to ten results which are displayed on the screen. 
+
+![alt text](documentation/readme-images/add-book-results-tablet-view.png "Screenshot of the Add Book page with results and a flashed message.")
+<br>
+
+Clicking on the 'Choose this Edition' button next to a particular book
+adds the book to the database and brings the user straight to the View Book page for that book.
+
+![alt text](documentation/readme-images/view-book-tablet-view.png "Screenshot of the View Book page as it appears when viewed on a tablet device.")
+<br>
 
 &#9745;	Input my own review easily into a user-friendly form that is straightforward to use. 
 
-&#9745;	Edit or delete my own book reviews.
+The Add Review form is clearly laid out with placeholder text and explanatory icons.
+To ensure ease of use, the title, author and isbn fields are pre-populated.
+The user simply has to choose their desired star rating from the dropdown list and enter their review in the textbox provided.
+
+![alt text](documentation/readme-images/add-review-mobile-view.png "Screenshot of the Add Review form as it appears when viewed on a mobile device.")
+<br>
+
+&#9745;	Edit my own book reviews.
+
+When a logged-in user navigates to the My Reviews page they are presented with a list of the reviews they have submitted to the site so far.
+Within each list item, contained in a card element, the user has access to two buttons, one to edit their review and one to delete their review.
+
+![alt text](documentation/readme-images/my-reviews-mobile-view.png "Screenshot of a user's My Reviews page as it appears when viewed on a mobile device.")
+<br>
+
+The Edit button brings the user to the Edit Review page for that review.
+This page consists of a pre-filled form.  The book title, author and isbn fields are disabled.
+
+![alt text](documentation/readme-images/edit-review-mobile-view.png "Screenshot of a user's Edit Review page as it appears when viewed on a mobile device.")
+<br>
+
+The user can change their star rating by choosing the appropriate number of stars in the dropdown list.
+
+![alt text](documentation/readme-images/edit-review-star-dropdown-mobile-view.png "Screenshot of a user's Edit Review page with the star rating dropdown menu displayed.")
+<br>
+
+The user can also change the text of their review by typing in the textarea element.
+
+The user then has the option to submit the new edited review to the database using the 
+orange Submit button, or to reset the form, which repopulates the form with the current review information from the database.
+
+&#9745;	Delete my own book reviews.
+
+As well as the Delete buttons on the My Reviews page, a Delete button is displayed next the the logged-in user's reviews
+on the view_book page and on the my_review page.
+
+![alt text](documentation/readme-images/delete-review-button-tablet-view.png "Screenshot of the Edit and Delete buttons next to a logged-in user's review.")
+<br>
+
+These buttons open a modal in which the user is asked to confirm their decision by choosing between the options of retaining or deleting their review.
+If they choose delete, the review is deleted from the database.
 
 &#9745;	Be secure in the knowledge that no other user can edit or delete my reviews.
 
@@ -789,19 +872,23 @@ The Upvote buttons disappear once they have been used, preventing members from v
 
 &#9745;	Curate my own Wish List of books that I would like to read in the future.
 
-A site member, when logged in, can access their Wish List using the link in the navigation bar, or in the compressed hamburger menu on a mobile device.
-This link brings the site member to a page where the book cover, title and author are presented in individual cards.  
+A site member, when logged in, can access their Wish List using the link in the navigation bar, or in the compressed hamburger-icon menu on a mobile device.
+This link brings the site member to a page where the book cover, title and author for each book save so far are presented in individual card elements.  
 
 ![alt text](documentation/readme-images/wish-list-mobile-view.png "Screenshot of Read n' Reviewed member's Wish List page as it appears when viewed on a mobile device.")
 <br>
 
 Each card also contains a bookmark icon
-which, when clicked, removes the book from the wishlist.  Two buttons, with explanatory icons, are displayed in each card.  The blue button with the shopping
-bag icon, brings the user to the Amazon search result page for that book title and author.  The white, View Book, button brings the user to the view_book.html
-page for that book and its associated reviews.
+which, when clicked, removes the book from the wishlist.  A tooltip appears when the user hovers over this icon to explain its functionality.
 
 ![alt text](documentation/readme-images/wish-list-desktop-view.png "Screenshot of Read n' Reviewed member's Wish List page as it appears when viewed on a desktop screen.")
 <br>
+
+Two buttons, with explanatory icons, are displayed in each card.  The blue button with the shopping
+bag icon, brings the user to the Amazon search result page for that book title and author.  The white, View Book button, with its orange book icon, 
+brings the user to the view_book.html page for that book and its associated reviews.
+
+
 
 
 &#9745;	See a list of my own book reviews on the site.
