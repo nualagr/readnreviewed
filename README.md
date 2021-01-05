@@ -49,6 +49,9 @@ Click <a href="https://read-n-reviewed.herokuapp.com/">here</a> to visit the sit
     - [Performance](#performance)
     - [Responsiveness](#responsiveness)
     - [Tested User Stories](#tested-user-stories)
+        - [Prospective User](#tested-prospective-user-stories)
+        - [Existing User](#tested-existing-user-stories)
+        - [Site Owner](#tested-site-owner-stories)
     - [Bugs](#bugs)
 6. [**Deployment**](#deployment)
 7. [**Credits**](#credits)
@@ -619,7 +622,7 @@ The steps taken, although limited, resulted in a noticeable improvement in Perfo
 
 ### Tested User Stories
 
-#### Prospective User
+#### Tested Prospective User Stories
 
 I am a prospective Read n’ Reviewed site member I want to be able to:
 
@@ -731,7 +734,7 @@ are hovered over.  These clearly state what format the username and password sho
 ##### back to [top](#table-of-contents)
 ---
 
-#### Existing User
+#### Tested Existing User Stories
 
 I am an existing Read n’ Reviewed site member I want to be able to:
 
@@ -1030,7 +1033,7 @@ The user is asked for their name, email address and enquiry.  Submitting the for
 
 
 
-#### Site Owner
+#### Tested Site Owner Stories
 
 As the owner of Read n' Reviewed website I would like:
 
