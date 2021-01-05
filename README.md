@@ -670,7 +670,8 @@ In the site footer, available on every page, there is a link to the Contact Us p
 ![alt text](documentation/readme-images/footer-mobile-view.png "Screenshot of Read n' Reviewed Contact Us link in the site footer, as it appears when viewed on a mobile device.")
 <br>
 
-This page consists of a form, which the visitor can fill in with their name, email address and enquiry and send it directly to the site administrator.
+This page consists of a clearly labelled form (using intuitive icons and placeholder text), 
+which the visitor can fill in with their name, email address and enquiry and send it directly to the site administrator.
 
 ![alt text](documentation/readme-images/contact-us-form-mobile-view.png "Screenshot of Read n' Reviewed Contact Us page as it appears when viewed on a mobile device.")
 <br>
