@@ -18,7 +18,7 @@ body {
     background-color: #9E9E9E;
 }
 
-.bg-grey:hover,
+bg-grey:hover,
 .bg-grey:active,
 .bg-grey:focus {
     background-color: #8F8F8F;

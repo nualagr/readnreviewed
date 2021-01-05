@@ -296,18 +296,18 @@ def edit_profile(username):
         return redirect(https_url_for("login"))
 
     if request.method == "POST":
+        new_password = generate_password_hash(request.form.get("new-password"))
         # Ensure hashed password matches user input
         if check_password_hash(
-                user["password"], request.form.get("currentPassword")):
-            new_password = generate_password_hash(
-                request.form.get("newPassword"))
+                user["password"], request.form.get(
+                    "current-password")):
             mongo.db.users.update_one(
                 {"username": username},
                 {"$set": {"password": new_password}})
             flash("Password Updated")
             return redirect(https_url_for("profile", username=session["user"]))
         else:
-            flash("Password Incorrect")
+            flash("Passwords Do Not Match")
             return redirect(https_url_for("profile", username=session["user"]))
 
 

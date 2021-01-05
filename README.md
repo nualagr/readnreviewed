@@ -726,6 +726,10 @@ are hovered over.  These clearly state what format the username and password sho
 
 ![alt text](documentation/readme-images/registration-form-mobile-view.png "Screenshot of the Read n' Reviewed Registration Form.")
 <br>
+<br>
+
+##### back to [top](#table-of-contents)
+---
 
 #### Existing User
 
@@ -733,19 +737,117 @@ I am an existing Read n’ Reviewed site member I want to be able to:
 
 &#9745;	Log in to the site.
 
+When the Read n' Reviewed homepage is loaded the user can log into the site using the User icon which is visible at all times on the navigation bar
+on all viewing devices.  The icon, when clicked, reveals a dropdown menu with two options: Register and Login.
+
+![alt text](documentation/readme-images/new-user-dropdown-menu.png "Screenshot of a logged-out user's dropdown menu.")
+<br>
+
+When the user selects Login, they are brought to the Login page which consists of a clearly laid out form asking the user to input their username and password.
+
+![alt text](documentation/readme-images/login-mobile-view.png "Screenshot of the Login page as it appears when viewed on a mobile device.")
+<br>
+
 &#9745; Navigate through the site with ease.
+
+Ease of navigation through the site is facilitated through the provision of a navigation bar at the top of the screen.
+
+![alt text](documentation/readme-images/logged-in-user-desktop-navbar.png "Screenshot of the navbar visible to logged-in users when the site is viewed on a desktop screen.")
+<br>
+
+The links available to the logged-in user: Home, My Reviews, My Wish List and Browse are visible 
+on the navbar on desktop view and are accessible through the hamburger icon on the mobile navbar.
+
+![alt text](documentation/readme-images/side-nav-logged-in-user.png "Screenshot of the side navigation menu links available to the logged-in user.")
+<br>
+
+The User icon, which is visible on the navbar on all screen sizes, opens a dropdown menu to reveal the Profile and Log Out links.
+
+![alt text](documentation/readme-images/logged-in-user-dropdown-menu.png "Screenshot of the user dropdown menu.")
+<br>
+
+Similarly, the magnifying-glass icon which opens the Search page is visible on all screens.
+
+![alt text](documentation/readme-images/search-mobile-view.png "Screenshot of the search page, as it displays when viewed on a mobile device.")
+<br>
+
+Within the site footer, present on all pages, there are links to the Home Page, About Us section on the Home Page and the Contact Us Page.
+Beneath that there are three company logos which act as external links to the site's social media pages on 
+Facebook, Instagram and Twitter.
 
 &#9745;	Log out of the site.
 
+When a user is logged into the Read n' Reviewed site the Log Out button is to be found in the dropdown menu, which appears when the User icon on the navigation bar, is clicked.
+
+![alt text](documentation/readme-images/logged-in-user-dropdown-menu.png "Screenshot of showing the Log Out button within the User dropdown menu.")
+<br>
+
+Clicking the Log Out link, logs the user out immediately and flashes a message to the screen.
+
+![alt text](documentation/readme-images/logged-out-flash-message.png "Screenshot of showing the flash messaged that appears when the user logs out.")
+<br>
+
 &#9745;	Edit my account information.
+
+When a user logs into the Read n' Reviewed site they can access their Profile page using the User icon which is visible at all times on the navigation bar
+on all viewing devices.  This icon expands into a dropdown menu when clicked.
+
+![alt text](documentation/readme-images/logged-in-user-dropdown-menu.png "Screenshot of a logged-in user's dropdown menu.")
+<br>
+
+Selecting the Profile link brings the logged-in user to their personal Profile page
+on which they can see their username and email address.
+
+![alt text](documentation/readme-images/profile-page-mobile-view.png "Screenshot of a user's profile page as it appears when viewed on a mobile device.")
+<br>
+
+An orange Edit button, below this information, brings the user to the Edit Profile page where they can reset their password if they wish.
+
+![alt text](documentation/readme-images/edit-profile-mobile-view.png "Screenshot of the Edit Profile page as it appears when viewed on a mobile device.")
+<br>
 
 &#9745;	Read the most recent book reviews added to the site, which will give me an idea of what books are being read by other site members right now.
 
+When the user navigates to the site they are presented with the two latest books to be reviewed on the Read n' Reviewed site.
+
+![alt text](documentation/readme-images/latest-reviews-mobile-view.png "Screenshot of the Latest Reviews section of the home page as it appears when viewed on a mobile device.")
+<br>
+
 &#9745;	Search for my next book to read based on reviews written by fellow book lovers, reviews that are ranked by popularity.
+
+Users can use the Search page, accessible at all times through the magnifying-glass icon link on the navigation bar, to search the Read n' Reviewed site for a book title or for a specific author.
+
+![alt text](documentation/readme-images/search-result-mobile-view.png "Screenshot of the Search Result page and results as it appears when viewed on a mobile device.")
+<br>
+
+If reviews exist, for a specific book, within the site, they are displayed below the general book information on the View Book page.
+
+![alt text](documentation/readme-images/reviews-tablet-device.png "Screenshot of book reviews ordered by popularity and date created.")
+<br>
+
+The reviews are ordered by popularity, gauged by the number of times fellow users have up-voted them, and then by date written.
+In this way, the viewer is presented with the most popular, and accurate reviews first, or failing that, with the most recent reviews.
 
 &#9745;	Read general information about the books, including the authors’ names and the publication dates as well as being able to see images of the book covers.
 
+General information about the books reviewed on the site can be seen on the Home page, the Browse page, the View Book page, the My Reviews page, the Wish List page 
+and on the Search results page. 
+
+Within the View Book page for an individual book the user is provided, if the information is available from the Google Books API,
+with the image of the book cover, the title of the book, the author's name, the book category, a general description of the book, the
+page count, the date it was published, the publisher and the book's ISBN 13 number. 
+
+![alt text](documentation/readme-images/view-book-mobile-view.png "Screenshot of the View Book Page as it appears when viewed on a mobile device.")
+<br>
+
 &#9745;	Be facilitated in my goal of buying a specific book immediately through direct links to an online book store.
+
+Purchase links are provided on the Wish List page and the View Book page.  
+These blue buttons, with their self-explanatory shopping bag icon, bring the logged-in user directly to the Amazon Search Results page for the current book title and author. 
+If the reader has reviewed the book already, the purchase link is no longer displayed as it is presumed that they have already purchased the book.
+
+![alt text](documentation/readme-images/wish-list-mobile-view.png "Screenshot of the Wish List Page showing the 'Buy' button with its shopping bag icon.")
+<br>
 
 &#9745;	Search to see whether a book has already been reviewed on the site by entering the book title, or author into a search box within the site.
 
@@ -920,10 +1022,128 @@ The user is asked for their name, email address and enquiry.  Submitting the for
 ![alt text](documentation/readme-images/contact-us-form-mobile-view.png "Screenshot of Read n' Reviewed Contact Us page as it appears when viewed on a mobile device.")
 <br>
 
+<br>
+
+##### back to [top](#table-of-contents)
+---
+
 
 
 
 #### Site Owner
+
+As the owner of Read n' Reviewed website I would like:
+
+&#9745;	Provide site members with an effective and user-friendly platform where they can read book reviews written by other avid readers so that they make more informed choices when choosing their next book to read.
+
+&#9745;	Provide site members with a user-friendly way to share their own reviews of books, edit those reviews or delete them as they see fit.
+
+&#9745;	Present the reviews in a visually appealing format.
+
+Each book review is presented with the book cover image, where available from Google Books API.
+This adds colour and interest to the website.
+
+![alt text](documentation/readme-images/my-reviews-desktop-view.png "Screenshot of Read n' Reviewed My Reviews page as it appears when viewed on a desktop screen.")
+<br>
+
+The star rating attributed to each book is displayed using eye-catching and visually appealing orange star icons.
+
+&#9745;	Provide an up-voting functionality for members to express their satisfaction with particular reviews.
+
+When a user is logged in and navigates to the View Book page for a particular book, they have access to an Up-vote button
+which is displayed beside other Read n' Reviewed members' reviews. This allows the logged-in user to vote for 
+other members' reviews that they feel are accurate or helpful.
+
+![alt text](documentation/readme-images/upvote-review-tablet-view.png "Screenshot the Upvote Review button beside a review on the View Book page.")
+<br>
+
+&#9745;	Provide site members with the ability to search the site for a specific book by entering the title or the author into a search box within the site.
+
+The link to the Search page, the magnifying-glass icon, is visible on the site navigation bar regardless of the viewing screen dimensions.
+When clicked, this opens the Search page.  The user can search the Read n' Reviewed site for a book by entering the title or the author or both into the
+text input field and clicking the Search button.
+
+![alt text](documentation/readme-images/search-mobile-view.png "Screenshot of the Search page as it appears when viewed on a mobile device.")
+<br>
+
+&#9745;	Provide users with general information about the books reviewed, including the author’s name and publication date and an image of the book cover.
+
+Book cover images, titles and authors are displayed on the Home Page, Wish List, My Reviews and Browse pages.
+Further information is provided on the View Book and My Review pages.  Here, the user is presented with a 
+general description of the book in question, along with the publication date, publisher, page count and ISBN 13 number.
+
+![alt text](documentation/readme-images/view-book-tablet-view.png "Screenshot of the View Book page as it appears when viewed on a tablet device.")
+<br>
+
+&#9745;	Raise revenue by directing site members to a partner online book store where they can buy the books they are interested in.
+
+When a logged-in user navigates to their Wish List or to the View Book page for a book they have not yet reviewed they are presented with a blue
+'Buy it Now' button.  
+
+![alt text](documentation/readme-images/upvote-review-tablet-view.png "Screenshot of the Buy It Now button on the View Book page for The Thursday Murder Club by Richard Osmond.")
+<br>
+
+This button opens a new tab in the user's browser and displays the Amazon search results page for that book and author.
+
+![alt text](documentation/readme-images/amazon-search-results-page.png "Screenshot of the Amazon Search Results page for The Thursday Murder Club by Richard Osmond")
+<br>
+
+&#9745;	Encourage more members to join the community by creating a professional-looking website that is intuitive to use and displays positive member testimonials on the landing page. 
+
+New and existing users can view Read n' Reviewed member testimonials on the Home Page of the site.
+
+![alt text](documentation/readme-images/member-testimonials-mobile-view.png "Screenshot of the Member Testimonials carousel on the home page as it appears when viewed on a mobile device.")
+<br>
+
+&#9745;	Provide prospective members with the ability to sign-up easily.
+
+When a prospective site member navigates to the Read n' Reviewed home page they are presented with three different links to the register.html page.
+An eye-catching orange call-to-action 'Register' button is prominently displayed on the banner image.  
+
+![alt text](documentation/readme-images/homescreen-mobile-view.jpg "Screenshot of the call-to-action Register button on the banner image as it appears when viewed on a mobile device.")
+<br>
+
+Another similar button is displayed under the About Us section which is located further down the home page.
+
+![alt text](documentation/readme-images/about-us-mobile-view.png "Screenshot of the About Us section and call-to-action button as it appears when viewed on a mobile device.")
+<br>
+
+
+The User icon on the navigation bar, visible on all viewing devices, reveals a dropdown menu with a link to the register.html page.
+
+![alt text](documentation/readme-images/new-user-dropdown-menu.png "Screenshot of the register link within the User dropdown menu.")
+<br>
+
+When the prospective site member opens the register.html page they are presented with a simple form, which is clearly labelled.
+Intuitive icons and placeholder text make it clear where the user should enter their username, password and email address in order to sign up to become members of the site.
+Tooltips appear when the input fields are hovered over.  These clarify what format the username and password should take.
+
+![alt text](documentation/readme-images/registration-form-mobile-view.png "Screenshot of the registration form as it appears when viewed on a mobile device.")
+<br>
+
+&#9745;	Encourage more visitors to follow the site on social media and thereby raise the profile of the site.
+
+Links to the site's associated Facebook, Instagram and Twitter accounts are presented to the user in the footer area at the bottom of each screen.
+
+![alt text](documentation/readme-images/footer-mobile-view.png "Screenshot of the site footer with social media links as it appears when viewed on a mobile device.")
+<br>
+
+
+&#9745;	Provide visible contact details so that all site visitors can contact the site administrator with ease.
+
+Within the footer on each page on the site, both logged-in and non-Read-n'-Reviewed members are presented with a link to the Contact page.
+
+![alt text](documentation/readme-images/footer-mobile-view.png "Screenshot of the site footer as it appears when viewed on a mobile device.")
+<br>
+
+Clicking on this link opens the contact.html page, which contains a simple, clearly labelled form.
+
+![alt text](documentation/readme-images/contact-us-form-mobile-view.png "Screenshot of the Contact Us form as it appears when viewed on a mobile device.")
+<br>
+
+When the user submits the form an email is sent to the site administrator containing the information provided.
+
+&#9745;	Search for my next book to read based on reviews written by fellow book lovers.
 
 <br>
 
