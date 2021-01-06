@@ -622,15 +622,46 @@ The steps taken, although limited, resulted in a noticeable improvement in Perfo
 The Read n' Reviewed site was designed using the mobile-first approach, but it was tested for responsiveness on multiple screen dimensions 
 throughout the development process and after project completion using the Google Chrome Developer Tools Toggle Device function.  
 
-Web developer tools in each of the following browsers were used to ensure responsiveness and functionality of the site:
+Web developer tools in each of the following browsers were used also to ensure responsiveness and functionality of the site:
 
 - Google Chrome
 - Microsoft Edge
 - Microsoft Opera
 - Mozilla Firefox
 
-Each website feature including, but not exclusive to, modals, buttons, external links, hover effects etc. were manually checked within the 
+Each website feature including, but not exclusive to, modals, buttons, external links, hover effects etc. was manually checked within the 
 aforementioned browsers.
+
+**Home Page**
+
+![alt text](documentation/readme-images/homepage-functions-logged-out-user.png "Grid showing the different Home page functions tests on each browser.")
+
+<br>
+
+**Browse Page**
+![alt text](documentation/readme-images/browse-functions-logged-out-user.png "Grid showing the different Browse page functions tests on each browser.")
+
+<br>
+
+**Search Page**
+![alt text](documentation/readme-images/search-functions-logged-out-user.png "Grid showing the different Search page functions tests on each browser.")
+
+<br>
+
+**Registration Page**
+![alt text](documentation/readme-images/register-functions-logged-out-user.png "Grid showing the different Registration page functions tests on each browser.")
+
+<br>
+
+**Login Page**
+![alt text](documentation/readme-images/login-functions-logged-out-user.png "Grid showing the different Login page functions tests on each browser.")
+
+<br>
+
+**Contact Us Page**
+![alt text](documentation/readme-images/contact-us-functions-logged-out-user.png "Grid showing the different Contact Us page functions tests on each browser.")
+
+<br>
 
 Within each browser the site was checked for responsiveness and functionality when viewed on the following: 
 
@@ -663,7 +694,7 @@ Within each browser the site was checked for responsiveness and functionality wh
 - 22" Desktop (1680 x 1050)
 - 20" Desktop (1600 x 900)
 
-In addition to checking the game's functionality using browser developer tools, 
+In addition to checking the website's functionality using browser developer tools, 
 the site has been manually checked by friends and family.  Issues highlighted have been recitified as far as was feasible.
 
 ##### back to [top](#table-of-contents)
