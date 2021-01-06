@@ -261,10 +261,12 @@ so that users can contact the site administrator and **social media** links to:
 <br> 
 
 ### Features Left to Implement
+-   Secure **user authentication** implemented using Flask-Login.
+-   **Pagination** particularly of the browse.html and the my_reviews.html pages.
+-   Integrate the **Embedded Viewer API** from Google Books to embed book content directly into the Read n' Reviewed site with JavaScript.
+-   Create **Administrative Privileges** functionality on the website to enable the administrator to delete any review or book from the site instead of logging into MongoDB to access the data.
 -	Provide users with **individualised recommendations** based on their previous reviews and upvoting behaviour.
 -	A **membership ezine** based on activity on the site – most popular books in different genres etc.
-
-
 <br>
 
 ##### back to [top](#table-of-contents)
@@ -412,7 +414,7 @@ A SQL database structure would have been ideal for storing the data in this proj
 The types of data stored in MongoDB for this project are:
 -	ObjectId
 -	String
--	DateTime
+-	Float
 -   Integer
 
 ### Collections Data Structure
@@ -461,7 +463,7 @@ The Read n’ Reviewed website relies on three database collections:
 |Rating	        |rating         |dropdown menu          |string     |
 |Review	        |review         |text                   |string     |
 |Reviewer       |created_by     |None                   |string     |
-|Date           |review_date    |None	                |datetime   |
+|Date           |review_date    |None	                |float      |
 |Review Score   |review_score   |None                   |integer    |
 |Upvoters       |upvoters       |None                   |array of strings, usernames     |
 
@@ -616,6 +618,53 @@ The steps taken, although limited, resulted in a noticeable improvement in Perfo
 ---
 
 ### Responsiveness
+
+The Read n' Reviewed site was designed using the mobile-first approach, but it was tested for responsiveness on multiple screen dimensions 
+throughout the development process and after project completion using the Google Chrome Developer Tools Toggle Device function.  
+
+Web developer tools in each of the following browsers were used to ensure responsiveness and functionality of the site:
+
+- Google Chrome
+- Microsoft Edge
+- Microsoft Opera
+- Mozilla Firefox
+
+Each website feature including, but not exclusive to, modals, buttons, external links, hover effects etc. were manually checked within the 
+aforementioned browsers.
+
+Within each browser the site was checked for responsiveness and functionality when viewed on the following: 
+
+**Mobile Devices**
+- Android 7.0
+- Galaxy S5
+- Galaxy S9
+- iPhone 5/SE
+- iPhone 6/7/8
+- iPhone 6/7/8 plus
+- iPhone X / XS
+- Moto G4
+- Pixel 2
+- Pixel 2XL
+- Surface Duo
+
+**Tablet Devices**
+- iPad
+- iPad Pro
+- Kindle Fire HDX
+
+**Laptop dimensions:**
+
+- 15" Laptop (1024 x 800)
+- 13" Laptop (1024 x 800)
+
+**Desktop dimensions:**
+
+- 24" Desktop (1920 x 1200)
+- 22" Desktop (1680 x 1050)
+- 20" Desktop (1600 x 900)
+
+In addition to checking the game's functionality using browser developer tools, 
+the site has been manually checked by friends and family.  Issues highlighted have been recitified as far as was feasible.
 
 ##### back to [top](#table-of-contents)
 ---
@@ -1041,6 +1090,27 @@ As the owner of Read n' Reviewed website I would like:
 
 &#9745;	Provide site members with a user-friendly way to share their own reviews of books, edit those reviews or delete them as they see fit.
 
+When a user joins the site they can upload their own review of any book on the site by clicking on the orange "Write a Review" button which is visible on the View Book page for
+any book not yet reviewed by that member.  
+
+![alt text](documentation/readme-images/view-book-tablet-view.png "Screenshot showing the Write a Review button on the View Book page as it appears when viewed on a tablet screen.")
+<br>
+
+This button brings the user to the Add Review page.
+
+![alt text](documentation/readme-images/add-review-mobile-view.png "Screenshot showing the Add Review page as it appears when viewed on a mobile screen.")
+<br>
+
+The user is presented with a partially filled in, clearly labelled, form which negates the need for entering the title, author or ISBN number of the book.
+The process was designed to make it as easy as possible for a member to upload a review.
+To review the book, they simply have to choose their star rating from the dropdown select element provided, type their book review into the textarea and press submit.
+
+Once submitted, on every page where the logged-in user can see their own review, they are presented with buttons to Edit and Delete the review in question.
+These buttons appear on the View Book page, the My Reviews page and the My Review page. 
+
+![alt text](documentation/readme-images/delete-review-button-tablet-view.png "Screenshot of the Edit and Delete review buttons on the View Book page on a tablet device.")
+<br>
+
 &#9745;	Present the reviews in a visually appealing format.
 
 Each book review is presented with the book cover image, where available from Google Books API.
@@ -1245,8 +1315,8 @@ A function, identify_user() was then written to find the hashed cookie within th
 This function is called on within the different views to identify the user in question and access their reviews and wish list etc.
 The cookie and its associated document in the the database are deleted when the user clicks the logout button. 
 A hashed cookie is generated on each login, increasing the site's security.  
-After reading about user authentification it was decided that this was beyond the scope of this project due to time constraints. 
-These changes were rolled back and the rudimentary user authentification of the session['user'] cookie was reinstated with the user's username.
+After reading about user authentication it was decided that this was beyond the scope of this project due to time constraints. 
+These changes were rolled back and the rudimentary user authentication of the session['user'] cookie was reinstated with the user's username.
 
 ### [url_for()](https://github.com/nualagr/readnreviewed/commit/8a6d67a0905226abbebbab747363011e105e2414)
 
