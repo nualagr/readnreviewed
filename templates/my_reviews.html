@@ -24,7 +24,7 @@
                 <p>By: {{ review.authors[0] }}</p>
             </div>
             <div class="col s6 m3 star-rating review-column">
-                <p>Rating: 
+                <p>Rating: <br class="hide-on-large-only">
                     {% set starRating = review.rating | int %}
                         {% for i in range(starRating) %}
                             <i class="fas fa-star"></i>
