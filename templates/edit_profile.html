@@ -19,7 +19,7 @@
                         <!-- Username Field-->
                         <div class="input-field col s12">
                             <i class="fas fa-user prefix"></i>
-                            <input id="username" name="username" type="text" disabled value="{{ username }}" autocomplete="username">
+                            <input id="username" name="username" type="text" value="{{ username }}" autocomplete="username" disabled>
                             <label for="username">Username:</label>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         <!-- Email Address Field -->
                         <div class="input-field col s12">
                             <i class="fas fa-envelope prefix"></i>
-                            <input id="email" name="email" type="email" disabled value="{{ email }}">
+                            <input id="email" name="email" type="email" value="{{ email }}" disabled>
                             <label for="email">Email:</label>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <!-- Current Password Field -->
                         <div class="input-field col s12">
                             <i class="fas fa-lock prefix"></i>
-                            <input id="currentPassword" name="current-password" type="password" minlength="8" maxlength="15" pattern="^.*[a-zA-Z0-9',.-]+.*$" autocomplete="current-password" required>
+                            <input id="currentPassword" name="current-password" type="password" class="validate" minlength="8" maxlength="15" pattern="^.*[a-zA-Z0-9',.-]+.*$" autocomplete="current-password" required>
                             <label for="currentPassword">Enter your Current Password:</label>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                         <!-- New Password Field -->
                         <div class="input-field col s12">
                             <i class="fas fa-user-lock prefix"></i>
-                            <input id="newPassword" name="new-password" type="password" minlength="8" maxlength="15" pattern="^.*[a-zA-Z0-9',.-]+.*$" class="validate tooltipped" data-position="bottom" data-tooltip="Password cannot contain spaces and must be between 8 and 15 charachters in length." autocomplete="new-password" required>
+                            <input id="newPassword" name="new-password" type="password" class="validate" minlength="8" maxlength="15" pattern="^.*[a-zA-Z0-9',.-]+.*$" class="validate tooltipped" data-position="bottom" data-tooltip="Password cannot contain spaces and must be between 8 and 15 charachters in length." autocomplete="new-password" required>
                             <label for="newPassword">Enter Your New Password:</label>
                         </div>
                     </div>

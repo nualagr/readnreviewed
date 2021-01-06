@@ -622,15 +622,58 @@ The steps taken, although limited, resulted in a noticeable improvement in Perfo
 The Read n' Reviewed site was designed using the mobile-first approach, but it was tested for responsiveness on multiple screen dimensions 
 throughout the development process and after project completion using the Google Chrome Developer Tools Toggle Device function.  
 
-Web developer tools in each of the following browsers were used also to ensure responsiveness and functionality of the site:
+The Read n' Reviewed site was checked for responsiveness when viewed on the following device dimensions using Chrome Developer Tools and Firefox Developer Tools: 
 
+**Mobile Devices**
+- Android 7.0
+- Galaxy S5
+- Galaxy S9
+- iPhone 5/SE
+- iPhone 6/7/8
+- iPhone 6/7/8 plus
+- iPhone X / XS
+- Moto G4
+- Pixel 2
+- Pixel 2XL
+- Surface Duo
+
+![alt text](documentation/readme-images/mobile-devices-tested.png "Grid showing the different mobile devices tested.")
+
+<br>
+
+**Tablet Devices**
+- iPad
+- iPad Pro
+- Kindle Fire HDX
+
+![alt text](documentation/readme-images/tablet-devices-tested.png "Grid showing the different tablet devices tested.")
+
+<br>
+
+**Laptop dimensions:**
+
+- 15" Laptop (1024 x 800)
+- 13" Laptop (1024 x 800)
+
+**Desktop dimensions:**
+
+- 24" Desktop (1920 x 1200)
+- 22" Desktop (1680 x 1050)
+- 20" Desktop (1600 x 900)
+
+![alt text](documentation/readme-images/desktop-devices-tested.png "Grid showing the different laptop and desktop devices tested.")
+
+<br>
+
+Each website feature including, modals, buttons, external links, hover effects etc. was manually checked within
 - Google Chrome
 - Microsoft Edge
 - Microsoft Opera
 - Mozilla Firefox
 
-Each website feature including, but not exclusive to, modals, buttons, external links, hover effects etc. was manually checked within the 
-aforementioned browsers.
+<br> 
+
+#### Logged-Out User
 
 **Home Page**
 
@@ -663,39 +706,82 @@ aforementioned browsers.
 
 <br>
 
-Within each browser the site was checked for responsiveness and functionality when viewed on the following: 
 
-**Mobile Devices**
-- Android 7.0
-- Galaxy S5
-- Galaxy S9
-- iPhone 5/SE
-- iPhone 6/7/8
-- iPhone 6/7/8 plus
-- iPhone X / XS
-- Moto G4
-- Pixel 2
-- Pixel 2XL
-- Surface Duo
 
-**Tablet Devices**
-- iPad
-- iPad Pro
-- Kindle Fire HDX
+#### Logged-In User
 
-**Laptop dimensions:**
+**Home Page**
 
-- 15" Laptop (1024 x 800)
-- 13" Laptop (1024 x 800)
+![alt text](documentation/readme-images/home-functions-logged-in-user.png "Grid showing the different Home page functions tests on each browser.")
 
-**Desktop dimensions:**
+<br>
 
-- 24" Desktop (1920 x 1200)
-- 22" Desktop (1680 x 1050)
-- 20" Desktop (1600 x 900)
+**My Reviews Page**
 
-In addition to checking the website's functionality using browser developer tools, 
-the site has been manually checked by friends and family.  Issues highlighted have been recitified as far as was feasible.
+![alt text](documentation/readme-images/my-reviews-functions-logged-in-user.png "Grid showing the different My Reviews page functions tests on each browser.")
+
+<br>
+
+**My Wish List Page**
+
+![alt text](documentation/readme-images/my-wish-list-functions-logged-in-user.png "Grid showing the different My Wish List page functions tests on each browser.")
+
+<br>
+
+**Browse Page**
+
+![alt text](documentation/readme-images/browse-functions-logged-in-user.png "Grid showing the different Browse page functions tests on each browser.")
+
+<br>
+
+**Profile Page**
+
+![alt text](documentation/readme-images/profile-functions-logged-in-user.png "Grid showing the different Profile page functions tests on each browser.")
+
+<br>
+
+**Edit Profile Page**
+
+![alt text](documentation/readme-images/edit-profile-functions-logged-in-user.png "Grid showing the different Edit Profile page functions tests on each browser.")
+
+<br>
+
+**Search Page**
+
+![alt text](documentation/readme-images/search-functions-logged-in-user.png "Grid showing the different Search page functions tests on each browser.")
+
+<br>
+
+**View Book Page**
+
+![alt text](documentation/readme-images/view-book-functions-logged-in-user.png "Grid showing the different View Book page functions tests on each browser.")
+
+<br>
+
+**Add Review Page**
+
+![alt text](documentation/readme-images/add-review-functions-logged-in-user.png "Grid showing the different Add Review page functions tests on each browser.")
+
+<br>
+
+**Edit Review Page**
+
+![alt text](documentation/readme-images/edit-review-functions-logged-in-user.png "Grid showing the different Edit Review page functions tests on each browser.")
+
+<br>
+
+**Add Book Page**
+
+![alt text](documentation/readme-images/add-book-functions-logged-in-user.png "Grid showing the different Add Book page functions tests on each browser.")
+
+<br>
+
+**My Review Page**
+
+![alt text](documentation/readme-images/my-review-functions-logged-in-user.png "Grid showing the different My Review page functions tests on each browser.")
+
+<br>
+
 
 ##### back to [top](#table-of-contents)
 ---
