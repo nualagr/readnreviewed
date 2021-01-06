@@ -18,7 +18,7 @@ body {
     background-color: #9E9E9E;
 }
 
-bg-grey:hover,
+.bg-grey:hover,
 .bg-grey:active,
 .bg-grey:focus {
     background-color: #8F8F8F;
@@ -418,5 +418,9 @@ h3 {
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
     margin-right: 0px;
+}
+
+.modal-content h5 {
+    padding: 0px;
 }
 }
