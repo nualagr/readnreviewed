@@ -146,6 +146,10 @@ button.bookmarked {
     vertical-align: top;
     font-size: 2rem;
 }
+
+a.modal-trigger i {
+    padding: 0px 3.5px;
+}
 /* Forms ----------------------------------------- */
 /* label color */
 .input-field label {

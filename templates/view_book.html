@@ -106,7 +106,7 @@
                                     <p>                                        
                                         <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-grey" title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only"> Edit</span></a>&nbsp;                                       
                                         <!-- Modal Trigger -->
-                                        <a class="btn bg-red modal-trigger" href="#{{ review._id }}" title="Delete Review button"> <i class="fas fa-trash-alt"></i> <span class="hide-on-small-only"> Delete</span></a>
+                                        <a class="btn bg-red modal-trigger" href="#{{ review._id }}" title="Delete Review button"><i class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>
                                     </p>
                                 {% else %}
                                     <!-- Check to see whether the logged in user upvoted the review already, if not, display the Upvote button -->
