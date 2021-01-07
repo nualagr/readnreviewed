@@ -1372,7 +1372,7 @@ If a user was logged in, and if they had not written the review being iterated o
 This prevented non-site-members from voting on reviews.
 
 
-### [API]()
+### [API](https://developers.google.com/books/docs/v1/using)
 
 Google Books API was chosen due to the large amount of information that is freely available, however many issues
 cropped up during development relating to the API.  
@@ -1631,17 +1631,21 @@ The following [Materialize](https://materializecss.com/) components were used an
 
 - [Modal](https://materializecss.com/modals.html)
 
+- [Card](https://materializecss.com/cards.html)
 
 ### Media
 
-### Images
+#### Images
 - Book-reading-logo from [Vecteezy](https://www.vecteezy.com/vector-art/599621-book-reading-logo-and-symbols-template-icons) was used for the Read n' Reviewed site logo.
+- Broken-pencil-isolated from [Vecteezy](https://www.vecteezy.com/vector-art/1270493-broken-pencil-isolated) was used for the Read n' Reviewed site 500 page background image.
 - Door-on-beach from [Vecteezy](https://www.vecteezy.com/vector-art/375219-closed-white-entrance-door-on-beach-vector-illustration) was used for the 404 page background image.
+- Star-community-logo from [Vecteezy](https://www.vecteezy.com/vector-art/623502-star-community-people-group-logo-and-symbols) was used for the Read n' Reviewed community logo in the About Us section on the homepage.
+- All book cover images were sourced from [Google Books API](https://developers.google.com/books).
 <br>
 
 
 ### Acknowledgements
-- [Code Institue](https://codeinstitute.net/) and the very helpful tutors.
+- [Code Institue](https://codeinstitute.net/) and their helpful tutors.
 - Thank you to my project mentor [Reuben Ferrante](https://uk.linkedin.com/in/reuben-ferrante).
 - The [Code Institue](https://codeinstitute.net/) community on [Slack](code-institute-room.slack.com) for their support.
 - A very special thank you to my partner Kevin for his patience and support throughout this project. 
