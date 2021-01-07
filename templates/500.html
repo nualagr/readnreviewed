@@ -1,32 +1,6 @@
 {% extends 'base.html' %}
-{% block styles %}
-    <style>
-        body {
-        margin: 0;
-        background-color: #FFFFFF;
-        }
-
-        .error-image {
-        background-image: url({{ url_for( 'static', filename='images/broken-pencil.jpg' ) }});
-        height: 700px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        }
-
-        .error-text {
-        text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #222222;
-        }
-    </style>
-{% endblock %} 
 {% block content %}
-    <div class="error-image container">
+    <div class="error-image server-error-image">
         <div class="error-text">
             <h1>An unexpected error has occurred</h1>
             <p>The administrator has been notified. Sorry for the inconvenience!</p>

@@ -390,6 +390,31 @@ textarea.materialize-textarea.valid {
     margin-right: 0px;
 }
 
+/* 400 and 500 Error Pages ---------------------------------------*/
+.error-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error-image {
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.server-error-image {
+    background-image: url("../images/broken-pencil-compressed.jpg");
+}
+
+.lost-image {
+    background-image: url("../images/door-on-beach-compressed.jpg");
+}
+
 /* Media Queries -----------------------------------*/
 
 @media (min-width: 768px) {
