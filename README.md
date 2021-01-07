@@ -1471,7 +1471,7 @@ The H18 error indicated that the HTTP request had been interrupted by a closed s
 Changing the return value of the upvote_review() and mark() functions from rendering the view_book.html template to a redirect to the https_url_for view_book.html
 succeeded in eliminating the error. 
 
-## Unresolved Bugs
+## Unresolved Issues
 
 ### Non-passive Event Listener
 ![alt text](documentation/readme-images/non-passive-event-listener-error.png "Screenshot of Chrome Developer Tools non-passive-event-listener warnings.")
@@ -1485,6 +1485,12 @@ Currently the rudimentary user authentication of the session['user'] cookie usin
 This was a security flaw as it is possible to access someone's account by artifically creating the cookie using an account holder's username.
 After reading about user authentication it was decided that this was beyond the scope of this project due to time constraints. 
 
+### EmailJS Security Concerns
+
+As the EmailJS User ID is loaded in the browser this could potentially allow a malicious user to make unwanted requests using that information.
+Reading throught the [EmailJS documentation](https://www.emailjs.com/faq/) and threads on [Stack Overflow](https://stackoverflow.com/questions/58791656/send-email-directly-from-javascript-using-emailjs)
+relating to this issue has not, as yet, provided a solution to this problem.
+For the present, to prevent the User ID from being accessible on every page, the script was moved to the block styles section of the Contact page. 
 
 ##### back to [top](#table-of-contents)
 ---
