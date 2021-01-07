@@ -534,6 +534,7 @@ The Read n’ Reviewed website relies on three database collections:
 
 ### HTML files
 [W3C HTML Validation Service](https://validator.w3.org/) was used to validate the HTML code. 
+
 The home page produced the following error regarding the Materialize carousel div elements which have an href attribute.
 
 ![alt text](documentation/readme-images/html-validator-href-attribute-error.png "Screenshot showing error from https://validator.w3.org/ regarding the href attribute in the div tag.")
@@ -546,11 +547,21 @@ This succeeded in removing the error.
 ![alt text](documentation/readme-images/html-validator-no-errors.png "Screenshot showing HTML validator results.")
 <br>
 
-The Contact Us page produced the following warning regarding the type attribut on the JavaScript script tags.
+The Contact Us page produced the following warning regarding the type attribute on the JavaScript script tags.
 
 ![alt text](documentation/readme-images/type-attribute-unnecessary-for-javascript-resources-warning.png "Screenshot showing HTML validator warning regarding type attribute.")
+
 <br>
+
+Although the EmailJS documentation included the type attribute in their examples, this attribute was removed.
+
+The page now shows no errors or warnings.
+
+![alt text](documentation/readme-images/html-validator-no-errors-contact-page.png "Screenshot showing HTML validator results for the Contact page.")
+<br>
+
 ### CSS file
+
 [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator) was used to validate the CSS file.  No errors were found.
 ![alt text](documentation/readme-images/css-validator-results.png "Screenshot showing results from CSS validator.")
 
