@@ -46,6 +46,10 @@ Click <a href="https://read-n-reviewed.herokuapp.com/">here</a> to visit the sit
         - [Collections Data Structure](#collections-data-structure)
 4. [**Technologies Used**](#technologies-used)
 5. [**Testing**](#testing)
+    - [HTML](#html-files)
+    - [CSS](#css-file)
+    - [JavaScript](#javascript-file)
+    - [Python](#python-file)
     - [Performance](#performance)
     - [Responsiveness](#responsiveness)
     - [Tested User Stories](#tested-user-stories)
@@ -208,16 +212,16 @@ The site has different options for each of the following users: new visitors, si
    -    The Search page consists of a single search box where users can search for books on the site, by author or title.
 
 
-2. **Site members** are able to log in to the site from the landing page.  Their logged in navigation bar consists of:
+2. **Site members** are able to log in to the site from the landing page.  Their logged-in navigation bar consists of:
    -	A link to their Profile page which displays their username and email address.
-   -    The My Reviews page displays a list of the user's reviews submitted to the site along with Edit and Delete buttons allowing the user to curate their own reviews. 
-   -	A link to the New Review page consisting of a form where they can input their new review and submit it to the database.  
+   -    The My Reviews page displays a list of the user's reviews submitted to the site along with Edit and Delete buttons allowing the user to curate their own reviews.  
    -	The My Wish List page consists of a grid of book covers, that the member has earmarked for future reading. There are links to those books as they have been reviewed on the site along with 
    links to buy the books. A simple bookmark icon beside each book allows the user to easily remove any book from the Wish List. 
    -    The Browse page, where users can browse through the books on the Read n' Reviewed site.
    -	A Log Out button.
    -    The Search page where users can search the site for any book by title or by author.  If no book currently exists on the 
    site the logged in user is brought to the Add Book page and allowed to search for the edition they want and add it to the site.
+    -	A link to the Write A Review page, found on every View Book page, consisting of a form where they can input their new review and submit it to the database. 
 
 
 3. **Administrative Users** will be able to see the public site:
@@ -229,6 +233,7 @@ The site has different options for each of the following users: new visitors, si
    -	Administrator Profile Page
    -    My Reviews Page
    -	My Wish List Page
+   -    Search Page
 
 <br>
 
@@ -264,9 +269,9 @@ so that users can contact the site administrator and **social media** links to:
 -   Secure **user authentication** implemented using Flask-Login.
 -   **Pagination** particularly of the browse.html and the my_reviews.html pages.
 -   Integrate the **Embedded Viewer API** from Google Books to embed book content directly into the Read n' Reviewed site with JavaScript.
+-   A **dropdown Search bar**.  Rather then opening a seperate Search page, the magnifying-glass icon would open a dropdown search bar located below the navigation bar on that page.
 -   Create **Administrative Privileges** functionality on the website to enable the administrator to delete any review or book from the site instead of logging into MongoDB to access the data.
 -	Provide users with **individualised recommendations** based on their previous reviews and upvoting behaviour.
--	A **membership ezine** based on activity on the site – most popular books in different genres etc.
 <br>
 
 ##### back to [top](#table-of-contents)
@@ -275,7 +280,7 @@ so that users can contact the site administrator and **social media** links to:
 ### 4 Skeleton Plane
 
 The UI wireframing tool, [Balsamiq](https://balsamiq.com/) was used to create wireframes for each page as they will appear on desktop, tablet and mobile devices.
-Main content areas were expressed in similar ways, to create consistency.  
+Main content areas on each page were designed for functionality and consistency.  
 
 After visiting existing book review sites including [GoodReads](https://www.goodreads.com/), [BookPage](https://bookpage.com/), 
 [LoveReading](https://www.lovereading.co.uk/), [SFBook Reviews](https://sfbook.com/) and [Reedsy Discovery](https://reedsy.com/discovery), 
@@ -360,11 +365,13 @@ which are found in the site logo, were used to draw attention to links and call-
 
 -	To keep the design clean, and professional the navigation bar is #FFFFFF, white, matching the background of the body each page. 
 -	The background colour of site is also #FFFFFF, white, to keep the website’s image clean and to provide easy contrast.
--	#CCCCCC, light gray, has been used to indicate changes in content areas and for horizontal dividers between sections.
+-	#F8F8F8, cultured, a light grey colour, has been used to indicate changes in content areas and for horizontal dividers between sections.
 -	When a user scrolls or hovers over the links on the navigation bar the background changes to a light grey in order to provide the user with visual feedback.  
--	Light gray, #CCCCCC, has been used for the Footer, with eerie black, #222222, text.  To provide visual feedback to the user the social media and other links in the footer turn from blue to eerie black when hovered over. 
+-	Various shades of light grey, #F5F5F5 and #9e9e9e have been used for the Footer, with eerie black, #222222, text.  
+To provide visual feedback to the user the social media and other links in the footer turn from blue to eerie black when hovered over. 
 -	Deep Saffron, #F69222, has been used as an accent colour throughout the site, from the logo to call-to-action buttons and the star rating stars.
--	Text colour throughout the site is Eerie Black (#222222) in colour, which provides a strong contrast to the other colours in the site.  The use of this colour ensures that the text should be legible and meet accessibility standards regardless of the background colour of the element in question.
+-	Text colour throughout the site is predominantly Eerie Black (#222222) in colour, which provides a strong contrast to the other colours in the site. 
+The use of this colour ensures that the text should be legible and meet accessibility standards regardless of the background colour of the element in question.
 
 #### Icons
 
@@ -477,7 +484,7 @@ The Read n’ Reviewed website relies on three database collections:
 
 - Languages: 
 
-  * [HTML5](http://en.wikipedia.org/wiki/HTML5). Used to create the structure of the Read n' Reviewed website and the custom 404 page.
+  * [HTML5](http://en.wikipedia.org/wiki/HTML5). Used to create the structure of the Read n' Reviewed website and the custom 404 and 500 pages.
   * [CSS3](http://en.wikipedia.org/wiki/CSS). Used to add style to the website. 
   * [JavaScript](https://en.wikipedia.org/wiki/JavaScript). Used to create the dynamic, interactive elements of the website such as the carousel and to call the Google Books API.
   * [Python](https://en.wikipedia.org/wiki/Python_(programming_language)).  Used to create and run the web application.
@@ -500,14 +507,14 @@ The Read n’ Reviewed website relies on three database collections:
   * [RandomKeyGen](https://randomkeygen.com/). Used to generate the Secret Key.
   * [Slack](code-institute-room.slack.com). Used during development and testing to find the solutions to problems enountered.
   * [Stack Overflow](https://stackoverflow.com/). Used to search for the answers to problems encountered during the development and testing of the website.
-  * [TinyPNG](https://tinypng.com/). Used to compress the site logo to improve performance results.
-  * [Vecteezy](https://www.vecteezy.com/vector-art/599621-book-reading-logo-and-symbols-template-icons). Used to source the site icon and the custom 404 page background.
+  * [TinyPNG](https://tinypng.com/). Used to compress the site logos and background-images to improve performance results.
+  * [Vecteezy](https://www.vecteezy.com/vector-art/599621-book-reading-logo-and-symbols-template-icons). Used to source the site logo, community icon and the custom 404 and 500 page backgrounds.
   * [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator). Used to validate the CSS file.
   * [W3C HTML Validation Service](https://validator.w3.org/). Used to validate the HTML files.
 
 - Frameworks
   * [Materialize Framework](https://materializecss.com/). Used to structure the website layout and ensure that it was responsive on all devices.
-  * [Flask](https://en.wikipedia.org/wiki/Flask_(web_framework)).  Python web framework.
+  * [Flask](https://en.wikipedia.org/wiki/Flask_(web_framework)).  Python web framework used to create the web app.
 
 - Database
   * [MongoDB](https://en.wikipedia.org/wiki/MongoDB), the document-oriented database program.  Used to store the users' information, book reviews and other data.
@@ -517,7 +524,7 @@ The Read n’ Reviewed website relies on three database collections:
 
 - Apps:
   * [Balsamiq](https://balsamiq.com/). Used to create the project wireframes.
-  * [Inkscape](https://inkscape.org/). Used to edit the Vecteezy svg.
+  * [Inkscape](https://inkscape.org/). Used to edit the Vecteezy svgs.
 
 ##### back to [top](#table-of-contents)
 ---
@@ -531,6 +538,7 @@ Before the second meeting with my mentor the project was run through linters and
 The home page produced the following error regarding the Materialize carousel div elements which have an href attribute.
 
 ![alt text](documentation/readme-images/html-validator-href-attribute-error.png "Screenshot showing error from https://validator.w3.org/ regarding the href attribute in the div tag.")
+
 <br>
 
 Posts on [Stack Overflow](https://stackoverflow.com/questions/18824009/attribute-href-not-allowed-on-element-button-at-this-point) suggested changing the attribute to a 'data-' attribute.
@@ -538,9 +546,12 @@ This succeeded in removing the error.
 
 ![alt text](documentation/readme-images/html-validator-no-errors.png "Screenshot showing HTML validator results.")
 <br>
-### CSS files
+
+### CSS file
 [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator) was used to validate the CSS file.  No errors were found.
 ![alt text](documentation/readme-images/css-validator-results.png "Screenshot showing results from CSS validator.")
+
+
 <br>
 
 ### JavaScript File
@@ -570,12 +581,6 @@ The app.py file now passes through the linter with no errors.
 
 ![alt text](documentation/readme-images/infoheap-python-lint-no-errors.png "Screenshot infoheap Python linter results showing no errors.")
 <br>
-
-### Chrome Developer Tools
-![alt text](documentation/readme-images/non-passive-event-listener-error.png "Screenshot of Chrome Developer Tools non-passive-event-listener warnings.")
-<br>
-Chrome Developer Tools console highlighted the above violation, however it relates to non-passive event listeners within the Materialize JavaScript script.
-Solutions have so far been unsuccessful in solving this issue.
 
 ### Performance
 Google Chrome Developer Tools Lighthouse test was used to test the quality of the various pages on the website. Overall performance and errors are highlighted below.
@@ -1420,18 +1425,6 @@ When the user clicks the now working button, the sendToPython() function is call
 fetch()'s 'POST' method is then used to send the newBook to Python. Within the add_book() the newBook is unpacked into a dictionary and added to the database. 
 The redirect url for the view_book.html page of this new book is then sent as a response back to fetch() and window.location.href is used to load that page in the browser. 
 
-### Session Cookie Username 
-
-At first the way in which users were logged in and identified from page to page was through the use of a session cookie that stored their username. 
-This was a security flaw as it would have been possible to access someone's account by artifically creating the cookie an account holder's username.
-It was therefore decided to use the Werkzeug generate_password_hash() function to generate a hash of the site member's username. 
-This was then stored in the session cookie. It was also stored in a document in the Sessions Collection in the database, alongside their unhashed username.
-A function, identify_user() was then written to find the hashed cookie within the Sessions collection and located the associated username. 
-This function is called on within the different views to identify the user in question and access their reviews and wish list etc.
-The cookie and its associated document in the the database are deleted when the user clicks the logout button. 
-A hashed cookie is generated on each login, increasing the site's security.  
-After reading about user authentication it was decided that this was beyond the scope of this project due to time constraints. 
-These changes were rolled back and the rudimentary user authentication of the session['user'] cookie was reinstated with the user's username.
 
 ### [url_for()](https://github.com/nualagr/readnreviewed/commit/8a6d67a0905226abbebbab747363011e105e2414)
 
@@ -1440,7 +1433,6 @@ Reading numerous posts on [Stack Overflow](https://stackoverflow.com/questions/1
 It was suggested that adding a scheme parameter stating that the scheme='https' and that the connection was external=True, forcing the use of the full url, would fix the problem.
 Rather than adding this each time url_for was called, a wrapper function was defined that called the url_for and added these parameters. 
 This https_url_for() function was then called for each redirect.  This removed the issue of the browser warnings.
-
 
 
 ### Heroku Server Request Interrupted Error
@@ -1455,6 +1447,21 @@ Although the page would not load and the error was logged, when the page was ref
 The H18 error indicated that the HTTP request had been interrupted by a closed socket before the router had received the HTTP response from the app's web process.
 Changing the return value of the upvote_review() and mark() functions from rendering the view_book.html template to a redirect to the https_url_for view_book.html
 succeeded in eliminating the error. 
+
+## Unresolved Bugs
+
+### Non-passive Event Listener
+![alt text](documentation/readme-images/non-passive-event-listener-error.png "Screenshot of Chrome Developer Tools non-passive-event-listener warnings.")
+<br>
+Chrome Developer Tools console highlighted the above violation, however it relates to non-passive event listeners within the Materialize JavaScript script.
+Solutions have so far been unsuccessful in solving this issue.
+
+### Session Cookie Username 
+
+Currently the rudimentary user authentication of the session['user'] cookie using the user's username is used to log users in and out of the site. 
+This was a security flaw as it is possible to access someone's account by artifically creating the cookie using an account holder's username.
+After reading about user authentication it was decided that this was beyond the scope of this project due to time constraints. 
+
 
 ##### back to [top](#table-of-contents)
 ---
@@ -1632,6 +1639,10 @@ The following [Materialize](https://materializecss.com/) components were used an
 - [Modal](https://materializecss.com/modals.html)
 
 - [Card](https://materializecss.com/cards.html)
+
+#### Book Information
+- Book information, where available, including the book title, author, publisher, date published, text snippet, description and page count, were sourced from [Google Books API](https://developers.google.com/books).
+- Reviews were helpfully provided by friends and family.
 
 ### Media
 
