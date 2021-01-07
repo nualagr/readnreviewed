@@ -620,9 +620,7 @@ The steps taken, although limited, resulted in a noticeable improvement in Perfo
 ### Responsiveness
 
 The Read n' Reviewed site was designed using the mobile-first approach, but it was tested for responsiveness on multiple screen dimensions 
-throughout the development process and after project completion using the Google Chrome Developer Tools Toggle Device function.  
-
-The Read n' Reviewed site was checked for responsiveness when viewed on the following device dimensions using Chrome Developer Tools and Firefox Developer Tools: 
+throughout the development process and after project completion using the Google Chrome Developer Tools Toggle Device function and Firefox Developer Tools.  
 
 **Mobile Devices**
 - Android 7.0
