@@ -55,5 +55,16 @@
         </div>
     </div>
     {% endfor %}
+    <!-- Link to Add Book Page if the search results did not produce the desired book -->
+    {% if books and session %}
+    <div class="row container">
+        <div class="col s12">
+            <p class="center">
+                Not what you were looking for? Click <a href="{{ url_for('add_book') }}">here</a> to add a new book to
+                the Read n' Reviewed site.
+            </p>
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
