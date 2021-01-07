@@ -83,10 +83,6 @@ h1, h2, h3, h4, h5 {
   width: 60%;
 }
 
-.strong {
-    font-weight: bolder !important;
-}
-
 .star-rating i {
     color: #F69222;
 }
@@ -206,7 +202,6 @@ img.cover {
 
 /* Dividers and Containers ------------------------*/
 .banner-image {
-    /* background-image: url('../images/blue-banner-image-compressed.jpg');  */
     background-image: radial-gradient(#FFFFFF, #70C6EB, #2AA9E0);
     background-position: center;
     background-repeat: no-repeat;
@@ -250,7 +245,9 @@ footer a {
     color: #1F76BB;
 }
 
-footer a:hover{
+footer a:hover,
+footer a:active,
+footer a:focus {
     color: #222222;
 }
 
@@ -375,12 +372,8 @@ textarea.materialize-textarea.valid {
     overflow: hidden;
 }
 
-.card .card-action.wishlist a:hover {
-    color: #BF7218 !important;
-}
-
 .card .card-action.wishlist a.btn {
-    color: #F69222 !important;
+    color: #F69222;
     font-weight: 500;
     background-color: transparent;
     border-color: transparent;

@@ -10,17 +10,13 @@ const key = "&printType=books";
 /**
  * Function to call Google Books API
  */
-function getData(title, author, cb){
+function getData(title, author, cb) {
     let xhr = new XMLHttpRequest();
     // Use encodeURIcomponent() to replace each instance of a space in the 
     // title or author inputs with %20
     let bookTitle = "intitle:" + encodeURIComponent(title);
-    console.log("The searched for book title is:", bookTitle);
     let bookAuthor = "+inauthor:" + encodeURIComponent(author);
-    console.log("The searched for book author is:", bookAuthor);
-    // let bookIsbn = "+isbn:" + isbn;
 
-    // xhr.open("GET", baseURL + bookTitle + bookAuthor + bookIsbn + key);
     let path = baseURL;
     if (title) {
         path += bookTitle;
@@ -33,12 +29,12 @@ function getData(title, author, cb){
 
     xhr.send();
 
-    xhr.onreadystatechange = function(){
-        if (this.readyState === 4 && this.status === 200){
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
             cb(JSON.parse(this.responseText));
         }
         else if (this.status !== 200) {
-            document.getElementById("bookContentContainer").innerHTML=`<h5>Error: ${this.responseText} </h5>`;
+            document.getElementById("bookContentContainer").innerHTML = `<h5>Error: ${this.responseText} </h5>`;
         }
     };
 }
@@ -50,7 +46,7 @@ function getData(title, author, cb){
  * If so, call the writeToDocument() function to make the API call.
  * If not, disable the submit button and alert the user.
  */
-function checkApiFormValidity(title, author){
+function checkApiFormValidity(title, author) {
     let isValidSearchTitle = searchTitle.checkValidity();
     let isValidSearchAuthor = searchAuthor.checkValidity();
     let okButton = document.getElementById("okButton");
@@ -76,19 +72,18 @@ function checkApiFormValidity(title, author){
  * Add each dict to a list
  * Iterate through the list of dicts, printing each to the screen for the user to see.
  */
-function writeToDocument(title, author){   
+function writeToDocument(title, author) {
     let el = document.getElementById("bookContentContainer");
     let messageContainer = document.getElementById("messages");
     // Sets the page back to blank every time the button is clicked.
     el.innerHTML = "";
 
-    getData(title, author, function(data){
-        console.log(data);
+    getData(title, author, function (data) {
         let searchList = [];
         let books = data.items;
         if (data.totalItems == 0) {
             messageContainer.innerHTML = `<div class="row flashed-messages"><h4 class>No Results Found</h4></div>`;
-        } 
+        }
         else {
             for (var i in books) {
                 // Assign an empty string to the variables
@@ -139,36 +134,30 @@ function writeToDocument(title, author){
                 }
 
                 var dict = {
-                    "thumbnail" : thumbnail,
-                    "title" : title,
-                    "authors" : authors,
-                    "category" : category,
-                    "description" : description,
-                    "publisher" : publisher,
-                    "published_date" : publishedDate,
-                    "page_count" : pageCount,
-                    "isbn" : isbn,
-                    "text_snippet" : textSnippet,
+                    "thumbnail": thumbnail,
+                    "title": title,
+                    "authors": authors,
+                    "category": category,
+                    "description": description,
+                    "publisher": publisher,
+                    "published_date": publishedDate,
+                    "page_count": pageCount,
+                    "isbn": isbn,
+                    "text_snippet": textSnippet,
                 };
                 searchList.push(dict);
             }
-            console.log("SearchList:", searchList);
 
-                // Print data to screen
-                messageContainer.innerHTML += `<div class="row flashed-messages"><div class="col s12"><h4>Choose the edition you wish to review.</h4></div></div>`;
-                for (i in searchList) {
-                    // How to encode string to base 64 found at Stack Overflow: https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript
-                    el.innerHTML += `<div class='row'>\
-                    <hr>\
-                    <hr\
-                    <br>\
-                    <div class='col s12 m6 center-align'>\
-                    <img src='${searchList[i].thumbnail}' alt='${searchList[i].title} book cover' class='centered'>\
-                    <br>\
+            // Print data to screen
+            messageContainer.innerHTML += `<div class="row flashed-messages"><div class="col s12"><h4>Choose the edition you wish to review.</h4></div></div>`;
+            for (i in searchList) {
+                // How to encode string to base 64 found at Stack Overflow: https://stackoverflow.com/questions/246801/how-can-you-encode-a-string-to-base64-in-javascript
+                el.innerHTML += `<div class='row'>\
+                    <hr><hr><br>\
+                    <div class='col s12 m6 center-align'><img src='${searchList[i].thumbnail}' alt='${searchList[i].title} book cover' class='centered'><br>\
                     <button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button>\
                     </div>\
-                    <div class='col s12 m6'>\
-                    <table>\
+                    <div class='col s12 m6'><table>\
                     <tr><td>Title:</td><td> ${searchList[i].title}</td></tr>
                     <tr><td>Author:</td><td>${searchList[i].authors}</td></tr>
                     <tr><td>Category:</td><td>${searchList[i].category}</td></tr>
@@ -178,30 +167,27 @@ function writeToDocument(title, author){
                     <tr><td>Page Count:</td><td>${searchList[i].page_count}</td></tr>
                     <tr><td>ISBN:</td><td>${searchList[i].isbn}</td></tr>\
                     </table>\
-                    <br>\
-                    </div>\
-                    </div>`;
-                }
+                    <br></div></div>`;
             }
-    }      
-);}
+        }
+    }
+    );
+}
 
 
 /** 
-* Function to post the newBook to the back end
-* So that it can be uploaded to the Read n' Reviewed database
+* Function to post the newBook to the back end to be uploaded to the database
 */
-function sendToPython(book){
+function sendToPython(book) {
     let newBook = decodeURIComponent(atob(book));
     fetch("/add_book", {
         method: 'POST',
-        headers: { 
+        headers: {
             'Content-type': 'application/json',
         },
         // newBook is still a JSON string
         body: newBook,
-        }).then(response => window.location.href = response.url); //redirect to the view_page for the new book
-        console.log("This is the chosen book:", newBook);
+    }).then(response => window.location.href = response.url); //redirect to the view_page for the new book
 }
 
 
@@ -210,7 +196,7 @@ function sendToPython(book){
 * to the site administrator in an email 
 * using the email service EmailJS
 */
-function sendMail(contactForm){
+function sendMail(contactForm) {
     // Function copied from Code Institute 'Putting it All Together' project and then modified
     let messageContainer = document.getElementById("messages");
     emailjs.send("gmail", "read_n_reviewed_template", {
@@ -218,7 +204,7 @@ function sendMail(contactForm){
         "from_email": contactForm.email.value,
         "message": contactForm.message.value,
     })
-    .then(function(response) {
+        .then(function (response) {
             console.log("SUCCESS", response.status, response.text);
             messageContainer.innerHTML += `<div class="row flashed-messages">\
             <div class="col s12">\
@@ -228,7 +214,7 @@ function sendMail(contactForm){
             contactForm.name.value = "";
             contactForm.email.value = "";
             contactForm.message.value = "";
-        }, function(error) {
+        }, function (error) {
             console.log("FAILED...", error);
             messageContainer.innerHTML += `<div class="row flashed-messages">\
             <div class="col s12">\
@@ -239,15 +225,15 @@ function sendMail(contactForm){
 }
 
 
-$(document).ready(function(){
+$(document).ready(function () {
     /* Initialization of the dropdown trigger taken from https://materializecss.com/navbar.html#! */
     $(".dropdown-trigger").dropdown();
     /* Initialization of the side-nav trigger taken from https://materializecss.com/navbar.html */
     $('.sidenav').sidenav();
     /* Initialization of the carousel taken from https://materializecss.com/carousel.html */
     $('.carousel.carousel-slider').carousel({
-    fullWidth: true,
-    indicators: true
+        fullWidth: true,
+        indicators: true
     });
     /* Initialization of the dropdown select form field taken from https://materializecss.com/carousel.html */
     $('select').formSelect();
