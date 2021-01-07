@@ -19,7 +19,7 @@
     <div class="row review-container">
         <div class="col s6 m3 review-column">
             <img src="{{ review.thumbnail }}" alt="{{ review.title }} by {{ review.authors[0] }} book cover"
-                loading="auto">
+                loading="eager">
         </div>
         <div class="col s6 m3 review-column">
             <p class="title">{{ review.title }}</p>
@@ -70,7 +70,7 @@
                     mind?</h5>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn modal-close bg-blue" id="close"><i class="fas fa-check prefix"></i>
+                <button type="button" class="btn modal-close bg-blue"><i class="fas fa-check prefix"></i>
                     Retain</button>
                 <a href="{{ url_for('delete_review', book_id=review.book_id, review_id=review._id) }}"
                     class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>

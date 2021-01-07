@@ -57,6 +57,7 @@ Click <a href="https://read-n-reviewed.herokuapp.com/">here</a> to visit the sit
         - [Existing User](#tested-existing-user-stories)
         - [Site Owner](#tested-site-owner-stories)
     - [Bugs](#bugs)
+    - [Unresolved Issues](#unresolved-issues)
 6. [**Deployment**](#deployment)
 7. [**Credits**](#credits)
     - [Content](#content)
@@ -1367,6 +1368,7 @@ When the user submits the form an email is sent to the site administrator contai
 ---
 
 ### Bugs
+
 ### [Timestamp Issue](https://github.com/nualagr/readnreviewed/commit/99e0f0f19aa5044a82ed62983af332909c47ad8d):
 
 An issue cropped up early on in development with regard to sorting the review dates.
@@ -1471,6 +1473,9 @@ The H18 error indicated that the HTTP request had been interrupted by a closed s
 Changing the return value of the upvote_review() and mark() functions from rendering the view_book.html template to a redirect to the https_url_for view_book.html
 succeeded in eliminating the error. 
 
+##### back to [top](#table-of-contents)
+---
+
 ## Unresolved Issues
 
 ### Non-passive Event Listener
@@ -1490,7 +1495,7 @@ After reading about user authentication it was decided that this was beyond the 
 As the EmailJS User ID is loaded in the browser this could potentially allow a malicious user to make unwanted requests using that information.
 Reading throught the [EmailJS documentation](https://www.emailjs.com/faq/) and threads on [Stack Overflow](https://stackoverflow.com/questions/58791656/send-email-directly-from-javascript-using-emailjs)
 relating to this issue has not, as yet, provided a solution to this problem.
-For the present, to prevent the User ID from being accessible on every page, the script was moved to the block styles section of the Contact page. 
+For the present, to prevent the User ID from being accessible on every page, the script was moved to the block styles section of the Contact page header. 
 
 ##### back to [top](#table-of-contents)
 ---
