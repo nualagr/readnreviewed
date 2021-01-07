@@ -12,13 +12,13 @@
     <div class="col s12 m6">
         <div class="card horizontal white darken-1">
             <div class="card-image">
-                <img src="{{ book.thumbnail }}" alt="{{ book.title }} book cover" loading="auto">
+                <img src="{{ book.thumbnail }}" alt="{{ book.title }} book cover" loading="eager">
             </div>
             <div class="card-stacked">
                 <div class="card-content">
                     <!-- Bookmark Button to remove the current book from the Wish List array -->
                     <form action="{{ url_for('unmark', book_id=book._id ) }}" method="post">
-                        <button type="submit" name="unmark" id="unmark" value="{{ book._id }}"
+                        <button type="submit" name="unmark" value="{{ book._id }}"
                             class="bookmarked right tooltipped" data-position="bottom"
                             data-tooltip="Remove book from Wish List."
                             aria-label="Button to remove {{ book.title }} from your Wish List">

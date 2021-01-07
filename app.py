@@ -64,7 +64,7 @@ def render_book_template(book_id):
     this_book_author = this_book["authors"][0].replace(" ", "+")
     book_purchase_url = (
         "https://www.amazon.com/s?tag=falsetag&k=" +
-        this_book_title + " " + this_book_author)
+        this_book_title + "+" + this_book_author)
 
     # Create a list of users who have reviewed this book already
     reviewers = []
@@ -583,7 +583,7 @@ def wish_list():
             this_book_author = this_book["authors"][0].replace(" ", "+")
             book_purchase_url = (
                 "https://www.amazon.com/s?tag=falsetag&k=" +
-                this_book_title + " " + this_book_author)
+                this_book_title + "+" + this_book_author)
             this_book["book_purchase_url"] = book_purchase_url
             # Add the book to the booklist list
             booklist.append(this_book)
