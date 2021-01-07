@@ -546,6 +546,10 @@ This succeeded in removing the error.
 ![alt text](documentation/readme-images/html-validator-no-errors.png "Screenshot showing HTML validator results.")
 <br>
 
+The Contact Us page produced the following warning regarding the type attribut on the JavaScript script tags.
+
+![alt text](documentation/readme-images/type-attribute-unnecessary-for-javascript-resources-warning.png "Screenshot showing HTML validator warning regarding type attribute.")
+<br>
 ### CSS file
 [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator) was used to validate the CSS file.  No errors were found.
 ![alt text](documentation/readme-images/css-validator-results.png "Screenshot showing results from CSS validator.")
