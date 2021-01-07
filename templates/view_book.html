@@ -1,163 +1,175 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- Selected Book -->
-    <div class="container">
+<!-- Selected Book -->
+<div class="container">
     <div class="row">
         <div class="col s12">
             <h3 class="center subtitle">{{ this_book.title }}</h3>
         </div>
     </div>
-        <div class="row">
-            <!-- Selected Book Cover Image -->
-            <div class="col s12 m6 center">
-                <img src="{{ this_book.thumbnail }}" alt="{{ this_book.title }} book cover" class="cover">
-            </div>
-            <div class="col s12 m6 left-align">
-                <!-- If the user is logged in -->
-                {% if session.user %}
-                    <!-- If they have saved this book to their wishlist or already reviewed this book hide bookmark -->
-                    {% if bookmark or not purchase %}
-                    {% else %}
-                            <!-- Button to add the current book to Wish List array -->
-                            <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
-                                <button type="submit" name="mark" id="mark" value="{{ this_book._id }}" class="bookmark right tooltipped" data-position="bottom" data-tooltip="Save book to Wish List.">
-                                    <i class="far fa-bookmark icon-unmarked"></i>
-                                    <i class="fas fa-bookmark icon-marked"></i>
-                                </button>
-                            </form>
-                    {% endif %}
-                {% endif %}
-                <!-- Selected Book Title, Author and Description -->
-                <p>Author: {{ this_book.authors[0] }}</p>
-                <p>Category: {{ this_book.category }}</p>
-                <p>Description: {{ this_book.description }}</p> 
-            </div>
+    <div class="row">
+        <!-- Selected Book Cover Image -->
+        <div class="col s12 m6 center">
+            <img src="{{ this_book.thumbnail }}" alt="{{ this_book.title }} book cover" class="cover">
         </div>
-        <div class="row">
-            <!-- If the viewer is not a logged in member do not show these buttons -->
-            {% if not session.user %}
-                <div class="col s12 m6">
-                </div>
-                <!-- Selected Book Information -->
-                <div class="col s12 m6 left-align">
-                    <p>Page Count: {{ this_book.page_count }}</p> 
-                    <p>Date Published: {{ this_book.published_date }}</p> 
-                    <p>Publisher: {{ this_book.publisher }}</p> 
-                    <p>ISBN 13: {{ this_book.isbn }}</p> 
-                </div>
-            <!-- If the viewer is a logged-in member-->
+        <div class="col s12 m6 left-align">
+            <!-- If the user is logged in -->
+            {% if session.user %}
+            <!-- If they have saved this book to their wishlist or already reviewed this book hide bookmark -->
+            {% if bookmark or not purchase %}
             {% else %}
-                <!-- Link to buy the Selected Book on Amazon -->
-                <div class="col s6 m3 center">
-                    {% if purchase %}
-                        <a href="{{ book_purchase_url }}" rel="noopener" target="_blank" title="Buy it now" class="button">
-                            <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-small-only"> it now</span></span> 
-                        </a>
-                    {% else %}
-                    {% endif %}
-                </div>
-                <!-- Selected Book Book Reviews -->
-                <div class="col s6 m3 center">
-                <!-- If there are book reviews for this book -->
-                {% if this_book_reviews %}
-                    <!-- If this user has not already written a review for this book display the Write a Review button -->
-                    {% if session.user not in reviewers %}
-                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" title="Write a Review" class="button">
-                            <span class="btn bg-orange"><i class="fas fa-pen"></i><span class="hide-on-med-and-down"> Write a </span>Review</span> 
-                        </a>
-                    {% endif %}
-                <!-- If there are no book reviews for this book -->
-                {% else %}
-                        <!-- Display the Write a Review button -->
-                        <a href="{{ url_for('add_review', book_id=this_book._id) }}" title="Write a Review" class="button">
-                            <span class="btn bg-orange"><i class="fas fa-pen"></i><span class="hide-on-med-and-down"> Write a </span>Review</span> 
-                        </a>
-                {% endif %}
-            </div>
-            <!-- Selected Book Information -->
-            <div class="col s12 m6 left-align">
-                <p>Page Count: {{ this_book.page_count }}</p> 
-                <p>Date Published: {{ this_book.published_date }}</p> 
-                <p>Publisher: {{ this_book.publisher }}</p> 
-                <p>ISBN 13: {{ this_book.isbn }}</p> 
-            </div>
+            <!-- Button to add the current book to Wish List array -->
+            <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
+                <button type="submit" name="mark" id="mark" value="{{ this_book._id }}"
+                    class="bookmark right tooltipped" data-position="bottom" data-tooltip="Save book to Wish List.">
+                    <i class="far fa-bookmark icon-unmarked"></i>
+                    <i class="fas fa-bookmark icon-marked"></i>
+                </button>
+            </form>
             {% endif %}
-        </div>
-        <!-- If no reviews exist display this message to the user -->
-        {% if not this_book_reviews %}
-            <div class="row">
-                <div class="col s12 m6 offset-m6">
-                    <p>No reviews currently exist for this book.</p>
-                </div>
-            </div>
-        <!-- If reviews exist -->
-        {% else %}
-            <!-- Display each review -->
-            {% for review in this_book_reviews %}
-                <div class="row">
-                    <div class="col s4">
-                        <p>Reviewed By: {{ review.created_by }}</p>
-                        <p>On: {{ review.review_date }}</p>
-                        <p>Upvotes: {{ review.review_score }}</p>
-                            <!-- Check to see whether there is a user logged in -->
-                            {% if session.user %}
-                                <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
-                                {% if session.user == review.created_by %}
-                                    <p>                                        
-                                        <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-grey" title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only"> Edit</span></a>&nbsp;                                       
-                                        <!-- Modal Trigger -->
-                                        <a class="btn bg-red modal-trigger" href="#{{ review._id }}" title="Delete Review button"><i class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>
-                                    </p>
-                                {% else %}
-                                    <!-- Check to see whether the logged in user upvoted the review already, if not, display the Upvote button -->
-                                    {% if session.user in review.upvoters %}
-                                    {% else %}
-                                        <p>
-                                            <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
-                                                <button type="submit" name="upvote" value="1" class="btn bg-grey"><i class="fas fa-caret-up prefix"></i><span class="hide-on-small-only"> Upvote Review</span></button>
-                                            </form>
-                                        </p>
-                                    {% endif %}
-                                {% endif %}
-                            {% endif %}
-                    </div>
-                    <div class="col s8 star-rating">
-                        <p>Star Rating: 
-                            {% set starRating = review.rating | int %}
-                            {% for i in range(starRating) %}
-                                <i class="fas fa-star"></i>
-                            {% endfor %} 
-                        </p>
-                        <p>Review: {{ review.review }}</p>
-                    </div>
-                </div>
-            {% endfor %}        
-        {% endif %}
-        <!-- Modal Section -->
-        {% for review in this_book_reviews %}
-        <div id="modalContainer" class="container">
-            <!-- Check to see whether there is a user logged in -->
-                {% if session.user %}
-                    <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
-                    {% if session.user == review.created_by %}
-                        <!-- Modal Structure -->
-                        <div id="{{ review._id }}" class="modal modal-fixed-footer">
-                            <div class="modal-header">
-                                <a class="btn modal-close close" aria-label="Close">
-                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                </a>
-                            </div>
-                            <div class="modal-content">
-                                <h5>Your reviews are important <br><br>to the Read n' Reviewed community!<br><br>Can we change your mind?</h5>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn modal-close bg-blue" id="close"><i class="fas fa-check prefix"></i> Retain</button>
-                                <a href="{{ url_for('delete_review', book_id=this_book._id, review_id=review._id) }}" class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
+            {% endif %}
+            <!-- Selected Book Title, Author and Description -->
+            <p>Author: {{ this_book.authors[0] }}</p>
+            <p>Category: {{ this_book.category }}</p>
+            <p>Description: {{ this_book.description }}</p>
         </div>
     </div>
+    <div class="row">
+        <!-- If the viewer is not a logged in member do not show these buttons -->
+        {% if not session.user %}
+        <div class="col s12 m6">
+        </div>
+        <!-- Selected Book Information -->
+        <div class="col s12 m6 left-align">
+            <p>Page Count: {{ this_book.page_count }}</p>
+            <p>Date Published: {{ this_book.published_date }}</p>
+            <p>Publisher: {{ this_book.publisher }}</p>
+            <p>ISBN 13: {{ this_book.isbn }}</p>
+        </div>
+        <!-- If the viewer is a logged-in member-->
+        {% else %}
+        <!-- Link to buy the Selected Book on Amazon -->
+        <div class="col s6 m3 center">
+            {% if purchase %}
+            <a href="{{ book_purchase_url }}" rel="noopener" target="_blank" title="Buy it now" class="button">
+                <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-small-only"> it
+                        now</span></span>
+            </a>
+            {% else %}
+            {% endif %}
+        </div>
+        <!-- Selected Book Book Reviews -->
+        <div class="col s6 m3 center">
+            <!-- If there are book reviews for this book -->
+            {% if this_book_reviews %}
+            <!-- If this user has not already written a review for this book display the Write a Review button -->
+            {% if session.user not in reviewers %}
+            <a href="{{ url_for('add_review', book_id=this_book._id) }}" title="Write a Review" class="button">
+                <span class="btn bg-orange"><i class="fas fa-pen"></i><span class="hide-on-med-and-down"> Write a
+                    </span>Review</span>
+            </a>
+            {% endif %}
+            <!-- If there are no book reviews for this book -->
+            {% else %}
+            <!-- Display the Write a Review button -->
+            <a href="{{ url_for('add_review', book_id=this_book._id) }}" title="Write a Review" class="button">
+                <span class="btn bg-orange"><i class="fas fa-pen"></i><span class="hide-on-med-and-down"> Write a
+                    </span>Review</span>
+            </a>
+            {% endif %}
+        </div>
+        <!-- Selected Book Information -->
+        <div class="col s12 m6 left-align">
+            <p>Page Count: {{ this_book.page_count }}</p>
+            <p>Date Published: {{ this_book.published_date }}</p>
+            <p>Publisher: {{ this_book.publisher }}</p>
+            <p>ISBN 13: {{ this_book.isbn }}</p>
+        </div>
+        {% endif %}
+    </div>
+    <!-- If no reviews exist display this message to the user -->
+    {% if not this_book_reviews %}
+    <div class="row">
+        <div class="col s12 m6 offset-m6">
+            <p>No reviews currently exist for this book.</p>
+        </div>
+    </div>
+    <!-- If reviews exist -->
+    {% else %}
+    <!-- Display each review -->
+    {% for review in this_book_reviews %}
+    <div class="row">
+        <div class="col s4">
+            <p>Reviewed By: {{ review.created_by }}</p>
+            <p>On: {{ review.review_date }}</p>
+            <p>Upvotes: {{ review.review_score }}</p>
+            <!-- Check to see whether there is a user logged in -->
+            {% if session.user %}
+            <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
+            {% if session.user == review.created_by %}
+            <p>
+                <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-grey"
+                    title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only">
+                        Edit</span></a>&nbsp;
+                <!-- Modal Trigger -->
+                <a class="btn bg-red modal-trigger" href="#{{ review._id }}" title="Delete Review button"><i
+                        class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>
+            </p>
+            {% else %}
+            <!-- Check to see whether the logged in user upvoted the review already, if not, display the Upvote button -->
+            {% if session.user in review.upvoters %}
+            {% else %}
+            <p>
+            <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
+                <button type="submit" name="upvote" value="1" class="btn bg-grey"><i
+                        class="fas fa-caret-up prefix"></i><span class="hide-on-small-only"> Upvote
+                        Review</span></button>
+            </form>
+            </p>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+        </div>
+        <div class="col s8 star-rating">
+            <p>Star Rating:
+                {% set starRating = review.rating | int %}
+                {% for i in range(starRating) %}
+                <i class="fas fa-star"></i>
+                {% endfor %}
+            </p>
+            <p>Review: {{ review.review }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!-- Modal Section -->
+    {% for review in this_book_reviews %}
+    <div id="modalContainer" class="container">
+        <!-- Check to see whether there is a user logged in -->
+        {% if session.user %}
+        <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
+        {% if session.user == review.created_by %}
+        <!-- Modal Structure -->
+        <div id="{{ review._id }}" class="modal modal-fixed-footer">
+            <div class="modal-header">
+                <a class="btn modal-close close" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </a>
+            </div>
+            <div class="modal-content">
+                <h5>Your reviews are important <br><br>to the Read n' Reviewed community!<br><br>Can we change your
+                    mind?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn modal-close bg-blue" id="close"><i class="fas fa-check prefix"></i>
+                    Retain</button>
+                <a href="{{ url_for('delete_review', book_id=this_book._id, review_id=review._id) }}"
+                    class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

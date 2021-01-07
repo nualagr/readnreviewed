@@ -1,47 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3>Add Book</h3>
-    <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
-    <div class="row container">
-        <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
-        <!-- <form method="POST" action="{{ url_for('add_book') }}"> -->
-        <form id="apiForm">
-            <div class="card white darken-1">
-                <div class="card-content">
-                     <div class="row">
-                        <!-- Book Title Field-->
-                        <div class="input-field col s12">
-                            <i class="fas fa-book prefix"></i>
-                            <input id="searchTitle" name="searchTitle" type="text" pattern="^.*[a-zA-Z0-9',.-]+.*$" minlength="2" maxlength="60" class="validate" title="This field is required" required>
-                            <label for="searchTitle">Book Title</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- Author Field -->
-                        <div class="input-field col s12">
-                        <i class="fas fa-user-edit prefix"></i>
-                        <input id="searchAuthor" name="searchAuthor" type="text" pattern="^.*[a-zA-Z0-9',.-]+.*$" minlength="3" maxlength="25" class="validate" title="This field is required" required>
-                        <label for="searchAuthor">Author</label>
-                        </div>
+<h3>Add Book</h3>
+<!-- Card Component copied from https://materializecss.com/cards.html and modified -->
+<div class="row container">
+    <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
+    <form id="apiForm">
+        <div class="card white darken-1">
+            <div class="card-content">
+                <div class="row">
+                    <!-- Book Title Field-->
+                    <div class="input-field col s12">
+                        <i class="fas fa-book prefix"></i>
+                        <input id="searchTitle" name="searchTitle" type="text" pattern="^.*[a-zA-Z0-9',.-]+.*$"
+                            minlength="2" maxlength="60" class="validate" title="This field is required" required>
+                        <label for="searchTitle">Book Title</label>
                     </div>
                 </div>
-                <div class="card-action center">
-                    <!-- <button type="button" class="btn bg-orange" onclick="writeToDocument(document.getElementById('searchTitle').value, document.getElementById('searchAuthor').value); return false;"><i class="fas fa-check prefix"></i> Submit</button> -->
-                    <button type="button" id="okButton" class="btn bg-orange" onclick="checkApiFormValidity(document.getElementById('searchTitle').value, document.getElementById('searchAuthor').value); return false;"><i class="fas fa-check prefix"></i> Submit</button>
-                    <a href="{{ url_for('add_book') }}" class="btn bg-blue"><i class="fas fa-times prefix"></i> Clear</a>
+                <div class="row">
+                    <!-- Author Field -->
+                    <div class="input-field col s12">
+                        <i class="fas fa-user-edit prefix"></i>
+                        <input id="searchAuthor" name="searchAuthor" type="text" pattern="^.*[a-zA-Z0-9',.-]+.*$"
+                            minlength="3" maxlength="25" class="validate" title="This field is required" required>
+                        <label for="searchAuthor">Author</label>
+                    </div>
                 </div>
             </div>
-        </form>
-    </div>
-    {% block scripts %}
-        <script>
-            document.getElementById('searchTitle').addEventListener('input', function(e) {
-                okButton.disabled = false;
-            })
-
-            document.getElementById('searchAuthor').addEventListener('input', function(e) {
-                okButton.disabled = false;
-            })
-        </script>
-    {% endblock %}
+            <div class="card-action center">
+                <button type="button" id="okButton" class="btn bg-orange"
+                    onclick="checkApiFormValidity(document.getElementById('searchTitle').value, document.getElementById('searchAuthor').value); return false;"><i
+                        class="fas fa-check prefix"></i> Submit</button>
+                <a href="{{ url_for('add_book') }}" class="btn bg-blue"><i class="fas fa-times prefix"></i> Clear</a>
+            </div>
+        </div>
+    </form>
+</div>
+{% block scripts %}
+<script>
+    document.getElementById('searchTitle').addEventListener('input', function (e) {
+        okButton.disabled = false;
+    })
+    document.getElementById('searchAuthor').addEventListener('input', function (e) {
+        okButton.disabled = false;
+    })
+</script>
+{% endblock %}
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- My Reviews -->
-    <div class="container">
+<!-- My Reviews -->
+<div class="container">
     <div class="row">
         <div class="col s12">
             <h3 class="center subtitle" id="top">My Reviews</h3>
@@ -10,64 +10,73 @@
     <div class="row container">
         <div class="col s12">
             <p class="center">
-                Want to add a review? Click <a href="{{ url_for('search') }}">here</a> to find the book you wish to review.
+                Want to add a review? Click <a href="{{ url_for('search') }}">here</a> to find the book you wish to
+                review.
             </p>
         </div>
     </div>
     {% for review in books_and_reviews %}
-        <div class="row review-container">
-            <div class="col s6 m3 review-column">
-                <img src="{{ review.thumbnail }}" alt="{{ review.title }} by {{ review.authors[0] }} book cover" loading="auto">
-            </div>
-            <div class="col s6 m3 review-column">
-                <p class="title">{{ review.title }}</p>
-                <p>By: {{ review.authors[0] }}</p>
-            </div>
-            <div class="col s6 m3 star-rating review-column">
-                <p>Rating: <br class="hide-on-large-only">
-                    {% set starRating = review.rating | int %}
-                        {% for i in range(starRating) %}
-                            <i class="fas fa-star"></i>
-                        {% endfor %} 
-                </p>
-                <p>{{ review.review_date }}</p>
-                <p>Upvotes: {{ review.review_score }}</p>
-                <p><a href="{{ url_for('my_review', book_id=review.book_id) }}">Read review...</a></p>
-            </div>
-            <div class="col s6 m3 review-column valign-wrapper">
-                <a href="{{ url_for('edit_review', book_id=review.book_id, review_id=review._id) }}" class="btn bg-grey" title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only"> Edit</span></a>&nbsp;&nbsp;
-                <!-- Modal Trigger -->
-                <a class="btn bg-red modal-trigger" href="#{{ review._id }}" title="Delete Review button"><i class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>
-            </div>
+    <div class="row review-container">
+        <div class="col s6 m3 review-column">
+            <img src="{{ review.thumbnail }}" alt="{{ review.title }} by {{ review.authors[0] }} book cover"
+                loading="auto">
         </div>
+        <div class="col s6 m3 review-column">
+            <p class="title">{{ review.title }}</p>
+            <p>By: {{ review.authors[0] }}</p>
+        </div>
+        <div class="col s6 m3 star-rating review-column">
+            <p>Rating: <br class="hide-on-large-only">
+                {% set starRating = review.rating | int %}
+                {% for i in range(starRating) %}
+                <i class="fas fa-star"></i>
+                {% endfor %}
+            </p>
+            <p>{{ review.review_date }}</p>
+            <p>Upvotes: {{ review.review_score }}</p>
+            <p><a href="{{ url_for('my_review', book_id=review.book_id) }}">Read review...</a></p>
+        </div>
+        <div class="col s6 m3 review-column valign-wrapper">
+            <a href="{{ url_for('edit_review', book_id=review.book_id, review_id=review._id) }}" class="btn bg-grey"
+                title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only">
+                    Edit</span></a>&nbsp;&nbsp;
+            <!-- Modal Trigger -->
+            <a class="btn bg-red modal-trigger" href="#{{ review._id }}" title="Delete Review button"><i
+                    class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>
+        </div>
+    </div>
     {% endfor %}
     <div class="row container">
         <div class="col s12">
             <p class="center">
-                <a href="#{{ top }}" title="Link to top of page"><i class="fas fa-chevron-circle-up back-to-top"></i></a>
+                <a href="#{{ top }}" title="Link to top of page"><i
+                        class="fas fa-chevron-circle-up back-to-top"></i></a>
             </p>
         </div>
     </div>
-        <!-- Modals Section -->
-        <!-- Modal component taken from https://materializecss.com/modals.html#! and modified -->
-        <div id="modalContainer" class="container">
-            {% for review in books_and_reviews %}
-            <!-- Modal Structure -->
-            <div id="{{ review._id }}" class="modal modal-fixed-footer">
-                <div class="modal-header">
-                    <a class="btn modal-close close" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                    </a>
-                </div>
-                <div class="modal-content">
-                    <h5>Your reviews are important <br><br>to the Read n' Reviewed community!<br><br>Can we change your mind?</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn modal-close bg-blue" id="close"><i class="fas fa-check prefix"></i> Retain</button>
-                    <a href="{{ url_for('delete_review', book_id=review.book_id, review_id=review._id) }}" class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>
-                </div>
+    <!-- Modals Section -->
+    <!-- Modal component taken from https://materializecss.com/modals.html#! and modified -->
+    <div id="modalContainer" class="container">
+        {% for review in books_and_reviews %}
+        <!-- Modal Structure -->
+        <div id="{{ review._id }}" class="modal modal-fixed-footer">
+            <div class="modal-header">
+                <a class="btn modal-close close" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </a>
             </div>
-            {% endfor %}
+            <div class="modal-content">
+                <h5>Your reviews are important <br><br>to the Read n' Reviewed community!<br><br>Can we change your
+                    mind?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn modal-close bg-blue" id="close"><i class="fas fa-check prefix"></i>
+                    Retain</button>
+                <a href="{{ url_for('delete_review', book_id=review.book_id, review_id=review._id) }}"
+                    class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>
+            </div>
         </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}

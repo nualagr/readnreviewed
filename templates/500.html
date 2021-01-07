@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="error-image server-error-image">
-        <div class="error-text">
-            <h1>An unexpected error has occurred</h1>
-            <p>The administrator has been notified. Sorry for the inconvenience!</p>
-            <p>Click 
-                <a href="{{ url_for('get_books') }}">here</a>
-                to head back to safety.
-            </p>
-        </div>
+<div class="error-image server-error-image">
+    <div class="error-text">
+        <h1>An unexpected error has occurred</h1>
+        <p>The administrator has been notified. Sorry for the inconvenience!</p>
+        <p>Click
+            <a href="{{ url_for('get_books') }}">here</a>
+            to head back to safety.
+        </p>
     </div>
+</div>
 {% endblock %}

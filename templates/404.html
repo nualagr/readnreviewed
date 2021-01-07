@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-    {% block content %}
-    <div class="error-image lost-image">
-        <div class="error-text">
-            <h1>Page not found.</h1>
-            <p>Click <a href="{{ url_for('get_books') }}">here</a> to head back to safety</p>
-        </div>
+{% block content %}
+<div class="error-image lost-image">
+    <div class="error-text">
+        <h1>Page not found.</h1>
+        <p>Click <a href="{{ url_for('get_books') }}">here</a> to head back to safety</p>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}

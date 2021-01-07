@@ -1,108 +1,117 @@
 {% extends "base.html" %}
-
 {% block content %}
 <!-- Banner Image -->
-    <section class="section-lg container bg-cover center bg-grey-light banner-image">
-        <h1 class="subtitle">Uncover Your Next Great Read!</h1>
-        {% if session %}
-        {% else %}
-            <div class="row">
-                <div class="col s12">
-                    <p>Join our community.  Read honest reviews.  Share your recommendations.</p>
-                    <a href="{{ url_for('register') }}" class="btn-large btn  orange">Register</a>                    
-                </div>
-            </div>
-        {% endif %}
-    </section>
-    <!-- Latest Reviews -->
-    <section class="section-lg container white">
-        <div class="row">
-            <div class="col s12">
-                <h3 class="center subtitle">Latest Reviews</h3>
-            </div>
+<section class="section-lg container bg-cover center bg-grey-light banner-image">
+    <h1 class="subtitle">Uncover Your Next Great Read!</h1>
+    <!-- If user is logged in, remove unnecessary Register button and text -->
+    {% if session %}
+    {% else %}
+    <div class="row">
+        <div class="col s12">
+            <p>Join our community. Read honest reviews. Share your recommendations.</p>
+            <a href="{{ url_for('register') }}" class="btn-large btn  orange">Register</a>
         </div>
-        {% for book in books[0:1] %}
-            <div class="row center">
-                <div class="col s12 m6">
-                    <img src="{{ book.thumbnail }}" class="cover" alt="{{ book.title }} by {{ book.authors[0] }} book cover" loading="eager"><br>
-                </div>
-                <div class="col s12 m6">
-                    <p>{{ book.category }}</p>
-                    <h5>{{ book.title }}</h5>
-                    <p>{{ book.authors[0] }}</p>
-                    <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity -->
-                    <p>{{ book.text_snippet | safe | truncate(300, True)}}</p>
-                    <p><a href="{{ url_for('view_book', book_id=book._id) }}" title="Link to view {{ book.title }} by {{ book.authors[0] }}">View book...</a></p>
-                </div>
-            </div>
-        {% endfor %}
-        {% for book in books[1:] %}
-            <div class="row center">
-                <div class="col s12 m6">
-                    <img src="{{ book.thumbnail }}" class="cover" alt="{{ book.title }} by {{ book.authors[0] }} book cover" loading="lazy"><br>
-                </div>
-                <div class="col s12 m6">
-                    <p>{{ book.category }}</p>
-                    <h5>{{ book.title }}</h5>
-                    <p>{{ book.authors[0] }}</p>
-                    <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity -->
-                    <p>{{ book.text_snippet | safe | truncate(300, True)}}</p>
-                    <p><a href="{{ url_for('view_book', book_id=book._id) }}" title="Link to view {{ book.title }} by {{ book.authors[0] }}">View book...</a></p>
-                </div>
-            </div>
-        {% endfor %}
-    </section>
-   <!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->
-    <section class="section-lg container bg-grey-light bg-cover center">
-        <h3 class="subtitle">What Our Members Say About Us</h3>
-        <div class="carousel carousel-slider center">
-            <div class="carousel-item bg-blue-static white-text" data-href="#one!">
-                <h2>Jenny Wren</h2>
-                <br>
-                <i class="fas fa-quote-left"></i>
-                <p class="white-text">Read n' Reviewed community has saved me time and money.  I have found great book after great book since joining the site.</p>
-                <i class="fas fa-quote-right"></i>
-            </div>
-            <div class="carousel-item bg-orange-static white-text" data-href="#two!">
-                <h2>George Hill</h2>
-                <br>
-                <i class="fas fa-quote-left"></i>
-                <p class="white-text">The good members of Read n' Reviewed keep me up to date with the latest books.</p>
-                <i class="fas fa-quote-right"></i>
-            </div>
-            <div class="carousel-item bg-blue-static white-text" data-href="#three!">
-                <h2>Bernard Boyce</h2>
-                <br>
-                <i class="fas fa-quote-left"></i>
-                <p class="white-text">Good honest reviews.</p>
-                <i class="fas fa-quote-right"></i>
-            </div>
-            <div class="carousel-item bg-orange-static white-text" data-href="#four!">
-                <h2>Mary Murphy</h2>
-                <br>
-                <i class="fas fa-quote-left"></i>
-                <p class="white-text">When I hear about a good book now I just pop it into my Wish List. Such a handy feature.</p>
-                <i class="fas fa-quote-right"></i>
-            </div>
+    </div>
+    {% endif %}
+</section>
+<!-- Latest Reviews -->
+<section class="section-lg container white">
+    <div class="row">
+        <div class="col s12">
+            <h3 class="center subtitle">Latest Reviews</h3>
         </div>
-    </section>
-    <!-- About Section -->
-    <section class="section-lg container white bg-cover center" id="about">
-            <h3 class="subtitle">About Us</h3>
-            <div class="row">
-                <div class="col s12">
-                    <p>Read n' Reviewed is a community-led book-recommendation website.  Unaffiliated with any publishing company
-                    Read n' Reviewed's mission is to provide our members with a platform where they can share and access honest and 
-                    revealing reviews making it easier to choose the perfect book to read next.</p>
-                    {% if session %}
-                    {% else %}
-                        <p>Join today to be able to contribute your own reviews, up-vote other members’ recommendations, save books to a personal Wish List and 
-                        navigate directly to an online store where your next great read can be purchased immediately.</p>
-                        <a href="{{ url_for('register') }}" class="btn-large btn bg-orange">Register</a>
-                    {% endif %}
-                    <p><img src="{{ url_for( 'static', filename='images/star-community-small-w200.png') }}" alt="Star Community icon" width="200" height="160" loading="lazy"></p>                    
-                </div>
-            </div>
-    </section>
-
+    </div>
+    {% for book in books[0:1] %}
+    <div class="row center">
+        <div class="col s12 m6">
+            <img src="{{ book.thumbnail }}" class="cover" alt="{{ book.title }} by {{ book.authors[0] }} book cover"
+                loading="eager"><br>
+        </div>
+        <div class="col s12 m6">
+            <p>{{ book.category }}</p>
+            <h5>{{ book.title }}</h5>
+            <p>{{ book.authors[0] }}</p>
+            <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity -->
+            <p>{{ book.text_snippet | safe | truncate(300, True)}}</p>
+            <p><a href="{{ url_for('view_book', book_id=book._id) }}"
+                    title="Link to view {{ book.title }} by {{ book.authors[0] }}">View book...</a></p>
+        </div>
+    </div>
+    {% endfor %}
+    {% for book in books[1:] %}
+    <div class="row center">
+        <div class="col s12 m6">
+            <img src="{{ book.thumbnail }}" class="cover" alt="{{ book.title }} by {{ book.authors[0] }} book cover"
+                loading="lazy"><br>
+        </div>
+        <div class="col s12 m6">
+            <p>{{ book.category }}</p>
+            <h5>{{ book.title }}</h5>
+            <p>{{ book.authors[0] }}</p>
+            <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity -->
+            <p>{{ book.text_snippet | safe | truncate(300, True)}}</p>
+            <p><a href="{{ url_for('view_book', book_id=book._id) }}"
+                    title="Link to view {{ book.title }} by {{ book.authors[0] }}">View book...</a></p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+<!-- Carousel component taken from https://materializecss.com/carousel.html and modified -->
+<section class="section-lg container bg-grey-light bg-cover center">
+    <h3 class="subtitle">What Our Members Say About Us</h3>
+    <div class="carousel carousel-slider center">
+        <div class="carousel-item bg-blue-static white-text" data-href="#one!">
+            <h2>Jenny Wren</h2>
+            <br>
+            <i class="fas fa-quote-left"></i>
+            <p class="white-text">Read n' Reviewed community has saved me time and money. I have found great book after
+                great book since joining the site.</p>
+            <i class="fas fa-quote-right"></i>
+        </div>
+        <div class="carousel-item bg-orange-static white-text" data-href="#two!">
+            <h2>George Hill</h2>
+            <br>
+            <i class="fas fa-quote-left"></i>
+            <p class="white-text">The good members of Read n' Reviewed keep me up to date with the latest books.</p>
+            <i class="fas fa-quote-right"></i>
+        </div>
+        <div class="carousel-item bg-blue-static white-text" data-href="#three!">
+            <h2>Bernard Boyce</h2>
+            <br>
+            <i class="fas fa-quote-left"></i>
+            <p class="white-text">Good honest reviews.</p>
+            <i class="fas fa-quote-right"></i>
+        </div>
+        <div class="carousel-item bg-orange-static white-text" data-href="#four!">
+            <h2>Mary Murphy</h2>
+            <br>
+            <i class="fas fa-quote-left"></i>
+            <p class="white-text">When I hear about a good book now I just pop it into my Wish List. Such a handy
+                feature.</p>
+            <i class="fas fa-quote-right"></i>
+        </div>
+    </div>
+</section>
+<!-- About Section -->
+<section class="section-lg container white bg-cover center" id="about">
+    <h3 class="subtitle">About Us</h3>
+    <div class="row">
+        <div class="col s12">
+            <p>Read n' Reviewed is a community-led book-recommendation website. Unaffiliated with any publishing company
+                Read n' Reviewed's mission is to provide our members with a platform where they can share and access
+                honest and
+                revealing reviews making it easier to choose the perfect book to read next.</p>
+            <!-- If user is logged in, remove unnecessary call-to-action Register button and text -->
+            {% if session %}
+            {% else %}
+            <p>Join today to be able to contribute your own reviews, up-vote other members’ recommendations, save books
+                to a personal Wish List and
+                navigate directly to an online store where your next great read can be purchased immediately.</p>
+            <a href="{{ url_for('register') }}" class="btn-large btn bg-orange">Register</a>
+            {% endif %}
+            <p><img src="{{ url_for( 'static', filename='images/star-community-small-w200.png') }}"
+                    alt="Star Community icon" width="200" height="160" loading="lazy"></p>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -531,7 +531,6 @@ The Read n’ Reviewed website relies on three database collections:
 
 ## Testing
 
-Before the second meeting with my mentor the project was run through linters and validators.
 
 ### HTML files
 [W3C HTML Validation Service](https://validator.w3.org/) was used to validate the HTML code. 
@@ -617,15 +616,24 @@ were the JQuery and Materialize files.
 
 
 The steps taken, although limited, resulted in a noticeable improvement in Performance results.
-![alt text](documentation/readme-images/read-n-reviewed-lighthouse-results-75-performance.png "Screenshot of improved Lighthouse test results.")
+
+![alt text](documentation/readme-images/lighthouse-performance-result-84.png "Screenshot of improved Lighthouse test results.")
+
 <br>
+
+The site performs well in every respect when viewed on a desktop device.
+
+![alt text](documentation/readme-images/lighthouse-performance-result-98-desktop.png "Screenshot of Lighthouse test desktop results.")
+
+<br>
+
 ##### back to [top](#table-of-contents)
 ---
 
 ### Responsiveness
 
 The Read n' Reviewed site was designed using the mobile-first approach, but it was tested for responsiveness on multiple screen dimensions 
-throughout the development process and after project completion using the Google Chrome Developer Tools Toggle Device function and Firefox Developer Tools.  
+throughout the development process and after project completion using the Google Chrome Developer Tools Toggle Device function and Mozilla Firefox Developer Tools.  
 
 **Mobile Devices**
 - Android 7.0
@@ -668,7 +676,7 @@ throughout the development process and after project completion using the Google
 
 <br>
 
-Each website feature including, modals, buttons, external links, hover effects etc. was manually checked within
+Each website feature buttons, modals, external links, hover effects etc. was manually checked within the following web browsers:
 - Google Chrome
 - Microsoft Edge
 - Microsoft Opera

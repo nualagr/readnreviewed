@@ -1,58 +1,65 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3>Edit Profile</h3>
-    <div class="row container">
-        <div class="col s12">
-            <p class="center">
-                Want to change your password? Simply fill out the form below and Submit your new password.
-            </p>
-        </div>
+<h3>Edit Profile</h3>
+<div class="row container">
+    <div class="col s12">
+        <p class="center">
+            Want to change your password? Simply fill out the form below and Submit your new password.
+        </p>
     </div>
-    <!-- Edit Profile Form -->
-    <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
-    <div class="row container">
-        <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
-        <form method="POST" action="{{ url_for('edit_profile', username=username) }}">
-            <div class="card white darken-1">
-                <div class="card-content">
-                     <div class="row">
-                        <!-- Username Field-->
-                        <div class="input-field col s12">
-                            <i class="fas fa-user prefix"></i>
-                            <input id="username" name="username" type="text" value="{{ username }}" autocomplete="username" disabled>
-                            <label for="username">Username:</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- Email Address Field -->
-                        <div class="input-field col s12">
-                            <i class="fas fa-envelope prefix"></i>
-                            <input id="email" name="email" type="email" value="{{ email }}" disabled>
-                            <label for="email">Email:</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- Current Password Field -->
-                        <div class="input-field col s12">
-                            <i class="fas fa-lock prefix"></i>
-                            <input id="currentPassword" name="current-password" type="password" class="validate" minlength="8" maxlength="15" pattern="^.*[a-zA-Z0-9',.-]+.*$" autocomplete="current-password" required>
-                            <label for="currentPassword">Enter your Current Password:</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- New Password Field -->
-                        <div class="input-field col s12">
-                            <i class="fas fa-user-lock prefix"></i>
-                            <input id="newPassword" name="new-password" type="password" class="validate tooltipped" minlength="8" maxlength="15" pattern="^.*[a-zA-Z0-9',.-]+.*$" data-position="bottom" data-tooltip="Enter a password containing between 8 and 15 characters. No spaces." autocomplete="new-password" required>
-                            <label for="newPassword">Enter Your New Password:</label>
-                        </div>
+</div>
+<!-- Edit Profile Form -->
+<!-- Card Component copied from https://materializecss.com/cards.html and modified -->
+<div class="row container">
+    <!-- Form Input Fields copied from https://materializecss.com/text-inputs.html and modified -->
+    <form method="POST" action="{{ url_for('edit_profile', username=username) }}">
+        <div class="card white darken-1">
+            <div class="card-content">
+                <div class="row">
+                    <!-- Username Field-->
+                    <div class="input-field col s12">
+                        <i class="fas fa-user prefix"></i>
+                        <input id="username" name="username" type="text" value="{{ username }}" autocomplete="username"
+                            disabled>
+                        <label for="username">Username:</label>
                     </div>
                 </div>
-                <div class="card-action center">
-                    <button type="submit" class="btn bg-orange"><i class="fas fa-check"></i> Submit </button>
-                    <a href="{{ url_for('profile', username=session['user']) }}" class="btn bg-blue"><i class="fas fa-times"></i> Cancel</a>
+                <div class="row">
+                    <!-- Email Address Field -->
+                    <div class="input-field col s12">
+                        <i class="fas fa-envelope prefix"></i>
+                        <input id="email" name="email" type="email" value="{{ email }}" disabled>
+                        <label for="email">Email:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Current Password Field -->
+                    <div class="input-field col s12">
+                        <i class="fas fa-lock prefix"></i>
+                        <input id="currentPassword" name="current-password" type="password" class="validate"
+                            minlength="8" maxlength="15" pattern="^.*[a-zA-Z0-9',.-]+.*$"
+                            autocomplete="current-password" required>
+                        <label for="currentPassword">Enter your Current Password:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- New Password Field -->
+                    <div class="input-field col s12">
+                        <i class="fas fa-user-lock prefix"></i>
+                        <input id="newPassword" name="new-password" type="password" class="validate tooltipped"
+                            minlength="8" maxlength="15" pattern="^.*[a-zA-Z0-9',.-]+.*$" data-position="bottom"
+                            data-tooltip="Enter a password containing between 8 and 15 characters. No spaces."
+                            autocomplete="new-password" required>
+                        <label for="newPassword">Enter Your New Password:</label>
+                    </div>
                 </div>
             </div>
-        </form>
-  </div>
+            <div class="card-action center">
+                <button type="submit" class="btn bg-orange"><i class="fas fa-check"></i> Submit </button>
+                <a href="{{ url_for('profile', username=session['user']) }}" class="btn bg-blue"><i
+                        class="fas fa-times"></i> Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

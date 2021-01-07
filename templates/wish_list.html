@@ -1,44 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- Wish List -->
-    <div class="row container">
-        <div class="col s12">
-            <h3 class="center subtitle">Wish List</h3>
-        </div>
+<!-- Wish List -->
+<div class="row container">
+    <div class="col s12">
+        <h3 class="center subtitle">Wish List</h3>
     </div>
-    <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
-    <div class="row container">
+</div>
+<!-- Card Component copied from https://materializecss.com/cards.html and modified -->
+<div class="row container">
     {% for book in booklist %}
-        <div class="col s12 m6">
-            <div class="card horizontal white darken-1">
-                <div class="card-image">
-                    <img src="{{ book.thumbnail }}" alt="{{ book.title }} book cover" loading="auto">
+    <div class="col s12 m6">
+        <div class="card horizontal white darken-1">
+            <div class="card-image">
+                <img src="{{ book.thumbnail }}" alt="{{ book.title }} book cover" loading="auto">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <!-- Bookmark Button to remove the current book from the Wish List array -->
+                    <form action="{{ url_for('unmark', book_id=book._id ) }}" method="post">
+                        <button type="submit" name="unmark" id="unmark" value="{{ book._id }}"
+                            class="bookmarked right tooltipped" data-position="bottom"
+                            data-tooltip="Remove book from Wish List."
+                            aria-label="Button to remove {{ book.title }} from your Wish List">
+                            <i class="far fa-bookmark icon-unmarked"></i>
+                            <i class="fas fa-bookmark icon-marked"></i>
+                        </button>
+                    </form>
+                    <br>
+                    <h5 class="header">{{ book.title }}</h5>
+                    <br>
+                    <p class="center">{{ book.authors[0] }}</p>
+                    <br>
                 </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <!-- Button to remove the current book from the Wish List array -->
-                        <form action="{{ url_for('unmark', book_id=book._id ) }}" method="post">
-                            <button type="submit" name="unmark" id="unmark" value="{{ book._id }}" class="bookmarked right tooltipped" data-position="bottom" data-tooltip="Remove book from Wish List." aria-label="Button to remove {{ book.title }} from your Wish List">
-                                <i class="far fa-bookmark icon-unmarked"></i>
-                                <i class="fas fa-bookmark icon-marked"></i>
-                            </button>
-                        </form>
-                        <br>
-                        <h5 class="header">{{ book.title }}</h5>
-                        <br>
-                        <p class="center">{{ book.authors[0] }}</p>
-                        <br> 
-                    </div>
-                    <div class="card-action wishlist center">
-                        <a href="{{ book.book_purchase_url }}" rel="noopener" target="_blank" title="Link to buy book online." class="button" aria-label="Link to purchase book.">
-                            <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-med-and-down"> it now</span></span> 
-                        </a>
-                        <a href="{{ url_for('view_book', book_id=book._id) }}" title="Link to View Book page" class="button btn" aria-label="Link to view book."><i class="fas fa-book"></i> View<span class="hide-on-med-and-down"> Book</span></a>
-                    </div>
+                <div class="card-action wishlist center">
+                    <a href="{{ book.book_purchase_url }}" rel="noopener" target="_blank"
+                        title="Link to buy book online." class="button" aria-label="Link to purchase book.">
+                        <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span
+                                class="hide-on-med-and-down"> it now</span></span>
+                    </a>
+                    <a href="{{ url_for('view_book', book_id=book._id) }}" title="Link to View Book page"
+                        class="button btn" aria-label="Link to view book."><i class="fas fa-book"></i> View<span
+                            class="hide-on-med-and-down"> Book</span></a>
                 </div>
             </div>
         </div>
-    {% endfor %}
     </div>
-
+    {% endfor %}
+</div>
 {% endblock %}

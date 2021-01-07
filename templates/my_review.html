@@ -1,83 +1,90 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- Selected Book -->
-    <div class="container">
+<!-- Selected Book -->
+<div class="container">
     <div class="row">
         <div class="col s12">
             <h3 class="center subtitle">{{ this_book.title }}</h3>
         </div>
     </div>
-        <div class="row">
-            <!-- Selected Book Cover Image -->
-            <div class="col s12 m6 center">
-                <img src="{{ this_book.thumbnail }}" alt="{{ this_book.title }} book cover" class="cover">
-            </div>
-            <div class="col s12 m6 left-align">
-                <!-- Selected Book Title, Author and Description -->
-                <p>Author: {{ this_book.authors[0] }}</p>
-                <p>Category: {{ this_book.category }}</p>
-                <p>Description: {{ this_book.description }}</p> 
-            </div>
+    <div class="row">
+        <!-- Selected Book Cover Image -->
+        <div class="col s12 m6 center">
+            <img src="{{ this_book.thumbnail }}" alt="{{ this_book.title }} book cover" class="cover">
         </div>
-        <div class="row">
-            <div class="col s12 m6">
-            </div>
-            <!-- Selected Book Information -->
-            <div class="col s12 m6 left-align">
-                <p>Page Count: {{ this_book.page_count }}</p> 
-                <p>Date Published: {{ this_book.published_date }}</p> 
-                <p>Publisher: {{ this_book.publisher }}</p> 
-                <p>ISBN 13: {{ this_book.isbn }}</p> 
-            </div>                
+        <div class="col s12 m6 left-align">
+            <!-- Selected Book Title, Author and Description -->
+            <p>Author: {{ this_book.authors[0] }}</p>
+            <p>Category: {{ this_book.category }}</p>
+            <p>Description: {{ this_book.description }}</p>
         </div>
-        <div class="row">
-            <div class="col s12 m6 offset-m6">
-            </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+        </div>
+        <!-- Selected Book Information -->
+        <div class="col s12 m6 left-align">
+            <p>Page Count: {{ this_book.page_count }}</p>
+            <p>Date Published: {{ this_book.published_date }}</p>
+            <p>Publisher: {{ this_book.publisher }}</p>
+            <p>ISBN 13: {{ this_book.isbn }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6 offset-m6">
+        </div>
         <div class="row my-reviews">
             <div class="col s4">
                 <p>Reviewed By: {{ my_review.created_by }}</p>
                 <p>On: {{ my_review.review_date }}</p>
                 <p>Upvotes: {{ my_review.review_score }}</p>
-                <p>                                        
-                    <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn bg-grey" title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only"> Edit</span></a>&nbsp; 
+                <p>
+                    <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=my_review._id) }}"
+                        class="btn bg-grey" title="Edit Review button"><i class="fas fa-user-edit"></i><span
+                            class="hide-on-small-only"> Edit</span></a>&nbsp;
                     <!-- Modal Trigger -->
-                    <a class="btn bg-red modal-trigger" href="#{{ my_review._id }}" title="Delete Review button"><i class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>                                      
+                    <a class="btn bg-red modal-trigger" href="#{{ my_review._id }}" title="Delete Review button"><i
+                            class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>
                 </p>
             </div>
             <div class="col s8 star-rating">
-                <p>Star Rating: 
+                <p>Star Rating:
                     {% set starRating = my_review.rating | int %}
                     {% for i in range(starRating) %}
-                        <i class="fas fa-star"></i>
-                    {% endfor %} 
+                    <i class="fas fa-star"></i>
+                    {% endfor %}
                 </p>
                 <p>Review: {{ my_review.review }}
                 </p>
             </div>
         </div>
-        <!-- Modal Section -->
-        <div id="modalContainer" class="container">
-            <!-- Check to see whether there is a user logged in -->
-                {% if session.user %}
-                    <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
-                    {% if session.user == my_review.created_by %}
-                        <!-- Modal Structure -->
-                        <div id="{{ my_review._id }}" class="modal modal-fixed-footer">
-                            <div class="modal-header">
-                                <a class="btn modal-close close" aria-label="Close">
-                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                </a>
-                            </div>
-                            <div class="modal-content">
-                                <h5>Your reviews are important <br><br>to the Read n' Reviewed community!<br><br>Can we change your mind?</h5>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn modal-close bg-blue" id="close"><i class="fas fa-check prefix"></i> Retain</button>
-                                <a href="{{ url_for('delete_review', book_id=this_book._id, review_id=my_review._id) }}" class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endif %}
+    </div>
+</div>
+<!-- Modal Section -->
+<div id="modalContainer" class="container">
+    <!-- Check to see whether there is a user logged in -->
+    {% if session.user %}
+    <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
+    {% if session.user == my_review.created_by %}
+    <!-- Modal Structure -->
+    <div id="{{ my_review._id }}" class="modal modal-fixed-footer">
+        <div class="modal-header">
+            <a class="btn modal-close close" aria-label="Close">
+                <span aria-hidden="true"><i class="fas fa-times"></i></span>
+            </a>
+        </div>
+        <div class="modal-content">
+            <h5>Your reviews are important <br><br>to the Read n' Reviewed community!<br><br>Can we change your
+                mind?</h5>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn modal-close bg-blue" id="close"><i class="fas fa-check prefix"></i>
+                Retain</button>
+            <a href="{{ url_for('delete_review', book_id=this_book._id, review_id=my_review._id) }}"
+                class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>
         </div>
     </div>
+    {% endif %}
+    {% endif %}
+</div>
 {% endblock %}

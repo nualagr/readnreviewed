@@ -1,37 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3 class="subtitle">{{ username }}'s Profile</h3>
-    <!-- Profile Information -->
-    <!-- Card Component copied from https://materializecss.com/cards.html and modified -->
-    <div class="row container">
-        <div class="card white darken-1">
-            <div class="card-content">
-                <div class="row">
-                    <!-- Username Field-->
-                    <div class="col s12">
-                        <p class="profile"><i class="fas fa-user"></i> Username: {{ username }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Email Field -->
-                    <div class="col s12">
-                        <p class="profile"><i class="fas fa-envelope"></i> Email Address: {{ email }}</p>
-                    </div>
+<h3 class="subtitle">{{ username }}'s Profile</h3>
+<!-- Profile Information -->
+<!-- Card Component copied from https://materializecss.com/cards.html and modified -->
+<div class="row container">
+    <div class="card white darken-1">
+        <div class="card-content">
+            <div class="row">
+                <!-- Username Field-->
+                <div class="col s12">
+                    <p class="profile"><i class="fas fa-user"></i> Username: {{ username }}</p>
                 </div>
             </div>
-            <div class="card-action center">
-                <a href="{{ url_for('edit_profile', username=session['user']) }}" class="btn bg-orange"><i class="fas fa-user-edit"></i> Edit</a>
-                <!-- <button type="submit" class="btn bg-orange"><i class="fas fa-user-edit"></i> Edit</button> -->
-                <a href="{{ url_for('get_books') }}" class="btn bg-blue"><i class="fas fa-home"></i> Home</a>
+            <div class="row">
+                <!-- Email Field -->
+                <div class="col s12">
+                    <p class="profile"><i class="fas fa-envelope"></i> Email Address: {{ email }}</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row container">
-        <div class="col s12">
-            <p class="center">
-                Not {{ username }}? Click <a href="{{ url_for('login') }}">here</a> to log in to your account.
-            </p>
+        <div class="card-action center">
+            <a href="{{ url_for('edit_profile', username=session['user']) }}" class="btn bg-orange"><i
+                    class="fas fa-user-edit"></i> Edit</a>
+            <a href="{{ url_for('get_books') }}" class="btn bg-blue"><i class="fas fa-home"></i> Home</a>
         </div>
     </div>
-
+</div>
+<div class="row container">
+    <div class="col s12">
+        <p class="center">
+            Not {{ username }}? Click <a href="{{ url_for('login') }}">here</a> to log in to your account.
+        </p>
+    </div>
+</div>
 {% endblock %}

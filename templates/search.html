@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- Latest Reviews -->
-    <div class="container">
+<!-- Latest Reviews -->
+<div class="container">
     <div class="row">
         <div class="col s12">
             <h3 class="center subtitle">Search</h3>
@@ -41,19 +41,19 @@
     </div>
     <!-- Books to Browse -->
     {% for book in books %}
-        <div class="row center">
-            <div class="col s12 m6">
-                <img src="{{ book.thumbnail }}" alt="{{ book.title }} book cover" class="cover"><br>
-            </div>
-            <div class="col s12 m6">
-                <p>{{ book.category }}</p>
-                <h5>{{ book.title }}</h5>
-                <p>{{ book.authors[0] }}</p> 
-                <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity-->
-                <p>{{ book.text_snippet | safe }}</p>
-                <p><a href="{{ url_for('view_book', book_id=book._id) }}">Read review...</a></p>
-            </div>
+    <div class="row center">
+        <div class="col s12 m6">
+            <img src="{{ book.thumbnail }}" alt="{{ book.title }} book cover" class="cover"><br>
+        </div>
+        <div class="col s12 m6">
+            <p>{{ book.category }}</p>
+            <h5>{{ book.title }}</h5>
+            <p>{{ book.authors[0] }}</p>
+            <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity-->
+            <p>{{ book.text_snippet | safe }}</p>
+            <p><a href="{{ url_for('view_book', book_id=book._id) }}">Read review...</a></p>
         </div>
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 {% endblock %}
