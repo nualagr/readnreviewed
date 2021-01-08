@@ -383,6 +383,7 @@ textarea.materialize-textarea.valid {
     margin-right: 0px;
 }
 
+
 /* 400 and 500 Error Pages ---------------------------------------*/
 .error-text {
     text-align: center;
@@ -415,6 +416,10 @@ textarea.materialize-textarea.valid {
     padding-top: 80px;
     padding-bottom: 80px;
 }
+
+.card .card-content {
+    min-height: 250px;
+}
 }
 
 @media screen and (max-width: 768px) {
@@ -441,5 +446,9 @@ h3 {
 
 .modal-content h5 {
     padding: 0px;
+}
+
+.wishlist a.btn {
+    padding: 0 12px;
 }
 }

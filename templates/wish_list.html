@@ -18,9 +18,8 @@
                 <div class="card-content">
                     <!-- Bookmark Button to remove the current book from the Wish List array -->
                     <form action="{{ url_for('unmark', book_id=book._id ) }}" method="post">
-                        <button type="submit" name="unmark" value="{{ book._id }}"
-                            class="bookmarked right tooltipped" data-position="bottom"
-                            data-tooltip="Remove book from Wish List."
+                        <button type="submit" name="unmark" value="{{ book._id }}" class="bookmarked right tooltipped"
+                            data-position="bottom" data-tooltip="Remove book from Wish List."
                             aria-label="Button to remove {{ book.title }} from your Wish List">
                             <i class="far fa-bookmark icon-unmarked"></i>
                             <i class="fas fa-bookmark icon-marked"></i>

@@ -526,6 +526,7 @@ The Read n’ Reviewed website relies on three database collections:
 - Apps:
   * [Balsamiq](https://balsamiq.com/). Used to create the project wireframes.
   * [Inkscape](https://inkscape.org/). Used to edit the Vecteezy svgs.
+  * [Microsoft Excel](https://www.microsoft.com/en-ie/microsoft-365/excel). Used to create the testing spreadsheets.
 
 ##### back to [top](#table-of-contents)
 ---
@@ -691,6 +692,8 @@ function and [Mozilla Firefox Developer Tools](https://developer.mozilla.org/en-
 ![alt text](documentation/readme-images/tablet-devices-tested.png "Grid showing the different tablet devices tested.")
 
 <br>
+
+
 
 **Laptop and Desktop Dimensions Tested:**
 
@@ -1479,6 +1482,27 @@ Although the page would not load and the error was logged, when the page was ref
 The H18 error indicated that the HTTP request had been interrupted by a closed socket before the router had received the HTTP response from the app's web process.
 Changing the return value of the upvote_review() and mark() functions from rendering the view_book.html template to a redirect to the https_url_for view_book.html
 succeeded in eliminating the error. 
+
+<br>
+
+
+### Materialize Card Heights
+
+Responsiveness issues arose during development with regard to the Materialize cards on the Wish List page.  
+The card height rendered changes depending on the length of the book title and the size of the book cover image.  
+This is not an issue on a mobile screen as the cards are stacked one on top of the other. On tablet and desktop screens, however, the layout becomes distorted.
+
+![alt text](documentation/readme-images/uneven-card-heights.png "Screenshot of uneven cards on Wish List page when viewed on a desktop screen.")
+<br>
+
+Answers on [Stack Overflow](https://stackoverflow.com/questions/46064332/materialize-cards-not-on-equal-height)
+suggested stipulating the same height for each image.  This did not take the aspect ratio of the cover images into account and some 
+of the covers then appeared stretched.  As the images are sourced from Google Books API and differ in size the height property was removed.
+
+A Jinja check and filter was later applied to the book titles to truncate those titles that exceeded 20 characters in length. 
+This did improve the layout considerably but made it difficult to identify the books saved.
+
+The current solution being used is that of a min-height property, which has been applied to the card-content div when viewed on a tablet or desktop screen.
 
 ##### back to [top](#table-of-contents)
 ---

@@ -567,20 +567,25 @@ def wish_list():
     else:
         booklist = []
         for book_id in wishlist:
-            # Find the book document in the database
-            this_book = mongo.db.books.find_one(
-                {"_id": ObjectId(book_id)}
-            )
-            # Create the book purchase url
-            # by adding the book title and author to the url
-            this_book_title = this_book["title"].replace(" ", "+")
-            this_book_author = this_book["authors"][0].replace(" ", "+")
-            book_purchase_url = (
-                "https://www.amazon.com/s?tag=falsetag&k=" +
-                this_book_title + "+" + this_book_author)
-            this_book["book_purchase_url"] = book_purchase_url
-            # Add the book to the booklist list
-            booklist.append(this_book)
+            # Check to make sure that the book still exists in the database
+            # If not, skip to next book id
+            if mongo.db.books.find_one(
+                    {"_id": ObjectId(book_id)}):
+                # Find the book document in the database
+                this_book = mongo.db.books.find_one(
+                    {"_id": ObjectId(book_id)})
+                # Create the book purchase url
+                # by adding the book title and author to the url
+                this_book_title = this_book["title"].replace(" ", "+")
+                this_book_author = this_book["authors"][0].replace(" ", "+")
+                book_purchase_url = (
+                    "https://www.amazon.com/s?tag=falsetag&k=" +
+                    this_book_title + "+" + this_book_author)
+                this_book["book_purchase_url"] = book_purchase_url
+                # Add the book to the booklist list
+                booklist.append(this_book)
+            else:
+                continue
     return render_template(
         "wish_list.html", booklist=booklist)
 
