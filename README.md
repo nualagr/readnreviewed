@@ -536,6 +536,10 @@ The Read n’ Reviewed website relies on three database collections:
 ### HTML files
 [W3C HTML Validation Service](https://validator.w3.org/) was used to validate the HTML code. 
 
+It was possible to validate the public pages by URI.
+The logged-in-user pages were validated by Direct Input, which involved copying and pasting the source code of the fully rendered pages directly into the validator.
+
+
 The home page produced the following error regarding the Materialize carousel div elements which have an href attribute.
 
 ![alt text](documentation/readme-images/html-validator-href-attribute-error.png "Screenshot showing error from https://validator.w3.org/ regarding the href attribute in the div tag.")
@@ -559,6 +563,22 @@ Although the EmailJS documentation included the type attribute in their examples
 The page now shows no errors or warnings.
 
 ![alt text](documentation/readme-images/html-validator-no-errors-contact-page.png "Screenshot showing HTML validator results for the Contact page.")
+<br>
+
+Other errors encountered:
+
+* Duplicate ID errors, particularly with regard to elements created within Jinja for loops.  
+The ID attributes were removed from these elements.
+
+* Missing opening div tags.  These appeared when the closing div tags had been mistakenly placed outside the Jinja for loop or if statement.
+In each case encountered the tags were moved to the correct position within the statements.
+
+* 
+
+No HTML errors or warnings remain on the site.
+
+![alt text](documentation/readme-images/html-validator-checklist.png "Screenshot showing a spreadsheet of the Read n' Reviewed pages checked in the HTML Validator.")
+
 <br>
 
 ### CSS file
@@ -1064,8 +1084,6 @@ If no results are found the user is brought to the Add Book page so that they ca
 ![alt text](documentation/readme-images/add-book-with-flash-message-mobile-view.png "Screenshot of the Add Book page and flash message as it appears when viewed on a mobile device.")
 <br>
 
-&#9745;	Search for books by genre by entering the desired genre into a search box within the site.
-
 &#9745;	Share my own book reviews with fellow readers. 
 
 When a logged-in user wishes to review a book they are provided with an eye-catching orange 'Write a Review' button on the View Book page for each book already stored in the database.
@@ -1416,7 +1434,7 @@ As they are automatically ordered by relevance by the API the first book in each
 * title (a string), 
 * authors (an array of strings, often only containing one string), 
 * categories (initially thought to contain the genre, it later became obvious that 
-categories was a more nebulous term and included terms such as 'archived' and 'murder'), 
+categories was a more nebulous term and included terms such as 'computer technicians', 'archived' and 'murder'), 
 * description (a string), 
 * publisher (a string), 
 * publishedDate (a string), 

@@ -332,17 +332,12 @@ def add_book():
     if request.method == "POST":
         # Unpack json into a dict
         newBook = request.json
-        print(
-            "This is the newBook coming to you from Python add_book.html",
-            newBook)
-        print("This is the new book title:", newBook["title"])
 
         # Add new book to the database
         mongo.db.books.insert_one(newBook)
         book_id = mongo.db.books.find_one({
             "title": newBook["title"]
         })["_id"]
-        print(book_id)
         return redirect(https_url_for("view_book", book_id=book_id))
 
     if request.method == "GET":
@@ -437,7 +432,6 @@ def upvote_review(review_id):
     })
 
     if request.method == "POST":
-        print("upvoting review", review_id)
         mongo.db.reviews.update_one(
             {"_id": ObjectId(review_id)},
             {"$inc": {"review_score": 1},

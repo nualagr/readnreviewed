@@ -31,7 +31,7 @@
             <!-- Selected Book Title, Author and Description -->
             <p>Author: {{ this_book.authors[0] }}</p>
             <p>Category: {{ this_book.category }}</p>
-            <p>Description: {{ this_book.description }}</p>
+            <p>Description: {{ this_book.description | safe }}</p>
         </div>
     </div>
     <div class="row">
@@ -119,13 +119,11 @@
             <!-- Check to see whether the logged in user upvoted the review already, if not, display the Upvote button -->
             {% if session.user in review.upvoters %}
             {% else %}
-            <p>
             <form action="{{ url_for('upvote_review', review_id=review._id ) }}" method="post">
                 <button type="submit" name="upvote" value="1" class="btn bg-grey"><i
                         class="fas fa-caret-up prefix"></i><span class="hide-on-small-only"> Upvote
                         Review</span></button>
             </form>
-            </p>
             {% endif %}
             {% endif %}
             {% endif %}
@@ -144,12 +142,12 @@
     {% endif %}
     <!-- Modal Section -->
     {% for review in this_book_reviews %}
-    <div id="modalContainer" class="container">
-        <!-- Check to see whether there is a user logged in -->
-        {% if session.user %}
-        <!-- Check to see whether the user wrote the review, if so, display the Edit and Delete buttons -->
-        {% if session.user == review.created_by %}
-        <!-- Modal Structure -->
+    <!-- Check to see whether there is a user logged in -->
+    {% if session.user %}
+    <!-- Check to see whether the user wrote the review, if so, create the Delete Confirmation modal -->
+    {% if session.user == review.created_by %}
+    <!-- Modal Structure -->
+    <div class="container">
         <div id="{{ review._id }}" class="modal modal-fixed-footer">
             <div class="modal-header">
                 <a class="btn modal-close close" aria-label="Close">
@@ -167,9 +165,9 @@
                     class="btn modal-close bg-red"><i class="fas fa-times prefix"></i> Delete</a>
             </div>
         </div>
-        {% endif %}
-        {% endif %}
     </div>
+    {% endif %}
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}
