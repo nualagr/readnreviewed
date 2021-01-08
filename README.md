@@ -69,8 +69,6 @@ Click <a href="https://read-n-reviewed.herokuapp.com/">here</a> to visit the sit
 ---
 
 ## UX
-This section provides insight into the UX process, focusing on who Read ‘n Reviewed was created for, the main aims of the 
-project and how the website can help users meet their needs.
 
 Read n’ Reviewed is of direct interest to avid readers, who are the target market for its services.  The site seeks to 
 provide them with a range of book recommendations by fellow readers enabling them to make more informed choices when choosing 
@@ -286,8 +284,8 @@ Main content areas on each page were designed for functionality and consistency.
 After visiting existing book review sites including [GoodReads](https://www.goodreads.com/), [BookPage](https://bookpage.com/), 
 [LoveReading](https://www.lovereading.co.uk/), [SFBook Reviews](https://sfbook.com/) and [Reedsy Discovery](https://reedsy.com/discovery), 
 it was deemed necessary to place a search icon on the navigation menu on all screens. 
-It was also deemed necessary to include a user icon on the top left of the navbar.
-The prioritisation of these function, through their placement outside of the collapsible menus on the competitor sites, indicates that these 
+It was also deemed necessary to include a user icon on the top right-hand-side of the navbar.
+The prioritisation of these functions, through their placement outside of the collapsible menus on the competitor sites, indicates that these 
 functions are the most commonly used, or desired, by book review site users.  
 
 
@@ -357,28 +355,28 @@ similar approach was adopted on the Read n' Reviewed site. The accent colours of
 
 <br>
 
-To make it easier to scan the page for information the user might need, the complimentary accent colours of cyan and saffron, 
-which are found in the site logo, were used to draw attention to links and call-to-action buttons.  
+To make it easier to scan the page for information the user might need, the complimentary accent colours, 
+which are also found in the site logo, were used to draw attention to links and call-to-action buttons.  
 
 <br>
 
 ![alt text](documentation/readme-images/blue-orange-book-logo.png "Read n' Reviewed logo.")
 
--	To keep the design clean, and professional the navigation bar is #FFFFFF, white, matching the background of the body each page. 
--	The background colour of site is also #FFFFFF, white, to keep the website’s image clean and to provide easy contrast.
+-	To keep the design clean, and professional the navigation bar is #FFFFFF, white. 
+-	The background colour of site is also #FFFFFF, white, to keep the website’s image clean and to provide easy contrast with the overlaid text.
 -	#F8F8F8, cultured, a light grey colour, has been used to indicate changes in content areas and for horizontal dividers between sections.
 -	When a user scrolls or hovers over the links on the navigation bar the background changes to a light grey in order to provide the user with visual feedback.  
 -	Various shades of light grey, #F5F5F5 and #9e9e9e have been used for the Footer, with eerie black, #222222, text.  
-To provide visual feedback to the user the social media and other links in the footer turn from blue to eerie black when hovered over. 
+-   To provide visual feedback to the user the social media and other links in the footer turn from blue to eerie black when hovered over. 
 -	Deep Saffron, #F69222, has been used as an accent colour throughout the site, from the logo to call-to-action buttons and the star rating stars.
 -	Text colour throughout the site is predominantly Eerie Black (#222222) in colour, which provides a strong contrast to the other colours in the site. 
 The use of this colour ensures that the text should be legible and meet accessibility standards regardless of the background colour of the element in question.
 
 #### Icons
 
-As there is a lot of text within the site content it was decided that self-explanatory icons would be utilised as buttons as much as possible to reduce 
+As there is a lot of text within the site content it was decided that self-explanatory icons would be utilised on buttons as much as possible to reduce 
 the amount of reading necessary to operate the site.  
-For example, a magnifying glass icon was used instead of a ‘Search’ button.   The icons used were taken from [Font Awesome](https://fontawesome.com/).
+For example, the instantly recognisable magnifying-glass icon, was used for the ‘Search’ button.  All icons used were taken from [Font Awesome](https://fontawesome.com/).
 
 <br>
 
@@ -387,6 +385,7 @@ For example, a magnifying glass icon was used instead of a ‘Search’ button. 
 
 #### Typography
 As the nature of the website involves reading reviews within the site it was necessary to choose a font that was easy to read on a screen.  
+
 The two fonts chosen for the site were among the fourteen most legible fonts for reading online according to 
 [Thrive](https://thrive.design/best-fonts-for-reading-easiest-to-read-online-design-fonts/).
 
@@ -399,9 +398,8 @@ This font was designed to be pleasant to read on screens.
 <br>
 
 To ensure the readability of smaller text on a mobile screen *Open Sans* was chosen for the main text used within the body of the site.  
+
 This font remains legible even when the typeface is small. 
-
-
 
 ![alt text](documentation/readme-images/open-sans-font-example.png "Open Sans font example.")
 
@@ -428,20 +426,19 @@ The types of data stored in MongoDB for this project are:
 ### Collections Data Structure
 Initially the data was broken up into five database collections: Users, Reviews, Books, Authors and Genres.
 However after reading about normalization on [StackOverflow](https://stackoverflow.com/questions/24839147/is-it-needed-to-normalize-your-database-when-you-are-using-mongodb#:~:text=1%20Answer&text=Normalizing%20your%20data%20like%20you,between%20tables%20are%20relatively%20cheap.)
-it was decided to combine the books, authors and genre collection into one. In that way 
-the most common queries can be satisfied by querying two collections, Books and Reviews, even though this means that there will be some redundancy in the database.
+it was decided to combine the books, authors and genre collection into two collections. In that way 
+the most common queries can be satisfied by querying these two collections, Books and Reviews, even though this means that there will be some redundancy in the database.
 
-The Read n’ Reviewed website relies on three database collections:
+The Read n’ Reviewed website relies on three database collections overall:
 
 
 #### Users Collection
 | Title	        |Key in db	    |form validation type	|Data type  |
 | :------------ |:--------------| :---------------------|:--------- |
 |User ID        |_id	        |None	                |ObjectId   |
-|Username	    |username	    |text, maxlength="40"   |string     |
-|Password	    |password	    |text, maxlength="40"	|string     |
-|Email Address	|email	        |email, maxlength="40"  |string     |
+|Username	    |username	    |text, maxlength="20"   |string     |
 |Password	    |password	    |text, maxlength="15"	|string     |
+|Email Address	|email	        |email                  |string     |
 |Wish List      |wishlist       |checked box            |Array of ObjectIds - Book ID     |
 
 <br>
@@ -451,8 +448,8 @@ The Read n’ Reviewed website relies on three database collections:
 | :------------     |:--------------| :---------------------|:--------- |
 |Book ID            |_id            |None                   |ObjectId   |
 |Thumbnail          |thumbnail      |None                   |string of the book cover url     |
-|Title	            |title	        |text, maxlength="200"  |string     |
-|Authors            |authors        |text, maxlength="100"  |array of strings     |
+|Title	            |title	        |text, maxlength="100"  |string     |
+|Authors            |authors        |text, maxlength="50"   |array of strings     |
 |Category           |category       |None                   |string     |
 |Description        |description    |None                   |string     |
 |Publisher          |publisher      |None                   |string     |
@@ -471,7 +468,7 @@ The Read n’ Reviewed website relies on three database collections:
 |Rating	        |rating         |dropdown menu          |string     |
 |Review	        |review         |text                   |string     |
 |Reviewer       |created_by     |None                   |string     |
-|Date           |review_date    |None	                |float      |
+|Date           |review_date    |None	                |double, float    |
 |Review Score   |review_score   |None                   |integer    |
 |Upvoters       |upvoters       |None                   |array of strings, usernames     |
 
@@ -494,13 +491,14 @@ The Read n’ Reviewed website relies on three database collections:
 - Websites
   * [Am I Responsive](http://ami.responsivedesign.is/). Used to create the mock-up image showing the site as it would behave when viewed on desktop, mobile and tablet devices. 
   * [Code Institute](https://codeinstitute.net/). Used to review concepts covered in preceding modules and walk-through projects. 
-  * [Coolors](https://coolors.co/ffbe0b-fb5607-ff006e-8338ec-3a86ff). Used to analyse the site logo to isolate the colours used within and to construct the colour palette for the site.
+  * [Coolors](https://coolors.co/ffbe0b-fb5607-ff006e-8338ec-3a86ff). Used to analyse the site logo to isolate the colours within and to construct the colour palette for the site.
   * [Emailjs](https://emailjs.com/). Used to connect EmailJS to gmail, create an email template, and use their Javascript library to trigger an email with dynamic variables that are populated from the Contact Us form.
-  * [Font Awesome](https://fontawesome.com/). Used to source the free icons that were used for the social media links in the footer and for the profile, home, edit, delete and search buttons.
+  * [Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools).  Used to test the responsiveness of the site.
+  * [Font Awesome](https://fontawesome.com/). Used to source the free icons that were used for the social media links in the footer and for the profile, home, review, edit, delete, buy, reset, clear and search buttons.
   * [Google Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools). Used throughout the project to test the responsiveness of elements, to target and apply CSS styles during the design phase and to test the site's performance once built. 
   * [Google Fonts](https://fonts.google.com/). Used to choose and source the font used in the body of the site.
-  * [Github](https://github.com/). Used as a respository for all previous versions of the build.
-  * [Gitpod](https://www.gitpod.io/). This online IDE was used to build and develop the website.
+  * [Github](https://github.com/). Used as a respository for the different versions of the build produced throughout development.
+  * [Gitpod](https://www.gitpod.io/). An online IDE used to build and develop the website.
   * [Heroku](https://www.heroku.com/). The cloud platform used to host the deployed site.
   * [Infoheap](https://infoheap.com/python-lint-online/).  Used to validate the Python app.py code.
   * [jQuery](https://jquery.com/). This JavaScript library was used to traverse the DOM and used for dynamic event handling. 
@@ -537,8 +535,8 @@ The Read n’ Reviewed website relies on three database collections:
 ### **HTML files**
 [W3C HTML Validation Service](https://validator.w3.org/) was used to validate the HTML code. 
 
-It was possible to validate the public pages by URI.
-The logged-in-user pages were validated by Direct Input, which involved copying and pasting the source code of the fully rendered pages directly into the validator.
+The public pages were validated by URI. The logged-in-user pages were validated by Direct Input, 
+which involved copying and pasting the source code of the fully rendered pages directly into the validator.
 
 
 The home page produced the following error regarding the Materialize carousel div elements which have an href attribute.
@@ -568,7 +566,7 @@ The page now shows no errors or warnings.
 
 Other errors encountered:
 
-* Duplicate ID errors, particularly with regard to elements created within Jinja for loops.  
+* Duplicate ID errors occurred with regard to elements created within Jinja for loops.  
 The ID attributes were removed from these elements.
 
 * Missing opening div tags.  These appeared when the closing div tags had been mistakenly placed outside the Jinja for loop or if statement.
@@ -637,24 +635,24 @@ The low-performance result was mainly driven by the following metrics:
 Images:
 
 Using the image compressor [TinyPNG](https://tinypng.com/) the site logo, 
-community icon and banner image were compressed to increase performance.
+community icon and background images were compressed to increase performance.
 
 As the book cover images are sourced from the Google Books API and rendered using the image URL the quality or actual size of the images 
 provided is currently beyond control. 
 
-The suggested next-gen formats, such as WEBP, are currently limited to certain browsers therefore, until they are more widely adopted, the icons and banner image used remain in png or jpg format.
+The suggested next-gen formats, such as WEBP, are currently limited to certain browsers therefore, until they are more widely adopted, the logos and background images used remain in png or jpg format.
 
 In order to improve loading times the loading attribute was added to all img tags on the site and lazy loading was applied to those images not visible above the fold.
 
 Render-blocking Resources:
 
-The render-blocking resources that Lighthouse identified as slowing performance relate to 
-Fontawesome and Materialize CSS CDNs and therefore could not be improved upon.  
+The render-blocking resources that Lighthouse identified as slowing performance relate to the 
+Fontawesome and Materialize CSS files and therefore could not be improved upon.  
 
 Remove unused CSS and JavaScript:
 
-The improvements suggested in relation to unused CSS related to the Font Awesome CSS CDN 
-and the Materialize CSS CDN. The JavaScript files that Lighthouse highlighted as being 'unused'
+The improvements suggested in relation to unused CSS related to the Font Awesome
+and the Materialize CSS files. The JavaScript files that Lighthouse highlighted as being 'unused'
 were the JQuery and Materialize files.
 
 
@@ -1452,10 +1450,30 @@ Google Books API returns up to ten books per call.  It was decided to display al
 A variable was created for each field in the database.  These variables were assigned blank strings initially.  A series of if statements checks
 whether the associated field exists in the API response.  If so, then that information overwrites the empty string. A dictionary of each book is created. 
 These are appended to an empty array using push().  This array is then iterated over and each dictionary is written to the screen using the JavaScript .innterHTML() function 
-and displayed in rows and columns, with the information separated into tables within each row.  A button, which passed the dictionary's information to a JavaScript function
-sendToPython(), is created for each instance.  As this information contains strings, integers and many escape characters this led to complications when the browser attempted to write it to the screen.
+and displayed in rows and columns, with the information separated into tables within each row.  
+
+A button, which passes the dictionary's information to a JavaScript function
+sendToPython(), is created for each instance. As this book information, including the book description and often quotes, contains strings, integers and many escape characters this led to complications when the browser attempted to write it to the screen.
 At first JSON.stringify() was used to convert the dictionary to a string.  This did not solve the issue on its own.  Next encodeURIComponent() was used to encode the remaining problematic special characters.
 This also did not fully solve the problem. Finally btoa() was used to encode the information to base64 before rendering on the screen.  
+
+```
+<button type='submit' class='btn bg-blue' onclick='sendToPython("${btoa(encodeURIComponent(JSON.stringify(searchList[i])))}");'>Choose This Edition</button>
+```
+
+```
+<button type="submit" class="btn bg-blue" onclick="sendToPython(
+    &quot;JTdCJTIydGh1bWJuYWlsJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZib29rcy5nb29nbGUuY29tJTJGYm9va3MlMkZjb250ZW50JTNGaWQlM0Rmb1NMRFFBQVFCQUolMjZwcmludHNlYyUzRGZyb250Y292ZXIlMjZpbWcl
+    M0QxJTI2em9vbSUzRDElMjZzb3VyY2UlM0RnYnNfYXBpJTIyJTJDJTIydGl0bGUlMjIlM0ElMjJJbnZpc2libGUlMjBNYW4lMjIlMkMlMjJhdXRob3JzJTIyJTNBJTVCJTIyUmFscGglMjBFbGxpc29uJTIyJTVEJTJDJTIyY2
+    F0ZWdvcnklMjIlM0ElMjJGaWN0aW9uJTIyJTJDJTIyZGVzY3JpcHRpb24lMjIlM0ElMjJBbiUyMEFmcmljYW4tQW1lcmljYW4lMjBtYW4ncyUyMHNlYXJjaCUyMGZvciUyMHN1Y2Nlc3MlMjBhbmQlMjB0aGUlMjBBbWVyaWNh
+    biUyMGRyZWFtJTIwbGVhZHMlMjBoaW0lMjBvdXQlMjBvZiUyMGNvbGxlZ2UlMjB0byUyMEhhcmxlbSUyMGFuZCUyMGElMjBncm93aW5nJTIwc2Vuc2UlMjBvZiUyMHBlcnNvbmFsJTIwcmVqZWN0aW9uJTIwYW5kJTIwc29jaW
+    FsJTIwaW52aXNpYmlsaXR5LiUyMFJlaXNzdWUuJTIwMzAlMkMwMDAlMjBmaXJzdCUyMHByaW50aW5nLiUyMiUyQyUyMnB1Ymxpc2hlciUyMiUzQSUyMlZpbnRhZ2UlMjIlMkMlMjJwdWJsaXNoZWRfZGF0ZSUyMiUzQSUyMjE5
+    OTUlMjIlMkMlMjJwYWdlX2NvdW50JTIyJTNBNTgxJTJDJTIyaXNibiUyMiUzQSUyMjk3ODA2Nzk3MzI3NjElMjIlMkMlMjJ0ZXh0X3NuaXBwZXQlMjIlM0ElMjJGb3IlMjBub3QlMjBvbmx5JTIwZG9lcyUyMFJhbHBoJTIwRW
+    xsaXNvbiUyNiUyMzM5JTNCcyUyMG5pZ2h0bWFyZSUyMGpvdXJuZXklMjBhY3Jvc3MlMjB0aGUlMjByYWNpYWwlMjBkaXZpZGUlMjB0ZWxsJTIwdW5wYXJhbGxlbGVkJTIwdHJ1dGhzJTIwYWJvdXQlMjB0aGUlMjBuYXR1cmUlM
+    jBvZiUyMGJpZ290cnklMjBhbmQlMjBpdHMlMjBlZmZlY3RzJTIwb24lMjB0aGUlMjBtaW5kcyUyMG9mJTIwYm90aCUyMHZpY3RpbXMlMjBhbmQlMjBwZXJwZXRyYXRvcnMlMkMlMjBpdCUyMGdpdmVzJTIwdXMlMjBhbiUyMGVu
+    dGlyZWx5JTIwbmV3JTIwbW9kZWwlMjBvZiUyMHdoYXQlMjBhJTIwLi4uJTIyJTdE&quot;);">Choose This Edition</button>
+```
+
 When the user clicks the now working button, the sendToPython() function is called.  This function uses atob() and decodeURIComponent to unpack the book information into its JSON string.
 fetch()'s 'POST' method is then used to send the newBook to Python. Within the add_book() the newBook is unpacked into a dictionary and added to the database. 
 The redirect url for the view_book.html page of this new book is then sent as a response back to fetch() and window.location.href is used to load that page in the browser. 
@@ -1485,11 +1503,10 @@ succeeded in eliminating the error.
 
 <br>
 
-
 ### Materialize Card Heights
 
 Responsiveness issues arose during development with regard to the Materialize cards on the Wish List page.  
-The card height rendered changes depending on the length of the book title and the size of the book cover image.  
+The card height rendered differs depending on the length of the book title and the size of the book cover image.  
 This is not an issue on a mobile screen as the cards are stacked one on top of the other. On tablet and desktop screens, however, the layout becomes distorted.
 
 ![alt text](documentation/readme-images/uneven-card-heights.png "Screenshot of uneven cards on Wish List page when viewed on a desktop screen.")
@@ -1512,13 +1529,13 @@ The current solution being used is that of a min-height property, which has been
 ### Non-passive Event Listener
 ![alt text](documentation/readme-images/non-passive-event-listener-error.png "Screenshot of Chrome Developer Tools non-passive-event-listener warnings.")
 <br>
-Chrome Developer Tools console highlighted the above violation, however it relates to non-passive event listeners within the Materialize JavaScript script.
-Solutions have so far been unsuccessful in solving this issue.
+Chrome Developer Tools console continutes to highlight the above violation.  It relates to non-passive event listeners within the Materialize JavaScript script.
+Solutions attempted have, so far, been unsuccessful in resolving this issue.
 
 ### Session Cookie Username 
 
 Currently the rudimentary user authentication of the session['user'] cookie using the user's username is used to log users in and out of the site. 
-This was a security flaw as it is possible to access someone's account by artifically creating the cookie using an account holder's username.
+This is a security flaw as it is possible to access someone's account by artifically creating the cookie using an account holder's username.
 After reading about user authentication it was decided that this was beyond the scope of this project due to time constraints. 
 
 ### EmailJS Security Concerns
@@ -1587,7 +1604,7 @@ $ pip3 install -r requirements.txt
 ```python
 py -m venv virtual
 ```
-13. Create a free account on MongoDb.  Create a new database and reproduce the 3 collections as described above in the Information Architecture section of the README.
+13. Create a free account on MongoDb.  Create a new database and reproduce the 3 collections as described above in the [Collections Data Structure](#collections-data-structure) section of the README.
 
 14. Within your IDE create a file to hold your environment variables and call it env.py.
 ```
@@ -1663,7 +1680,7 @@ git push
 
 6. Making sure that the correct GitHub profile was displayed, the Read n' Reviewed repository was entered into the search box.
 
-7. When found the button 'Connect' was clicked.
+7. When found, the button 'Connect' was clicked.
 
 8. Next the configuration variables were set in Heroku.
     - Within the 'Settings' tab for the app the button 'Reveal Config Vars' was clicked.

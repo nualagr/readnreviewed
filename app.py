@@ -17,8 +17,6 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 # Grab our secret key
 app.secret_key = os.environ.get("SECRET_KEY")
-# Grab our emailjs key
-app.email_key = os.environ.get("EMAIL_KEY")
 
 
 # Set up an instance of PyMongo.
