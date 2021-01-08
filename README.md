@@ -533,7 +533,7 @@ The Read n’ Reviewed website relies on three database collections:
 ## Testing
 
 
-### HTML files
+### **HTML files**
 [W3C HTML Validation Service](https://validator.w3.org/) was used to validate the HTML code. 
 
 It was possible to validate the public pages by URI.
@@ -573,7 +573,7 @@ The ID attributes were removed from these elements.
 * Missing opening div tags.  These appeared when the closing div tags had been mistakenly placed outside the Jinja for loop or if statement.
 In each case encountered the tags were moved to the correct position within the statements.
 
-* 
+
 
 No HTML errors or warnings remain on the site.
 
@@ -581,7 +581,7 @@ No HTML errors or warnings remain on the site.
 
 <br>
 
-### CSS file
+### **CSS file**
 
 [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator) was used to validate the CSS file.  No errors were found.
 ![alt text](documentation/readme-images/css-validator-results.png "Screenshot showing results from CSS validator.")
@@ -589,7 +589,7 @@ No HTML errors or warnings remain on the site.
 
 <br>
 
-### JavaScript File
+### **JavaScript File**
 When the script.js file was entered into [JSHint](https://jshint.com/) it returned many warnings regarding the use of square-bracket, as opposed to dot notation.
 
 ![alt text](documentation/readme-images/jshint-dot-notation-warnings.png "Screenshot showing dot notation warnings from JSHint.")
@@ -602,7 +602,7 @@ Each instance highlighted by JSHint was changed to dot notation.
 ![alt text](documentation/readme-images/jshint-dot-notation-warnings-fixed.jpg "Screenshot of JSHint results showing no warnings regarding dot notation.")
 <br>
 
-### Python File
+### **Python File**
 [pep8online.com](http://pep8online.com/) was used to check whether the app.py Python file was PEP8 compliant.
 ![alt text](documentation/readme-images/pep8-online-results.png "Screenshot of pep8online.com's results showing that the app.py file is PEP8 compliant.")
 <br>
@@ -615,10 +615,16 @@ I am grateful to my mentor Mr. Reuben Ferrante for pointing out the solution to 
 The app.py file now passes through the linter with no errors.
 
 ![alt text](documentation/readme-images/infoheap-python-lint-no-errors.png "Screenshot infoheap Python linter results showing no errors.")
+
 <br>
 
 ### Performance
-Google Chrome Developer Tools Lighthouse test was used to test the quality of the various pages on the website. Overall performance and errors are highlighted below.
+[Google Chrome Developer Tools Lighthouse test](https://developers.google.com/web/tools/lighthouse) was used to test the website with regard to Performance, 
+Accessibility, Best Practices and Search Engine Optimization. 
+
+The Read n' Reviewed site did not perform well with regard to performance, especially on pages where there were significant numbers
+of images displayed.
+
 ![alt text](documentation/readme-images/lighthouse-performance-result-53.png "Screenshot of Chrome Developer Tools Lighthouse Performance results.")
 <br>
 
@@ -669,50 +675,30 @@ The site performs well in every respect when viewed on a desktop device.
 ### Responsiveness
 
 The Read n' Reviewed site was designed using the mobile-first approach, but it was tested for responsiveness on multiple screen dimensions 
-throughout the development process and after project completion using the Google Chrome Developer Tools Toggle Device function and Mozilla Firefox Developer Tools.  
+throughout the development process and after project completion using the [Google Chrome Developer Tools Toggle Device](https://developers.google.com/web/updates/2016/03/device-mode-v2) 
+function and [Mozilla Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools).  
 
-**Mobile Devices**
-- Android 7.0
-- Galaxy S5
-- Galaxy S9
-- iPhone 5/SE
-- iPhone 6/7/8
-- iPhone 6/7/8 plus
-- iPhone X / XS
-- Moto G4
-- Pixel 2
-- Pixel 2XL
-- Surface Duo
+**Mobile Devices Tested**
+
 
 ![alt text](documentation/readme-images/mobile-devices-tested.png "Grid showing the different mobile devices tested.")
 
 <br>
 
-**Tablet Devices**
-- iPad
-- iPad Pro
-- Kindle Fire HDX
+**Tablet Devices Tested**
+
 
 ![alt text](documentation/readme-images/tablet-devices-tested.png "Grid showing the different tablet devices tested.")
 
 <br>
 
-**Laptop dimensions:**
-
-- 15" Laptop (1024 x 800)
-- 13" Laptop (1024 x 800)
-
-**Desktop dimensions:**
-
-- 24" Desktop (1920 x 1200)
-- 22" Desktop (1680 x 1050)
-- 20" Desktop (1600 x 900)
+**Laptop and Desktop Dimensions Tested:**
 
 ![alt text](documentation/readme-images/desktop-devices-tested.png "Grid showing the different laptop and desktop devices tested.")
 
 <br>
 
-Each website feature buttons, modals, external links, hover effects etc. was manually checked within the following web browsers:
+Each website feature, including buttons, modals, external links, hover effects etc. was manually checked within the following web browsers:
 - Google Chrome
 - Microsoft Edge
 - Microsoft Opera
@@ -883,6 +869,7 @@ A link, 'View book...' brings the visitor to the page displaying the book summar
 &#9745;	Easily contact the site owner if I have any questions about the site.
 
 In the site footer, available on every page, there is a link to the Contact Us page.
+
 ![alt text](documentation/readme-images/footer-mobile-view.png "Screenshot of Read n' Reviewed Contact Us link in the site footer, as it appears when viewed on a mobile device.")
 <br>
 
@@ -905,7 +892,9 @@ As well as the links to the Homepage, About Us page, Contact Us form and social 
 site navigation is also facilitated by the navigation bar at the top of each page.
 
 ![alt text](documentation/readme-images/new-visitor-desktop-navbar.png "Screenshot of Read n' Reviewed navbar, as it appears to a new visitor when viewed on a desktop screen.")
+
 <br>
+
 New visitors on a desktop device have the option of clicking on the Read n' Reviewed logo or title to bring them back to the homepage. 
 
 On a mobile device the menu is accessed through the hamburger icon. When clicked it reveals a side-navigation bar with the options available.
@@ -977,28 +966,28 @@ on the navbar on desktop view and are accessible through the hamburger icon on t
 ![alt text](documentation/readme-images/side-nav-logged-in-user.png "Screenshot of the side navigation menu links available to the logged-in user.")
 <br>
 
-The User icon, which is visible on the navbar on all screen sizes, opens a dropdown menu to reveal the Profile and Log Out links.
+The User icon, which is visible on the navbar on all screen sizes, opens a dropdown menu to reveal the Profile and Logout links.
 
 ![alt text](documentation/readme-images/logged-in-user-dropdown-menu.png "Screenshot of the user dropdown menu.")
 <br>
 
-Similarly, the magnifying-glass icon which opens the Search page is visible on all screens.
+Similarly, the magnifying-glass icon, which opens the Search page, is visible on all screens.
 
 ![alt text](documentation/readme-images/search-mobile-view.png "Screenshot of the search page, as it displays when viewed on a mobile device.")
 <br>
 
-Within the site footer, present on all pages, there are links to the Home Page, About Us section on the Home Page and the Contact Us Page.
-Beneath that there are three company logos which act as external links to the site's social media pages on 
-Facebook, Instagram and Twitter.
+Within the site footer, present on all pages, there are links to the Home Page, About Us section (located on the Home Page) and the Contact Us Page.
+Beneath that there are three social media logos which act as external links to the fictitious site's social 
+media accounts on Facebook, Instagram and Twitter.
 
 &#9745;	Log out of the site.
 
-When a user is logged into the Read n' Reviewed site the Log Out button is to be found in the dropdown menu, which appears when the User icon on the navigation bar, is clicked.
+When a user is logged into the Read n' Reviewed site the Logout link is to be found in the dropdown menu, which appears when the User icon on the navigation bar, is clicked.
 
-![alt text](documentation/readme-images/logged-in-user-dropdown-menu.png "Screenshot of showing the Log Out button within the User dropdown menu.")
+![alt text](documentation/readme-images/logged-in-user-dropdown-menu.png "Screenshot of showing the Logout link within the User dropdown menu.")
 <br>
 
-Clicking the Log Out link, logs the user out immediately and flashes a message to the screen.
+Clicking the Logout link, logs the user out immediately and flashes a message to the screen.
 
 ![alt text](documentation/readme-images/logged-out-flash-message.png "Screenshot of showing the flash messaged that appears when the user logs out.")
 <br>
@@ -1067,7 +1056,7 @@ If the reader has reviewed the book already, the purchase link is no longer disp
 
 &#9745;	Search to see whether a book has already been reviewed on the site by entering the book title, or author into a search box within the site.
 
-The magnifying-glass icon, which brings the user to the search.html page is visible on the navigation bar on all viewing devices at all times.
+The magnifying-glass icon, which brings the user to the search.html page, is visible on the navigation bar on all viewing devices at all times.
 
 The Search page consists of a simple input element with placeholder text "Search the Read n' Reviewed site".
 
@@ -1189,7 +1178,7 @@ The Upvote buttons disappear once they have been used, preventing members from v
 &#9745;	Curate my own Wish List of books that I would like to read in the future.
 
 A site member, when logged in, can access their Wish List using the link in the navigation bar, or in the compressed hamburger-icon menu on a mobile device.
-This link brings the site member to a page where the book cover, title and author for each book save so far are presented in individual card elements.  
+This link brings the site member to a page where the book cover, title and author for each book saved so far are presented in individual card elements.  
 
 ![alt text](documentation/readme-images/wish-list-mobile-view.png "Screenshot of Read n' Reviewed member's Wish List page as it appears when viewed on a mobile device.")
 <br>
@@ -1295,7 +1284,7 @@ other members' reviews that they feel are accurate or helpful.
 &#9745;	Provide site members with the ability to search the site for a specific book by entering the title or the author into a search box within the site.
 
 The link to the Search page, the magnifying-glass icon, is visible on the site navigation bar regardless of the viewing screen dimensions.
-When clicked, this opens the Search page.  The user can search the Read n' Reviewed site for a book by entering the title or the author or both into the
+When clicked, this opens the Search page.  The user can search the Read n' Reviewed site for a book by entering the title or the author, or both, into the
 text input field and clicking the Search button.
 
 ![alt text](documentation/readme-images/search-mobile-view.png "Screenshot of the Search page as it appears when viewed on a mobile device.")
@@ -1312,7 +1301,7 @@ general description of the book in question, along with the publication date, pu
 
 &#9745;	Raise revenue by directing site members to a partner online book store where they can buy the books they are interested in.
 
-When a logged-in user navigates to their Wish List or to the View Book page for a book they have not yet reviewed they are presented with a blue
+When a logged-in user navigates to their Wish List or to the View Book page, for a book they have yet to review, they are presented with a blue
 'Buy it Now' button.  
 
 ![alt text](documentation/readme-images/upvote-review-tablet-view.png "Screenshot of the Buy It Now button on the View Book page for The Thursday Murder Club by Richard Osmond.")
@@ -1325,7 +1314,7 @@ This button opens a new tab in the user's browser and displays the Amazon search
 
 &#9745;	Encourage more members to join the community by creating a professional-looking website that is intuitive to use and displays positive member testimonials on the landing page. 
 
-New and existing users can view Read n' Reviewed member testimonials on the Home Page of the site.
+New and existing users can view Read n' Reviewed members' positive testimonials on the Home Page of the site.
 
 ![alt text](documentation/readme-images/member-testimonials-mobile-view.png "Screenshot of the Member Testimonials carousel on the home page as it appears when viewed on a mobile device.")
 <br>
