@@ -848,6 +848,10 @@ In the absence of a session cookie, it was attempted to access a Read n' Reviewe
 
   &#9745; redirects to the Login page.
 
+* A member's **Add Book** page: https://read-n-reviewed.herokuapp.com/add_book
+
+  &#9745; redirects to the Login page.
+
 * A member's **Wish List** page: https://read-n-reviewed.herokuapp.com/wish_list
 
   &#9745; redirects to the Login page. 
