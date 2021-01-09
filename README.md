@@ -1776,7 +1776,7 @@ The following [Materialize](https://materializecss.com/) components were used an
 
 
 ### Acknowledgements
-- [Code Institue](https://codeinstitute.net/) and their helpful tutors.
+- [Code Institute](https://codeinstitute.net/) and their helpful tutors.
 - Thank you to my project mentor [Reuben Ferrante](https://uk.linkedin.com/in/reuben-ferrante).
 - The [Code Institue](https://codeinstitute.net/) community on [Slack](code-institute-room.slack.com) for their support.
 - A very special thank you to my partner Kevin for his patience and support throughout this project. 
