@@ -52,6 +52,7 @@ Click <a href="https://read-n-reviewed.herokuapp.com/">here</a> to visit the sit
     - [Python](#python-file)
     - [Performance](#performance)
     - [Responsiveness](#responsiveness)
+    - [Defensive Design Testing](#defensive-design-testing)
     - [Tested User Stories](#tested-user-stories)
         - [Prospective User](#tested-prospective-user-stories)
         - [Existing User](#tested-existing-user-stories)
@@ -816,6 +817,39 @@ Each website feature, including buttons, modals, external links, hover effects e
 
 <br>
 
+
+##### back to [top](#table-of-contents)
+---
+### Defensive Design Testing
+
+In the absence of a session cookie, it was attempted to access a Read n' Reviewed member's account and associated pages using the following urls:
+
+* https://read-n-reviewed.herokuapp.com/profile/administrator
+
+&#9745; renders the Login page instead of the administrator's Profile page.
+
+* https://8080-f9f7f7e8-efad-42bf-b233-9ac190277ac2.ws-eu03.gitpod.io/edit_profile/dannyzuko
+
+&#9745; renders the Login page instead of the user's Edit Profile page.
+
+* https://read-n-reviewed.herokuapp.com/my_reviews
+
+&#9745; renders the Login page instead of another user's My Reviews page.
+
+* https://read-n-reviewed.herokuapp.com/wish_list
+
+&#9745; renders the Login page instead of another user's Wish List page.
+
+* https://read-n-reviewed.herokuapp.com/my_review/5fce10ef5a2de7db98aca8d0
+
+&#9745; renders the Login page instead of another user's My Review page with its associated Edit and Delete functionality.
+
+* https://8080-f9f7f7e8-efad-42bf-b233-9ac190277ac2.ws-eu03.gitpod.io/edit_review/5ff1e9e7826c43c5ad78850f/5ff44dd236edfafb289aeae9
+
+&#9745; renders the Login page instead of another user's Edit Review page.
+
+
+<br>
 
 ##### back to [top](#table-of-contents)
 ---

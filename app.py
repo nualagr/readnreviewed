@@ -278,37 +278,43 @@ def edit_profile(username):
     field matches the hashed password
     stored in the database.
     """
-    # Grab the session user's username and email address from the database
-    user = mongo.db.users.find_one(
-        {"username": username})
-    email = mongo.db.users.find_one(
-        {"username": session["user"]})["email"]
+    if session:
+        # Grab the session user's username and email address from the database
+        user = mongo.db.users.find_one(
+            {"username": username})
+        email = mongo.db.users.find_one(
+            {"username": session["user"]})["email"]
 
-    if request.method == "GET":
-        # If the session cookie exists
-        # then the user is logged in so open the edit profile page
-        if session["user"]:
-            return render_template(
-                "edit_profile.html", username=username, email=email)
+        if request.method == "GET":
+            # If the session cookie exists
+            # then the user is logged in so open the edit profile page
+            if session["user"]:
+                return render_template(
+                    "edit_profile.html", username=username, email=email)
 
+            # If the session cookie does not exist
+            # then bring the user to the login page
+            return redirect(https_url_for("login"))
+
+        if request.method == "POST":
+            new_password = generate_password_hash(request.form.get("new-password"))
+            # Ensure hashed password matches user input
+            if check_password_hash(
+                    user["password"], request.form.get(
+                        "current-password")):
+                mongo.db.users.update_one(
+                    {"username": username},
+                    {"$set": {"password": new_password}})
+                flash("Password Updated")
+                return redirect(https_url_for("profile", username=session["user"]))
+            else:
+                flash("Passwords Do Not Match")
+                return redirect(https_url_for("profile", username=session["user"]))
+    else:
         # If the session cookie does not exist
         # then bring the user to the login page
+        flash("Log in to access your account.")
         return redirect(https_url_for("login"))
-
-    if request.method == "POST":
-        new_password = generate_password_hash(request.form.get("new-password"))
-        # Ensure hashed password matches user input
-        if check_password_hash(
-                user["password"], request.form.get(
-                    "current-password")):
-            mongo.db.users.update_one(
-                {"username": username},
-                {"$set": {"password": new_password}})
-            flash("Password Updated")
-            return redirect(https_url_for("profile", username=session["user"]))
-        else:
-            flash("Passwords Do Not Match")
-            return redirect(https_url_for("profile", username=session["user"]))
 
 
 @app.route("/logout")
@@ -458,47 +464,51 @@ def edit_review(book_id, review_id):
     upvoters array. These fields overwrite the originals,
     stored in the database.
     """
-    # Find this review in the reviews collection in the database
-    this_review = mongo.db.reviews.find_one(
-        {"_id": ObjectId(review_id)}
-    )
-    # Find the book document in the database
-    this_book = mongo.db.books.find_one(
-        {"_id": ObjectId(book_id)}
-    )
-    # Find the review rating from the db
-    old_rating = this_review["rating"]
+    if session:
+        # Find this review in the reviews collection in the database
+        this_review = mongo.db.reviews.find_one(
+            {"_id": ObjectId(review_id)})
+        # Find the book document in the database
+        this_book = mongo.db.books.find_one(
+            {"_id": ObjectId(book_id)})
+        # Find the review rating from the db
+        old_rating = this_review["rating"]
 
-    if request.method == "POST":
-        # Grab the date
-        e = datetime.datetime.now()
-        # Convert it to seconds
-        seconds = e.timestamp()
+        if request.method == "POST":
+            # Grab the date
+            e = datetime.datetime.now()
+            # Convert it to seconds
+            seconds = e.timestamp()
 
-        # Check to see whether the user has changed the star rating
-        # if not, resubmit old rating
-        if request.form.get("rating") == "":
-            new_rating = old_rating
-        else:
-            new_rating = request.form.get("rating")
+            # Check to see whether the user has changed the star rating
+            # if not, resubmit old rating
+            if request.form.get("rating") == "":
+                new_rating = old_rating
+            else:
+                new_rating = request.form.get("rating")
 
-        # Create a new dictionary to submit to Mongodb
-        # to overwrite the current review
-        submit = {"$set": {
-            "rating": new_rating,
-            "review": request.form.get("review"),
-            "review_date": seconds,
-            "review_score": 0,
-            "upvoters": [],
+            # Create a new dictionary to submit to Mongodb
+            # to overwrite the current review
+            submit = {"$set": {
+                "rating": new_rating,
+                "review": request.form.get("review"),
+                "review_date": seconds,
+                "review_score": 0,
+                "upvoters": [],
+                }
             }
-        }
-        mongo.db.reviews.update_one({"_id": ObjectId(review_id)}, submit)
-        flash("Review Successfully Updated")
-        return render_book_template(book_id)
+            mongo.db.reviews.update_one({"_id": ObjectId(review_id)}, submit)
+            flash("Review Successfully Updated")
+            return render_book_template(book_id)
 
-    if request.method == "GET":
-        return render_template(
-            "edit_review.html", this_book=this_book, this_review=this_review)
+        if request.method == "GET":
+            return render_template(
+                "edit_review.html", this_book=this_book, this_review=this_review)
+    else:
+        # If the session cookie does not exist
+        # then bring the user to the login page
+        flash("Log in to access your account.")
+        return redirect(https_url_for("login"))
 
 
 @app.route("/delete_review/<book_id>/<review_id>")
