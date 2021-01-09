@@ -247,23 +247,24 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     """
-    Function to render the logged in user's profile page.
-    If the user is not logged in, redirect to the login page.
+    Function to check to see whether there is a session cookie to indicate
+    that the user is logged in, if not, redirect to the login page.
+    If there is a session cookie, render that user's profile page.
     """
-    # Grab the session user's username and email address from the database
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    email = mongo.db.users.find_one(
-        {"username": session["user"]})["email"]
-
     # If the session cookie exists
-    # then the user is logged in so open the profile page
-    if session["user"]:
+    # then the user is logged in so open their profile page
+    if session:
+        # Grab the session user's username and email address from the database
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        email = mongo.db.users.find_one(
+            {"username": session["user"]})["email"]
         return render_template("profile.html", username=username, email=email)
 
-    # If the session cookie does not exist
-    # then bring the user to the login page
-    return redirect(https_url_for("login"))
+    else:
+        # If the session cookie does not exist
+        # then bring the user to the login page
+        return redirect(https_url_for("login"))
 
 
 @app.route("/edit_profile/<username>", methods=["GET", "POST"])
