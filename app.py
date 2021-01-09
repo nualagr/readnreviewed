@@ -523,35 +523,41 @@ def my_reviews():
     Amalgamate the information into a single list and pass it
     through to the my_reviews page to be written to screen.
     """
-    current_user = session["user"]
-    # Get list of all reviews by this user and sort by date added
-    my_reviews = list(
-        mongo.db.reviews.find(
-            {"created_by": current_user}).sort("review_date", -1))
-    if my_reviews == []:
-        flash("No reviews posted. ")
-        flash(
-            "Search for the book you wish to review and "
-            "share your thoughts with the Read n' Reviewed community.")
-        return render_template(
-            "my_reviews.html", books_and_reviews=my_reviews)
+    if session:
+        current_user = session["user"]
+        # Get list of all reviews by this user and sort by date added
+        my_reviews = list(
+            mongo.db.reviews.find(
+                {"created_by": current_user}).sort("review_date", -1))
+        if my_reviews == []:
+            flash("No reviews posted. ")
+            flash(
+                "Search for the book you wish to review and "
+                "share your thoughts with the Read n' Reviewed community.")
+            return render_template(
+                "my_reviews.html", books_and_reviews=my_reviews)
+        else:
+            # Convert floats to datetime format in each book review
+            for book_review in my_reviews:
+                book_review["review_date"] = datetime.datetime.fromtimestamp(
+                    book_review["review_date"]).strftime("%a, %b %d, %Y")
+            list_of_books_and_reviews = []
+            for review in my_reviews:
+                # Find the book document relating to the review
+                corresponding_book = mongo.db.books.find_one(
+                    {"_id": review['book_id']})
+                # Combine the review and book into one dictionary
+                book_and_review = dict(
+                    list(corresponding_book.items()) + list(review.items()))
+                # Add to list of books and reviews to be passed to the template
+                list_of_books_and_reviews.append(book_and_review)
+            return render_template(
+                "my_reviews.html", books_and_reviews=list_of_books_and_reviews)
     else:
-        # Convert floats to datetime format in each book review
-        for book_review in my_reviews:
-            book_review["review_date"] = datetime.datetime.fromtimestamp(
-                book_review["review_date"]).strftime("%a, %b %d, %Y")
-        list_of_books_and_reviews = []
-        for review in my_reviews:
-            # Find the book document relating to the review
-            corresponding_book = mongo.db.books.find_one(
-                {"_id": review['book_id']})
-            # Combine the review and book into one dictionary
-            book_and_review = dict(
-                list(corresponding_book.items()) + list(review.items()))
-            # Add to list of books and reviews to be passed to the template
-            list_of_books_and_reviews.append(book_and_review)
-        return render_template(
-            "my_reviews.html", books_and_reviews=list_of_books_and_reviews)
+        # If the session cookie does not exist
+        # then bring the user to the login page
+        flash("Log in to access your account.")
+        return redirect(https_url_for("login"))
 
 
 @app.route("/wish_list")
