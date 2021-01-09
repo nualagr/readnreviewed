@@ -36,7 +36,7 @@ mongo = PyMongo(app)
 
 def https_url_for(*args, **kwargs):
     """
-    Function to ensure that the wrapped url_for call is external and
+    Ensure that the wrapped url_for call is external and
     therefore uses the full url and that that url is https not http.
     """
     return url_for(_scheme="https", _external=True, *args, **kwargs)
@@ -44,11 +44,10 @@ def https_url_for(*args, **kwargs):
 
 def render_book_template(book_id):
     """
-    Function to find a specific book in the database,
-    to locate the associated reviews (sorted by
-    score and date), to create the purchase url and to
-    check whether the user has saved the book to their
-    wishlist.
+    Find a specific book in the database.
+    Locate the associated reviews (sorted by score and date).
+    Create the purchase url.
+    Check whether the user has saved the book to their wishlist.
     """
     # Find the book document in the database
     this_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
@@ -84,7 +83,7 @@ def render_book_template(book_id):
         reviewers.append(book_review["created_by"])
 
     bookmark = False
-    purchase = False
+    purchased = False
 
     # If the session cookie exists then the user is logged in
     if session:
@@ -101,7 +100,7 @@ def render_book_template(book_id):
 
         # Check and see whether the current user has reviewed this book
         if session["user"] not in reviewers:
-            purchase = True  # presumably
+            purchased = True  # presumably
 
     return render_template(
         "view_book.html",
@@ -110,15 +109,14 @@ def render_book_template(book_id):
         book_purchase_url=book_purchase_url,
         reviewers=reviewers,
         bookmark=bookmark,
-        purchase=purchase,
+        purchase=purchased,
     )
 
 
 @app.errorhandler(404)
 def page_not_found(e):
     """
-    Function to display the custom 404
-    Page Not Found page.
+    Display the custom 404, Page Not Found, page.
     """
     return render_template("404.html"), 404
 
@@ -126,8 +124,7 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(error):
     """
-    Function to display the custom 500
-    Internal Server Error page.
+    Display the custom 500, Internal Server Error, page.
     """
     return render_template("500.html"), 500
 
@@ -136,10 +133,9 @@ def internal_server_error(error):
 @app.route("/get_books")
 def get_books():
     """
-    Function to find the two latest reviews in the database,
-    sorted by date descending. Find the first two reviews on
-    the list that do not relate the same book. Find the
-    associated book information and display on the home page.
+    Find the latest reviews in the database, sorted by date descending.
+    Find the first two reviews that don't relate the same book.
+    Find the associated book information and display on the home page.
     """
     # Sort the reviews by date descending to find the latest reviews
     reviews = list(mongo.db.reviews.find().sort("review_date", -1))
@@ -161,8 +157,8 @@ def get_books():
 @app.route("/browse")
 def browse():
     """
-    Function to find all the books in the database and sort alphabetically.
-    Display each on browse page.
+    Find all the books in the database and sort alphabetically.
+    Display each on the browse page.
     """
     books = list(mongo.db.books.find().sort("title"))
     return render_template("browse.html", books=books)
@@ -171,7 +167,7 @@ def browse():
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     """
-    Function to render the Contact Us page.
+    Render the Contact Us page.
     """
     return render_template("contact.html")
 
@@ -179,7 +175,7 @@ def contact():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """
-    Function to render the register.html page.
+    Render the register.html page.
     Check whether the entered username and email address already
     exist in the database and alert the user if either do.
     If username and email address are unique
@@ -226,11 +222,11 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """
-    Function to check whether the username
-    exists in the database. If it does, check whether the input
-    password matches the hashed password stored in the
-    database for that username.  If both are true, render
-    the home page.  If not, redirect to the login page with a message.
+    Check whether the username exists in the database.
+    If it does, check whether the input password matches
+    the hashed password stored in the database for that username.
+    If both are true, render the home page.
+    If not, redirect to the login page with a message.
     """
     if request.method == "POST":
         # Check if username exists in db
@@ -262,88 +258,85 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     """
-    Function to check to see whether there is a session cookie to indicate
-    that the user is logged in, if not, redirect to the login page.
-    If there is a session cookie, render that user's profile page.
+    Check to see if the user is logged in.
+    If they are, render the user's profile page.
+    If not, redirect to the login page.
     """
-    # If the session cookie exists
-    # then the user is logged in so open their profile page
-    if session:
-        # Grab the session user's username and email address from the database
-        username = mongo.db.users.find_one({"username": session["user"]})[
-            "username"
-        ]
-        email = mongo.db.users.find_one({"username": session["user"]})["email"]
-        return render_template("profile.html", username=username, email=email)
-
-    else:
+    if not session:
         # If the session cookie does not exist
         # then bring the user to the login page
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
 
+    # Grab the session user's username and email address from the database
+    username = mongo.db.users.find_one({"username": session["user"]})[
+        "username"
+    ]
+    email = mongo.db.users.find_one({"username": session["user"]})["email"]
+    return render_template("profile.html", username=username, email=email)
+
 
 @app.route("/edit_profile/<username>", methods=["GET", "POST"])
 def edit_profile(username):
     """
-    Function to render the edit_profile page
+    Render the edit_profile page
     which displays the logged in user's username
     and offers them the option of changing their
     password if their input into the current password
     field matches the hashed password
     stored in the database.
     """
-    if session:
-        # Grab the session user's username and email address from the database
-        user = mongo.db.users.find_one({"username": username})
-        email = mongo.db.users.find_one({"username": session["user"]})["email"]
-
-        # Check session user matches username in URL
-        if session["user"] != username:
-            # someone is trying to edit another user's profile
-            flash("Log in to access your account.")
-            return redirect(https_url_for("login"))
-
-        if request.method == "GET":
-            # If the session cookie exists
-            # then the user is logged in so open the edit profile page
-            return render_template(
-                "edit_profile.html", username=username, email=email
-            )
-
-        if request.method == "POST":
-            new_password = generate_password_hash(
-                request.form.get("new-password")
-            )
-            # Ensure hashed password matches user input
-            if check_password_hash(
-                user["password"], request.form.get("current-password")
-            ):
-                mongo.db.users.update_one(
-                    {"username": username},
-                    {"$set": {"password": new_password}},
-                )
-                flash("Password Updated")
-                return redirect(
-                    https_url_for("profile", username=session["user"])
-                )
-            else:
-                flash("Passwords Do Not Match")
-                return redirect(
-                    https_url_for("profile", username=session["user"])
-                )
-    else:
+    if not session:
         # If the session cookie does not exist
         # then bring the user to the login page
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
 
+    # Grab the session user's username and email address from the database
+    user = mongo.db.users.find_one({"username": username})
+    email = mongo.db.users.find_one({"username": session["user"]})["email"]
+
+    # Check session user matches username in URL
+    if session["user"] != username:
+        # someone is trying to edit another user's profile
+        flash("Log in to access your account.")
+        return redirect(https_url_for("login"))
+
+    if request.method == "GET":
+        # If the session cookie exists
+        # then the user is logged in so open the edit profile page
+        return render_template(
+            "edit_profile.html", username=username, email=email
+        )
+
+    if request.method == "POST":
+        new_password = generate_password_hash(
+            request.form.get("new-password")
+        )
+        # Ensure hashed password matches user input
+        if check_password_hash(
+            user["password"], request.form.get("current-password")
+        ):
+            mongo.db.users.update_one(
+                {"username": username},
+                {"$set": {"password": new_password}},
+            )
+            flash("Password Updated")
+            return redirect(
+                https_url_for("profile", username=session["user"])
+            )
+        else:
+            flash("Passwords Do Not Match")
+            return redirect(
+                https_url_for("profile", username=session["user"])
+            )
+
 
 @app.route("/logout")
 def logout():
     """
-    Function to remove the username from the
-    Session Cookie, logging them out.
+    Remove the username from the Session Cookie,
+    logging the user out.
     """
     flash("You have been logged out.")
     session.pop("user")
@@ -353,10 +346,16 @@ def logout():
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     """
-    Function to find take the fetch API post from script.js.
+    Find take the fetch API post from script.js.
     Add the book to the database.
     Return the url for the view_book page for the new book.
     """
+    if not session:
+        # If the session cookie does not exist
+        # then bring the user to the login page
+        flash("Log in to access your account.")
+        return redirect(https_url_for("login"))
+
     if request.method == "POST":
         # Unpack json into a dict
         newBook = request.json
@@ -373,7 +372,7 @@ def add_book():
 @app.route("/view_book/<book_id>")
 def view_book(book_id):
     """
-    Function to call the render_book_template function.
+    Call the render_book_template function.
     """
     return render_book_template(book_id)
 
@@ -388,41 +387,39 @@ def my_review(book_id):
     Render the view_book page with that information.
     """
     # Check to see whether the user is logged in.
-    if session:
-        # Find the book document in the database
-        this_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
-        # Find the reviews that relate to that book
-        # Isolate the current user's review
-        my_review = mongo.db.reviews.find_one(
-            {"book_id": ObjectId(book_id), "created_by": session["user"]}
-        )
-
-        # Convert float to datetime format in book review
-        my_review["review_date"] = datetime.datetime.fromtimestamp(
-            my_review["review_date"]
-        ).strftime("%a, %b %d, %Y")
-
-        return render_template(
-            "my_review.html",
-            this_book=this_book,
-            my_review=my_review,
-        )
-    else:
-        # If the session cookie does not exist
-        # then bring the user to the login page
+    if not session:
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
+
+    # Find the book document in the database
+    this_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    # Find the reviews that relate to that book
+    # Isolate the current user's review
+    my_review = mongo.db.reviews.find_one(
+        {"book_id": ObjectId(book_id), "created_by": session["user"]}
+    )
+
+    # Convert float to datetime format in book review
+    my_review["review_date"] = datetime.datetime.fromtimestamp(
+        my_review["review_date"]
+    ).strftime("%a, %b %d, %Y")
+
+    return render_template(
+        "my_review.html",
+        this_book=this_book,
+        my_review=my_review,
+    )
 
 
 @app.route("/add_review/<book_id>", methods=["GET", "POST"])
 def add_review(book_id):
     """
-    Function to find a book in the database by id.
+    Find a book in the database by id.
     Create a dict of the new review related to that book,
     complete with timestamp.
     Post the new review to the database.
     """
-
+    # Check to see whether the user is logged in.
     if not session:
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
@@ -464,13 +461,17 @@ def add_review(book_id):
 @app.route("/upvote_review/<review_id>", methods=["POST"])
 def upvote_review(review_id):
     """
-    Function to find a review in the database by id.
+    Find a review in the database by id.
     Increment the review_score field by one.
     Render the view_book page.
     """
-    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    # Check to see whether the user is logged in.
+    if not session:
+        flash("Log in to access your account.")
+        return redirect(https_url_for("login"))
 
     if request.method == "POST":
+        review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
         mongo.db.reviews.update_one(
             {"_id": ObjectId(review_id)},
             {
@@ -484,13 +485,12 @@ def upvote_review(review_id):
 @app.route("/edit_review/<book_id>/<review_id>", methods=["GET", "POST"])
 def edit_review(book_id, review_id):
     """
-    Function to populate the edit_review form with
+    Populate the edit_review form with
     the chosen review from the database, located using the review id.
-    If the information, rating or written review, is changed and the
-    form submitted, these two fields are saved to a new dictionary,
-    along with a new review_date, review_score of 0 and an empty
-    upvoters array. These fields overwrite the originals,
-    stored in the database.
+    If the rating or written review, is changed and the form submitted,
+    these two fields are saved to a new dictionary, along with a
+    new review_date, review_score of 0 and an empty upvoters array.
+    These fields overwrite the originals stored in the database.
     """
     if session:
         # Find this review in the reviews collection in the database
@@ -544,133 +544,137 @@ def edit_review(book_id, review_id):
 @app.route("/delete_review/<book_id>/<review_id>")
 def delete_review(book_id, review_id):
     """
-    Function to locate a specific review in the database using the review id
-    and delete that review.
+    If the user is logged in, locate a specific review
+    in the database using the review id and delete that review.
     Render the view_book page for that book.
     """
-
+    # Check to see whether the user is logged in.
     if not session:
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
 
-    # TODO check logged in user is either the owner of the review or an admin
-
+    # Check logged-in user is either the owner of the review or an admin
     this_review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-    mongo.db.reviews.delete_one(this_review)
-    flash("Review Successfully Deleted")
-    return render_book_template(book_id)
+
+    if session["user"] == this_review["created_by"]:
+        mongo.db.reviews.delete_one(this_review)
+        flash("Review Successfully Deleted")
+        return render_book_template(book_id)
+
+    else:
+        flash("Log in to access your account.")
+        return redirect(https_url_for("login"))
 
 
 @app.route("/my_reviews")
 def my_reviews():
     """
-    Function to create a list of the logged-in user's reviews.
-    If they exist, sort them by date created.
+    If user is logged in, create a list of their reviews.
+    If reviews exist, sort them by date created.
     Find the corresponding book information for each review.
     Amalgamate the information into a single list and pass it
     through to the my_reviews page to be written to screen.
     """
-    if session:
-        current_user = session["user"]
-        # Get list of all reviews by this user and sort by date added
-        my_reviews = list(
-            mongo.db.reviews.find({"created_by": current_user}).sort(
-                "review_date", -1
-            )
-        )
-        if my_reviews == []:
-            flash("No reviews posted.")
-            flash(
-                "Search for the book you wish to review and "
-                "share your thoughts with the Read n' Reviewed community."
-            )
-            return render_template(
-                "my_reviews.html", books_and_reviews=my_reviews
-            )
-        else:
-            # Convert floats to datetime format in each book review
-            for book_review in my_reviews:
-                book_review["review_date"] = datetime.datetime.fromtimestamp(
-                    book_review["review_date"]
-                ).strftime("%a, %b %d, %Y")
-            list_of_books_and_reviews = []
-            for review in my_reviews:
-                # Find the book document relating to the review
-                corresponding_book = mongo.db.books.find_one(
-                    {"_id": review["book_id"]}
-                )
-                # Combine the review and book into one dictionary
-                book_and_review = dict(
-                    list(corresponding_book.items()) + list(review.items())
-                )
-                # Add to list of books and reviews to be passed to the template
-                list_of_books_and_reviews.append(book_and_review)
-            return render_template(
-                "my_reviews.html", books_and_reviews=list_of_books_and_reviews
-            )
-    else:
-        # If the session cookie does not exist
-        # then bring the user to the login page
+    # Check to see whether the user is logged in.
+    if not session:
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
+
+    current_user = session["user"]
+    # Get list of all reviews by this user and sort by date added
+    my_reviews = list(
+        mongo.db.reviews.find({"created_by": current_user}).sort(
+            "review_date", -1
+        )
+    )
+    if my_reviews == []:
+        flash("No reviews posted.")
+        flash(
+            "Search for the book you wish to review and "
+            "share your thoughts with the Read n' Reviewed community."
+        )
+        return render_template(
+            "my_reviews.html", books_and_reviews=my_reviews
+        )
+    else:
+        # Convert floats to datetime format in each book review
+        for book_review in my_reviews:
+            book_review["review_date"] = datetime.datetime.fromtimestamp(
+                book_review["review_date"]
+            ).strftime("%a, %b %d, %Y")
+        list_of_books_and_reviews = []
+        for review in my_reviews:
+            # Find the book document relating to the review
+            corresponding_book = mongo.db.books.find_one(
+                {"_id": review["book_id"]}
+            )
+            # Combine the review and book into one dictionary
+            book_and_review = dict(
+                list(corresponding_book.items()) + list(review.items())
+            )
+            # Add to list of books and reviews to be passed to the template
+            list_of_books_and_reviews.append(book_and_review)
+        return render_template(
+            "my_reviews.html", books_and_reviews=list_of_books_and_reviews
+        )
 
 
 @app.route("/wish_list")
 def wish_list():
     """
-    Function to get the logged-in user's wishlist array from the database.
-    If one exists, find the associated information for each book id.
+    If the user is logged in, get their wishlist array from the database.
+    If the array contains book ids, find the information for each book.
     Create a book purchase url for each book. Append each book, along with
     it's new url to a list and pass that through to the wish_list.html page
     to be written to screen.
     """
-    if session:
-        wishlist = list(
-            mongo.db.users.find_one({"username": session["user"]})["wishlist"]
-        )
-        # If the user has no saved books yet
-        if wishlist == []:
-            flash("No books saved.")
-            flash("Click on a bookmark to save a book to your Wish List.")
-            return redirect(https_url_for("browse"))
-        # If the user has saved books to their wishlist
-        booklist = []
-        for book_id in wishlist:
-            # Check to make sure that the book still exists in the database
-            # If not, skip to next book id
-            if mongo.db.books.find_one({"_id": ObjectId(book_id)}):
-                # Find the book document in the database
-                this_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
-                # Create the book purchase url
-                # by adding the book title and author to the url
-                this_book_title = this_book["title"].replace(" ", "+")
-                this_book_author = this_book["authors"][0].replace(" ", "+")
-                book_purchase_url = (
-                    "https://www.amazon.com/s?tag=falsetag&k="
-                    + this_book_title
-                    + "+"
-                    + this_book_author
-                )
-                this_book["book_purchase_url"] = book_purchase_url
-                # Add the book to the booklist list
-                booklist.append(this_book)
-            else:
-                continue
-        return render_template("wish_list.html", booklist=booklist)
-    else:
-        # If the session cookie does not exist
-        # then bring the user to the login page
-        flash("Login to access your Wish List.")
+    # Check to see whether the user is logged in.
+    if not session:
+        flash("Log in to access your account.")
         return redirect(https_url_for("login"))
+
+    wishlist = list(
+        mongo.db.users.find_one({"username": session["user"]})["wishlist"]
+    )
+    # If the user has no saved books yet
+    if wishlist == []:
+        flash("No books saved.")
+        flash("Click on a bookmark to save a book to your Wish List.")
+        return redirect(https_url_for("browse"))
+    # If the user has saved books to their wishlist
+    booklist = []
+    for book_id in wishlist:
+        # Check to make sure that the book still exists in the database
+        # If not, skip to next book id
+        if mongo.db.books.find_one({"_id": ObjectId(book_id)}):
+            # Find the book document in the database
+            this_book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+            # Create the book purchase url
+            # by adding the book title and author to the url
+            this_book_title = this_book["title"].replace(" ", "+")
+            this_book_author = this_book["authors"][0].replace(" ", "+")
+            book_purchase_url = (
+                "https://www.amazon.com/s?tag=falsetag&k="
+                + this_book_title
+                + "+"
+                + this_book_author
+            )
+            this_book["book_purchase_url"] = book_purchase_url
+            # Add the book to the booklist list
+            booklist.append(this_book)
+        else:
+            continue
+    return render_template("wish_list.html", booklist=booklist)
 
 
 @app.route("/bookmark/<book_id>", methods=["GET", "POST"])
 def mark(book_id):
     """
-    Function to add the selected book id to the logged-in user's
-    wishlist array in the database.
+    If the user is logged in, add the selected book id
+    to their wishlist array in the database.
     Redirect to the view_book page for that book.
     """
+    # Check to see whether the user is logged in.
     if not session:
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
@@ -681,17 +685,17 @@ def mark(book_id):
             {"$addToSet": {"wishlist": ObjectId(book_id)}},
         )
         flash("Book Saved to Wish List")
-        # return render_book_template(book_id)
         return redirect(https_url_for("view_book", book_id=book_id))
 
 
 @app.route("/unmark/<book_id>", methods=["GET", "POST"])
 def unmark(book_id):
     """
-    Function to remove the selected book id from the
-    logged-in user's wishlish array in the database.
+    If the user is logged in, remove the selected book id from
+    their wishlish array in the database.
     Redirect to the updated user's wish_list page.
     """
+    # Check to see whether the user is logged in.
     if not session:
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
@@ -708,13 +712,13 @@ def unmark(book_id):
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """
-    Function to take the user's input
-    and query the database which has indexes
+    Take the user's input and query the database which has indexes
     on the title and author fields in the books collection.
     """
     if request.method == "POST":
         query = request.form.get("query")
         books = list(mongo.db.books.find({"$text": {"$search": query}}))
+        # If the user is logged in
         if session:
             if books == []:
                 flash("The requested book has not yet been reviewed.")
@@ -722,6 +726,7 @@ def search():
                 return render_template("add_book.html")
             else:
                 return render_template("search.html", books=books)
+        # If the user is not logged in
         else:
             if books == []:
                 flash("No result found.")
