@@ -16,7 +16,7 @@
             <!-- If the user is logged in -->
             {% if session.user %}
             <!-- If they have saved this book to their wishlist or already reviewed this book hide bookmark -->
-            {% if bookmark or not purchase %}
+            {% if bookmark or not purchased %}
             {% else %}
             <!-- Button to add the current book to Wish List array -->
             <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
@@ -50,7 +50,7 @@
         {% else %}
         <!-- Link to buy the Selected Book on Amazon -->
         <div class="col s6 m3 center">
-            {% if purchase %}
+            {% if purchased %}
             <a href="{{ book_purchase_url }}" rel="noopener" target="_blank" title="Buy it now" class="button">
                 <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-small-only"> it
                         now</span></span>

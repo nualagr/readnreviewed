@@ -66,10 +66,8 @@ def render_book_template(book_id):
     this_book_title = this_book["title"].replace(" ", "+")
     this_book_author = this_book["authors"][0].replace(" ", "+")
     book_purchase_url = (
-        "https://www.amazon.com/s?tag=falsetag&k="
-        + this_book_title
-        + "+"
-        + this_book_author
+        "https://www.amazon.com/s?tag=falsetag&k=" +
+        this_book_title + "+" + this_book_author
     )
 
     # Create a list of users who have reviewed this book already
@@ -99,8 +97,9 @@ def render_book_template(book_id):
             bookmark = True
 
         # Check and see whether the current user has reviewed this book
+        # If they have presumably they don't want to purchase the book
         if session["user"] not in reviewers:
-            purchased = True  # presumably
+            purchased = True
 
     return render_template(
         "view_book.html",
@@ -109,7 +108,7 @@ def render_book_template(book_id):
         book_purchase_url=book_purchase_url,
         reviewers=reviewers,
         bookmark=bookmark,
-        purchase=purchased,
+        purchased=purchased,
     )
 
 
@@ -338,6 +337,12 @@ def logout():
     Remove the username from the Session Cookie,
     logging the user out.
     """
+    if not session:
+        # If the session cookie does not exist
+        # then bring the user to the login page
+        flash("Log in to access your account.")
+        return redirect(https_url_for("login"))
+
     flash("You have been logged out.")
     session.pop("user")
     return redirect(https_url_for("login"))
@@ -654,10 +659,8 @@ def wish_list():
             this_book_title = this_book["title"].replace(" ", "+")
             this_book_author = this_book["authors"][0].replace(" ", "+")
             book_purchase_url = (
-                "https://www.amazon.com/s?tag=falsetag&k="
-                + this_book_title
-                + "+"
-                + this_book_author
+                "https://www.amazon.com/s?tag=falsetag&k=" +
+                this_book_title + "+" + this_book_author
             )
             this_book["book_purchase_url"] = book_purchase_url
             # Add the book to the booklist list
