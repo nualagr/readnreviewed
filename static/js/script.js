@@ -64,12 +64,12 @@ function checkApiFormValidity(title, author) {
 }
 
 /**
- * Function to take in the title and author from the Add Book form
- * Call the getData function to make the API call
- * If API call returns no books flash a message to user
- * If API call returns books, create a dictionary of each one
+ * Function to take in the title and author from the Add Book form.
+ * Call the getData function to make the API call.
+ * If API call returns no books flash a message to user.
+ * If API call returns books, create a dictionary of each one.
  * Substitute empty strings for information not supplied by Google Books API
- * Add each dict to a list
+ * Add each dict to a list.
  * Iterate through the list of dicts, printing each to the screen for the user to see.
  */
 function writeToDocument(title, author) {
@@ -194,7 +194,7 @@ function sendToPython(book) {
 /** 
 * Function to send the user's name, email address and message
 * to the site administrator in an email 
-* using the email service EmailJS
+* using the email service EmailJS.
 */
 function sendMail(contactForm) {
     // Function copied from Code Institute 'Putting it All Together' project and then modified

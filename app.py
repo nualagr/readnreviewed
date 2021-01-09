@@ -261,9 +261,8 @@ def profile(username):
     If they are, render the user's profile page.
     If not, redirect to the login page.
     """
+    # Check to see whether the user is logged in.
     if not session:
-        # If the session cookie does not exist
-        # then bring the user to the login page
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
 
@@ -285,9 +284,8 @@ def edit_profile(username):
     field matches the hashed password
     stored in the database.
     """
+    # Check to see whether the user is logged in.
     if not session:
-        # If the session cookie does not exist
-        # then bring the user to the login page
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
 
@@ -297,7 +295,7 @@ def edit_profile(username):
 
     # Check session user matches username in URL
     if session["user"] != username:
-        # someone is trying to edit another user's profile
+        # Someone is trying to edit another user's profile
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
 
@@ -337,9 +335,8 @@ def logout():
     Remove the username from the Session Cookie,
     logging the user out.
     """
+    # Check to see whether the user is logged in.
     if not session:
-        # If the session cookie does not exist
-        # then bring the user to the login page
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
 
@@ -355,9 +352,8 @@ def add_book():
     Add the book to the database.
     Return the url for the view_book page for the new book.
     """
+    # Check to see whether the user is logged in.
     if not session:
-        # If the session cookie does not exist
-        # then bring the user to the login page
         flash("Log in to access your account.")
         return redirect(https_url_for("login"))
 
