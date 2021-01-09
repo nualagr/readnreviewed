@@ -264,6 +264,7 @@ def profile(username):
     else:
         # If the session cookie does not exist
         # then bring the user to the login page
+        flash("Log in to access your account.")
         return redirect(https_url_for("login"))
 
 
@@ -354,28 +355,35 @@ def view_book(book_id):
 @app.route("/my_review/<book_id>")
 def my_review(book_id):
     """
-    Function to find a book by id.
+    Check to see whether the user is logged in.
+    Find a book by the supplied book_id.
     Find the review related to that book,
     written by the logged-in user.
     Render the view_book page with that information.
     """
-    # Find the book document in the database
-    this_book = mongo.db.books.find_one(
-        {"_id": ObjectId(book_id)}
-    )
-    # Find the reviews that relate to that book
-    # Isolate the current user's review
-    my_review = mongo.db.reviews.find_one(
-        {"book_id": ObjectId(book_id),
-            "created_by": session["user"]})
+    # Check to see whether the user is logged in.
+    if session:
+        # Find the book document in the database
+        this_book = mongo.db.books.find_one(
+            {"_id": ObjectId(book_id)})
+        # Find the reviews that relate to that book
+        # Isolate the current user's review
+        my_review = mongo.db.reviews.find_one(
+            {"book_id": ObjectId(book_id),
+                "created_by": session["user"]})
 
-    # Convert float to datetime format in book review
-    my_review["review_date"] = datetime.datetime.fromtimestamp(
-        my_review["review_date"]).strftime("%a, %b %d, %Y")
+        # Convert float to datetime format in book review
+        my_review["review_date"] = datetime.datetime.fromtimestamp(
+            my_review["review_date"]).strftime("%a, %b %d, %Y")
 
-    return render_template(
-        "my_review.html", this_book=this_book,
-        my_review=my_review,)
+        return render_template(
+            "my_review.html", this_book=this_book,
+            my_review=my_review,)
+    else:
+        # If the session cookie does not exist
+        # then bring the user to the login page
+        flash("Log in to access your account.")
+        return redirect(https_url_for("login"))
 
 
 @app.route("/add_review/<book_id>", methods=["GET", "POST"])
