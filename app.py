@@ -555,38 +555,45 @@ def wish_list():
     it's new url to a list and pass that through to the wish_list.html page
     to be written to screen.
     """
-    wishlist = list(mongo.db.users.find_one(
-        {"username": session["user"]})["wishlist"])
-    # If the user has no saved books yet
-    if (wishlist == []):
-        flash("No books saved.")
-        flash("Click on a bookmark to save a book to your Wish List.")
-        return redirect(https_url_for("browse"))
-    # If the user has saved books to their wishlist
+    if session:
+        wishlist = list(mongo.db.users.find_one(
+            {"username": session["user"]})["wishlist"])
+        # If the user has no saved books yet
+        if (wishlist == []):
+            flash("No books saved.")
+            flash("Click on a bookmark to save a book to your Wish List.")
+            return redirect(https_url_for("browse"))
+        # If the user has saved books to their wishlist
+        else:
+            booklist = []
+            for book_id in wishlist:
+                # Check to make sure that the book still exists in the database
+                # If not, skip to next book id
+                if mongo.db.books.find_one(
+                        {"_id": ObjectId(book_id)}):
+                    # Find the book document in the database
+                    this_book = mongo.db.books.find_one(
+                        {"_id": ObjectId(book_id)})
+                    # Create the book purchase url
+                    # by adding the book title and author to the url
+                    this_book_title = this_book["title"].replace(" ", "+")
+                    this_book_author = this_book["authors"][0].replace(
+                        " ", "+")
+                    book_purchase_url = (
+                        "https://www.amazon.com/s?tag=falsetag&k=" +
+                        this_book_title + "+" + this_book_author)
+                    this_book["book_purchase_url"] = book_purchase_url
+                    # Add the book to the booklist list
+                    booklist.append(this_book)
+                else:
+                    continue
+        return render_template(
+            "wish_list.html", booklist=booklist)
     else:
-        booklist = []
-        for book_id in wishlist:
-            # Check to make sure that the book still exists in the database
-            # If not, skip to next book id
-            if mongo.db.books.find_one(
-                    {"_id": ObjectId(book_id)}):
-                # Find the book document in the database
-                this_book = mongo.db.books.find_one(
-                    {"_id": ObjectId(book_id)})
-                # Create the book purchase url
-                # by adding the book title and author to the url
-                this_book_title = this_book["title"].replace(" ", "+")
-                this_book_author = this_book["authors"][0].replace(" ", "+")
-                book_purchase_url = (
-                    "https://www.amazon.com/s?tag=falsetag&k=" +
-                    this_book_title + "+" + this_book_author)
-                this_book["book_purchase_url"] = book_purchase_url
-                # Add the book to the booklist list
-                booklist.append(this_book)
-            else:
-                continue
-    return render_template(
-        "wish_list.html", booklist=booklist)
+        # If the session cookie does not exist
+        # then bring the user to the login page
+        flash("Login to access your Wish List.")
+        return redirect(https_url_for("login"))
 
 
 @app.route("/bookmark/<book_id>", methods=["GET", "POST"])
