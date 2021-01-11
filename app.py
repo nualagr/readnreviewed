@@ -307,9 +307,7 @@ def edit_profile(username):
         )
 
     if request.method == "POST":
-        new_password = generate_password_hash(
-            request.form.get("new-password")
-        )
+        new_password = generate_password_hash(request.form.get("new-password"))
         # Ensure hashed password matches user input
         if check_password_hash(
             user["password"], request.form.get("current-password")
@@ -319,14 +317,10 @@ def edit_profile(username):
                 {"$set": {"password": new_password}},
             )
             flash("Password Updated")
-            return redirect(
-                https_url_for("profile", username=session["user"])
-            )
+            return redirect(https_url_for("profile", username=session["user"]))
         else:
             flash("Passwords Do Not Match")
-            return redirect(
-                https_url_for("profile", username=session["user"])
-            )
+            return redirect(https_url_for("profile", username=session["user"]))
 
 
 @app.route("/logout")
@@ -594,9 +588,7 @@ def my_reviews():
             "Search for the book you wish to review and "
             "share your thoughts with the Read n' Reviewed community."
         )
-        return render_template(
-            "my_reviews.html", books_and_reviews=my_reviews
-        )
+        return render_template("my_reviews.html", books_and_reviews=my_reviews)
     else:
         # Convert floats to datetime format in each book review
         for book_review in my_reviews:
@@ -741,5 +733,7 @@ def search():
 
 if __name__ == "__main__":
     app.run(
-        host=os.environ.get("IP"), port=int(os.environ.get("PORT")), debug=False
+        host=os.environ.get("IP"),
+        port=int(os.environ.get("PORT")),
+        debug=False,
     )
