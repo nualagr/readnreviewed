@@ -98,7 +98,7 @@ def render_book_template(book_id):
 
         # Check and see whether the current user has reviewed this book
         # If they have presumably they don't want to purchase the book
-        if session["user"] not in reviewers:
+        if session["user"] in reviewers:
             purchased = True
 
     return render_template(
@@ -741,5 +741,5 @@ def search():
 
 if __name__ == "__main__":
     app.run(
-        host=os.environ.get("IP"), port=int(os.environ.get("PORT")), debug=True
+        host=os.environ.get("IP"), port=int(os.environ.get("PORT")), debug=False
     )

@@ -437,7 +437,7 @@ The Read n’ Reviewed website relies on three database collections overall:
 | Title	        |Key in db	    |form validation type	|Data type  |
 | :------------ |:--------------| :---------------------|:--------- |
 |User ID        |_id	        |None	                |ObjectId   |
-|Username	    |username	    |text, maxlength="20"   |string     |
+|Username	    |username	    |text, maxlength="15"   |string     |
 |Password	    |password	    |text, maxlength="15"	|string     |
 |Email Address	|email	        |email                  |string     |
 |Wish List      |wishlist       |checked box            |Array of ObjectIds - Book ID     |
@@ -1783,7 +1783,8 @@ The following [Materialize](https://materializecss.com/) components were used an
 - [Code Institute](https://codeinstitute.net/) and their helpful tutors.
 - Thank you to my project mentor [Reuben Ferrante](https://uk.linkedin.com/in/reuben-ferrante).
 - The [Code Institue](https://codeinstitute.net/) community on [Slack](code-institute-room.slack.com) for their support.
-- A very special thank you to my partner Kevin for his patience and support throughout this project. 
+- A very special thank you to my partner Kevin for his unfailing patience and support throughout this project.
+- Thank you to my family and my friends who were so willing and helpful when it came to testing the site.
 - I received inspiration for this project from:
     - The [Code Institue](https://codeinstitute.net/) 'Task Manager' project.
     - The [Code Institue](https://codeinstitute.net/) 'Putting it all together' project.

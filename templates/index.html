@@ -3,7 +3,7 @@
 <!-- Banner Image -->
 <section class="section-lg container bg-cover center bg-grey-light banner-image">
     <h1 class="subtitle">Uncover Your Next Great Read!</h1>
-    <!-- If user is logged in, remove unnecessary Register button and text -->
+    <!-- If user is logged in, remove unnecessary 'Register' button and associated text -->
     {% if session %}
     {% else %}
     <div class="row">
@@ -48,7 +48,6 @@
             <p>{{ book.category }}</p>
             <h5>{{ book.title }}</h5>
             <p>{{ book.authors[0] }}</p>
-            <!-- Solution to html entities being displayed in the text found at: https://stackoverflow.com/questions/38175365/pass-json-from-flask-to-template-and-decode-html-entity -->
             <p>{{ book.text_snippet | safe | truncate(300, True)}}</p>
             <p><a href="{{ url_for('view_book', book_id=book._id) }}"
                     title="Link to view {{ book.title }} by {{ book.authors[0] }}">View book...</a></p>
@@ -101,7 +100,7 @@
                 Read n' Reviewed's mission is to provide our members with a platform where they can share and access
                 honest and
                 revealing reviews making it easier to choose the perfect book to read next.</p>
-            <!-- If user is logged in, remove unnecessary call-to-action Register button and text -->
+            <!-- If user is logged in, remove unnecessary call-to-action 'Register' button and associated text -->
             {% if session %}
             {% else %}
             <p>Join today to be able to contribute your own reviews, up-vote other members’ recommendations, save books

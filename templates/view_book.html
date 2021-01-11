@@ -16,9 +16,9 @@
             <!-- If the user is logged in -->
             {% if session.user %}
             <!-- If they have saved this book to their wishlist or already reviewed this book hide bookmark -->
-            {% if bookmark or not purchased %}
+            {% if bookmark or purchased %}
             {% else %}
-            <!-- Button to add the current book to Wish List array -->
+            <!-- Bookmark Button to add the current book to Wish List array -->
             <form action="{{ url_for('mark', book_id=this_book._id ) }}" method="post">
                 <button type="submit" name="mark" id="mark" value="{{ this_book._id }}"
                     class="bookmark right tooltipped" data-position="bottom" data-tooltip="Save book to Wish List.">
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="row">
-        <!-- If the viewer is not a logged in member do not show these buttons -->
+        <!-- If the viewer is not a logged-in member do not show these buttons -->
         {% if not session.user %}
         <div class="col s12 m6">
         </div>
@@ -50,7 +50,8 @@
         {% else %}
         <!-- Link to buy the Selected Book on Amazon -->
         <div class="col s6 m3 center">
-            {% if purchased %}
+            <!-- If the logged-in user has not already reviewed the book display the Buy button -->
+            {% if not purchased %}
             <a href="{{ book_purchase_url }}" rel="noopener" target="_blank" title="Buy it now" class="button">
                 <span class="btn bg-blue"><i class="fas fa-shopping-bag"></i> Buy<span class="hide-on-small-only"> it
                         now</span></span>
@@ -111,7 +112,7 @@
                 <a href="{{ url_for('edit_review', book_id=this_book._id, review_id=review._id) }}" class="btn bg-grey"
                     title="Edit Review button"><i class="fas fa-user-edit"></i><span class="hide-on-small-only">
                         Edit</span></a>&nbsp;
-                <!-- Modal Trigger -->
+                <!-- Delete Modal Trigger -->
                 <a class="btn bg-red modal-trigger" href="#{{ review._id }}" title="Delete Review button"><i
                         class="fas fa-trash-alt"></i><span class="hide-on-small-only"> Delete</span></a>
             </p>
@@ -146,7 +147,7 @@
     {% if session.user %}
     <!-- Check to see whether the user wrote the review, if so, create the Delete Confirmation modal -->
     {% if session.user == review.created_by %}
-    <!-- Modal Structure -->
+    <!-- Delete Modal Structure -->
     <div class="container">
         <div id="{{ review._id }}" class="modal modal-fixed-footer">
             <div class="modal-header">
