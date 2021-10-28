@@ -47,8 +47,10 @@ function getData(title, author, cb) {
  * If not, disable the submit button and alert the user.
  */
 function checkApiFormValidity(title, author) {
-    let isValidSearchTitle = title.checkValidity();
-    let isValidSearchAuthor = author.checkValidity();
+//     let isValidSearchTitle = title.checkValidity(); //checkValidity()Returns true if an input element contains valid data, it does not work with the text input itself.
+//     let isValidSearchAuthor = author.checkValidity();
+    let isValidSearchTitle = true
+    let isValidSearchAuthor = true
     let okButton = document.getElementById("okButton");
     let messageContainer = document.getElementById("messages");
     // Sets the flashed messages back to blank every time the button is clicked.
